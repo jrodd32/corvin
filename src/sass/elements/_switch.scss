@@ -1,0 +1,251 @@
+@mixin switch() {
+  position: relative;
+  padding-top: $switch-padding / 5;
+  padding-bottom: $switch-padding / 5;
+  color: inherit;
+  transition-duration: $switch-transition-duration;
+  transition-timing-function: ease;
+  transition-property: color;
+
+  label {
+    display: block;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+
+    &[disabled],
+    input[disabled] {
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+  }
+
+  *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.toggle {
+  @include switch;
+
+  label {
+    padding-left: 3em;
+    line-height: $switch-line-height * 1.45;
+  }
+
+  div {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    &:before,
+    &:after {
+      position: absolute;
+      left: 0;
+      content: "";
+      transition-timing-function: ease;
+      transition-duration: $switch-transition-duration;
+    }
+
+    &:first-of-type {
+      z-index: 2;
+
+      &:before {
+        background-color: transparent;
+        border-width: $switch-border-size;
+        border-style: solid;
+        border-color: currentColor;
+        border-radius: $switch-border-radius;
+        top: ($switch-line-height * 1.45 / 2) - ($switch-icon-size * 1.45 / 2);
+        width: $switch-icon-size * (1.45 * 1.7);
+        height: $switch-icon-size * 1.45;
+        transition-property: box-shadow;
+      }
+
+      &:after {
+        @extend .icomoon;
+        top: ($switch-line-height * 1.45 / 2) - ($switch-icon-size * 1.45 / 2);
+        width: $switch-icon-size * 1.45;
+        height: $switch-icon-size * 1.45;
+        background-color: currentColor;
+        border-radius: $switch-border-radius;
+        overflow: hidden;
+        transition-property: opacity, transform, width;
+        transform: translateX($switch-icon-size) scale(.65);
+      }
+    }
+
+    &:not(:first-of-type):last-of-type {
+      z-index: 1;
+
+      &:before,
+      &:after {
+        font-family: $font-body;
+        text-align: center;
+        line-height: $switch-icon-size * 1.5;
+        top: ($switch-line-height * 1.45 / 2) - ($switch-icon-size * 1.45 / 2);
+        width: $switch-icon-size * 1.45;
+        height: $switch-icon-size * 1.45;
+        transform: scale(.65);
+        color: inherit;
+      }
+
+      &:before {
+        content: "Off";
+      }
+
+      &:after {
+        transform: translateX($switch-icon-size) scale(.65);
+        content: "On";
+      }
+    }
+  }
+
+  [type="checkbox"]:not(:checked),
+  [type="checkbox"]:checked {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  [type="checkbox"]:checked + div:after {
+    opacity: 1;
+    transform: translateX(0) scale(.65);
+    background-color: $success;
+  }
+
+  [type="checkbox"]:not([disabled]):active + div:before {
+    box-shadow: 0 0 8px currentColor;
+  }
+}
+
+.checkbox {
+  @include switch;
+
+  label {
+    padding-left: 1.5em;
+  }
+
+  div {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    &:before,
+    &:after {
+      position: absolute;
+      left: 0;
+    }
+
+    &:before {
+      background-color: transparent;
+      border-width: $switch-border-size;
+      border-style: solid;
+      border-color: currentColor;
+      border-radius: $switch-border-radius;
+      top: ($switch-line-height / 2) - ($switch-icon-size / 2);
+      width: $switch-icon-size;
+      height: $switch-icon-size;
+      transition: box-shadow $switch-transition-duration ease;
+      content: "";
+    }
+
+    &:after {
+      @extend .icomoon;
+      top: ($switch-line-height / 2) - ($switch-icon-size / 2);
+      width: 0;
+      height: $switch-icon-size;
+      transform: rotate(10deg) scale(.8);
+      overflow: hidden;
+      transition-property: opacity, transform, width;
+      transition-duration: $switch-transition-duration;
+      transition-timing-function: ease;
+      opacity: 0;
+      content: "\e90d";
+    }
+  }
+
+  [type="checkbox"]:not(:checked),
+  [type="checkbox"]:checked {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  [type="checkbox"]:checked + div:after {
+    width: $switch-icon-size;
+    opacity: 1;
+    transform: rotate(0) scale(.8);
+  }
+
+  [type="checkbox"]:not([disabled]):active + div:before {
+    box-shadow: 0 0 8px currentColor;
+  }
+}
+
+.radio {
+  @include switch();
+
+  label {
+    padding-left: 1.5em;
+  }
+
+  div {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    &:before,
+    &:after {
+      position: absolute;
+      left: 0;
+      border-radius: 50%;
+    }
+
+    &:before {
+      background-color: transparent;
+      border-width: $switch-border-size;
+      border-style: solid;
+      border-color: currentColor;
+      top: ($switch-line-height / 2) - ($switch-icon-size / 2);
+      width: $switch-icon-size;
+      height: $switch-icon-size;
+      content: "";
+      transition-timing-function: ease;
+      transition-property: box-shadow;
+    }
+
+    &:after {
+      top: ($switch-line-height / 2) - ($switch-icon-size / 2);
+      width: $switch-icon-size;
+      height: $switch-icon-size;
+      content: "";
+      transform: scale(0);
+      opacity: 0;
+      transition-duration: $switch-transition-duration;
+      transition-timing-function: ease;
+      transition-property: opacity, transform;
+      background-color: currentColor;
+    }
+  }
+
+  [type="radio"]:not(:checked),
+  [type="radio"]:checked {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  [type="radio"]:checked + div:after {
+    opacity: 1;
+    transform: scale(.5);
+  }
+
+  [type="radio"]:not([disabled]):active + div:before {
+    box-shadow: 0 0 8px currentColor;
+  }
+}

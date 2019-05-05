@@ -1,0 +1,13 @@
+{
+    "env": {},
+    "dependencies": {
+        "doeanderson.components/core/styles": "0.0.6"
+    },
+    "componentsDefaultDirectory": "src/js/{namespace}/{name}",
+    "saveDependenciesAsComponents": "false",
+    "packageManager": "yarn",
+    "dist": {
+        "entry": "src",
+        "target": "bit_dist"
+    }
+}

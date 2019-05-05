@@ -1,0 +1,17 @@
+.form {
+
+  .columns {
+    @include touch() {
+      margin: 0;
+
+      .column {
+        margin: 0;
+      }
+    }
+  }
+
+  .buttons,
+  > .button {
+    margin-top: $u6;
+  }
+}

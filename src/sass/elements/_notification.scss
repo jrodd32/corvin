@@ -1,0 +1,54 @@
+.notification {
+  background-color: $primary;
+  border-color: $primary;
+  border-radius: $notification-border-radius;
+  border-style: solid;
+  border-width: $notification-border-width;
+  color: $font-color-light;
+  margin-bottom: 1rem;
+  position: relative;
+  overflow: visible;
+
+  a:not(.button) {
+    color: currentColor;
+    text-decoration: underline;
+  }
+
+  .notification-content {
+    padding: $notification-content-padding;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-bottom: 1rem;
+    }
+
+    *:last-child {
+      margin-bottom: 0;
+    }
+
+    .notification.has-close & {
+      padding-right: $notification-padding-wide;
+    }
+  }
+
+  .notification-action {
+    padding: $notification-action-padding;
+  }
+
+  @include getStyle() {
+    background-color: $color;
+    border-color: $color;
+
+    @if $type == light {
+      color: $font-color-dark;
+    }
+
+    @if $type == dark {
+      color: $font-color-light;
+    }
+  }
+}

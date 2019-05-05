@@ -1,0 +1,59 @@
+.table {
+  background-color: transparent;
+  color: currentColor;
+  margin-bottom: 1.5rem;
+
+  td,
+  th {
+    border: $table-cell-border;
+    border-width: $table-cell-border-width;
+    padding: $table-cell-padding;
+    vertical-align: top;
+
+    &.is-narrow {
+      white-space: nowrap;
+      width: 1%;
+    }
+  }
+
+  th {
+    color: currentColor;
+    text-align: left;
+  }
+
+  thead {
+    td,
+    th {
+      border-width: $table-head-cell-border-width;
+    }
+  }
+
+  tfoot {
+    td,
+    th {
+      border-width: $table-foot-cell-border-width;
+    }
+  }
+
+  tbody {
+    tr {
+      &:last-child {
+        td,
+        th {
+          border-bottom-width: 0;
+        }
+      }
+    }
+  }
+
+  &.is-fullwidth {
+    width: 100%;
+  }
+
+  &.is-narrow {
+    td,
+    th {
+      padding: .25em .5em;
+    }
+  }
+}

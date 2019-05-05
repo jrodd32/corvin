@@ -1,0 +1,201 @@
+// Typography
+$font-primary: "Georgia";
+$font-secondary: "Segoe UI", "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-body: "Segoe UI", "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+$font-size: 1.6rem;
+$font-size-xsmall: 1.32rem;
+$font-size-small: 1.55rem;
+$font-size-medium: 2rem;
+$font-size-large: 2.2rem;
+$font-size-xlarge: 2.6rem;
+$font-weight: 300;
+$font-weight-bold: 400;
+$font-line-height: 1.6;
+
+// Colors
+$black: #0f0f0f;
+$info: #F0EFDF;
+$success: #23d160;
+$warning: #ff3861;
+$white: #fff;
+$primaryBlue: #2A3940;
+$secondaryBlue: #3F5866;
+$tertiaryBlue: #BFD4DE;
+$orange: #FF8C00;
+
+$primary: $primaryBlue;
+$font-color-light: $white;
+$font-color-dark: #9A9A9A;
+
+$utility: rgba(191,212,222, .85);
+
+// Colors
+$states: (
+  success: (
+    color: $success,
+    type: dark
+  ),
+  danger: (
+    color: $warning,
+    type: dark
+  ),
+  info: (
+    color: $info,
+    type: dark
+  )
+);
+
+$styles: (
+  black: (
+    color: $black,
+    type: dark
+  ),
+  white: (
+    color: $white,
+    type: light
+  )
+);
+
+// Scale
+$scale: (
+  xsmall: $font-size-xsmall,
+  small: $font-size-small,
+  medium: $font-size-medium,
+  large: $font-size-large,
+  xlarge: $font-size-xlarge
+);
+
+// Units
+$u1:  .4rem;   // 4px
+$u2:  .8rem;   // 8px
+$u3:  1.2rem;  // 12px
+$u4:  1.6rem;  // 16px
+$u5:  2rem;    // 20px
+$u6:  2.4rem;  // 24px
+$u7:  3.2rem;  // 32px
+$u8:  4rem;    // 40px
+$u9:  4.8rem;  // 48px
+$u10: 6.4rem;  // 64px
+$u11: 8rem;    // 80px
+$u12: 9.6rem;  // 96px
+$u13: 12.8rem; // 128px
+$u14: 16rem;   // 160px
+$u15: 19.2rem; // 192px
+$u16: 22.4rem; // 224px
+$u17: 25.6rem; // 256px
+
+// Grid
+$container: 134.4rem;
+$gap: $u6;
+$mobile: 480px;
+$tablet: 768px;
+$desktop: 960px;
+$widescreen: 1152px;
+$cinema: 1344px;
+$ultrawide: 1600px;
+$shortscreen: 950px;
+
+// Body
+$body-background: $white;
+$body-font-color: $font-color-dark;
+$body-font-size: $font-size;
+$body-font-weight: $font-weight;
+$body-line-height: $font-line-height;
+$body-offset: 7rem;
+$body-offset-tablet: 10rem;
+
+// Heading
+$h1-font-size: 6.4rem;
+$h2-font-size: 4.2rem;
+$h3-font-size: 3.6rem;
+$h4-font-size: 3.2rem;
+$h5-font-size: 2.8rem;
+$h6-font-size: 2.4rem;
+
+$heading-size: (
+  h1: $h1-font-size,
+  h2: $h2-font-size,
+  h3: $h3-font-size,
+  h4: $h4-font-size,
+  h5: $h5-font-size,
+  h6: $h6-font-size
+);
+
+// Links
+$link-color: $orange;
+$link-hover-color: darken($orange, 10%);
+
+// Misc
+$border-radius: 5px;
+$border-radius-large: 50%;
+$border-width: 1px;
+$transition-duration: .4s;
+
+// Button
+$button-font-size: $font-size;
+$button-height: 3em;
+$button-padding: 1.4em;
+$button-border-radius: $border-radius;
+$button-border-size: $border-width;
+$button-line-height: $font-line-height;
+$button-transition-duration: $transition-duration;
+$button-icon-spacing: .5em;
+
+// Columns
+$columns: 12;
+$column-gap: $u6;
+
+// Field
+$field-font-size: $font-size;
+$field-font-weight: $font-weight;
+$field-height: 2.4em;
+$field-padding: 1em;
+$field-border-size: $border-width;
+$field-line-height: 1.5;
+$field-arrow-size: .5em;
+$field-gap: 1em;
+$field-transition-duration: $transition-duration;
+$field-border-radius: $border-radius;
+$field-icon-size: 1em;
+
+// List
+$list-padding-left: 0;
+$list-item-padding-left: 1em;
+$list-item-spacing: .25em;
+$list-item-inline-spacing: 1em;
+$list-bullet-size: .4em;
+$list-bullet-border-radius: $border-radius;
+$list-number-font: $font-body;
+
+// Icons
+$icon-danger: "\e901";
+$icon-disabled: "\e903";
+$icon-info: "\e902";
+$icon-select: "\e90b";
+$icon-success: "\e90d";
+
+// Notification
+$notification-action-padding: 1.25rem 1.5rem;
+$notification-border-width: $border-width;
+$notification-border-radius: $border-radius;
+$notification-content-padding: 2.5rem 1.5rem;
+$notification-padding-wide: 4.5rem;
+
+// Switch
+$switch-font-size: $font-size;
+$switch-font-weight: $font-weight;
+$switch-height: 2.4em;
+$switch-padding: 1em;
+$switch-border-size: $border-width;
+$switch-line-height: $font-line-height;
+$switch-transition-duration: $transition-duration;
+$switch-border-radius: $border-radius;
+$switch-icon-size: 1em;
+
+// Table
+$table-cell-border: $border-width solid currentColor;
+$table-cell-border-width: 0 0 $border-width;
+$table-cell-padding: .5em .75em;
+$table-head-cell-border-width: 0 0 ($border-width * 2);
+$table-foot-cell-border-width: ($border-width * 2) 0 0;

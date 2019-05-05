@@ -1,0 +1,478 @@
+::placeholder {
+  color: $white;
+  text-indent: $u2;
+}
+
+@mixin field() {
+  display: inline-block;
+  height: $field-height;
+  padding: 0 ($field-padding * 1.5) 0 0;
+  max-width: 100%;
+  width: 100%;
+  background-color: transparent;
+  border-color: currentColor;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 0;
+  color: inherit;
+  font-family: $font-body;
+  font-size: $field-font-size;
+  font-weight: $field-font-weight;
+  line-height: $field-line-height;
+  text-indent: $u2;
+  transition-duration: $field-transition-duration;
+  transition-timing-function: ease;
+  transition-property: all;
+  outline: 0;
+
+  & ~ .icon {
+    color: inherit;
+  }
+
+  &[disabled] {
+    opacity: .5;
+    border-bottom-style: dashed;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  &:valid {
+    opacity: 1;
+  }
+
+  .field.is-centered & {
+    text-align: center;
+    padding-left: $field-padding * 1.5;
+  }
+
+  @each $size, $multipler in $scale {
+    .field.is-#{$size} & {
+      font-size: $multipler;
+    }
+  }
+}
+
+.label {
+  display: inline-flex;
+  color: inherit;
+
+  @each $size, $multipler in $scale {
+    .field.is-#{$size} & {
+      font-size: $multipler;
+    }
+  }
+
+  .field & {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: inherit;
+    display: block;
+    transform: translateY(1.46em);
+    transform-origin: 0% 100%;
+    pointer-events: none;
+    z-index: 2;
+    transition-duration: $field-transition-duration;
+    transition-timing-function: ease;
+    transition-property: transform;
+  }
+
+  .field.has-icon & {
+    transform: translate(1.5em, 1.46em);
+  }
+
+  .field.is-centered & {
+    right: 0;
+    display: inline;
+    transform-origin: top;
+  }
+
+  .field.is-focus &,
+  .field.has-placeholder &,
+  .field.has-multiple &,
+  .field.has-value & {
+    transform: translateY(-.25em) scale(.85);
+    pointer-events: auto;
+  }
+
+  &.is-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+  }
+}
+
+.helper {
+  display: block;
+  transform-origin: 0% 100%;
+  transform: scale(.85);
+  color: inherit;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition-duration: $field-transition-duration;
+  transition-timing-function: ease-in-out;
+  transition-property: opacity, max-height;
+}
+
+.input {
+  @include field;
+
+  &:required,
+  &:invalid {
+    box-shadow: none;
+  }
+
+  &[type=number].as-text {
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -moz-appearance: textfield;
+    appearance: none;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      appearance: none;
+      margin: 0;
+    }
+  }
+}
+
+.select {
+  @include field;
+  appearance: none;
+  padding-right: $field-padding + $field-arrow-size;
+
+  &::-ms-expand {
+    display: none;
+  }
+
+  &[multiple] {
+    padding: 0;
+    height: auto;
+
+    option {
+      padding: $field-padding / 2;
+    }
+  }
+}
+
+.textarea {
+  position: relative;
+  display: block;
+  max-width: 100%;
+  min-width: 100%;
+  line-height: 1.5;
+
+  > textarea,
+  > pre {
+    @include field;
+    margin: 0;
+    padding-top: .4em;
+    padding-bottom: .4em;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  > textarea {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    resize: none;
+    overflow: auto;
+  }
+
+  > pre {
+    min-height: $field-height;
+    height: auto;
+    display: block;
+    visibility: hidden;
+  }
+}
+
+.control {
+  position: relative;
+
+  &:before {
+    display: block;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    background-color: currentColor;
+    z-index: 1;
+    width: 0;
+    transition: width .3s;
+  }
+
+  &:after {
+    @extend .icomoon;
+    position: absolute;
+    top: ($field-height / 2) - ($field-padding / 2);
+    right: 0;
+    width: $field-icon-size;
+    height: $field-icon-size;
+    z-index: 2;
+    pointer-events: none;
+
+    .field.has-select & {
+      content: $icon-select !important;
+    }
+
+    .field.is-disabled & {
+      content: $icon-disabled !important;
+    }
+  }
+
+  > .icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $field-padding;
+    height: $field-height;
+    line-height: $field-height;
+    text-align: center;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  @each $size, $multipler in $scale {
+    .field.is-#{$size} & {
+      font-size: $multipler;
+    }
+  }
+}
+
+.field {
+  color: currentColor;
+  position: relative;
+  padding-top: $field-padding;
+  padding-bottom: $field-padding;
+  transition-duration: $field-transition-duration;
+  transition-timing-function: ease;
+  transition-property: color;
+
+  &.is-focus {
+    .control:before {
+      width: 100%;
+    }
+
+    ::placeholder {
+      opacity: 1;
+      visibility: visible;
+      color: currentColor;
+    }
+  }
+
+  &.has-placeholder {
+    ::placeholder {
+      opacity: 1;
+      visibility: visible;
+      color: currentColor;
+    }
+  }
+
+  &.is-disabled {
+    opacity: .5;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  &.is-centered {
+    text-align: center;
+  }
+
+  &.is-wide {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+
+    .select {
+      width: 100%;
+      display: block;
+
+      select {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+
+  &.has-icon .control {
+    input,
+    select {
+      padding-left: $field-padding * 1.5;
+    }
+  }
+
+  &.has-multiple {
+    display: flex;
+
+    .control {
+      flex: 1 1 auto;
+
+      &:not(:last-child) {
+        margin-right: $field-gap;
+      }
+    }
+  }
+
+  &.has-checkbox,
+  &.has-radio {
+    padding-top: $field-padding / 5;
+    padding-bottom: $field-padding / 5;
+  }
+
+  &.is-birthday {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 13em;
+    flex-wrap: wrap;
+
+    &.full-width {
+      .control,
+      .control:last-of-type {
+        max-width: none;
+      }
+    }
+
+    .control {
+      max-width: 4em;
+      flex: 1 0 33%;
+
+      input {
+        padding-left: $field-padding / 2;
+        padding-right: $field-padding / 2;
+        text-align: center;
+      }
+
+      &:not(:last-of-type) {
+        margin-right: 0;
+
+        &:after {
+          background-color: currentColor;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%) skew(-8deg);
+          right: 0;
+          width: $field-border-size;
+          height: 50%;
+          content: "";
+        }
+      }
+
+      &:last-of-type {
+        max-width: 5em;
+        margin-right: 0;
+      }
+    }
+
+    @include getState() {
+      .control {
+        .input {
+          padding-left: $field-padding / 2;
+          padding-right: $field-padding / 2;
+        }
+        &:last-of-type {
+          .input {
+            padding-right: $field-padding;
+          }
+        }
+      }
+    }
+  }
+
+  *:last-child {
+    margin-bottom: 0;
+  }
+
+  @each $size, $multipler in $scale {
+    &.is-#{$size} {
+      font-size: $multipler;
+    }
+  }
+
+  @include getState() {
+    .control {
+      &:before {
+        background-color: $color;
+      }
+
+      &:after {
+        color: $color;
+        font-size: inherit;
+
+        @if $state == success {
+          content: $icon-success;
+        }
+        @else if $state == danger {
+          content: $icon-danger;
+        }
+        @else if $state == info {
+          content: $icon-info;
+        }
+      }
+
+      input,
+      select,
+      textarea {
+        border-color: $color;
+      }
+    }
+
+    .helper {
+      opacity: 1;
+      max-height: 200px;
+      color: $color;
+    }
+  }
+
+  .fields & {
+    flex-shrink: 0;
+
+    &:not(:last-child) {
+      margin-bottom: 0;
+      margin-right: $field-gap;
+    }
+  }
+}
+
+.fields {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: top;
+  justify-content: flex-start;
+
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  &.is-center {
+    justify-content: center;
+  }
+
+  &.is-right {
+    justify-content: flex-end;
+  }
+
+  &.is-space-between {
+    justify-content: space-between;
+  }
+
+  &.is-list {
+    flex-direction: column;
+  }
+
+  > * {
+    flex-shrink: 0;
+
+    &:not(:last-child) {
+      margin-bottom: 0;
+      margin-right: $field-gap;
+    }
+  }
+}

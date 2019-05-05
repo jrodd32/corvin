@@ -1,0 +1,23 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass functions.
+// -----------------------------------------------------------------------------
+
+// Encodes hex colors hash symbol, ex. #FFF -> %23FFF
+// Firefox needs encoded colors to use
+// inlined SVGs as background images
+@function encodeColor($string) {
+  @if type-of($string) == "color" {
+    $hex: str-slice(ie-hex-str($string), 4);
+    $string:unquote("#{$hex}");
+  }
+
+  @return "%23" + $string;
+}
+
+// Fetches deeply nested values
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}

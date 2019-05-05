@@ -1,0 +1,189 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-right: $button-padding;
+  padding-left: $button-padding;
+  height: $button-height;
+  background: transparent;
+  border-width: $button-border-size;
+  border-style: solid;
+  border-radius: $button-border-radius;
+  text-decoration: none;
+  font-size: $button-font-size;
+  font-weight: $font-weight;
+  line-height: $button-line-height;
+  white-space: nowrap;
+  vertical-align: middle;
+  transition-duration: $button-transition-duration;
+  transition-timing-function: ease;
+  transition-property: background-color, color, border, box-shadow;
+  cursor: pointer;
+
+  strong {
+    color: inherit;
+  }
+
+  .icon {
+    margin-right: $button-icon-spacing;
+    font-size: .85em;
+
+    img,
+    svg {
+      max-width: 1.8em;
+    }
+  }
+
+  &.is-icon-right {
+    flex-direction: row-reverse;
+
+    .icon {
+      margin-right: 0;
+      margin-left: $button-icon-spacing;
+    }
+  }
+
+  &:disabled {
+    opacity: .5;
+    cursor: default;
+  }
+
+  &:focus:not([disabled]) {
+    outline: 0;
+  }
+
+  &:hover:not([disabled]) {
+    text-decoration: none;
+  }
+
+  &.is-icon-only {
+    justify-content: center;
+    padding: 0;
+    min-width: auto;
+    width: $button-height;
+
+    .icon {
+      margin: 0;
+      font-size: 1.125em;
+    }
+
+    &.is-xsmall {
+      height: $button-height / 1.75;
+      width: $button-height / 1.75;
+      font-size: 1.25rem;
+    }
+  }
+
+  &.is-large-padding {
+    height: $button-height * 1.25;
+    padding-right: $button-padding * 2;
+    padding-left: $button-padding * 2;
+  }
+
+  &.is-full-width {
+    justify-content: center;
+    margin-top: $u6;
+    position: relative;
+    width: 100%;
+    // Needed to have the button hover effect work
+    // Otherwise it is below the link that makes the entire space clickable.
+    z-index: 5;
+  }
+
+  @each $size, $multipler in $scale {
+    &.is-#{$size} {
+      font-size: $multipler;
+    }
+  }
+
+  @include getStyle() {
+    border-color: $color;
+    color: $color;
+
+    &:focus:not([disabled]) {
+      box-shadow: 0 0 .4em .2em transparentize($color, .9) inset;
+      border-color: darken($color, 5%);
+      color: $white;
+
+      @if $type == light {
+        color: $font-color-dark;
+      }
+    }
+
+    &:hover:not([disabled]) {
+      background-color: $color;
+      color: $white;
+
+      @if $type == light {
+        border-color: $color;
+        color: $font-color-dark;
+      }
+    }
+
+    &:active:not([disabled]) {
+      background-color: darken($color, 10%);
+      border-color: darken($color, 10%);
+    }
+  }
+
+  &.is-text {
+    background-color: transparent;
+    color: currentColor;
+    border: 0;
+
+    &:before,
+    &:after {
+      content: none;
+    }
+
+    &:hover:not([disabled]),
+    &:focus:not([disabled]),
+    &:active:not([disabled]) {
+      background-color: transparent;
+      color: currentColor;
+      border: 0;
+      box-shadow: none;
+    }
+  }
+
+  &.is-delete {
+    border-color: transparent;
+    color: currentColor;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .buttons > & {
+    margin-bottom: 1rem;
+
+    &:not(:first-child) {
+      margin-left: 1rem;
+    }
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  &:last-child {
+    margin-bottom: -1rem;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  &.is-center {
+    justify-content: center;
+  }
+
+  &.is-right {
+    justify-content: flex-end;
+  }
+}

@@ -1,0 +1,32 @@
+.quote {
+  @supports (display: grid) {
+    display: grid;
+  }
+
+  grid-template-columns: $u6 1fr $u6;
+
+  blockquote {
+    grid-column: 2 / span 1;
+    max-width: 70rem;
+    margin: 0 auto;
+    font-size: 2.2em;
+    text-align: center;
+
+    p {
+      margin: 0;
+
+      &:before {
+        content: open-quote;
+      }
+
+      &:after {
+        content: close-quote;
+      }
+    }
+
+    @include desktop() {
+      font-size: 2.8em;
+      line-height: 1.35;
+    }
+  }
+}

@@ -1,0 +1,218 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+// Clearfix
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// Breakpoints
+@mixin small-mobile {
+  @media (max-width: calc(#{$mobile} - .1rem)) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: calc(#{$tablet} - .1rem)) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: $tablet), print {
+    @content;
+  }
+}
+
+@mixin tablet-only {
+  @media (min-width: $tablet) and (max-width: calc(#{$desktop} + (2 * #{$gap}) - .1rem)) {
+    @content;
+  }
+}
+
+@mixin touch {
+  @media (max-width: calc(#{$desktop} - .1rem)) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: calc(#{$desktop} + (2 * #{$gap}))) {
+    @content;
+  }
+}
+
+@mixin desktop-only {
+  @media (min-width: calc(#{$desktop} + (2 * #{$gap})) and (max-width: calc(#{$widescreen} + (2 * #{$gap}) - .1rem))) {
+    @content;
+  }
+}
+
+@mixin desktop-to-cinema {
+  @media (min-width: calc(#{$desktop} + (2 * #{$gap})) and (max-width: calc(#{$cinema} + (2 * #{$gap}) - .1rem))) {
+    @content;
+  }
+}
+
+@mixin widescreen {
+  @media (min-width: calc(#{$widescreen} + (2 * #{$gap}))) {
+    @content;
+  }
+}
+
+@mixin widescreen-only {
+  @media (min-width: calc(#{$widescreen} + (2 * #{$gap})) and (max-width: calc(#{$cinema} + (2 * #{$gap}) - .1rem))) {
+    @content;
+  }
+}
+
+@mixin widescreen-down {
+  @media (max-width: calc(#{$cinema} + (2 * #{$gap}))) {
+    @content;
+  }
+}
+
+@mixin cinema {
+  @media (min-width: calc(#{$cinema} + (2 * #{$gap}))) {
+    @content;
+  }
+}
+
+@mixin cinema-only {
+  @media (min-width: calc(#{$cinema} + (2 * #{$gap})) and (max-width: calc(#{$ultrawide} + (2 * #{$gap}) - .1rem))) {
+    @content;
+  }
+}
+
+@mixin ultrawide {
+  @media (min-width: calc(#{$ultrawide} + (2 * #{$gap}))) {
+    @content;
+  }
+}
+
+@mixin retina {
+  @media only screen and (-webkit-min-device-pixel-ratio: 1.3),
+    only screen and (-o-min-device-pixel-ratio: 13/10),
+    only screen and (min-resolution: 120dpi) {
+    @content;
+  }
+}
+
+@mixin short {
+  @media (max-height: $shortscreen) {
+    @content;
+  }
+}
+
+@mixin ie {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    @content;
+  }
+}
+
+// Styles
+@mixin getStyle($styles: $styles) {
+  @each $style, $attribute in $styles {
+    $style: $style !global;
+    $color: map-deep-get($styles, $style, color) !global;
+    $type: map-deep-get($styles, $style, type) !global;
+
+    &.is-#{$style} {
+      @content;
+    }
+
+    $style: null !global;
+    $color: null !global;
+    $type: null !global;
+  }
+}
+
+// States
+@mixin getState($states: $states) {
+  @each $state, $attribute in $states {
+    $state: $state !global;
+    $color: map-deep-get($states, $state, color) !global;
+    $type: map-deep-get($states, $state, type) !global;
+
+    &.is-#{$state} {
+      @content;
+    }
+
+    $state: null !global;
+    $color: null !global;
+    $type: null !global;
+  }
+}
+
+// Force aspect ratio
+@function nth-value($list, $index) {
+  @return if(length($list) >= $index, nth($list, $index), null);
+}
+
+@mixin aspect-ratio($arglist... /*$ratio or $width, $height*/) {
+  $map: keywords($arglist);
+  $height: map-get($map, height) or nth-value($arglist, 2);
+  $width: map-get($map, width)  or nth-value($arglist, 1);
+  $ratio: map-get($map, ratio)  or if($width and $height, $width/$height, nth-value($arglist, 1)) or 1;
+  $padding: 1/$ratio * 100%;
+
+  &::before,
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+    width: .1rem;
+    margin-left: -.1rem;
+  }
+
+  &::before {
+    float: left;
+    padding-bottom: $padding;
+  }
+}
+
+// Setup common font styles
+@mixin font-primary() {
+  font-family: $font-primary;
+  font-weight: $font-weight-bold;
+}
+
+@mixin font-secondary() {
+  font-family: $font-secondary;
+  font-weight: $font-weight;
+}
+
+@mixin font-body() {
+  font-family: $font-body;
+}
+
+// Setup heading sizes
+@mixin is-h1() {
+  font-size: $h1-font-size;
+}
+
+@mixin is-h2() {
+  font-size: $h2-font-size;
+}
+
+@mixin is-h3() {
+  font-size: $h3-font-size;
+}
+
+@mixin is-h4() {
+  font-size: $h4-font-size;
+}
+
+@mixin is-h5() {
+  font-size: $h5-font-size;
+}
+
+@mixin is-h6() {
+  font-size: $h6-font-size;
+}

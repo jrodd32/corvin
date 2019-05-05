@@ -1,0 +1,66 @@
+// -----------------------------------------------------------------------------
+// This file contains CSS helper classes.
+// -----------------------------------------------------------------------------
+
+// Hide text while making it readable for screen readers
+.hidden-text {
+  overflow: hidden;
+  padding: 0; /* 1 */
+  text-indent: 120%;
+  white-space: nowrap;
+}
+
+// Hide element while making it readable for screen readers
+.hidden-element {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+// Hide visiblity of element
+.hidden-visiblity {
+  visibility: hidden;
+}
+
+// Contain components
+.is-contained {
+  width: 100%;
+  max-width: $container;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Renders a clickable area over the entire container,
+// parent must be relatively positioned
+.overlay-link {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+
+// Text styles
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-italic {
+  font-style: italic;
+}

@@ -1,0 +1,11 @@
+{
+    "name": "@bit/doeanderson.components.core.styles",
+    "version": "0.0.6",
+    "homepage": "https://bitsrc.io/doeanderson/components/core/styles",
+    "main": "styles.js",
+    "dependencies": {},
+    "devDependencies": {},
+    "peerDependencies": {},
+    "componentRootFolder": "src/js/core/styles",
+    "license": "SEE LICENSE IN LICENSE"
+}
