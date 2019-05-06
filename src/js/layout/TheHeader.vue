@@ -19,13 +19,21 @@
     >
       <div class="navbar-menu">
         <div class="navbar-item home-link">
-          <a href="/" class="navbar-link">Home</a>
+          <router-link
+            to="/"
+            class="navbar-link"
+          >
+            Home
+          </router-link>
         </div>
 
         <div class="navbar-item has-dropdown">
-          <a class="navbar-link">
+          <router-link
+            class="navbar-link"
+            to="/shop"
+          >
             Shop Now
-          </a>
+          </router-link>
 
           <div class="navbar-dropdown">
             <a class="navbar-item">
@@ -45,36 +53,51 @@
         </div>
 
         <div class="navbar-item">
-          <a class="navbar-link">
+          <router-link
+            class="navbar-link"
+            to="/about"
+          >
             About
-          </a>
+          </router-link>
         </div>
 
         <div class="navbar-logo">
-          <a class="navbar-item">
+          <router-link
+            class="navbar-item"
+            to="/"
+          >
             <img
               alt="Corvin's flooring logo"
               src="../../images/menu-logo.jpg@2x.png"
             />
-          </a>
+          </router-link>
         </div>
 
         <div class="navbar-item">
-          <a class="navbar-link">
+          <router-link
+            class="navbar-link"
+            to="/gallery"
+          >
             Gallery
-          </a>
+          </router-link>
         </div>
 
         <div class="navbar-item">
-          <a class="navbar-link">
+          <router-link
+            class="navbar-link"
+            to="/flooring-101"
+          >
             Flooring 101
-          </a>
+          </router-link>
         </div>
 
         <div class="navbar-item">
-          <a class="navbar-link">
+          <router-link
+            class="navbar-link"
+            to="/contact"
+          >
             Contact Us
-          </a>
+          </router-link>
         </div>
       </div>
     </nav>

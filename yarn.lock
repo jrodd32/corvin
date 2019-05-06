@@ -735,7 +735,7 @@
   resolved "https://node.bit.dev/doeanderson.components.components.doe-columns/-/doeanderson.components.components.doe-columns-0.0.7.tgz#e712d56ae0aa70c19533fe9047655dc3838aa81a"
   integrity sha1-5xLVauCqcMGVM/6QR2Vdw4OKqBo=
 
-"@bit/doeanderson.components.components.doe-content@0.0.8":
+"@bit/doeanderson.components.components.doe-content@0.0.8", "@bit/doeanderson.components.components.doe-content@^0.0.8":
   version "0.0.8"
   resolved "https://node.bit.dev/doeanderson.components.components.doe-content/-/doeanderson.components.components.doe-content-0.0.8.tgz#24b2b654a033dd898dd296bc2fe25ae8fe7688b6"
   integrity sha1-JLK2VKAz3YmN0pa8L+Ja6P52iLY=
