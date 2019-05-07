@@ -42,11 +42,6 @@
     &-phone {
       margin-bottom: 0;
     }
-
-    // @include tablet() {
-    //   padding-left: $u6;
-    //   padding-right: $u6;
-    // }
   }
 
 </style>

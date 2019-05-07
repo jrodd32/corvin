@@ -5,6 +5,7 @@
     <corvin-products
       :listing-type="computedListingType"
       class="is-contained"
+      has-filters="true"
     />
   </main>
 </template>

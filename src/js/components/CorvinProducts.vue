@@ -28,6 +28,12 @@
       CorvinStoreFilters
     },
     props: {
+      hasFilters: {
+        type: Boolean,
+        default() {
+          return false;
+        }
+      },
       listingType: {
         type: String,
         default() {
