@@ -7,14 +7,16 @@
       :alt="product.image.alt"
       :src="product.image.src"
       class="product-image"
-    >
+    />
+
     <h2
-      v-html="product.description"
+      v-html="product.title"
       class="product-title"
     />
 
     <p
-      v-html="product.description"
+      v-for="paragraph in product.description"
+      v-html="paragraph"
       class="product-description"
     />
 
