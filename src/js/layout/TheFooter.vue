@@ -83,6 +83,13 @@
     p {
       margin-bottom: 0;
     }
+
+    @include tablet() {
+      & > * {
+        padding-left: $u6;
+        padding-right: $u6;
+      }
+    }
   }
 
   .footer-brand {
@@ -110,6 +117,10 @@
         color: $info;
         text-transform: uppercase;
       }
+
+      .field {
+        padding: 0;
+      }
     }
 
     .location-hours {
@@ -127,18 +138,12 @@
 
       .location-info {
         flex-flow: row wrap;
-      }
-
-      .subscribe {
-        flex-flow: column;
-      }
-
-      .location-info {
         flex: 1 1 50%;
         justify-content: space-between;
       }
 
       .subscribe {
+        flex-flow: column nowrap;
         flex: 1 1 50%;
       }
 
@@ -156,6 +161,29 @@
           padding: .3rem 2rem;
           text-transform: uppercase;
         }
+      }
+    }
+
+    @include widescreen() {
+      padding-bottom: $u10;
+      padding-left: $u10;
+      padding-right: $u10;
+      padding-top: $u10;
+
+      .location-info {
+        justify-content: flex-start;
+      }
+
+      .location-listing {
+        margin-right: $u10;
+      }
+
+      .location-hours {
+        margin-top: 0;
+      }
+
+      .subscribe {
+        flex: 0 1 25%;
       }
     }
   }
@@ -192,6 +220,29 @@
         display: flex;
         justify-content: flex-end;
       }
+    }
+
+    @include desktop() {
+      .social-links,
+      .copyright,
+      .flooring {
+        order: initial;
+      }
+
+      .social-links,
+      .flooring {
+        flex: auto;
+      }
+
+      .copyright {
+        flex: 0 1 75%;
+        margin-top: 0;
+      }
+    }
+
+    @include widescreen() {
+      padding-left: $u10;
+      padding-right: $u10;
     }
   }
 
