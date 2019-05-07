@@ -4,14 +4,16 @@
       <span
         aria-haspopup="true"
         aria-controls="dropdown-menu"
-        @click="handleFilterDropDownClick(filter.filterName)"
+        @click="handleFilterDropDownClick(filter.title)"
       >
-        <span>{{ filter.filterName }}</span>
+        <span>{{ filter.title }}</span>
       </span>
+
+      <span class="arrow-down"></span>
     </div>
 
     <div
-      :id="filter.filterName"
+      :id="filter.title"
       class="dropdown-menu"
       role="menu"
     >
@@ -56,7 +58,24 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
+  .dropdown-trigger {
+    align-items: center;
+    display: flex;
+    flex-flow: row nowrap;
+    text-transform: uppercase;
+
+    .arrow-down {
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid $orange;
+      display: inline-block;
+      height: 0;
+      margin-left: $u4;
+      width: 0;
+    }
+  }
   .dropdown-trigger > span,
   .dropdown-item {
     display: block;

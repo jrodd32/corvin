@@ -5,28 +5,21 @@
       :filter="filter"
       :key="filter.filterName"
     />
-
-    <span
-      class="filter clear"
-      @click="clearAllFilters"
-    >
-      Clear All
-    </span>
   </div>
 </template>
 
 <script>
   import { filters } from '../core/data';
-  import CorvinStoreFilter from '../components/CorvinStoreFilter.vue';
+  import CorvinStoreFilter from './CorvinStoreFilter.vue';
 
   export default {
+    components: {
+      CorvinStoreFilter
+    },
     data() {
       return {
         filters
       };
-    },
-    components: {
-      CorvinStoreFilter
     },
     methods: {
       clearAllFilters() {
@@ -36,19 +29,21 @@
   }
 </script>
 
-<style scoped>
-  .clear {
-    cursor: pointer;
-    display: inline-block;
-  }
-
+<style lang="scss" scoped>
   .filters {
+    border-bottom: 1px solid $tertiaryBlue;
+    border-top: 1px solid $tertiaryBlue;
     display: flex;
     flex-flow: column nowrap;
-  }
+    margin-bottom: $u10;
+    margin-left: $u4;
+    margin-right: $u4;
+    padding-bottom: $u6;
+    padding-top: $u6;
 
-  .dropdown-menu {
-    display: flex;
-    flex-flow: column nowrap;
+    @include tablet() {
+      flex-flow: row wrap;
+      justify-content: space-around;
+    }
   }
 </style>
