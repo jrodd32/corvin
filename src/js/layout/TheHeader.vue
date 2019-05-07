@@ -134,6 +134,10 @@
     display: flex;
     padding: $u4;
 
+    & > * {
+      margin-bottom: 0;
+    }
+
     .social-links {
       display: none;
     }
