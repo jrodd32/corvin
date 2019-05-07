@@ -1,270 +1,338 @@
 <template>
-  <main class="page">
-    <div class="container">
-      <h1>About Us</h1>
+  <main class="page is-inset is-gapless about">
+    <corvin-page-heading :heading="tempAboutHeading" />
 
-      <div class="internal-navigation">
-        <span
-          @click="scrollTo('history')"
-        >Our History</span>
-        <span
-          @click="scrollTo('team')"
-        >Our Team</span>
-        <span
-          @click="scrollTo('showroom')"
-        >Our Showroom</span>
-        <span
-          @click="scrollTo('services')"
-        >Our Services</span>
+    <div class="about-intro">
+      <div class="content">
+        <p>
+          Mark started the business in a small 5,000SF building selling only furniture and has since grown it to a 100,000SF building selling Furniture, Flooring, a Traders Mall and a Moving service.
+        </p>
+        <p>
+          People shop at Corvin's because we have one of the biggest showrooms in the state of Kentucky.
+          We will aggressively bid out any job small or big and promise to treat all of our customers
+          as if they are family. Our sales staff is very knowledgeable on all aspects of floorings
+          and will make sure each job is done correctly.
+        </p>
+        <p>
+          We offer a vast array of different options in Hardwood, Laminate, Tile, Vinyl and Carpet. Our
+          Shaw products include: Anso, Caress, Clearly Chic, ClearTouch, EverTouch, R2X Stain Remover,
+          LifeHappens, St. Jude Carpet Cushion, Tuftex, and Floorte. We also install all flooring and
+          we do custom showers.
+        </p>
+      </div>
+
+      <aside class="pull-quote">
+        <blockquote>
+          <span>Our Mission:</span>
+          To champion every client’s flooring with passion &amp; integrity.
+        </blockquote>
+      </aside>
+    </div>
+
+    <div class="about-team">
+      <h2 class="section-heading">Our Team</h2>
+
+      <div class="profiles">
+        <corvin-profile
+          v-for="profile in profiles"
+          :profile="profile"
+          :key="profile.name"
+        />
       </div>
     </div>
 
-    <div class="container">
-      <div class="about-intro">
-        <div class="content">
-          <p>
-            Corvin's Flooring has been a family-owned business in Bardstown, KY since 1987 and is a
-            current member of the Chamber of Commerce. Mark started the business in a small 5,000SF
-            building selling only furniture and has since grown it to a 100,000SF building selling Furniture,
-            Flooring, a Traders Mall and a Moving service.
-          </p>
-          <p>
-            People shop at Corvin's because we have one of the biggest showrooms in the state of Kentucky.
-            We will aggressively bid out any job small or big and promise to treat all of our customers
-            as if they are family. Our sales staff is very knowledgeable on all aspects of floorings
-            and will make sure each job is done correctly.
-          </p>
-          <p>
-            We offer a vast array of different options in Hardwood, Laminate, Tile, Vinyl and Carpet. Our
-            Shaw products include: Anso, Caress, Clearly Chic, ClearTouch, EverTouch, R2X Stain Remover,
-            LifeHappens, St. Jude Carpet Cushion, Tuftex, and Floorte. We also install all flooring and
-            we do custom showers.
-          </p>
-        </div>
-        <aside class="pull-quote">
-          <blockquote>
-              Our Mission:
-              To champion
-              every client’s
-              flooring
-              with passion
-              & integrity.
-          </blockquote>
-        </aside>
-      </div>
-    </div>
-
-    <div class="section about-history" id="history">
-      <h2 class="section-heading">Our History</h2>
-      <div class="columns">
-        <figure class="image column is-one-quarter">
-          <img src="https://placehold.it/400x600" alt="">
-        </figure>
-
-        <div class="content column">
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, recusandae? Animi quod pariatur, debitis aliquid laborum quasi unde iure corporis?</p>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, recusandae? Animi quod pariatur, debitis aliquid laborum quasi unde iure corporis? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae assumenda maiores quos animi consequuntur, repudiandae doloremque sed possimus tempora sit?</p>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="section about-team" id="team">
-      <div class="container">
-        <h2 class="section-heading">Our Team</h2>
-        <corvin-profiles />
-      </div>
-    </div>
-
-    <div class="section about-showroom" id="showroom">
-      <h2 class="section-heading">Our Showroom</h2>
-
-      <div class="gallery">
-        <figure class="gallery-image image">
-          <img src="https://placehold.it/2400x1200" alt="">
-        </figure>
-        <div class="gallery-thumbnails">
-          <figure class="gallery-thumbnail"><img src="https://placehold.it/400x300" alt=""></figure>
-          <figure class="gallery-thumbnail"><img src="https://placehold.it/400x300" alt=""></figure>
-          <figure class="gallery-thumbnail"><img src="https://placehold.it/400x300" alt=""></figure>
-          <figure class="gallery-thumbnail"><img src="https://placehold.it/400x300" alt=""></figure>
-        </div>
-      </div>
-    </div>
-
-    <div class="section about-services" id="services">
-      <div class="container is-fluid">
-        <h2 class="section-heading">Our Services</h2>
-
-        <div class="columns is-multiline">
-        <!-- Services here -->
-        </div>
-      </div>
+    <div class="about-cta">
+      <h3>Contact one of our team members today and we will assist you</h3>
     </div>
   </main>
 </template>
 
 <script>
-  import { smoothScroll } from '../core/mixins';
-  import CorvinsHero from '../components/CorvinsHero.vue';
-  import CorvinProfiles from '../components/CorvinProfiles.vue';
+  import CorvinPageHeading from '../components/CorvinPageHeading.vue';
+  import CorvinProfile from '../components/CorvinProfile.vue';
 
   const services = [
     {
-      'name': 'Service Name',
-      'description': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eaque non amet aliquid nemo laboriosam?',
-      'icon': 'https://placehold.it/150x150',
-      'class': 'column is-one-quarter'
+      name: 'Service Name',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eaque non amet aliquid nemo laboriosam?',
+      icon: 'https://placehold.it/150x150',
+      class: 'column is-one-quarter'
     },
 
     {
-      'name': 'Service Name',
-      'description': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eaque non amet aliquid nemo laboriosam?',
-      'icon': 'https://placehold.it/150x150',
-      'class': 'column is-one-quarter'
+      name: 'Service Name',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eaque non amet aliquid nemo laboriosam?',
+      icon: 'https://placehold.it/150x150',
+      class: 'column is-one-quarter'
     },
 
     {
-      'name': 'Service Name',
-      'description': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eaque non amet aliquid nemo laboriosam?',
-      'icon': 'https://placehold.it/150x150',
-      'class': 'column is-one-quarter'
+      name: 'Service Name',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eaque non amet aliquid nemo laboriosam?',
+      icon: 'https://placehold.it/150x150',
+      class: 'column is-one-quarter'
     },
 
     {
-      'name': 'Service Name',
-      'description': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eaque non amet aliquid nemo laboriosam?',
-      'icon': 'https://placehold.it/150x150',
-      'class': 'column is-one-quarter'
+      name: 'Service Name',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eaque non amet aliquid nemo laboriosam?',
+      icon: 'https://placehold.it/150x150',
+      class: 'column is-one-quarter'
     },
 
     {
-      'name': 'Service Name',
-      'description': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eaque non amet aliquid nemo laboriosam?',
-      'icon': 'https://placehold.it/150x150',
-      'class': 'column is-one-quarter'
+      name: 'Service Name',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eaque non amet aliquid nemo laboriosam?',
+      icon: 'https://placehold.it/150x150',
+      class: 'column is-one-quarter'
     },
 
     {
-      'name': 'Service Name',
-      'description': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eaque non amet aliquid nemo laboriosam?',
-      'icon': 'https://placehold.it/150x150',
-      'class': 'column is-one-quarter'
+      name: 'Service Name',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eaque non amet aliquid nemo laboriosam?',
+      icon: 'https://placehold.it/150x150',
+      class: 'column is-one-quarter'
     },
 
     {
-      'name': 'Service Name',
-      'description': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eaque non amet aliquid nemo laboriosam?',
-      'icon': 'https://placehold.it/150x150',
-      'class': 'column is-one-quarter'
+      name: 'Service Name',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eaque non amet aliquid nemo laboriosam?',
+      icon: 'https://placehold.it/150x150',
+      class: 'column is-one-quarter'
     },
 
     {
-      'name': 'Service Name',
-      'description': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eaque non amet aliquid nemo laboriosam?',
-      'icon': 'https://placehold.it/150x150',
-      'class': 'column is-one-quarter'
+      name: 'Service Name',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eaque non amet aliquid nemo laboriosam?',
+      icon: 'https://placehold.it/150x150',
+      class: 'column is-one-quarter'
     }
   ];
 
   const profiles = [
     {
-      'name': 'Mark Corvin',
-      'title': 'CO-OWNER, PRESIDENT',
-      'email': 'mark.corvin',
-      'bio': 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid, dolorum? Voluptatum dicta obcaecati necessitatibus, pariatur ea adipisci eius dolore, omnis facilis autem eaque natus, soluta rem voluptate blanditiis nulla veniam.',
-      'image': 'https://placehold.it/300x400',
-      'alt': 'Profile image',
+      name: 'Mark Corvin',
+      title: 'CO-OWNER, PRESIDENT',
+      email: 'mark.corvin@corvinsfurniture.com',
+      phone: '(270) 555-5555',
+      image: 'https://placehold.it/300x400',
+      alt: 'Profile image'
     },
 
     {
-      'name': 'David Brown',
-      'title': 'FLOORING MANAGER',
-      'email': 'david.brown',
-      'bio': 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid, dolorum? Voluptatum dicta obcaecati necessitatibus, pariatur ea adipisci eius dolore, omnis facilis autem eaque natus, soluta rem voluptate blanditiis nulla veniam.',
-      'image': 'https://placehold.it/300x400',
-      'alt': 'Profile image',
+      name: 'David Brown',
+      title: 'FLOORING MANAGER',
+      email: 'david.brown@corvinsfurniture.com',
+      phone: '(270) 555-5555',
+      image: 'https://placehold.it/300x400',
+      alt: 'Profile image'
     },
 
     {
-      'name': 'Tyler Corvin',
-      'title': 'ASSISTANT FLOORING MANAGER',
-      'email': 'tyler.corvin',
-      'bio': 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid, dolorum? Voluptatum dicta obcaecati necessitatibus, pariatur ea adipisci eius dolore, omnis facilis autem eaque natus, soluta rem voluptate blanditiis nulla veniam.',
-      'image': 'https://placehold.it/300x400',
-      'alt': 'Profile image',
+      name: 'Tyler Corvin',
+      title: 'ASSISTANT FLOORING MANAGER',
+      email: 'tyler.corvin@corvinsfurniture.com',
+      phone: '(270) 555-5555',
+      image: 'https://placehold.it/300x400',
+      alt: 'Profile image'
     },
 
     {
-      'name': 'Paola Ogadzhanova ',
-      'title': 'MARKETING MANAGER',
-      'email': 'paola',
-      'bio': 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid, dolorum? Voluptatum dicta obcaecati necessitatibus, pariatur ea adipisci eius dolore, omnis facilis autem eaque natus, soluta rem voluptate blanditiis nulla veniam.',
-      'image': 'https://placehold.it/300x400',
-      'alt': 'Profile image',
+      name: 'Paola Ogadzhanova ',
+      title: 'MARKETING MANAGER',
+     email: 'paola@corvinsfurniture.com',
+     phone: '(270) 555-5555',
+      image: 'https://placehold.it/300x400',
+      alt: 'Profile image'
+    },
+
+    {
+      name: 'Mark Corvin',
+      title: 'CO-OWNER, PRESIDENT',
+      email: 'mark.corvin@corvinsfurniture.com',
+      phone: '(270) 555-5555',
+      image: 'https://placehold.it/300x400',
+      alt: 'Profile image'
+    },
+
+    {
+      name: 'David Brown',
+      title: 'FLOORING MANAGER',
+      email: 'david.brown@corvinsfurniture.com',
+      phone: '(270) 555-5555',
+      image: 'https://placehold.it/300x400',
+      alt: 'Profile image'
+    },
+
+    {
+      name: 'Tyler Corvin',
+      title: 'ASSISTANT FLOORING MANAGER',
+      email: 'tyler.corvin@corvinsfurniture.com',
+      phone: '(270) 555-5555',
+      image: 'https://placehold.it/300x400',
+      alt: 'Profile image'
+    },
+
+    {
+      name: 'Paola Ogadzhanova ',
+      title: 'MARKETING MANAGER',
+     email: 'paola@corvinsfurniture.com',
+     phone: '(270) 555-5555',
+      image: 'https://placehold.it/300x400',
+      alt: 'Profile image'
     }
   ];
 
+  const tempAboutHeading = {
+    title: "About Corvin's",
+    content: 'Corvin’s Flooring & Furniture, LLC has been a family-owned business in Bardstown, Kentucky since its founding in 1987. We are a current member of the Bardstown Chamber of Commerce.',
+    media: {
+      alt: 'Picture of the Corvin furniture team.',
+      src: 'https://satyr.io/1920x700'
+    }
+  };
+
   export default {
+    components: {
+      CorvinPageHeading,
+      CorvinProfile
+    },
     data() {
       return {
         profiles,
-        services
+        services,
+        tempAboutHeading
       };
-    },
-    mixins: [
-      smoothScroll
-    ],
-    components: {
-      CorvinsHero,
-      CorvinProfiles
-    },
-    activated() {
-      // /about = 6
-      const hasScrollTarget = window.location && window.location.pathname.length > 6;
+    }
+  };
+</script>
 
-      let target = hasScrollTarget ? window.location.pathname : false;
+<style lang="scss" scoped>
+  .about-intro,
+  .about-team,
+  .about-cta {
+    padding-left: $u6;
+    padding-right: $u6;
+  }
 
-      switch (target) {
-        case '/about/history':
-          target = 'history';
-          break;
-        case '/about/team':
-          target = 'team';
-          break;
-        case '/about/showroom':
-          target = 'showroom';
-          break;
-        case '/about/services':
-          target = 'services';
-          break;
-        default:
-          break;
+  .about-intro {
+    margin-bottom: $u10;
+    padding-bottom: $u10;
+
+    .pull-quote {
+      color: $tertiaryBlue;
+      font-family: $font-primary;
+      font-size: 3rem;
+      line-height: 1;
+
+      span {
+        color: $primaryBlue;
+        display: block;
+      }
+    }
+
+    @include tablet() {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: flex-start;
+
+      .content {
+        flex: 1 1 60%;
       }
 
-      if (target) {
-        this.$nextTick(() => {
-          setTimeout(() => {
-            this.smoothScroll(document.getElementById(target));
-          }, 400);
-        });
-      }
-    },
-    methods: {
-      scrollTo(target = null) {
-        if (!target) {
-          return;
+      .pull-quote {
+        margin-left: $u6;
+        flex: 1 1 35%;
+
+        blockquote {
+          margin-top: 0;
         }
+      }
+    }
 
-        this.$router.push(`/about/${target}`);
+    @include desktop() {
+      .content {
+        flex: 1 1 50%;
+      }
+
+      .pull-quote {
+        flex: 1 1 40%;
+        margin-left: $u12;
+        font-size: 4rem;
+      }
+    }
+
+    @include widescreen() {
+      padding-left: $u14;
+      padding-right: $u14;
+    }
+  }
+
+  .about-team {
+    margin-bottom: $u6;
+
+    h2 {
+      font-size: 2.8rem;
+      text-transform: uppercase;
+    }
+
+    @include tablet() {
+      margin-bottom: $u10;
+
+      h2 {
+        text-align: center;
+      }
+
+      .profiles {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+      }
+
+      .profile {
+        padding-left: $u6;
+        padding-right: $u6;
+      }
+    }
+
+    @include desktop() {
+      .profiles {
+        justify-content: space-around;
+      }
+
+      .profile {
+        flex: 0 1 33%;
+      }
+    }
+
+    @include widescreen {
+      .profile {
+        flex: 0 1 25%;
       }
     }
   }
-</script>
 
-<style scoped>
-  .internal-navigation span {
-    cursor: pointer;
-    display: inline-block;
+  .about-cta {
+    background-image: url('../../images/pull-quote-bg.jpg.png');
+    background-size: cover;
+    padding: $u6;
+
+    & > * {
+      margin-bottom: 0;
+    }
+
+    @include tablet() {
+      padding: $u10;
+    }
+
+    @include desktop() {
+      padding: $u14;
+
+      h3 {
+        margin: 0 auto;
+        max-width: 50vw;
+        text-align: center;
+      }
+    }
   }
 </style>

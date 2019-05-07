@@ -1,5 +1,5 @@
 <template>
-  <main class="page has-inset products">
+  <main class="page has-inset is-gapless products">
     <corvin-page-heading :heading="heading" />
 
     <corvin-products

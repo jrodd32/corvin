@@ -54,6 +54,7 @@
 <style lang="scss" scoped>
   .page-heading {
     margin-top: 0!important;
+    margin-bottom: $u6;
 
     p {
       margin-bottom: 0;
@@ -61,8 +62,8 @@
 
     &-content {
       padding-bottom: $u6;
-      padding-left: $u10;
-      padding-right: $u10;
+      padding-left: $u6;
+      padding-right: $u6;
       padding-top: $u6;
     }
 
@@ -74,8 +75,12 @@
     }
 
     @include tablet() {
+      margin-bottom: $u10;
+
       &-content {
         padding-bottom: $u10;
+        padding-left: $u10;
+        padding-right: $u10;
         padding-top: $u10;
       }
     }

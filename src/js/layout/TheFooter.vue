@@ -86,6 +86,8 @@
   }
 
   .footer-brand {
+    padding-top: $u10;
+
     img {
       display: block;
       margin: 0 auto $u6 auto;

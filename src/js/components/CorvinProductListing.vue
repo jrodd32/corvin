@@ -102,6 +102,12 @@
       margin-bottom: $u6;
     }
 
+    .category-content,
+    .product-content {
+      border-bottom: 1px solid $tertiaryBlue;
+      padding-bottom: $u6;
+    }
+
     .category-content {
       color: $font-color-dark;
     }
