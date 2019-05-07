@@ -66,10 +66,33 @@
       padding-top: $u6;
     }
 
+    &-media {
+      img {
+        height: auto;
+        width: 100%;
+      }
+    }
+
     @include tablet() {
       &-content {
         padding-bottom: $u10;
         padding-top: $u10;
+      }
+    }
+
+    @include desktop() {
+      &-content {
+        p {
+          max-width: 80vw;
+        }
+      }
+    }
+
+    @include cinema() {
+      &-content {
+        p {
+          max-width: 60vw;
+        }
       }
     }
   }

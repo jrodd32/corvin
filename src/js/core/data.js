@@ -31,7 +31,7 @@ const products = [
     brand: 'Bella Cerra',
     category: '',
     color: 'Golden Oak',
-    description: ['Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil quod fugit, iste sequi omnis nostrum soluta, possimus ratione molestias eius repellendus est, in assumenda. Vel sequi suscipit et nulla ullam.'],
+    description: ['Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil quod fugit, iste sequi omnis nostrum soluta, possimus ratione molestias eius repellendus est.'],
     goodFor: [],
     image: {
       alt: '',
@@ -48,7 +48,7 @@ const products = [
     brand: 'Bruce',
     category: '',
     color: 'Gunstock',
-    description: ['Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil quod fugit, iste sequi omnis nostrum soluta, possimus ratione molestias eius repellendus est, in assumenda. Vel sequi suscipit et nulla ullam.'],
+    description: ['Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil quod fugit, iste sequi omnis nostrum soluta, possimus ratione molestias eius repellendus est.'],
     goodFor: [],
     image: {
       alt: '',
@@ -65,7 +65,7 @@ const products = [
     brand: 'Johnson',
     category: '',
     color: 'Burlap',
-    description: ['Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil quod fugit, iste sequi omnis nostrum soluta, possimus ratione molestias eius repellendus est, in assumenda. Vel sequi suscipit et nulla ullam.'],
+    description: ['Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil quod fugit, iste sequi omnis nostrum soluta, possimus ratione molestias eius repellendus est.'],
     goodFor: [],
     image: {
       alt: '',
@@ -82,7 +82,7 @@ const products = [
     brand: 'Johnson',
     category: '',
     color: 'Toscana',
-    description: ['Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil quod fugit, iste sequi omnis nostrum soluta, possimus ratione molestias eius repellendus est, in assumenda. Vel sequi suscipit et nulla ullam.'],
+    description: ['Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil quod fugit, iste sequi omnis nostrum soluta, possimus ratione molestias eius repellendus est.'],
     goodFor: [],
     image: {
       alt: '',
@@ -99,7 +99,7 @@ const products = [
     brand: 'Shaw',
     category: '',
     color: 'Sugar Cane 295',
-    description: ['Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil quod fugit, iste sequi omnis nostrum soluta, possimus ratione molestias eius repellendus est, in assumenda. Vel sequi suscipit et nulla ullam.'],
+    description: ['Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil quod fugit, iste sequi omnis nostrum soluta, possimus ratione molestias eius repellendus est.'],
     goodFor: [],
     image: {
       alt: '',
@@ -116,7 +116,7 @@ const products = [
     brand: 'Timeless Designs',
     category: '',
     color: 'Durango',
-    description: ['Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil quod fugit, iste sequi omnis nostrum soluta, possimus ratione molestias eius repellendus est, in assumenda. Vel sequi suscipit et nulla ullam.'],
+    description: ['Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil quod fugit, iste sequi omnis nostrum soluta, possimus ratione molestias eius repellendus est.'],
     goodFor: [],
     image: {
       alt: '',
@@ -133,7 +133,7 @@ const products = [
     brand: 'Timeless Designs',
     category: '',
     color: 'Bronze Blend',
-    description: ['Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil quod fugit, iste sequi omnis nostrum soluta, possimus ratione molestias eius repellendus est, in assumenda. Vel sequi suscipit et nulla ullam.'],
+    description: ['Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil quod fugit, iste sequi omnis nostrum soluta, possimus ratione molestias eius repellendus est.'],
     goodFor: [],
     image: {
       alt: '',
@@ -150,7 +150,7 @@ const products = [
     brand: 'WFS Flooring',
     category: '',
     color: 'Gunstock',
-    description: ['Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil quod fugit, iste sequi omnis nostrum soluta, possimus ratione molestias eius repellendus est, in assumenda. Vel sequi suscipit et nulla ullam.'],
+    description: ['Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil quod fugit, iste sequi omnis nostrum soluta, possimus ratione molestias eius repellendus est.'],
     goodFor: [],
     image: {
       alt: '',

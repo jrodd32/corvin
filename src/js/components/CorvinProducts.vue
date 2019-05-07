@@ -1,13 +1,17 @@
 <template>
   <div class="products-filters">
-    <corvin-store-filters v-if="showFilters" />
+    <corvin-store-filters v-if="hasFilters" />
 
-    <div class="products-listing">
+    <div
+      :class="listingType"
+      class="products-listing"
+    >
       <corvin-product-listing
         v-if="hasProducts"
         v-for="product in filteredProducts"
         :key="product.slug"
         :product="product"
+        :productStyle="listingType"
       />
     </div>
   </div>
@@ -23,11 +27,18 @@
       CorvinProductListing,
       CorvinStoreFilters
     },
+    props: {
+      listingType: {
+        type: String,
+        default() {
+          return '';
+        }
+      }
+    },
     data() {
       return {
         filterBy: '',
-        products,
-        showFilters: false
+        products
       };
     },
     computed: {
@@ -74,17 +85,22 @@
   .products-listing {
     display: flex;
     flex-flow: column wrap;
-
-    .product {
-      padding-left: $u6;
-      padding-right: $u6;
-    }
+    padding-left: $u6;
+    padding-right: $u6;
 
     @include tablet() {
       flex-flow: row wrap;
 
       .product {
         flex: 0 1 50%;
+        padding-left: $u6;
+        padding-right: $u6;
+      }
+    }
+
+    @include widescreen() {
+      .product {
+        flex: 0 1 25%;
       }
     }
   }
