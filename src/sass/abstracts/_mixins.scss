@@ -96,6 +96,12 @@
   }
 }
 
+@mixin tv {
+  @media (min-width: calc(#{$tv} + (2 * #{$gap}))) {
+    @content;
+  }
+}
+
 @mixin retina {
   @media only screen and (-webkit-min-device-pixel-ratio: 1.3),
     only screen and (-o-min-device-pixel-ratio: 13/10),

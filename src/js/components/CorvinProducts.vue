@@ -3,7 +3,7 @@
     <corvin-store-filters v-if="hasFilters" />
 
     <div
-      :class="listingType"
+      :class="styleModifiers"
       class="products-listing"
     >
       <corvin-product-listing
@@ -18,7 +18,11 @@
 </template>
 
 <script>
-  import { products } from '../core/data';
+  import {
+    products,
+    productCategories
+  } from '../core/data';
+
   import CorvinProductListing from './CorvinProductListing.vue';
   import CorvinStoreFilters from './CorvinStoreFilters.vue';
 
@@ -44,20 +48,29 @@
     data() {
       return {
         filterBy: '',
-        products
+        products,
+        productCategories
       };
     },
     computed: {
+      activeProducts() {
+        return this.listingType === 'category'
+               ? productCategories
+               : products;
+      },
       hasProducts() {
         return this.products
                && this.products.length > 0;
       },
       filteredProducts() {
         if (this.filterBy) {
-          return products.filter(product => product.tags.includes(this.filterBy));
+          return this.activeProducts.filter(product => product.tags.includes(this.filterBy));
         }
 
-        return products;
+        return this.activeProducts;
+      },
+      styleModifiers() {
+        return this.listingType === 'category' ? 'is-category-listing' : '';
       }
     },
     created() {
@@ -105,6 +118,14 @@
     }
 
     @include widescreen() {
+      justify-content: space-around;
+
+      .product {
+        flex: 0 1 33%;
+      }
+    }
+
+    @include tv() {
       .product {
         flex: 0 1 25%;
       }

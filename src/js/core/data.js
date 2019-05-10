@@ -165,21 +165,78 @@ const products = [
   }
 ];
 
+const productCategories = [
+  {
+    title: 'Carpet',
+    description: ['Rich and inviting, hardwood makes a distinctive statement. Because of a great range of natural variations—from boards with extreme character, graining, and …'],
+    image: {
+      alt: 'Carpet image',
+      src: 'https://satyr.io/530x380'
+    },
+    slug: '/product-category'
+  },
+  {
+    title: 'Solid Hardwood',
+    description: [' Carpet has so many things going for it. It’s soft, safe, warm and quiet. It’s stain-resistant and gives excellent value for the price—and it saves energy. Carpet is …'],
+    image: {
+      alt: 'image',
+      src: 'https://satyr.io/530x380'
+    },
+    slug: '/product-category'
+  },
+  {
+    title: 'Engineered Hardwood',
+    description: ['We need someone to write a three line sentence about engineered hardwood for this space. Can really just be an introduction to another paragraph describing …'],
+    image: {
+      alt: 'image',
+      src: 'https://satyr.io/530x380'
+    },
+    slug: '/product-category'
+  },
+  {
+    title: 'Laminate',
+    description: ['Appealing hardwood visuals and marvelous slate and stone looks are the hallmark of today’s laminate. Laminate is great for busy families and simply looks…'],
+    image: {
+      alt: 'image',
+      src: 'https://satyr.io/530x380'
+    },
+    slug: '/product-category'
+  },
+  {
+    title: 'Tile & Stone',
+    description: ['Carpet has so many things going for it. It’s soft, safe, warm and quiet. It’s stain-resistant and gives excellent value for the price—and it saves energy. Carpet is also prov…'],
+    image: {
+      alt: 'image',
+      src: 'https://satyr.io/530x380'
+    },
+    slug: '/product-category'
+  },
+  {
+    title: 'Vinyl Plank',
+    description: ['We need someone to write a three line sentence about engineered hardwood for this space. Can really just be an introduction to another paragraph describing …'],
+    image: {
+      alt: 'image',
+      src: 'https://satyr.io/530x380'
+    },
+    slug: '/product-category'
+  }
+];
+
 const profiles = [
   {
-    email: 'name@corvinfurniture.com',
-    name: 'Employee Name',
+    email: 'title@corvinfurniture.com',
+    title: 'Employee title',
     phone: '(502) - 555-5555',
     title: 'Employee Title'
   },
   {
-    email: 'name@corvinfurniture.com',
-    name: 'Employee Name',
+    email: 'title@corvinfurniture.com',
+    title: 'Employee title',
     phone: '(502) - 555-5555',
     title: 'Employee Title'
   },
   {
-    email: 'name@corvinfurniture.com',
+    email: 'title@corvinfurniture.com',
     name: 'Employee Name',
     phone: '(502) - 555-5555',
     title: 'Employee Title'
@@ -219,5 +276,6 @@ const profiles = [
 export {
   filters,
   products,
+  productCategories,
   profiles
 };

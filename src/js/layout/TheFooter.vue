@@ -72,6 +72,7 @@
   .footer {
     background-color: $primaryBlue;
     color: $white;
+    width: 100%;
 
     & > * {
       padding-bottom: $u6;
@@ -143,6 +144,7 @@
       }
 
       .subscribe {
+        align-self: center;
         flex-flow: column nowrap;
         flex: 1 1 50%;
       }

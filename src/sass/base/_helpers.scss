@@ -33,6 +33,10 @@
   max-width: $container;
   margin-left: auto;
   margin-right: auto;
+
+  @include tv() {
+    max-width: $tv;
+  }
 }
 
 // Renders a clickable area over the entire container,

@@ -72,13 +72,6 @@
       }
     },
     computed: {
-      classModifiers() {
-        if (this.productStyle === 'category') {
-          return 'is-category-listing';
-        }
-
-        return '';
-      },
       isCategoryStyle() {
         return this.productStyle === 'category';
       }
@@ -137,6 +130,13 @@
             }
           }
         }
+      }
+    }
+  }
+
+  .is-category-listing {
+    @include tablet() {
+      .read-more {
       }
     }
   }
