@@ -7,7 +7,7 @@
       Skip to content
     </a>
 
-    <the-header />
+    <the-header :type="isHome" />
 
     <the-500-page v-if="show500Page" />
     <the-503-page v-else-if="show503Page" />
@@ -20,7 +20,7 @@
       />
     </keep-alive>
 
-    <the-footer />
+    <the-footer :type="isHome" />
 
     <div class="navbar-burger" data-target="navMenu">
       <span></span>
@@ -34,8 +34,6 @@
     />
 
     <div id="outdated" />
-
-    <image-blur />
   </div>
 </template>
 
@@ -62,6 +60,7 @@
     data() {
       return {
         baseGtmDataLayer: [],
+        isHome: this.$parent.$data.isHomePage,
         show500Page: false,
         show503Page: false,
         showOfflinePage: false

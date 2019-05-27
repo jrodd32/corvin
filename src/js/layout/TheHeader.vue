@@ -1,5 +1,23 @@
 <template>
-  <header class="header">
+  <header
+    v-if="showHome"
+    class="header header-home"
+  >
+    <figure>
+      <img
+        alt="Corvin's furiture and flooring logo"
+        src="../../images/corvins-combo-logo.png@2x.png"
+        class="logo"
+      />
+    </figure>
+
+    <h1>Welcome to Corvin’s in Bardstown, please choose a department.</h1>
+  </header>
+
+  <header
+    v-else
+    class="header"
+  >
     <div class="utility">
       <social-links />
 
@@ -105,16 +123,42 @@
 </template>
 
 <script>
+  import { headerFooterProps } from '../core/mixins';
   import SocialLinks from '../components/SocialLinks.vue';
 
   export default {
     components: {
       SocialLinks
-    }
+    },
+    mixins: [
+      headerFooterProps
+    ]
   };
 </script>
 
 <style lang="scss" scoped>
+  .header-home {
+    background-color: $primaryBlue;
+    padding-bottom: 2em;
+    padding-top: 2em;
+
+    figure {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      color: $tertiaryBlue;
+      font-size: 3.6rem;
+      margin-bottom: 0;
+      margin-top: 1em;
+      text-align: center;
+    }
+  }
+
   .phone a,
   .tagline p {
     margin-bottom: 0;
@@ -202,4 +246,3 @@
     display: none;
   }
 </style>
-

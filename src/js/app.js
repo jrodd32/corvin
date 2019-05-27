@@ -119,9 +119,16 @@ const router = new VueRouter({
   scrollBehavior
 });
 
+const isHomePage = window.location.pathname === '/';
+
 const app = new Vue({
   router,
   components: { App },
+  data() {
+    return {
+      isHomePage
+    };
+  },
   template: '<App />'
 });
 

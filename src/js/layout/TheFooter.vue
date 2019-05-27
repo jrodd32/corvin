@@ -1,5 +1,39 @@
 <template>
-  <footer class="footer">
+  <footer
+    v-if="showHome"
+    class="footer footer-home"
+  >
+    <div class="location-listing">
+      <h4 class="location-heading">Our Showroom</h4>
+      <p>3465 E John Rowan Blvd</p>
+      <p>Bardstown, KY 40004-2241</p>
+      <p>P: (502) 348-7474 // F: (502) 337-6003</p>
+    </div>
+
+    <div class="location-phone">
+      <a
+        v-if="isMobile"
+        class="phone"
+        href="tel:1-502-348-7474"
+      >
+        Call Us @ (502) 348-7474
+      </a>
+
+      <p v-else>Call Us @ (502) 348-7474</p>
+    </div>
+
+    <div class="location-hours">
+      <h5 class="location-heading">Our hours</h5>
+      <p>Monday thru Friday: 9:00am–6:00pm</p>
+      <p>Saturdays: 9:00am–6:00pm</p>
+      <p>Sundays: Closed</p>
+    </div>
+  </footer>
+
+  <footer
+    v-else
+    class="footer"
+  >
     <div class="footer-brand">
       <img
         alt=""
@@ -59,12 +93,20 @@
 </template>
 
 <script>
+  import {
+    headerFooterProps,
+    windowProps
+  } from '../core/mixins';
   import SocialLinks from '../components/SocialLinks.vue';
 
   export default {
     components: {
       SocialLinks
-    }
+    },
+    mixins: [
+      headerFooterProps,
+      windowProps
+    ]
   };
 </script>
 
@@ -262,5 +304,17 @@
     font-size: 1.6rem;
     margin-bottom: 0;
     text-transform: uppercase;
+  }
+
+  .footer-home {
+    .location-phone a,
+    .location-phone p {
+      border: 1px solid;
+      color: $info;
+      display: block;
+      font-family: $font-primary;
+      padding: 1em;
+      text-align: center;
+    }
   }
 </style>
