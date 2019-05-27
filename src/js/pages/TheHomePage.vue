@@ -46,6 +46,11 @@
   figure {
     position: relative;
 
+    img {
+      height: auto;
+      width: 100%;
+    }
+
     figcaption {
       align-items: center;
       background-color: rgba(0,0,0,.6);
@@ -76,6 +81,18 @@
       text-align: center;
       text-transform: uppercase;
       width: 100%;
+    }
+  }
+
+  @include cinema() {
+    .departments {
+      display: flex;
+      flex-flow: row nowrap;
+
+      .furniture,
+      .flooring {
+        flex: 0 1 50%;
+      }
     }
   }
 </style>

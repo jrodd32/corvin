@@ -154,7 +154,10 @@
       color: $tertiaryBlue;
       font-size: 3.6rem;
       margin-bottom: 0;
+      margin-left: auto;
+      margin-right: auto;
       margin-top: 1em;
+      max-width: 720px;
       text-align: center;
     }
   }
