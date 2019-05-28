@@ -1,41 +1,5 @@
 <template>
-  <footer
-    v-if="showHome"
-    class="footer footer-home"
-  >
-    <div class="wrapper">
-      <div class="location-listing">
-        <h4 class="location-heading">Our Showroom</h4>
-        <p>3465 E John Rowan Blvd</p>
-        <p>Bardstown, KY 40004-2241</p>
-        <p>P: (502) 348-7474 // F: (502) 337-6003</p>
-      </div>
-
-      <div class="location-phone">
-        <a
-          v-if="isMobile"
-          class="phone"
-          href="tel:1-502-348-7474"
-        >
-          Call Us @ (502) 348-7474
-        </a>
-
-        <p v-else>Call Us @ (502) 348-7474</p>
-      </div>
-
-      <div class="location-hours">
-        <h5 class="location-heading">Our hours</h5>
-        <p>Monday thru Friday: 9:00am–6:00pm</p>
-        <p>Saturdays: 9:00am–6:00pm</p>
-        <p>Sundays: Closed</p>
-      </div>
-    </div>
-  </footer>
-
-  <footer
-    v-else
-    class="footer"
-  >
+  <footer class="footer">
     <div class="footer-brand">
       <img
         alt=""
@@ -97,20 +61,12 @@
 </template>
 
 <script>
-  import {
-    headerFooterProps,
-    windowProps
-  } from '../core/mixins';
   import SocialLinks from '../components/SocialLinks.vue';
 
   export default {
     components: {
       SocialLinks
-    },
-    mixins: [
-      headerFooterProps,
-      windowProps
-    ]
+    }
   };
 </script>
 
@@ -258,11 +214,23 @@
     margin-left: auto;
     margin-right: auto;
 
+    & > * {
+      margin-bottom: $u6;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
     @include tablet() {
       display: flex;
       flex-flow: row wrap;
       justify-content: space-between;
       align-items: center;
+
+      & > * {
+        margin-bottom: 0;
+      }
 
       .social-links,
       .flooring {

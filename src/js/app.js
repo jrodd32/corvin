@@ -17,6 +17,7 @@ import GtmPlugin from '@bit/doeanderson.components.core.gtm-plugin/gtm-plugin';
 import routes from './config/routes';
 import api from './config/api';
 import App from './App.vue';
+import CorvinLandingPage from './CorvinLandingPage.vue';
 
 require('./core/gsap/ScrollToPlugin');
 require('objectFitPolyfill');
@@ -124,16 +125,22 @@ const isHomePage = window.location.pathname === '/';
 const app = new Vue({
   router,
   components: { App },
-  data() {
-    return {
-      isHomePage
-    };
-  },
   template: '<App />'
+});
+
+const landingPage = new Vue({
+  router,
+  components: { CorvinLandingPage },
+  template: '<CorvinLandingPage />'
 });
 
 document.addEventListener('DOMContentLoaded', () => {
   router.onReady(() => {
+    if (isHomePage) {
+      landingPage.$mount('#app', true);
+      return;
+    }
+
     app.$mount('#app', true);
   });
 

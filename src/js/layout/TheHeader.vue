@@ -1,17 +1,32 @@
 <template>
   <header
-    v-if="showHome"
-    class="header header-home"
+    v-if="isMobile"
+    class="header header-mobile"
   >
-    <figure>
-      <img
-        alt="Corvin's furiture and flooring logo"
-        src="../../images/corvins-combo-logo.png@2x.png"
-        class="logo"
-      />
-    </figure>
+    <div class="navbar-logo">
+      <router-link
+        class="navbar-item"
+        to="/home"
+      >
+        <img
+          alt="Corvin's flooring logo"
+          src="../../images/menu-logo.jpg@2x.png"
+        />
+      </router-link>
+    </div>
 
-    <h1>Welcome to Corvin’s in Bardstown, please choose a department.</h1>
+    <button
+      :class="toggleMobileNavClassNames"
+      class="navbar-button"
+      @click.prevent="toggleNav"
+    >
+      <div class="navbar-button-icon">
+        <span />
+        <span />
+        <span />
+      </div>
+      <span>{{ toggleText }}</span>
+    </button>
   </header>
 
   <header
@@ -63,7 +78,7 @@
             <a class="navbar-item">
               Sub 3
             </a>
-            <hr class="navbar-divider">
+            <hr class="navbar-divider" />
             <div class="navbar-item">
               Sub under divider
             </div>
@@ -82,7 +97,7 @@
         <div class="navbar-logo">
           <router-link
             class="navbar-item"
-            to="/"
+            to="/home"
           >
             <img
               alt="Corvin's flooring logo"
@@ -123,7 +138,7 @@
 </template>
 
 <script>
-  import { headerFooterProps } from '../core/mixins';
+  import { windowProps } from '../core/mixins';
   import SocialLinks from '../components/SocialLinks.vue';
 
   export default {
@@ -131,36 +146,116 @@
       SocialLinks
     },
     mixins: [
-      headerFooterProps
-    ]
+      windowProps
+    ],
+    data() {
+      return {
+        showNav: false
+      };
+    },
+    computed: {
+      toggleMobileNavClassNames() {
+        return {
+          'has-mobile-nav-active': this.showNav,
+          'has-active-nav-item': this.activeNavItem
+        };
+      },
+      toggleText() {
+        return this.showNav ? 'Close' : 'Menu';
+      }
+    },
+    methods: {
+      toggleNav() {
+        this.showNav = !this.showNav;
+      }
+    }
   };
 </script>
 
 <style lang="scss" scoped>
-  .header-home {
+  .header-mobile {
+    align-items: center;
     background-color: $primaryBlue;
-    padding-bottom: 2em;
-    padding-top: 2em;
+    color: $info;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    padding-bottom: $u4;
+    padding-left: $u4;
+    padding-right: $u4;
+    padding-top: $u4;
+  }
 
-    figure {
-      align-items: center;
-      display: flex;
-      justify-content: center;
-      margin: 0;
-      padding: 0;
+  .navbar-button {
+    background-color: $secondaryBlue;
+    color: $info;
+    border: 0;
+    width: 7rem;
+    cursor: pointer;
+    font-size: 1.6rem;
+    text-align: left;
+    padding: 12px 12px 10px;
+
+    &:focus {
+      outline: 0;
     }
 
-    h1 {
-      color: $tertiaryBlue;
-      font-size: 3.6rem;
-      margin-bottom: 0;
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 1em;
-      max-width: 720px;
-      text-align: center;
+    > span {
+      display: block;
+      margin-top: .5rem;
+      line-height: normal;
+    }
+
+    @include tablet() {
+      display: none;
     }
   }
+
+  .navbar-button-icon {
+    position: relative;
+    width: 32px;
+    height: 22px;
+
+    span {
+      position: absolute;
+      display: block;
+      background-color: $info;
+      width: 32px;
+      height: 2px;
+      transition: all .2s ease;
+
+      &:first-child {
+        top: 0;
+      }
+
+      &:nth-child(2) {
+        transition: all .1s ease;
+        top: 1rem;
+      }
+
+      &:last-child {
+        bottom: 0;
+      }
+    }
+
+    .navbar-button.has-mobile-nav-active & {
+      span {
+        &:first-child {
+          top: 1rem;
+          transform: rotate(45deg);
+        }
+        &:nth-child(2) {
+          opacity: 0;
+          visibility: hidden;
+        }
+        &:last-child {
+          bottom: 1rem;
+          transform: rotate(135deg);
+        }
+      }
+    }
+  }
+
 
   .phone a,
   .tagline p {

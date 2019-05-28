@@ -492,22 +492,6 @@ const smoothScroll = {
   }
 };
 
-const headerFooterProps = {
-  props: {
-    type: {
-      type: Boolean,
-      default() {
-        return false;
-      }
-    }
-  },
-  computed: {
-    showHome() {
-      return this.type;
-    }
-  }
-};
-
 export {
   carouselSwipeProps,
   escKeyProps,
@@ -517,6 +501,5 @@ export {
   tableProps,
   windowProps,
   smoothScroll,
-  shrinkingHeroProps,
-  headerFooterProps
+  shrinkingHeroProps
 };

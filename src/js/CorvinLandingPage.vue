@@ -7,7 +7,7 @@
       Skip to content
     </a>
 
-    <the-header :type="isHome" />
+    <landing-page-header />
 
     <the-500-page v-if="show500Page" />
     <the-503-page v-else-if="show503Page" />
@@ -20,7 +20,7 @@
       />
     </keep-alive>
 
-    <the-footer :type="isHome" />
+    <landing-page-footer />
 
     <portal-target
       name="modals"
@@ -33,8 +33,9 @@
 
 <script>
   import outdatedBrowserRework from 'outdated-browser-rework';
-  import TheHeader from './layout/TheHeader.vue';
-  import TheFooter from './layout/TheFooter.vue';
+  import ImageBlur from '../images/image-blur.svg';
+  import LandingPageHeader from './layout/LandingPageHeader.vue';
+  import LandingPageFooter from './layout/LandingPageFooter.vue';
 
   // NOTE: lazy loading component since it isn't needed immediately and cuts down on size
   const The500Page = () => import(/* webpackChunkName: 'page-errors' */ './pages/The500Page.vue');
@@ -45,8 +46,8 @@
     components: {
       The500Page,
       The503Page,
-      TheHeader,
-      TheFooter,
+      LandingPageHeader,
+      LandingPageFooter,
       TheOfflinePage
     },
     data() {
