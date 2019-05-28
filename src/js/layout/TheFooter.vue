@@ -44,38 +44,40 @@
       <h3>Championing every client's flooring with passion and integrity</h3>
     </div>
 
-    <div class="hours-newsletter">
-      <div class="location-info">
-        <div class="location-listing">
-          <h4 class="location-heading">Bardstown Showroom</h4>
-          <p>3465 E John Rowan Blvd</p>
-          <p>Bardstown, KY 40004-2241</p>
-          <p>P: (502) 348-7474 // F: (502) 337-6003</p>
+    <div class="footer-info">
+      <div class="footer-info-wrapper">
+        <div class="location-info">
+          <div class="location-listing">
+            <h4 class="location-heading">Bardstown Showroom</h4>
+            <p>3465 E John Rowan Blvd</p>
+            <p>Bardstown, KY 40004-2241</p>
+            <p>P: (502) 348-7474 // F: (502) 337-6003</p>
+          </div>
+
+          <div class="location-hours">
+            <h5 class="location-heading">Our hours</h5>
+            <p>Monday thru Friday: 9:00am–6:00pm</p>
+            <p>Saturdays: 9:00am–6:00pm</p>
+            <p>Sundays: Closed</p>
+          </div>
         </div>
 
-        <div class="location-hours">
-          <h5 class="location-heading">Our hours</h5>
-          <p>Monday thru Friday: 9:00am–6:00pm</p>
-          <p>Saturdays: 9:00am–6:00pm</p>
-          <p>Sundays: Closed</p>
-        </div>
-      </div>
+        <div class="subscribe">
+          <p>Subscribe for product releases <span>&amp; tips on maintainence</span></p>
 
-      <div class="subscribe">
-        <p>Subscribe for product releases <span>&amp; tips on maintainence</span></p>
-
-        <div class="field newsletter">
-          <input
-            class="input has-placeholder"
-            placeholder="Email"
-            type="text"
-          />
-          <button class="submit">Submit</button>
+          <div class="field newsletter">
+            <input
+              class="input has-placeholder"
+              placeholder="Email"
+              type="text"
+            />
+            <button class="submit">Submit</button>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="sub-footer">
+    <div class="footer-sub">
       <social-links />
 
       <div class="copyright">
@@ -135,6 +137,13 @@
         padding-right: $u6;
       }
     }
+
+    @include ultrawide() {
+      & > * {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
   }
 
   .footer-brand {
@@ -154,8 +163,14 @@
     }
   }
 
-  .hours-newsletter {
+  .footer-info {
     background-color: $secondaryBlue;
+
+    &-wrapper {
+      max-width: $ultrawide;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
     .subscribe {
       p {
@@ -163,18 +178,39 @@
         text-transform: uppercase;
       }
 
+      .newsletter {
+        display: flex;
+        flex-flow: row nowrap;
+      }
+
       .field {
         padding: 0;
       }
     }
 
-    .location-hours {
+    .location-hours,
+    .subscribe {
       margin-top: $u6;
     }
 
+    .submit {
+      appearance: none;
+      background-color: $tertiaryBlue;
+      display: block;
+      font-size: 1.2rem;
+      min-height: 2.4em;
+      line-height: 2.4em;
+      padding: .3rem 2rem;
+      text-transform: uppercase;
+    }
+
     @include tablet() {
-      display: flex;
-      flex-flow: row wrap;
+      &-wrapper {
+        align-items: center;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-end;
+      }
 
       .location-info,
       .subscribe {
@@ -183,7 +219,7 @@
 
       .location-info {
         flex-flow: row wrap;
-        flex: 1 1 50%;
+        flex: 1 1 45%;
         justify-content: space-between;
       }
 
@@ -191,29 +227,12 @@
         align-self: center;
         flex-flow: column nowrap;
         flex: 1 1 50%;
-      }
-
-      .newsletter {
-        display: flex;
-        flex-flow: row nowrap;
-
-        .submit {
-          appearance: none;
-          background-color: $tertiaryBlue;
-          display: block;
-          font-size: 1.2rem;
-          min-height: 2.4em;
-          line-height: 2.4em;
-          padding: .3rem 2rem;
-          text-transform: uppercase;
-        }
+        margin-top: 0;
       }
     }
 
     @include widescreen() {
       padding-bottom: $u10;
-      padding-left: $u10;
-      padding-right: $u10;
       padding-top: $u10;
 
       .location-info {
@@ -234,7 +253,11 @@
     }
   }
 
-  .sub-footer {
+  .footer-sub {
+    max-width: $ultrawide;
+    margin-left: auto;
+    margin-right: auto;
+
     @include tablet() {
       display: flex;
       flex-flow: row wrap;
@@ -284,11 +307,6 @@
         flex: 0 1 75%;
         margin-top: 0;
       }
-    }
-
-    @include widescreen() {
-      padding-left: $u10;
-      padding-right: $u10;
     }
   }
 
