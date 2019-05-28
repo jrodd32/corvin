@@ -3,6 +3,11 @@
     <div class="departments">
       <div class="furniture">
         <figure>
+          <a
+            href="https://www.corvinsofbardstown.com/"
+            target="_BLANK"
+            rel="noopener"
+            class="overlay-link"><span class="hidden-text">Corvin's of Bardstown</span></a>
           <img
             alt="Furniture landing page background image"
             src="../../images/furniture-landing-img.jpg@2x.png"
@@ -14,16 +19,18 @@
         </figure>
       </div>
       <div class="flooring">
-        <figure>
-          <img
-            alt="Flooring landing page background image"
-            src="../../images/flooring-landing-img.jpg@2x.png"
-          />
+        <router-link to="/home">
+          <figure>
+            <img
+              alt="Flooring landing page background image"
+              src="../../images/flooring-landing-img.jpg@2x.png"
+            />
 
-          <figcaption>
-            <h2>Flooring</h2>
-          </figcaption>
-        </figure>
+            <figcaption>
+              <h2>Flooring</h2>
+            </figcaption>
+          </figure>
+        </router-link>
       </div>
     </div>
   </main>
