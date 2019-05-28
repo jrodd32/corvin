@@ -23,24 +23,26 @@
     <div class="shop-by-category">
       <h2>Shop by category</h2>
 
-      <div
-        v-for="category in data.categories"
-        class="category"
-      >
-        <h3>{{ category.title }}</h3>
+      <div class="category-wrapper">
+        <div
+          v-for="category in data.categories"
+          class="category"
+        >
+          <h3>{{ category.title }}</h3>
 
-        <figure>
-          <img
-            :alt="category.image.alt"
-            :src="category.image.src"
+          <figure>
+            <img
+              :alt="category.image.alt"
+              :src="category.image.src"
+            />
+          </figure>
+
+          <doe-link
+            :href="category.link.href"
+            :text="category.link.text"
+            is-blue
           />
-        </figure>
-
-        <doe-link
-          :href="category.link.href"
-          :text="category.link.text"
-          is-blue
-        />
+        </div>
       </div>
     </div>
 
@@ -58,15 +60,15 @@
       <div class="content">
         <h4 v-html="data.social.headline" />
         <p v-html="data.social.content" />
+      </div>
 
-        <div class="media">
-          <figure v-for="image in data.social.media">
-            <img
-              :alt="image.alt"
-              :src="image.src"
-            />
-          </figure>
-        </div>
+      <div class="media">
+        <figure v-for="image in data.social.media">
+          <img
+            :alt="image.alt"
+            :src="image.src"
+          />
+        </figure>
       </div>
     </div>
   </main>
@@ -240,6 +242,58 @@
       color: $white;
       font-size: 2.4rem;
     }
+
+    @include tablet() {
+      figure {
+        display: grid;
+        grid-template-columns: minmax($gap, 65px) 1fr minmax($gap, 65px);
+        grid-template-rows: 1fr;
+      }
+
+      img {
+        display: initial;
+        grid-column: 2;
+        grid-row: 1;
+
+      }
+
+      figcaption {
+        align-self: center;
+        grid-column: 2;
+        grid-row: 1;
+        margin-left: -65px;
+        max-height: 275px;
+        max-width: 320px;
+      }
+    }
+
+    @include desktop() {
+      figure {
+        grid-template-columns: minmax($gap, 15%) 1fr minmax($gap, 15%);
+        grid-template-rows: minmax(100px, 15%) 1fr minmax(100px, 15%);
+      }
+
+      figcaption,
+      img {
+        grid-row: 2;
+      }
+
+      figcaption {
+        max-height: 288px;
+        padding: $u6;
+      }
+    }
+
+    @include widescreen() {
+      h1 {
+        font-size: 6.4rem;
+      }
+
+      figcaption {
+        max-height: 345px;
+        max-width: 500px;
+      }
+    }
   }
 
   .shop-by-category {
@@ -248,6 +302,11 @@
     padding-left: $u4;
     padding-right: $u4;
     padding-top: $u10;
+
+    .category-wrapper {
+      max-width: $ultrawide;
+      margin: 0 auto;
+    }
 
     h2 {
       color: $tertiaryBlue;
@@ -266,12 +325,42 @@
         color: $tertiaryBlue;
         font-family: $font-body;
         font-size: 1.4rem;
+        font-weight: 300;
         letter-spacing: 2px;
         text-transform: uppercase;
       }
 
       figure {
         margin-bottom: $u6;
+      }
+    }
+
+    @include tablet() {
+      .category-wrapper {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+      }
+
+      .category {
+        flex: 1 1 50%;
+      }
+    }
+
+    @include desktop() {
+      .category {
+        flex: 1 1 33%;
+      }
+    }
+
+    @include cinema() {
+      .category {
+        flex: 1 1 16%;
+        margin-right: $u2;
+
+        &:last-child {
+          margin-right: 0;
+        }
       }
     }
   }
@@ -291,6 +380,8 @@
       color: $primaryBlue;
       font-family: $font-primary;
       font-weight: bold;
+      margin: 0 auto;
+      max-width: $desktop;
     }
 
     cite {
@@ -314,6 +405,20 @@
       margin: 1em auto;
       width: 106px;
     }
+
+    @include tablet() {
+      blockquote {
+        width: 80%;
+      }
+    }
+
+    @include cinema() {
+      padding-bottom: $u14;
+      padding-top: $u14;
+      blockquote {
+        width: 65%;
+      }
+    }
   }
 
   .social {
@@ -321,11 +426,16 @@
     padding-left: $u4;
     padding-right: $u4;
     padding-top: $u10;
+
     h4 {
       @include font-primary;
     }
 
     .content {
+      margin-bottom: $u6;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 80%;
       text-align: center;
     }
 
@@ -337,6 +447,59 @@
       img {
         height: auto;
         width: 100%
+      }
+    }
+
+    @include tablet() {
+      .media {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        padding-left: $u6;
+        padding-right: $u6;
+
+        figure {
+          flex: 0 1 49%;
+          margin-right: $u3;
+        }
+      }
+    }
+
+    @include tablet-only() {
+      .media figure:first-child {
+        flex: 1 0 100%;
+        margin-right: 0;
+      }
+
+      .media figure:nth-child(odd) {
+        margin-right: 0;
+      }
+    }
+
+    @include desktop() {
+      .media {
+        display: grid;
+        grid-template-columns: minmax(256px, 532px) repeat(4, minmax(64px, auto));
+        grid-template-rows: repeat(2, minmax(64px, auto));
+        grid-gap: 20px;
+        max-width: 1168px;
+        margin: 0 auto;
+
+        figure {
+          margin: 0;
+
+          &:first-child {
+            grid-column: 1;
+            grid-row: 1 / span 2;
+          }
+
+          &:nth-child(6),
+          &:nth-child(7),
+          &:nth-child(8),
+          &:nth-child(9) {
+            align-self: end;
+          }
+        }
       }
     }
   }
