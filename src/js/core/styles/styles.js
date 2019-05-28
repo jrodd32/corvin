@@ -19,6 +19,18 @@ const colorProps = {
         return false;
       }
     },
+    isBlue: {
+      type: Boolean,
+      default() {
+        return false;
+      }
+    },
+    isOrange: {
+      type: Boolean,
+      default() {
+        return false;
+      }
+    },
     isWhite: {
       type: Boolean,
       default() {
@@ -35,6 +47,8 @@ const colorProps = {
     styleModifiers() {
       return {
         'is-black': this.isBlack,
+        'is-blue': this.isBlue,
+        'is-orange': this.isOrange,
         'is-white': this.isWhite
       };
     }

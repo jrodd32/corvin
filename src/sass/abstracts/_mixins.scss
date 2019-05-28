@@ -127,6 +127,7 @@
   @each $style, $attribute in $styles {
     $style: $style !global;
     $color: map-deep-get($styles, $style, color) !global;
+    $background-color: map-deep-get($styles, $style, background-color) !global;
     $type: map-deep-get($styles, $style, type) !global;
 
     &.is-#{$style} {

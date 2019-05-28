@@ -7,10 +7,11 @@
   padding-right: $button-padding;
   padding-left: $button-padding;
   height: $button-height;
-  background: transparent;
+  color: currentColor;
   border-width: $button-border-size;
   border-style: solid;
   border-radius: $button-border-radius;
+  border-color: transparent;
   text-decoration: none;
   font-size: $button-font-size;
   font-weight: $font-weight;
@@ -99,32 +100,25 @@
   }
 
   @include getStyle() {
-    border-color: $color;
+    background-color: $background-color;
+    border-color: $background-color;
     color: $color;
 
     &:focus:not([disabled]) {
       box-shadow: 0 0 .4em .2em transparentize($color, .9) inset;
-      border-color: darken($color, 5%);
-      color: $white;
-
-      @if $type == light {
-        color: $font-color-dark;
-      }
+      background-color: darken($background-color, 5%);
+      color: $color;
     }
 
     &:hover:not([disabled]) {
-      background-color: $color;
+      background-color: darken($background-color, 10%);
       color: $white;
-
-      @if $type == light {
-        border-color: $color;
-        color: $font-color-dark;
-      }
     }
 
     &:active:not([disabled]) {
-      background-color: darken($color, 10%);
-      border-color: darken($color, 10%);
+      background-color: darken($background-color, 10%);
+      border-color: darken($background-color, 10%);
+      color: $white;
     }
   }
 

@@ -4,6 +4,7 @@
 
 // Hide text while making it readable for screen readers
 .hidden-text {
+  display: block;
   overflow: hidden;
   padding: 0; /* 1 */
   text-indent: 120%;

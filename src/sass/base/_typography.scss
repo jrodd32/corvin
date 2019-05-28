@@ -81,14 +81,7 @@ blockquote {
 
   cite {
     display: block;
-    font-size: .4em;
     font-style: normal;
-    line-height: 2;
-
-    &:before {
-      content: "— ";
-      display: inline;
-    }
   }
 }
 

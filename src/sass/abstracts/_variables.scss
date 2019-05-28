@@ -15,18 +15,18 @@ $font-line-height: 1.6;
 
 // Colors
 $black: #0f0f0f;
-$info: #F0EFDF;
+$info: #f0efdf;
 $success: #23d160;
 $warning: #ff3861;
-$white: #fff;
-$primaryBlue: #2A3940;
-$secondaryBlue: #3F5866;
-$tertiaryBlue: #BFD4DE;
-$orange: #FF8C00;
+$white: rgb(239, 239, 239);
+$primaryBlue: #2a3940;
+$secondaryBlue: #3f5866;
+$tertiaryBlue: #bfd4de;
+$orange: #ff8c00;
 
 $primary: $primaryBlue;
 $font-color-light: $white;
-$font-color-dark: #9A9A9A;
+$font-color-dark: #9a9a9a;
 
 $utility: rgba(191,212,222, .85);
 
@@ -48,12 +48,24 @@ $states: (
 
 $styles: (
   black: (
-    color: $black,
+    background-color: $black,
+    color: $white,
     type: dark
   ),
+  blue: (
+    background-color: $primaryBlue,
+    color: $info,
+    type: blue
+  ),
   white: (
-    color: $white,
+    background-color: $white,
+    color: $black,
     type: light
+  ),
+  orange: (
+    background-color: $orange,
+    color: $white,
+    type: orange
   )
 );
 
@@ -135,9 +147,9 @@ $transition-duration: .4s;
 
 // Button
 $button-font-size: $font-size;
-$button-height: 3em;
-$button-padding: 1.4em;
-$button-border-radius: $border-radius;
+$button-height: 2.25em;
+$button-padding: 2em;
+$button-border-radius: 0;
 $button-border-size: $border-width;
 $button-line-height: $font-line-height;
 $button-transition-duration: $transition-duration;
