@@ -2,7 +2,7 @@ const path = require('path');
 
 const libraryName = 'BaseSite';
 
-const assetsOutputPath = path.resolve(__dirname, 'build');
+const assetsOutputPath = path.resolve(__dirname, 'web/build');
 const assetsSourcePath = path.resolve(__dirname, 'src');
 
 const entryCss = path.resolve(assetsSourcePath, 'sass', 'app.scss');
@@ -18,7 +18,7 @@ const cssTemplateFilename = 'css.blade.php';
 
 const prerenderOutputPath = assetsOutputPath;
 const prerenderFileName = 'index.html';
-const prerenderHeadless = true;
+const prerenderHeadless = false;
 const prerenderCallback = (html) => {
   return html.replace(/<script charset="utf-8" src="(.*).js"><\/script>/g, '')
     // .replace(/<script type="text\/javascript" src="(.*).js"><\/script>/g, '')

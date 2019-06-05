@@ -75,8 +75,6 @@
       };
     },
     activated() {
-      this.$emit('page-activated');
-      this.$eventBus.$emit('page-loaded');
       this.activeProduct = products.filter((product) => {
         return product.slug === window.location.pathname.replace('/store/', '');
       })[0];
@@ -84,6 +82,9 @@
       this.relatedProducts = products.filter((product) => {
         return this.activeProduct.relatedProducts.includes(product.id);
       });
+
+      this.$emit('page-activated');
+      this.$eventBus.$emit('page-loaded');
     }
   };
 </script>

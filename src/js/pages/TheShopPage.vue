@@ -50,6 +50,10 @@
       showFilters() {
         return !this.categoryStyle;
       }
+    },
+    activated() {
+      this.$emit('page-activated');
+      this.$eventBus.$emit('page-loaded');
     }
   };
 </script>
