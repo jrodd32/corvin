@@ -2,7 +2,7 @@ const path = require('path');
 
 const libraryName = 'BaseSite';
 
-const assetsOutputPath = path.resolve(__dirname, 'web/build');
+const assetsOutputPath = path.resolve(__dirname, 'web/dist');
 const assetsSourcePath = path.resolve(__dirname, 'src');
 
 const entryCss = path.resolve(assetsSourcePath, 'sass', 'app.scss');
