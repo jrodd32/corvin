@@ -14,7 +14,7 @@
   import CorvinPageHeading from '../components/CorvinPageHeading.vue';
   import CorvinProducts from '../components/CorvinProducts.vue';
 
-  const tempStoreHomeHeadingData = {
+  const tempStoreCategoryHeadingData = {
     title: 'What Are You Looking For?',
     content: 'At Corvin’s, we pride ourselves on championing every client’s flooring with passion and integrity. We offer a vast array of different options in hardwood, laminate, tile, vinyl and carpet. We also install flooring and custom showers. View our floor offerings below.',
     media: {
@@ -23,7 +23,7 @@
     }
   };
 
-  const tempStoreCategoryHeadingData = {
+  const tempStoreFlooringHeadingData = {
     title: 'Shop All Floors',
     content: 'Not sure what you’re looking for? No problem. Filter all floors below by style, category (i.e. hardwood vs. tile, etc.), color, price and brand. Let us help you create the room you’re dreaming of.'
   };
@@ -42,7 +42,7 @@
       computedHeadingContent() {
         return this.categoryStyle
           ? tempStoreCategoryHeadingData
-          : tempStoreHomeHeadingData;
+          : tempStoreFlooringHeadingData;
       },
       computedListingType() {
         return this.categoryStyle ? 'category' : '';

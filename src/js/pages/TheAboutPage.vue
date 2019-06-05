@@ -2,7 +2,7 @@
   <main class="page is-inset is-gapless about">
     <corvin-page-heading :heading="tempAboutHeading" />
 
-    <div class="about-intro">
+    <div class="about-intro is-contained">
       <div class="content">
         <p>
           Mark started the business in a small 5,000SF building selling only furniture and has since grown it to a 100,000SF building selling Furniture, Flooring, a Traders Mall and a Moving service.
@@ -29,14 +29,14 @@
       </aside>
     </div>
 
-    <div class="about-team">
+    <div class="about-team is-contained">
       <h2 class="section-heading">Our Team</h2>
 
       <div class="profiles">
         <corvin-profile
-          v-for="profile in profiles"
+          v-for="(profile, index) in profiles"
           :profile="profile"
-          :key="profile.name"
+          :key="index"
         />
       </div>
     </div>
@@ -115,7 +115,7 @@
       title: 'CO-OWNER, PRESIDENT',
       email: 'mark.corvin@corvinsfurniture.com',
       phone: '(270) 555-5555',
-      image: 'https://placehold.it/300x400',
+      image: 'https://placehold.it/256x280',
       alt: 'Profile image'
     },
 
@@ -124,7 +124,7 @@
       title: 'FLOORING MANAGER',
       email: 'david.brown@corvinsfurniture.com',
       phone: '(270) 555-5555',
-      image: 'https://placehold.it/300x400',
+      image: 'https://placehold.it/256x280',
       alt: 'Profile image'
     },
 
@@ -133,7 +133,7 @@
       title: 'ASSISTANT FLOORING MANAGER',
       email: 'tyler.corvin@corvinsfurniture.com',
       phone: '(270) 555-5555',
-      image: 'https://placehold.it/300x400',
+      image: 'https://placehold.it/256x280',
       alt: 'Profile image'
     },
 
@@ -142,7 +142,7 @@
       title: 'MARKETING MANAGER',
      email: 'paola@corvinsfurniture.com',
      phone: '(270) 555-5555',
-      image: 'https://placehold.it/300x400',
+      image: 'https://placehold.it/256x280',
       alt: 'Profile image'
     },
 
@@ -151,7 +151,7 @@
       title: 'CO-OWNER, PRESIDENT',
       email: 'mark.corvin@corvinsfurniture.com',
       phone: '(270) 555-5555',
-      image: 'https://placehold.it/300x400',
+      image: 'https://placehold.it/256x280',
       alt: 'Profile image'
     },
 
@@ -160,7 +160,7 @@
       title: 'FLOORING MANAGER',
       email: 'david.brown@corvinsfurniture.com',
       phone: '(270) 555-5555',
-      image: 'https://placehold.it/300x400',
+      image: 'https://placehold.it/256x280',
       alt: 'Profile image'
     },
 
@@ -169,7 +169,7 @@
       title: 'ASSISTANT FLOORING MANAGER',
       email: 'tyler.corvin@corvinsfurniture.com',
       phone: '(270) 555-5555',
-      image: 'https://placehold.it/300x400',
+      image: 'https://placehold.it/256x280',
       alt: 'Profile image'
     },
 
@@ -178,7 +178,7 @@
       title: 'MARKETING MANAGER',
      email: 'paola@corvinsfurniture.com',
      phone: '(270) 555-5555',
-      image: 'https://placehold.it/300x400',
+      image: 'https://placehold.it/256x280',
       alt: 'Profile image'
     }
   ];
@@ -213,6 +213,11 @@
   .about-cta {
     padding-left: $u6;
     padding-right: $u6;
+
+    @include tablet() {
+      padding-left: $u10;
+      padding-right: $u10;
+    }
   }
 
   .about-intro {
@@ -262,10 +267,10 @@
       }
     }
 
-    @include widescreen() {
-      padding-left: $u14;
-      padding-right: $u14;
-    }
+    // @include widescreen() {
+    //   padding-left: $u14;
+    //   padding-right: $u14;
+    // }
   }
 
   .about-team {
@@ -274,38 +279,31 @@
     h2 {
       font-size: 2.8rem;
       text-transform: uppercase;
+      text-align: center;
+    }
+
+    .profiles {
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
     }
 
     @include tablet() {
       margin-bottom: $u10;
 
-      h2 {
-        text-align: center;
-      }
-
       .profiles {
-        display: flex;
         flex-flow: row wrap;
-        justify-content: space-around;
-      }
-
-      .profile {
-        padding-left: $u6;
-        padding-right: $u6;
+        justify-content: space-between;
       }
     }
 
     @include desktop() {
-      .profiles {
-        justify-content: space-around;
-      }
-
       .profile {
         flex: 0 1 33%;
       }
     }
 
-    @include widescreen {
+    @include cinema {
       .profile {
         flex: 0 1 25%;
       }

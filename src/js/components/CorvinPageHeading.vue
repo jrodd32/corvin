@@ -1,5 +1,5 @@
 <template>
-  <div class="page-heading">
+  <div class="page-heading is-contained">
     <div class="page-heading-content">
       <h1
         v-if="hasHeadingTitle"

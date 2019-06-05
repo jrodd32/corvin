@@ -5,16 +5,20 @@
     <div class="container">
       <div class="product-image">
         <div class="product-category">{{ activeProduct.category }}</div>
-        <img src="https://placehold.it/1600x900" alt="">
+        <img
+          alt=""
+          src="https://placehold.it/1600x900"
+        />
         <div class="product-quick-facts">
           <h1>{{ activeProduct.title }}</h1>
           <p>Style No. {{ activeProduct.style }}</p>
           <p>{{ activeProduct.price }}</p>
           <img
-            v-for="pic in activeProduct.gallery"
-            alt=""
+            v-for="(pic, index) in activeProduct.gallery"
+            :key="index"
             :src="pic"
-          >
+            alt=""
+          />
           <p>{{ activeProduct.color }}</p>
           <p>{{ activeProduct.brand }}</p>
           <p>{{ activeProduct.width }}</p>

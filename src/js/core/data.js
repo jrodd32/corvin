@@ -37,7 +37,7 @@ const products = [
       alt: '',
       src: 'https://satyr.io/400x400'
     },
-    slug: '/',
+    slug: '/bella-cerra',
     title: 'Church Hill Oak',
     price: '',
     productCare: [],
@@ -173,7 +173,7 @@ const productCategories = [
       alt: 'Carpet image',
       src: 'https://satyr.io/530x380'
     },
-    slug: '/product-category'
+    slug: '/product-category/carpet'
   },
   {
     title: 'Solid Hardwood',
@@ -182,7 +182,7 @@ const productCategories = [
       alt: 'image',
       src: 'https://satyr.io/530x380'
     },
-    slug: '/product-category'
+    slug: '/product-category/solid-hardwood'
   },
   {
     title: 'Engineered Hardwood',
@@ -191,7 +191,7 @@ const productCategories = [
       alt: 'image',
       src: 'https://satyr.io/530x380'
     },
-    slug: '/product-category'
+    slug: '/product-category/engineered-hardwood'
   },
   {
     title: 'Laminate',
@@ -200,7 +200,7 @@ const productCategories = [
       alt: 'image',
       src: 'https://satyr.io/530x380'
     },
-    slug: '/product-category'
+    slug: '/product-category/laminate'
   },
   {
     title: 'Tile & Stone',
@@ -209,7 +209,7 @@ const productCategories = [
       alt: 'image',
       src: 'https://satyr.io/530x380'
     },
-    slug: '/product-category'
+    slug: '/product-category/tile-stone'
   },
   {
     title: 'Vinyl Plank',
@@ -218,7 +218,7 @@ const productCategories = [
       alt: 'image',
       src: 'https://satyr.io/530x380'
     },
-    slug: '/product-category'
+    slug: '/product-category/vinyl-plank'
   }
 ];
 
