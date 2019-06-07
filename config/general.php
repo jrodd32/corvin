@@ -8,6 +8,8 @@
  * @see \craft\config\GeneralConfig
  */
 
+putenv("PATH={$_SERVER["PATH"]}:/usr/local/opt/mysql@5.7/bin");
+
 return [
     // Global settings
     '*' => [
