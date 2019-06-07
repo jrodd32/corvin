@@ -59,13 +59,11 @@
 
 <script>
   import { products } from '../core/data';
-  import CorvinStoreFilters from '../components/CorvinStoreFilters.vue';
   import CorvinProductListing from '../components/CorvinProductListing.vue';
 
   export default {
     components: {
-      CorvinProductListing,
-      CorvinStoreFilters
+      CorvinProductListing
     },
     data() {
       return {
@@ -75,13 +73,9 @@
       };
     },
     activated() {
-      this.activeProduct = products.filter((product) => {
-        return product.slug === window.location.pathname.replace('/store/', '');
-      })[0];
+      this.activeProduct = products.find(product => product.slug === window.location.pathname.replace('/store/', ''));
 
-      this.relatedProducts = products.filter((product) => {
-        return this.activeProduct.relatedProducts.includes(product.id);
-      });
+      this.relatedProducts = products.filter(product => this.activeProduct.relatedProducts.includes(product.id));
 
       this.$emit('page-activated');
       this.$eventBus.$emit('page-loaded');

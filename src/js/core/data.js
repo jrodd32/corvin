@@ -225,13 +225,13 @@ const productCategories = [
 const profiles = [
   {
     email: 'title@corvinfurniture.com',
-    title: 'Employee title',
+    name: 'Employee Name',
     phone: '(502) - 555-5555',
     title: 'Employee Title'
   },
   {
     email: 'title@corvinfurniture.com',
-    title: 'Employee title',
+    name: 'Employee name',
     phone: '(502) - 555-5555',
     title: 'Employee Title'
   },
