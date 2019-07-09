@@ -7,8 +7,6 @@
     />
     <h2 class="profile-name">{{ profile.name }}</h2>
     <p class="profile-title">{{ profile.title }}</p>
-    <p class="profile-phone">{{ profile.phone }}</p>
-    <p class="profile-email">{{ profile.email }}</p>
   </div>
 </template>
 
