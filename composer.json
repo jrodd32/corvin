@@ -1,7 +1,7 @@
 {
   "require": {
-    "craftcms/cms": "^3.1.27",
-    "craftcms/feed-me": "^4.1",
+    "craftcms/cms": "3.1.33",
+    "craftcms/feed-me": "4.1.1",
     "craftcms/redactor": "2.3.3.2",
     "doeanderson/super-image": "^1.0",
     "vaersaagod/dospaces": "^1.1",
