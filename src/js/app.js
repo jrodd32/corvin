@@ -14,10 +14,13 @@ import * as Sentry from '@sentry/browser';
 import * as Integrations from '@sentry/integrations';
 import eventBus from '@bit/doeanderson.components.core.event-bus/event-bus';
 import GtmPlugin from '@bit/doeanderson.components.core.gtm-plugin/gtm-plugin';
+import Lightbox from 'vue-my-photos';
 import routes from './config/routes';
 import api from './config/api';
 import App from './App.vue';
 import CorvinLandingPage from './CorvinLandingPage.vue';
+
+Vue.component('lightbox', Lightbox);
 
 require('./core/gsap/ScrollToPlugin');
 require('objectFitPolyfill');
