@@ -117,8 +117,6 @@
     {
       name: 'Mark Corvin',
       title: 'CO-OWNER, PRESIDENT',
-      email: 'mark.corvin@corvinsfurniture.com',
-      phone: '(270) 555-5555',
       image: 'https://placehold.it/256x280',
       alt: 'Profile image'
     },
@@ -126,8 +124,6 @@
     {
       name: 'David Brown',
       title: 'FLOORING MANAGER',
-      email: 'david.brown@corvinsfurniture.com',
-      phone: '(270) 555-5555',
       image: 'https://placehold.it/256x280',
       alt: 'Profile image'
     },
@@ -135,8 +131,6 @@
     {
       name: 'Tyler Corvin',
       title: 'ASSISTANT FLOORING MANAGER',
-      email: 'tyler.corvin@corvinsfurniture.com',
-      phone: '(270) 555-5555',
       image: 'https://placehold.it/256x280',
       alt: 'Profile image'
     },
@@ -144,8 +138,6 @@
     {
       name: 'Paola Ogadzhanova ',
       title: 'MARKETING MANAGER',
-     email: 'paola@corvinsfurniture.com',
-     phone: '(270) 555-5555',
       image: 'https://placehold.it/256x280',
       alt: 'Profile image'
     },
@@ -153,8 +145,6 @@
     {
       name: 'Mark Corvin',
       title: 'CO-OWNER, PRESIDENT',
-      email: 'mark.corvin@corvinsfurniture.com',
-      phone: '(270) 555-5555',
       image: 'https://placehold.it/256x280',
       alt: 'Profile image'
     },
@@ -162,8 +152,6 @@
     {
       name: 'David Brown',
       title: 'FLOORING MANAGER',
-      email: 'david.brown@corvinsfurniture.com',
-      phone: '(270) 555-5555',
       image: 'https://placehold.it/256x280',
       alt: 'Profile image'
     },
@@ -171,8 +159,6 @@
     {
       name: 'Tyler Corvin',
       title: 'ASSISTANT FLOORING MANAGER',
-      email: 'tyler.corvin@corvinsfurniture.com',
-      phone: '(270) 555-5555',
       image: 'https://placehold.it/256x280',
       alt: 'Profile image'
     },
@@ -180,8 +166,6 @@
     {
       name: 'Paola Ogadzhanova ',
       title: 'MARKETING MANAGER',
-     email: 'paola@corvinsfurniture.com',
-     phone: '(270) 555-5555',
       image: 'https://placehold.it/256x280',
       alt: 'Profile image'
     }
@@ -204,12 +188,14 @@
     mixins: [ajaxPageProps],
     data() {
       return {
-        jsonUrl: `/${this.$api.pages.home}`
+        jsonUrl: `/${this.$api.pages.home}`,
+        profiles,
+        tempAboutHeading
       };
     },
     computed: {
       hasHeading() {
-
+        return true;
       }
     }
   };
