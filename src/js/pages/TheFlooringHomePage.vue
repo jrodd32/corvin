@@ -1,31 +1,37 @@
 <template>
   <main class="page flooring-home is-gapless is-inset">
-    <div class="hero">
-      <figure>
+    <div
+      :style="heroBackground"
+      class="hero"
+    >
+      <figure v-if="hasFeaturedImage">
         <img
-          :alt="data.hero.media.alt"
-          :src="data.hero.media.src"
+          :alt="data.content.hero.featuredImage.alt"
+          :src="data.content.hero.featuredImage.url"
         />
 
         <figcaption>
-          <h1 v-html="data.hero.headline" />
-          <p v-html="data.hero.content" />
+          <h1 v-html="data.content.hero.headline" />
+          <p v-html="data.content.hero.content" />
 
           <doe-link
-            :href="data.hero.button.href"
-            :text="data.hero.button.text"
+            :href="data.content.hero.button.href"
+            :text="data.content.hero.button.text"
             is-orange
           />
         </figcaption>
       </figure>
     </div>
 
-    <div class="shop-by-category">
-      <h2>Shop by category</h2>
+    <div
+      v-if="hasCategories"
+      class="shop-by-category"
+    >
+      <h2 v-html="data.content.categories.headline" />
 
       <div class="category-wrapper">
         <div
-          v-for="category in data.categories"
+          v-for="category in data.content.categories.grid.items"
           class="category"
         >
           <h3>{{ category.title }}</h3>
@@ -33,40 +39,46 @@
           <figure>
             <img
               :alt="category.image.alt"
-              :src="category.image.src"
+              :src="category.image.url"
             />
           </figure>
 
           <doe-link
-            :href="category.link.href"
-            :text="category.link.text"
+            :href="category.uri"
+            text="Shop Now"
             is-blue
           />
         </div>
       </div>
     </div>
 
-    <div class="customer-quote">
+    <div
+      v-if="hasQuote"
+      class="customer-quote"
+    >
       <blockquote>
-        {{ data.blockquote.quote }}
+        <p v-html="activeQuote.quote" />
 
         <span class="line" />
 
-        <cite>{{ data.blockquote.cite.person }} <span v-html="data.blockquote.cite.location" /></cite>
+        <cite>{{ activeQuote.cite }} <span v-html="activeQuote.location" /></cite>
       </blockquote>
     </div>
 
-    <div class="social">
+    <div
+      v-if="hasSocial"
+      class="social"
+    >
       <div class="content">
-        <h4 v-html="data.social.headline" />
-        <p v-html="data.social.content" />
+        <h4 v-html="data.content.social.headline" />
+        <p v-html="data.content.social.content" />
       </div>
 
       <div class="media">
-        <figure v-for="image in data.social.media">
+        <figure v-for="image in data.content.social.media">
           <img
             :alt="image.alt"
-            :src="image.src"
+            :src="image.href"
           />
         </figure>
       </div>
@@ -75,160 +87,55 @@
 </template>
 
 <script>
-  const hero = {
-    headline: 'The Benefits of Hardwood',
-    content: 'Beautiful and long-lasting, hardwood floors make an elegant choice for nearly any room in your home. When choosing hardwood, the color, character, and construction type are the important factors to consider.',
-    button: {
-      href: '/flooring-101',
-      text: 'Read more'
-    },
-    media: {
-      alt: 'Hardwood flooring planks image',
-      src: '../../images/homepage-hero-img.jpg@2x.png'
-    }
-  };
-
-  const categories = [
-    {
-      title: 'Carpet',
-      image: {
-        alt: '',
-        src: '../../images/carpet-homepage-img.jpg@2x.png'
-      },
-      link: {
-        href: '/',
-        text: 'Shop Now'
-      }
-    },
-    {
-      title: 'Hardwood',
-      image: {
-        alt: '',
-        src: '../../images/hardwood-home-img.jpg@2x.png'
-      },
-      link: {
-        href: '/',
-        text: 'Shop Now'
-      }
-    },
-    {
-      title: 'Engineered Hardwood',
-      image: {
-        alt: '',
-        src: '../../images/engineered-hardwood-home-img.jpg@2x.png'
-      },
-      link: {
-        href: '/',
-        text: 'Shop Now'
-      }
-    },
-    {
-      title: 'Laminate',
-      image: {
-        alt: '',
-        src: '../../images/laminate-homepage-img.jpg@2x.png'
-      },
-      link: {
-        href: '/',
-        text: 'Shop Now'
-      }
-    },
-    {
-      title: 'Tile',
-      image: {
-        alt: '',
-        src: '../../images/tile-homepage-img.jpg@2x.png'
-      },
-      link: {
-        href: '/',
-        text: 'Shop Now'
-      }
-    },
-    {
-      title: 'Vinyl Plank',
-      image: {
-        alt: '',
-        src: '../../images/vinyl-homepage-img.jpg@2x.png'
-      },
-      link: {
-        href: '/',
-        text: 'Shop Now'
-      }
-    }
-  ];
-
-  const blockquote = {
-    cite: {
-      person: 'Alex Nugent',
-      location: 'Bardstown, KY'
-    },
-    quote: 'Awesome family owned business! You can tell immediately that Corvin’s Furniture, Flooring, and In-Town Moving has a strong focus on providing exceptional customer service. The staff is knowledgeable, friendly, and there to help guide you through your entire experience. Product selection is top notch and all quality stuff. Highly recommend using this business!!'
-  };
-
-  const social = {
-    headline: 'SHOW OFF YOUR ROOM',
-    content: 'Follow us on Instagram and hashtag your photos of our products in-use with #CorvinsFlooring to be featured in our customer gallery',
-    media: [
-      {
-        alt: 'Social media image',
-        src: '../../images/social.png'
-      },
-      {
-        alt: 'Social media image',
-        src: '../../images/social2.png'
-      },
-      {
-        alt: 'Social media image',
-        src: '../../images/social3.png'
-      },
-      {
-        alt: 'Social media image',
-        src: '../../images/social4.png'
-      },
-      {
-        alt: 'Social media image',
-        src: '../../images/social5.png'
-      },
-      {
-        alt: 'Social media image',
-        src: '../../images/social6.png'
-      },
-      {
-        alt: 'Social media image',
-        src: '../../images/social7.png'
-      },
-      {
-        alt: 'Social media image',
-        src: '../../images/social8.png'
-      },
-      {
-        alt: 'Social media image',
-        src: '../../images/social9.png'
-      }
-    ]
-  };
+  import { ajaxPageProps } from '../core/page';
 
   export default {
+    mixins: [ajaxPageProps],
     data() {
       return {
-        data: {
-          blockquote,
-          categories,
-          hero,
-          social
-        }
+        jsonUrl: `/${this.$api.pages.home}`
       };
     },
-    activated() {
-      this.$emit('page-activated');
-      this.$eventBus.$emit('page-loaded');
+    computed: {
+      activeQuote() {
+        return this.hasQuote ? this.data.content.blockquote.testimonial[0] : '';
+      },
+      hasBackgroundImage() {
+        return this.hasHero
+               && 'backgroundImage' in this.data.content.hero;
+      },
+      hasCategories() {
+        return this.hasContent
+               && 'categories' in this.data.content;
+      },
+      hasContent() {
+        return 'content' in this.data;
+      },
+      hasFeaturedImage() {
+        return this.hasHero
+               && 'featuredImage' in this.data.content.hero;
+      },
+      hasHero() {
+        return this.hasContent
+               && 'hero' in this.data.content;
+      },
+      hasQuote() {
+        return this.hasContent
+               && 'blockquote' in this.data.content;
+      },
+      hasSocial() {
+        return this.hasContent
+               && 'social' in this.data.content;
+      },
+      heroBackground() {
+        return this.hasBackgroundImage ? `background-image: url('${this.data.content.hero.backgroundImage.url}')` : '';
+      }
     }
   };
 </script>
 
 <style lang="scss" scoped>
   .hero {
-    background-image: url('../../images/homepage-hero-bg.jpg@2x.png');
     background-size: cover;
     padding: $u6;
 

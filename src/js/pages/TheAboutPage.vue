@@ -1,6 +1,9 @@
 <template>
   <main class="page is-inset is-gapless about">
-    <corvin-page-heading :heading="tempAboutHeading" />
+    <corvin-page-heading
+      v-if="hasHeading"
+      :heading="tempAboutHeading"
+    />
 
     <div class="about-intro is-contained">
       <div class="content">
@@ -48,6 +51,7 @@
 </template>
 
 <script>
+  import { ajaxPageProps } from '../core/page';
   import CorvinPageHeading from '../components/CorvinPageHeading.vue';
   import CorvinProfile from '../components/CorvinProfile.vue';
 
@@ -197,16 +201,16 @@
       CorvinPageHeading,
       CorvinProfile
     },
+    mixins: [ajaxPageProps],
     data() {
       return {
-        profiles,
-        services,
-        tempAboutHeading
+        jsonUrl: `/${this.$api.pages.home}`
       };
     },
-    activated() {
-      this.$emit('page-activated');
-      this.$eventBus.$emit('page-loaded');
+    computed: {
+      hasHeading() {
+
+      }
     }
   };
 </script>

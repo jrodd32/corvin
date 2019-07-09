@@ -19,7 +19,53 @@
 
 return [
     'modules' => [
-        'my-module' => \modules\Module::class,
+        'contactformmodule' => \modules\contactformmodule\ContactFormModule::class,
+        'components' => [
+          'contactFormService' => [
+            'class' => 'modules\contactformmodule\services\ContactForm',
+          ],
+      ],
+      'exception-reporter' => [
+        'class' => \modules\exceptionreporter\ExceptionReporter::class,
+        'components' => [
+          'sentry' => [
+            'class' => 'modules\exceptionreporter\services\Sentry',
+          ],
+        ],
+      ],
+      'super-api' => [
+        'class' => \modules\superapi\SuperApi::class,
+        'components' => [
+          'pages' => [
+            'class' => 'modules\superapi\services\Pages',
+          ],
+          'routes' => [
+            'class' => 'modules\superapi\services\Routes',
+          ],
+          'sitemap' => [
+            'class' => 'modules\superapi\services\Sitemap'
+          ]
+        ],
+      ],
+      'super-search' => [
+        'class' => \modules\supersearch\SuperSearch::class,
+        'components' => [
+            'value' => [
+                'class' => 'modules\supersearch\services\ScoutService',
+            ],
+            'value' => [
+              'class' => 'modules\supersearch\services\SearchValue',
+          ],
+        ],
+      ],
+      'super-values' => [
+        'class' => \modules\supervalues\SuperValues::class,
+        'components' => [
+            'value' => [
+                'class' => 'modules\supervalues\services\Value',
+            ],
+        ],
+      ],
     ],
-    //'bootstrap' => ['my-module'],
+    'bootstrap' => ['contactformmodule', 'exception-reporter', 'super-api', 'super-search', 'super-values'],
 ];

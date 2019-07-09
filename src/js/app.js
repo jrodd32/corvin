@@ -39,10 +39,9 @@ const browser = detect();
 Vue.prototype.$browser = browser;
 
 // Setup env helpers
-Vue.prototype.$local = (window.location.hostname === 'localhost:8080');
-Vue.prototype.$dev = (window.location.hostname === 'base-site.test');
-Vue.prototype.$staging = (window.location.hostname === 'base-site.doe1915.com');
-Vue.prototype.$prod = (window.location.hostname === 'www.base-sitecom');
+Vue.prototype.$local = (window.location.hostname === 'localhost');
+Vue.prototype.$dev = (window.location.hostname === 'corvin.test');
+Vue.prototype.$prod = (window.location.hostname === 'www.corvinfurnitureofbardstown.com');
 Vue.prototype.$prerender = window.prerender;
 
 // Error tracking
@@ -65,8 +64,17 @@ Vue.prototype.$gsapEases = {};
 
 // Set axios default headers
 // Axios is the HTTP request library
+let baseUrl = window.location.origin;
+
+if (Vue.prototype.$local) {
+  baseUrl = 'https://corvin.test';
+}
 Vue.prototype.$axios = axios.create();
 Vue.prototype.$axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+Vue.prototype.$axios.defaults.baseURL = `${baseUrl}/api`;
+Vue.prototype.$axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+Vue.prototype.$axios.defaults.headers.common['X-CSRF-Token'] = document.head.querySelector('meta[name="csrf_token"]').content;
 
 // Set api endpoints for later use
 Vue.prototype.$api = api;
@@ -147,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Add service worker if on production and browser supports it
   // NOTE: if you want to test in dev or staging, change the hostname condition
   // TODO: set hostname
-  if ('serviceWorker' in navigator && window.location.hostname === 'https://base-site.com') {
+  if ('serviceWorker' in navigator && window.location.hostname === 'https://corvin.com') {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('/service-worker.js');
     });

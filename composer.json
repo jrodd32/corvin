@@ -1,11 +1,12 @@
 {
   "require": {
-    "craftcms/cms": "^3.0.0",
+    "craftcms/cms": "^3.1.27",
     "craftcms/feed-me": "^4.1",
     "craftcms/redactor": "2.3.3.2",
+    "doeanderson/super-image": "^1.0",
+    "vaersaagod/dospaces": "^1.1",
     "verbb/super-table": "2.1.20",
-    "vlucas/phpdotenv": "^2.4.0",
-    "doeanderson/super-image": "^1.0"
+    "vlucas/phpdotenv": "^2.4.0"
   },
   "autoload": {
     "psr-4": {

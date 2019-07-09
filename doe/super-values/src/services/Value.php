@@ -264,10 +264,10 @@ class Value extends Component
     $image = [
       'url' => $field->url,
       'alt' => !is_null($field->imageAltText) ? $field->imageAltText : '',
-      'title' => $field->imageTitle,
+      'title' => !is_null($field->imageTitle) ? $field->imageTitle : '',
       'dimensions' => null,
-      'videoUrl' => $field->videoUrl,
-      'videoUrlMobile' => $field->videoUrlMobile
+      'videoUrl' => !is_null($field->videoUrl) ? $field->videoUrl : '',
+      'videoUrlMobile' => !is_null($field->videoUrlMobile) ? $field->videoUrlMobile : '',
     ];
 
     $imageStyles = [

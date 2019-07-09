@@ -15,7 +15,7 @@ const routes = [
   { path: '/contact', component: TheContactPage },
   { path: '/home', component: TheFlooringHomePage },
   { path: '/flooring-101', component: TheFlooringPage },
-  { path: '/gallery', component: TheHomePage },
+  { path: '/gallery', component: TheGalleryPage },
   { path: '/store/:slug', component: TheStoreItemPage },
   { path: '/shop', component: TheShopPage },
 
