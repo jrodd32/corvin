@@ -1,7 +1,7 @@
 <template>
   <main class="page">
     <div class="container">
-      <h1>Flooring 101 Page</h1>
+      <h1>Maintenance Page</h1>
     </div>
   </main>
 </template>

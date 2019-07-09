@@ -118,9 +118,9 @@
         <div class="navbar-item">
           <router-link
             class="navbar-link"
-            to="/flooring-101"
+            to="/maintenance"
           >
-            Flooring 101
+            Maintenance
           </router-link>
         </div>
 
