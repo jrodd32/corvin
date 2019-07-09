@@ -8216,6 +8216,13 @@ vue-loader@^15.7.0:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
+vue-my-photos@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/vue-my-photos/-/vue-my-photos-1.0.4.tgz#4e6f841c4224bcf9c4b647d304835f6b0be4c815"
+  integrity sha512-CHkg1wGN2F5YOuUoydLgTZRmUGz5eI6RF4EV9rdIcyBk+WCNaSYOH80oltl8I9fU6YSJCRjSdn6NTflJxAAnGA==
+  dependencies:
+    vue "^2.5.22"
+
 vue-router@^3.0.1:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.0.2.tgz#dedc67afe6c4e2bc25682c8b1c2a8c0d7c7e56be"
@@ -8255,7 +8262,7 @@ vue-the-mask@^0.11.1:
   resolved "https://registry.yarnpkg.com/vue-the-mask/-/vue-the-mask-0.11.1.tgz#91ee01008354ae57bccc79bb61b65f32d971d9d5"
   integrity sha512-UquSfnSWejD0zAfcD+3jJ1chUAkOAyoxya9Lxh9acCRtrlmGcAIvd0cQYraWqKenbuZJUdum+S174atv2AuEHQ==
 
-vue@^2.5.17, vue@^2.6.10:
+vue@^2.5.17, vue@^2.5.22, vue@^2.6.10:
   version "2.6.10"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
   integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==
