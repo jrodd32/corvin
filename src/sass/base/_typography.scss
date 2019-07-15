@@ -24,6 +24,7 @@ h4,
 h5,
 h6,
 .heading {
+  @include font-primary();
   color: $secondaryBlue;
   font-style: normal;
   font-weight: bold;
@@ -36,15 +37,13 @@ h6,
   }
 }
 
-h1,
-h2,
-h3 {
-  @include font-primary();
+h1 {
+  @include desktop() {
+    font-size: 6.4rem;
+    margin-bottom: 4rem;
+  }
 }
 
-h4,
-h5,
-h6,
 .is-alternative {
   @include font-secondary();
 }
