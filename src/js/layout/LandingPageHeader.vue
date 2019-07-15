@@ -39,6 +39,10 @@
       margin-top: 1em;
       max-width: 720px;
       text-align: center;
+
+      @include cinema() {
+        max-width: initial;
+      }
     }
   }
 </style>

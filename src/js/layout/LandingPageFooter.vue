@@ -5,7 +5,6 @@
         <h4 class="location-heading">Our Showroom</h4>
         <p>3465 E John Rowan Blvd</p>
         <p>Bardstown, KY 40004-2241</p>
-        <p>P: (502) 348-7474 // F: (502) 337-6003</p>
       </div>
 
       <div class="location-phone">
@@ -24,7 +23,6 @@
         <h5 class="location-heading">Our hours</h5>
         <p>Monday thru Friday: 9:00am–6:00pm</p>
         <p>Saturdays: 9:00am–6:00pm</p>
-        <p>Sundays: Closed</p>
       </div>
     </div>
   </footer>
@@ -97,15 +95,18 @@
     padding-left: $u4;
     padding-right: $u4;
     padding-top: $u8;
+    text-align: center;
 
     .wrapper {
+      display: flex;
+      flex-flow: column nowrap;
       margin: 0 auto;
       max-width: $container;
       width: 100%;
     }
 
     .location-listing,
-    .location-phone {
+    .location-hours {
       margin-bottom: $u6;
     }
 
@@ -116,35 +117,53 @@
       display: block;
       font-family: $font-primary;
       padding: 1em;
-      text-align: center;
+
+      &:hover {
+        background-color: #2A3940;
+      }
+    }
+
+    .location-phone {
+      flex: 1 1 100%;
+      order: 3;
     }
 
     @include tablet() {
       .wrapper {
-        display: flex;
         flex-flow: row wrap;
       }
 
       .location-listing,
       .location-hours {
-        flex: 1 1 50%;
-        text-align: center;
-      }
-
-      .location-phone {
-        flex: 1 1 100%;
-        order: 3;
+        flex: 0 1 50%;
       }
     }
 
     @include desktop() {
+      .wrapper {
+        align-items: center;
+      }
+
       .location-listing,
       .location-phone,
       .location-hours {
-        flex: 0 1 33%;
+        flex: 0 1 28%;
         margin-bottom: 0;
         order: initial;
-        text-align: center;
+      }
+    }
+
+    @include cinema() {
+      .location-phone {
+        min-width: 53.2rem;
+
+        p {
+          align-items: center;
+          display: flex;
+          font-size: 1.4em;
+          justify-content: center;
+          min-height: 9rem;
+        }
       }
     }
   }
