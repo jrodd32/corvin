@@ -81,7 +81,7 @@
       background-color: rgba(0,0,0,.5);
       color: $white;
       font-size: 2.4rem;
-      letter-spacing: 10px;
+      letter-spacing: 18px;
       margin: 0;
       padding-bottom: 0.5em;
       padding-top: 0.5em;
