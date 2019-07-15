@@ -1,6 +1,6 @@
 <template>
-  <div class="page-heading is-contained">
-    <div class="page-heading-content">
+  <div class="page-heading">
+    <div class="page-heading-content is-contained">
       <h1
         v-if="hasHeadingTitle"
         v-html="heading.title"
@@ -78,26 +78,25 @@
       margin-bottom: $u10;
 
       &-content {
-        padding-bottom: $u10;
-        padding-left: $u10;
-        padding-right: $u10;
-        padding-top: $u10;
+        padding-bottom: 10rem;
+        padding-top: 10rem;
+
+        p {
+          font-size: 2.4rem;
+          line-height: 3.6rem;
+        }
       }
     }
 
     @include desktop() {
-      &-content {
-        p {
-          max-width: 80vw;
-        }
+      &-content p {
+        max-width: 80vw;
       }
     }
 
     @include cinema() {
-      &-content {
-        p {
-          max-width: 60vw;
-        }
+      &-content p {
+        max-width: 60vw;
       }
     }
   }
