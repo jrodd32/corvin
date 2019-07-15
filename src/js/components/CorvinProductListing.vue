@@ -101,12 +101,22 @@
       padding-bottom: $u6;
     }
 
+    .product-title,
+    .category-content {
+      padding-left: $u6;
+      padding-right: $u6;
+    }
+
     .category-content {
       color: $font-color-dark;
     }
 
     @include tablet() {
       margin-bottom: $u10;
+
+      .product-title {
+        padding-left: 0;
+      }
 
       .category-content {
         padding-left: $u6;

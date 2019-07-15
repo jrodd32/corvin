@@ -101,19 +101,19 @@
       margin-bottom: $u10;
     }
   }
+
   .products-listing {
     display: flex;
     flex-flow: column wrap;
-    padding-left: $u6;
-    padding-right: $u6;
 
     @include tablet() {
       flex-flow: row wrap;
+      justify-content: space-between;
+      padding-left: $u6;
+      padding-right: $u6;
 
       .product {
-        flex: 0 1 50%;
-        padding-left: $u6;
-        padding-right: $u6;
+        flex: 0 1 calc(50% - (#{$u6} / 2));
       }
     }
 
@@ -121,13 +121,13 @@
       justify-content: space-around;
 
       .product {
-        flex: 0 1 33%;
+        flex: 0 1 calc(33% - (#{$u6} / 3));
       }
     }
 
     @include tv() {
       .product {
-        flex: 0 1 25%;
+        flex: 0 1 calc(25% - (#{$u6} / 4));
       }
     }
   }
