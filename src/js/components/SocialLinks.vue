@@ -67,8 +67,8 @@
       background-repeat: no-repeat;
       background-size: cover;
       display: block;
-      height: 2.7rem;
-      width: 2.7rem;
+      height: 3.6rem;
+      width: 3.6rem;
 
       &.fb {
         background-image: url('../../images/Facebook.png.png');

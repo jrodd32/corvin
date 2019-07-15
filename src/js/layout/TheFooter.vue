@@ -103,12 +103,17 @@
   }
 
   .footer-brand {
-    padding-top: $u10;
+    padding-top: 10rem;
+    padding-bottom: 6rem;
 
     img {
       display: block;
       margin: 0 auto $u6 auto;
       width: 237px;
+    }
+
+    h3 {
+      margin-bottom: 0;
     }
 
     @include tablet() {
@@ -117,10 +122,19 @@
         text-align: center;
       }
     }
+
+    @include desktop() {
+      font-size: 3.6rem;
+      line-height: 4.2rem;
+    }
   }
 
   .footer-info {
     background-color: $secondaryBlue;
+
+    p {
+      line-height: 3rem;
+    }
 
     &-wrapper {
       max-width: $ultrawide;
@@ -131,6 +145,9 @@
     .subscribe {
       p {
         color: $info;
+        font-size: 1.8rem;
+        line-height: 2.4rem;
+        padding-bottom: 1.8rem;
         text-transform: uppercase;
       }
 
@@ -188,8 +205,8 @@
     }
 
     @include widescreen() {
-      padding-bottom: $u10;
-      padding-top: $u10;
+      padding-bottom: 8rem;
+      padding-top: 8rem;
 
       .location-info {
         justify-content: flex-start;
@@ -220,6 +237,10 @@
       &:last-child {
         margin-bottom: 0;
       }
+    }
+
+    .copyright {
+      font-size: 1.4rem;
     }
 
     @include tablet() {

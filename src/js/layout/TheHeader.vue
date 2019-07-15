@@ -34,14 +34,16 @@
     class="header"
   >
     <div class="utility">
-      <social-links />
+      <div class="is-contained">
+        <social-links />
 
-      <div class="tagline">
-        <p>Corvin's: A trusted name in Kentucky since 1987</p>
-      </div>
+        <div class="tagline">
+          <p>Corvin's: A trusted name in Kentucky since 1987</p>
+        </div>
 
-      <div class="phone">
-        <a href="tel:1-502-348-7474">Call Us (502) 348-7474</a>
+        <div class="phone">
+          <a href="tel:1-502-348-7474">Call Us (502) 348-7474</a>
+        </div>
       </div>
     </div>
 
@@ -50,7 +52,7 @@
       role="navigation"
       aria-label="dropdown navigation"
     >
-      <div class="navbar-menu">
+      <div class="navbar-menu is-contained">
         <div class="navbar-item home-link">
           <router-link
             to="/"
@@ -273,20 +275,26 @@
 
   .utility {
     background-color: $utility;
-    display: flex;
     padding: $u4;
 
-    & > * {
-      margin-bottom: 0;
+    .is-contained {
+      display: flex;
+
+      & > * {
+        margin-bottom: 0;
+      }
     }
+
 
     .social-links {
       display: none;
     }
 
     @include tablet() {
-      flex-flow: row nowrap;
-      justify-content: space-between;
+      .is-contained {
+        flex-flow: row nowrap;
+        justify-content: space-between;
+      }
     }
 
     @include desktop() {
@@ -302,6 +310,7 @@
     a {
       color: $white;
       font-weight: bold;
+      font-size: 1.8rem;
     }
 
     @include tablet() {
