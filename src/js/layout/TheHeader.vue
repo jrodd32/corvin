@@ -175,6 +175,14 @@
 </script>
 
 <style lang="scss" scoped>
+  .header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+  }
+
   .header-mobile {
     align-items: center;
     background-color: $primaryBlue;

@@ -1,89 +1,74 @@
 <template>
   <main class="page flooring-home is-gapless is-inset">
-    <div
-      :style="heroBackground"
-      class="hero"
-    >
-      <figure v-if="hasFeaturedImage">
-        <img
-          :alt="data.content.hero.featuredImage.alt"
-          :src="data.content.hero.featuredImage.url"
-        />
+    <fixed-hero
+      v-if="hasHero"
+      :hero="data.content.hero"
+      @set-hero-offset="handleSetHeroOffset"
+    />
 
-        <figcaption>
-          <h1 v-html="data.content.hero.headline" />
+    <div
+      :style="heroOffset"
+      class="after-hero"
+    >
+      <div
+        v-if="hasCategories"
+        class="shop-by-category"
+      >
+        <h2 v-html="data.content.categories.headline" />
+
+        <div class="category-wrapper">
           <div
-            v-html="data.content.hero.content"
-            class="hero-content"
-          />
+            v-for="category in data.content.categories.grid.items"
+            class="category"
+          >
+            <h3>{{ category.title }}</h3>
 
-          <doe-link
-            :href="data.content.hero.button.href"
-            :text="data.content.hero.button.text"
-            is-orange
-          />
-        </figcaption>
-      </figure>
-    </div>
+            <figure>
+              <img
+                :alt="category.image.alt"
+                :src="category.image.url"
+              />
+            </figure>
 
-    <div
-      v-if="hasCategories"
-      class="shop-by-category"
-    >
-      <h2 v-html="data.content.categories.headline" />
-
-      <div class="category-wrapper">
-        <div
-          v-for="category in data.content.categories.grid.items"
-          class="category"
-        >
-          <h3>{{ category.title }}</h3>
-
-          <figure>
-            <img
-              :alt="category.image.alt"
-              :src="category.image.url"
+            <doe-link
+              :href="category.uri"
+              text="Shop Now"
+              is-blue
             />
-          </figure>
-
-          <doe-link
-            :href="category.uri"
-            text="Shop Now"
-            is-blue
-          />
+          </div>
         </div>
       </div>
-    </div>
 
-    <div
-      v-if="hasQuote"
-      class="customer-quote"
-    >
-      <blockquote>
-        <div v-html="activeQuote.quote" />
+      <div
+        v-if="hasQuote"
+        class="customer-quote"
+      >
+        <blockquote>
+          <div v-html="activeQuote.quote" />
 
-        <span class="line" />
+          <span class="line" />
 
-        <cite>{{ activeQuote.cite }} <span v-html="activeQuote.location" /></cite>
-      </blockquote>
-    </div>
-
-    <div
-      v-if="hasSocial"
-      class="social"
-    >
-      <div class="content">
-        <h4 v-html="data.content.social.headline" />
-        <div v-html="data.content.social.description" />
+          <cite>{{ activeQuote.cite }} <span v-html="activeQuote.location" /></cite>
+        </blockquote>
       </div>
 
-      <div class="media">
-        <figure v-for="image in media">
-          <img
-            :alt="image.alt"
-            :src="image.href"
-          />
-        </figure>
+      <div
+        v-if="hasSocial"
+        class="social"
+      >
+        <div class="content">
+          <h4 v-html="data.content.social.headline" />
+          <div v-html="data.content.social.description" />
+        </div>
+
+        <div class="media">
+          <figure v-for="image in media">
+            <img
+              :alt="image.alt"
+              :src="image.href"
+            />
+          </figure>
+        </div>
       </div>
     </div>
   </main>
@@ -91,6 +76,7 @@
 
 <script>
   import { ajaxPageProps } from '../core/page';
+  import FixedHero from '../components/FixedHero.vue';
 
   const media = [
     {
@@ -132,9 +118,13 @@
   ];
 
   export default {
+    components: {
+      FixedHero
+    },
     mixins: [ajaxPageProps],
     data() {
       return {
+        heroHeight: 0,
         jsonUrl: `/${this.$api.pages.home}`,
         media
       };
@@ -143,20 +133,12 @@
       activeQuote() {
         return this.hasQuote ? this.data.content.blockquote.testimonial[0] : '';
       },
-      hasBackgroundImage() {
-        return this.hasHero
-               && 'backgroundImage' in this.data.content.hero;
-      },
       hasCategories() {
         return this.hasContent
                && 'categories' in this.data.content;
       },
       hasContent() {
         return 'content' in this.data;
-      },
-      hasFeaturedImage() {
-        return this.hasHero
-               && 'featuredImage' in this.data.content.hero;
       },
       hasHero() {
         return this.hasContent
@@ -170,74 +152,28 @@
         return this.hasContent
                && 'social' in this.data.content;
       },
-      heroBackground() {
-        return this.hasBackgroundImage ? `background-image: url('${this.data.content.hero.backgroundImage.url}')` : '';
+      heroOffset() {
+        return `margin-top: ${this.heroHeight}px`;
+      }
+    },
+    methods: {
+      handleSetHeroOffset(height) {
+        console.log(height);
+        this.heroHeight = height;
       }
     }
   };
 </script>
 
 <style lang="scss" scoped>
-  .hero {
-    background-size: cover;
-    color: $white;
-    padding: $u6;
+  .flooring-home {
+    position: relative;
+  }
 
-    img {
-      display: none;
-      width: 100%;
-    }
-
-    figcaption {
-      background-color: rgba(42, 57, 64, .8);
-      padding: 3rem;
-    }
-
-    h1,
-    .hero-content {
-      margin-bottom: 5rem;
-    }
-
-    h1 {
-      color: $white;
-    }
-
-    /deep/ .hero-content > p {
-      font-size: 1.8rem;
-      line-height: 2.6rem;
-    }
-
-    .button {
-      @include font-primary;
-      height: 5rem;
-      font-size: 1.8rem;
-    }
-
-    @include cinema() {
-      figure {
-        display: grid;
-        grid-template-columns: minmax($gap, 15%) 1fr minmax($gap, 15%);
-        grid-template-rows: minmax(100px, 15%) 1fr minmax(100px, 15%);
-      }
-
-      figcaption,
-      img {
-        grid-row: 2;
-      }
-
-      img {
-        display: initial;
-        grid-column: 2;
-      }
-
-      figcaption {
-        align-self: center;
-        grid-column: 2;
-        max-width: 500px;
-        position: relative;
-        left: -6rem;
-      }
-    }
+  .after-hero {
+    background: $white;
+    position: relative;
+    z-index: 1;
   }
 
   .shop-by-category {

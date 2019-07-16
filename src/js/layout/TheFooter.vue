@@ -74,7 +74,9 @@
   .footer {
     background-color: $primaryBlue;
     color: $white;
+    position: relative;
     width: 100%;
+    z-index: 2;
 
     & > * {
       padding-bottom: $u6;
