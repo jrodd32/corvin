@@ -1,6 +1,10 @@
 <template>
+  <landing-page-header
+    v-if="showLandingHeader"
+  />
+
   <header
-    v-if="isMobile"
+    v-else-if="isMobile"
     class="header header-mobile"
   >
     <div class="navbar-logo">
@@ -141,10 +145,12 @@
 
 <script>
   import { windowProps } from '../core/mixins';
+  import LandingPageHeader from './LandingPageHeader.vue';
   import SocialLinks from '../components/SocialLinks.vue';
 
   export default {
     components: {
+      LandingPageHeader,
       SocialLinks
     },
     mixins: [
@@ -152,6 +158,7 @@
     ],
     data() {
       return {
+        showLandingHeader: false,
         showNav: false
       };
     },
@@ -165,6 +172,14 @@
       toggleText() {
         return this.showNav ? 'Close' : 'Menu';
       }
+    },
+    watch: {
+      $route() {
+        this.showLandingHeader = window.location.pathname === '/';
+      }
+    },
+    created() {
+      this.showLandingHeader = window.location.pathname === '/';
     },
     methods: {
       toggleNav() {

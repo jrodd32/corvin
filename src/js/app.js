@@ -10,15 +10,12 @@ import {
   TweenLite,
   TimelineMax
 } from 'gsap/TweenMax';
-import * as Sentry from '@sentry/browser';
-import * as Integrations from '@sentry/integrations';
 import eventBus from '@bit/doeanderson.components.core.event-bus/event-bus';
 import GtmPlugin from '@bit/doeanderson.components.core.gtm-plugin/gtm-plugin';
 import Lightbox from 'vue-my-photos';
 import routes from './config/routes';
 import api from './config/api';
 import App from './App.vue';
-import CorvinLandingPage from './CorvinLandingPage.vue';
 
 Vue.component('lightbox', Lightbox);
 
@@ -131,7 +128,7 @@ const router = new VueRouter({
   scrollBehavior
 });
 
-const isHomePage = window.location.pathname === '/';
+Vue.prototype.$isHomePage = window.location.pathname === '/';
 
 const app = new Vue({
   router,
@@ -139,19 +136,8 @@ const app = new Vue({
   template: '<App />'
 });
 
-const landingPage = new Vue({
-  router,
-  components: { CorvinLandingPage },
-  template: '<CorvinLandingPage />'
-});
-
 document.addEventListener('DOMContentLoaded', () => {
   router.onReady(() => {
-    if (isHomePage) {
-      landingPage.$mount('#app', true);
-      return;
-    }
-
     app.$mount('#app', true);
   });
 
