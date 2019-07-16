@@ -187,7 +187,7 @@
 // Setup common font styles
 @mixin font-primary() {
   font-family: $font-primary;
-  font-weight: $font-weight-bold;
+  font-weight: $font-weight;
 }
 
 @mixin font-secondary() {

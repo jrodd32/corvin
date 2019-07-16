@@ -4,7 +4,7 @@
       <img
         alt=""
         src="../../images/corvins-combo-logo.png@2x.png"
-      >
+      />
       <h3>Championing every client's flooring with passion and integrity</h3>
     </div>
 

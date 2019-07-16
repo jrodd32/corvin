@@ -12,7 +12,10 @@
 
         <figcaption>
           <h1 v-html="data.content.hero.headline" />
-          <p v-html="data.content.hero.content" />
+          <div
+            v-html="data.content.hero.content"
+            class="hero-content"
+          />
 
           <doe-link
             :href="data.content.hero.button.href"
@@ -57,7 +60,7 @@
       class="customer-quote"
     >
       <blockquote>
-        <p v-html="activeQuote.quote" />
+        <div v-html="activeQuote.quote" />
 
         <span class="line" />
 
@@ -71,11 +74,11 @@
     >
       <div class="content">
         <h4 v-html="data.content.social.headline" />
-        <p v-html="data.content.social.content" />
+        <div v-html="data.content.social.description" />
       </div>
 
       <div class="media">
-        <figure v-for="image in data.content.social.media">
+        <figure v-for="image in media">
           <img
             :alt="image.alt"
             :src="image.href"
@@ -89,11 +92,51 @@
 <script>
   import { ajaxPageProps } from '../core/page';
 
+  const media = [
+    {
+      alt: 'Social media image',
+      href: '../../images/social.png'
+    },
+    {
+      alt: 'Social media image',
+      href: '../../images/social2.png'
+    },
+    {
+      alt: 'Social media image',
+      href: '../../images/social3.png'
+    },
+    {
+      alt: 'Social media image',
+      href: '../../images/social4.png'
+    },
+    {
+      alt: 'Social media image',
+      href: '../../images/social5.png'
+    },
+    {
+      alt: 'Social media image',
+      href: '../../images/social6.png'
+    },
+    {
+      alt: 'Social media image',
+      href: '../../images/social7.png'
+    },
+    {
+      alt: 'Social media image',
+      href: '../../images/social8.png'
+    },
+    {
+      alt: 'Social media image',
+      href: '../../images/social9.png'
+    }
+  ];
+
   export default {
     mixins: [ajaxPageProps],
     data() {
       return {
-        jsonUrl: `/${this.$api.pages.home}`
+        jsonUrl: `/${this.$api.pages.home}`,
+        media
       };
     },
     computed: {
@@ -137,49 +180,42 @@
 <style lang="scss" scoped>
   .hero {
     background-size: cover;
+    color: $white;
     padding: $u6;
 
     img {
       display: none;
+      width: 100%;
     }
 
     figcaption {
       background-color: rgba(42, 57, 64, .8);
-      color: $white;
-      padding: $u4;
+      padding: 3rem;
+    }
+
+    h1,
+    .hero-content {
+      margin-bottom: 5rem;
     }
 
     h1 {
       color: $white;
-      font-size: 2.4rem;
     }
 
-    @include tablet() {
+    /deep/ .hero-content > p {
+      font-size: 1.8rem;
+      line-height: 2.6rem;
+    }
+
+    .button {
+      @include font-primary;
+      height: 5rem;
+      font-size: 1.8rem;
+    }
+
+    @include cinema() {
       figure {
         display: grid;
-        grid-template-columns: minmax($gap, 65px) 1fr minmax($gap, 65px);
-        grid-template-rows: 1fr;
-      }
-
-      img {
-        display: initial;
-        grid-column: 2;
-        grid-row: 1;
-
-      }
-
-      figcaption {
-        align-self: center;
-        grid-column: 2;
-        grid-row: 1;
-        margin-left: -65px;
-        max-height: 275px;
-        max-width: 320px;
-      }
-    }
-
-    @include desktop() {
-      figure {
         grid-template-columns: minmax($gap, 15%) 1fr minmax($gap, 15%);
         grid-template-rows: minmax(100px, 15%) 1fr minmax(100px, 15%);
       }
@@ -189,30 +225,27 @@
         grid-row: 2;
       }
 
-      figcaption {
-        max-height: 288px;
-        padding: $u6;
-      }
-    }
-
-    @include widescreen() {
-      h1 {
-        font-size: 6.4rem;
+      img {
+        display: initial;
+        grid-column: 2;
       }
 
       figcaption {
-        max-height: 345px;
+        align-self: center;
+        grid-column: 2;
         max-width: 500px;
+        position: relative;
+        left: -6rem;
       }
     }
   }
 
   .shop-by-category {
     background-color: $secondaryBlue;
-    padding-bottom: $u10;
+    padding-bottom: $u15;
     padding-left: $u4;
     padding-right: $u4;
-    padding-top: $u10;
+    padding-top: $u15;
 
     .category-wrapper {
       max-width: $ultrawide;
@@ -242,8 +275,18 @@
       }
 
       figure {
-        margin-bottom: $u6;
+        margin-bottom: 2rem;
       }
+    }
+
+    .button {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      margin: 0 auto;
+      max-width: 25.6rem;
+      text-align: center;
+      width: 100%;
     }
 
     @include tablet() {
@@ -280,10 +323,10 @@
     background-image: url('../../images/homepage-quote-bg.jpg@2x.png');
     background-size: cover;
 
-    padding-bottom: $u10;
+    padding-bottom: 20rem;
     padding-left: $u4;
     padding-right: $u4;
-    padding-top: $u10;
+    padding-top: 20rem;
 
     text-align: center;
 
@@ -293,7 +336,12 @@
       font-weight: bold;
       margin: 0 auto;
       max-width: $desktop;
+
+      p {
+        font-style: normal;
+      }
     }
+
 
     cite {
       font-family: $font-body;
@@ -388,28 +436,59 @@
     }
 
     @include desktop() {
+      .media figure {
+        flex: 0 1 calc(33% - #{$u3 * 3});
+      }
+    }
+
+    @include ultrawide() {
+      .content {
+        max-width: 35vw;
+      }
       .media {
         display: grid;
-        grid-template-columns: minmax(256px, 532px) repeat(4, minmax(64px, auto));
-        grid-template-rows: repeat(2, minmax(64px, auto));
-        grid-gap: 20px;
-        max-width: 1168px;
-        margin: 0 auto;
+        grid-template-columns: repeat(12, 114.6666666px);
+        grid-template-rows: auto auto;
+        grid-row-gap: 2rem;
 
         figure {
-          margin: 0;
+            margin: 0;
 
-          &:first-child {
-            grid-column: 1;
-            grid-row: 1 / span 2;
-          }
+            &:first-child {
+              grid-column: 1 / span 4;
+              grid-row: 1 / span 2;
+            }
 
-          &:nth-child(6),
-          &:nth-child(7),
-          &:nth-child(8),
-          &:nth-child(9) {
-            align-self: end;
-          }
+            &:nth-child(2) {
+              grid-row: / span 2;
+            }
+
+            &:nth-child(2),
+            &:nth-child(6) {
+              grid-column: 5 / span 2;
+            }
+
+            &:nth-child(3),
+            &:nth-child(7) {
+              grid-column: 7 / span 2;
+            }
+
+            &:nth-child(4),
+            &:nth-child(8) {
+              grid-column: 9 / span 2;
+            }
+
+            &:nth-child(5),
+            &:nth-child(9) {
+              grid-column: 11 / span 2;
+            }
+
+            &:nth-child(6),
+            &:nth-child(7),
+            &:nth-child(8),
+            &:nth-child(9) {
+              grid-row: 2;
+            }
         }
       }
     }
