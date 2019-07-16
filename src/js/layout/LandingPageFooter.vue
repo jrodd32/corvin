@@ -30,12 +30,8 @@
 
 <script>
   import { windowProps } from '../core/mixins';
-  import SocialLinks from '../components/SocialLinks.vue';
 
   export default {
-    components: {
-      SocialLinks
-    },
     mixins: [
       windowProps
     ]
@@ -142,6 +138,7 @@
     @include desktop() {
       .wrapper {
         align-items: center;
+        justify-content: center;
       }
 
       .location-listing,

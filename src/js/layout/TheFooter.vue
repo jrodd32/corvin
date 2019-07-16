@@ -1,5 +1,10 @@
 <template>
-  <footer class="footer">
+  <landing-page-footer v-if="showLandingPageFooter" />
+
+  <footer
+    v-else
+    class="footer"
+  >
     <div class="footer-brand">
       <img
         alt=""
@@ -62,10 +67,25 @@
 
 <script>
   import SocialLinks from '../components/SocialLinks.vue';
+  import LandingPageFooter from './LandingPageFooter.vue';
 
   export default {
     components: {
+      LandingPageFooter,
       SocialLinks
+    },
+    data() {
+      return {
+        showLandingPageFooter: false
+      };
+    },
+    watch: {
+      $route() {
+        this.showLandingPageFooter = window.location.pathname === '/';
+      }
+    },
+    created() {
+      this.showLandingPageFooter = window.location.pathname === '/';
     }
   };
 </script>

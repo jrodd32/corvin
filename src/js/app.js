@@ -131,7 +131,7 @@ const router = new VueRouter({
   scrollBehavior
 });
 
-const isHomePage = window.location.pathname === '/';
+Vue.prototype.$isHomePage = window.location.pathname === '/';
 
 const app = new Vue({
   router,
@@ -139,19 +139,8 @@ const app = new Vue({
   template: '<App />'
 });
 
-const landingPage = new Vue({
-  router,
-  components: { CorvinLandingPage },
-  template: '<CorvinLandingPage />'
-});
-
 document.addEventListener('DOMContentLoaded', () => {
   router.onReady(() => {
-    if (isHomePage) {
-      landingPage.$mount('#app', true);
-      return;
-    }
-
     app.$mount('#app', true);
   });
 

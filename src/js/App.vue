@@ -7,7 +7,7 @@
       Skip to content
     </a>
 
-    <the-header :type="isHome" />
+    <the-header />
 
     <the-500-page v-if="show500Page" />
     <the-503-page v-else-if="show503Page" />
@@ -20,7 +20,7 @@
       />
     </keep-alive>
 
-    <the-footer :type="isHome" />
+    <the-footer />
 
     <portal-target
       name="modals"
@@ -52,7 +52,6 @@
     data() {
       return {
         baseGtmDataLayer: [],
-        isHome: this.$parent.$data.isHomePage,
         show500Page: false,
         show503Page: false,
         showOfflinePage: false
