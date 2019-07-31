@@ -19,6 +19,7 @@ use craft\elements\Entry;
 use craft\helpers\UrlHelper;
 use yii\caching\TagDependency;
 use modules\supervalues\SuperValues;
+use modules\superapi\classes\CategorySortConfig;
 
 /**
  * Pages
@@ -41,6 +42,8 @@ class Pages extends Component
 
   protected $cacheDependency;
 
+  protected $categorySortConfig;
+
   public function init()
   {
     $this->cache = Craft::$app->cache;
@@ -54,6 +57,8 @@ class Pages extends Component
     if (CRAFT_ENVIRONMENT === 'production') {
       $this->duration = 31536000; // 365 days
     }
+
+    $this->categorySortConfig = new CategorySortConfig();
   }
 
   // Public Methods
@@ -118,10 +123,32 @@ class Pages extends Component
       function () use ($site, $handle, $slug) {
         $entry = $this->getEntries($site, $handle, $slug);
 
-        if ($handle === 'our-products' || $handle === 'our-applications') {
+        if ($handle === 'our-applications' && !$slug) {
           $handle = str_replace('our-', '', $handle);
           $relatedIdOrNull = $slug ? $entry['id'] : null;
           $entry[$handle] = $this->getEntries($site, $handle, null, $relatedIdOrNull);
+        }
+
+        if ($handle === 'our-products' && !$slug) {
+          $handle = str_replace('our-', '', $handle);
+          $relatedIdOrNull = $slug ? $entry['id'] : null;
+          $entry[$handle] = $this->categorySortConfig->sortProductsByCategory($this->getEntries($site, $handle, null, $relatedIdOrNull));
+        }
+
+        if ($handle === 'applications' && $slug) {
+          $relatedIdOrNull = $slug ? $entry['id'] : null;
+          $entry['products'] = $this->getEntries($site, 'products', null, $relatedIdOrNull, true);
+        }
+
+        if ($handle === 'our-products' && $slug) {
+          $relatedIdOrNull = $slug ? $entry['id'] : null;
+          $products = $this->getEntries($site, 'products', null, $relatedIdOrNull, false);
+          $entry['products'] = $this->categorySortConfig->sortProductsWithinCategory($products, $slug);
+        }
+
+        if ($handle === 'news-page' || $handle === 'news') {
+          $entry['news'] = $this->getEntries($site, 'news');
+          $entry['events'] = $this->getEntries($site, 'events');
         }
 
         return $entry;
@@ -159,7 +186,6 @@ class Pages extends Component
 
   // Protected Methods
   // =========================================================================
-
   protected function respondWith404()
   {
     return [
@@ -202,7 +228,7 @@ class Pages extends Component
     return $entry;
   }
 
-  protected function getEntries($site, $handle, $slug = null, $relatedToId = null) {
+  protected function getEntries($site, $handle, $slug = null, $relatedToId = null, $skipNestedEntries = false) {
     $formattedHandle = $this->formatHandle($handle);
 
     $isCategory = $slug && Category::find()->site($site)->group($formattedHandle)->one();
@@ -240,13 +266,13 @@ class Pages extends Component
       $entryList = [];
 
       foreach ($entries as $entry) {
-        $entryList[] = SuperValues::$instance->value->getEntryValues($entry);
+        $entryList[] = SuperValues::$instance->value->getEntryValues($entry, false, $skipNestedEntries);
       }
 
       return $entryList;
     }
 
-    $entry = SuperValues::$instance->value->getEntryValues($entries[0]);
+    $entry = SuperValues::$instance->value->getEntryValues($entries[0], false, $skipNestedEntries);
 
     // If category, section is a single or there is a slug present, return just the entry
     if ($isCategory || $slug || $entries[0]->getSection()->type === 'single') {

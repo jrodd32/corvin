@@ -10,8 +10,6 @@
 
 namespace modules\contactformmodule;
 
-use modules\contactformmodule\services\ContactForm as ContactFormService;
-
 use Craft;
 use craft\events\RegisterTemplateRootsEvent;
 use craft\events\TemplateEvent;
@@ -23,6 +21,8 @@ use craft\events\RegisterUrlRulesEvent;
 use yii\base\Event;
 use yii\base\InvalidConfigException;
 use yii\base\Module;
+
+use modules\contactformmodule\services\ContactForm as ContactFormService;
 
 /**
  * Craft plugins are very much like little applications in and of themselves. We’ve made

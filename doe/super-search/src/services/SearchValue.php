@@ -10,11 +10,12 @@
 
 namespace modules\supersearch\services;
 
-use modules\supersearch\SuperSearch;
-
 use Craft;
+
 use craft\base\Component;
+use modules\supersearch\SuperSearch;
 use doeanderson\superimage\SuperImage;
+use verbb\supertable\elements\SuperTableBlockElement;
 
 /**
  * Value Service
@@ -31,6 +32,39 @@ use doeanderson\superimage\SuperImage;
  */
 class SearchValue extends Component
 {
+  protected $disallowedSuperTableKeys = [
+    'fieldId',
+    'ownerId',
+    'ownerSiteId',
+    'typeId',
+    'sortOrder',
+    'collapsed',
+    'deletedWithOwner',
+    'id',
+    'tempId',
+    'uid',
+    'fieldLayoutId',
+    'contentId',
+    'enabled',
+    'archived',
+    'siteId',
+    'enabledForSite',
+    'title',
+    'slug',
+    'uri',
+    'dateCreated',
+    'dateUpdated',
+    'trashed',
+    'resaving',
+    'duplicateOf',
+    'hasDescendants',
+    'ref',
+    'status',
+    'structureId',
+    'totalDescendants',
+    'url'
+  ];
+
   // Public Methods
   // =========================================================================
 
@@ -55,13 +89,13 @@ class SearchValue extends Component
       return false;
     }
 
-    return $this->getSearchFieldValues($entry, $entry->getFieldLayout()->getFields(), $stripTags, $skipEntries);
+    return $this->getSearchFieldValues($entry, $entry->getFieldLayout()->getFields(), null, $stripTags, $skipEntries);
   }
 
   // Protected Methods
   // =========================================================================
 
-  protected function getSearchFieldValues($entry, $fields, $stripTags = false, $skipEntries = false, $skipMatrixFields = false)
+  protected function getSearchFieldValues($entry, $fields, $parentHandle, $stripTags = false, $skipEntries = false, $skipMatrixFields = false)
   {
     $values = [];
 
@@ -79,6 +113,10 @@ class SearchValue extends Component
         continue;
       }
 
+      // Strip out pre-Content string since content is a reserved keyword in craft, but it crufts up our clean api
+      $fieldHandle = ($field->handle === 'pageContent') ? 'content' : $field->handle;
+      $fieldHandle = (strpos($fieldHandle, 'block') === 0) ? strtolower(str_replace('block', '', $fieldHandle)) : $fieldHandle;
+
       $values[$field->handle] = $entry->getFieldValue($field->handle);
 
       if ($stripTags && is_object($values[$field->handle]) && get_class($values[$field->handle]) === 'Twig_Markup') {
@@ -87,11 +125,32 @@ class SearchValue extends Component
 
       // image
       if ($this->isAssetQuery($values[$field->handle])) {
-        $values[$field->handle] = $this->setImage($values[$field->handle], $field->handle);
+        $values[$field->handle] = $this->setImage($values[$field->handle], $field->handle, $parentHandle);
 
         if ($field->handle !== 'searchImage') {
           $values[$field->handle] = null;
         }
+      }
+
+      // super table field
+      if ($this->isSuperTableField($field)) {
+        $superTableFields = SuperTableBlockElement::find()->fieldId($field->id)->one();
+        $superTableValues = [];
+
+        if (is_null($superTableFields)) {
+          $values[$fieldHandle] = null;
+          continue;
+        }
+
+        foreach($superTableFields as $superTableFieldKey => $superTableFieldValue) {
+          if (!in_array($superTableFieldKey, $this->disallowedSuperTableKeys)) {
+            $key = (strpos($superTableFieldKey, 'block') === 0) ? strtolower(str_replace('block', '', $superTableFieldKey)) : $superTableFieldKey;
+            $superTableValues[$key] = $superTableFieldValue;
+          }
+        }
+
+        $values[$fieldHandle] = $superTableValues;
+        continue;
       }
 
       // NOTE: skips entries, tags, categories
@@ -116,7 +175,7 @@ class SearchValue extends Component
             }
 
             if ($this->isCarouselSlide($row)) {
-              $slides[] = $this->getSearchFieldValues($row, $row->getFieldLayout()->getFields(), $stripTags, false, true);
+              $slides[] = $this->getSearchFieldValues($row, $row->getFieldLayout()->getFields(), $row->type->handle, $stripTags, false, true);
             }
 
             if ($this->isTimelineSlide($row)) {
@@ -133,61 +192,66 @@ class SearchValue extends Component
 
             if ($this->isNotSlide($row)) {
               switch ($row->type->handle) {
-                case 'heroSection':
-                  $rowValues[$arrayIndex]['headline'] = $row->getFieldValue('headline');
-                  $rowValues[$arrayIndex]['copy'] = $row->getFieldValue('copy');
+                case 'profile':
+                  $rowValues[$arrayIndex]['title'] = $row->getFieldValue('blockTitle');
+                  $rowValues[$arrayIndex]['name'] = $row->getFieldValue('blockName');
+                  $rowValues[$arrayIndex]['content'] = $row->getFieldValue('blockContent');
                   break;
 
-                case 'definitionListSection':
-                  $rowValues[$arrayIndex]['headline'] = $row->getFieldValue('headline');
-                  $defitionListValues = $row->getFieldValue('definitionList');
-
-                  foreach($defitionListValues as $key => $value) {
-                    $rowValues[$arrayIndex]['definitionList'][$key]['label'] = $value['label'];
-                    $rowValues[$arrayIndex]['definitionList'][$key]['copy'] = $value['copy'];
-                  }
-                  break;
-
-                case 'pageSection':
-                  $rowValues[$arrayIndex]['headline'] = $row->getFieldValue('headline');
-                  $rowValues[$arrayIndex]['copy'] = $row->getFieldValue('copy');
-
-                  if ($row->getFieldLayout()->getFieldByHandle('secondaryHeadline') && strlen($row->getFieldValue('secondaryHeadline')) > 0) {
-
-                    $rowValues[$arrayIndex]['secondaryHeadline'] = $row->getFieldValue('secondaryHeadline');
-                  }
-
-                  if ($row->getFieldLayout()->getFieldByHandle('secondaryCopy') && strlen($row->getFieldValue('secondaryCopy')) > 0) {
-                    $rowValues[$arrayIndex]['secondaryCopy'] = $row->getFieldValue('secondaryCopy');
-                  }
-                  break;
-
-                case 'tableSection':
+                case 'sectionIntro':
                   $rowValues[$arrayIndex]['headline'] = $row->getFieldValue('headline');
                   $rowValues[$arrayIndex]['subheadline'] = $row->getFieldValue('subheadline');
-                  $tableValues = $row->getFieldValue('table');
+                  $rowValues[$arrayIndex]['content'] = $row->getFieldValue('blockContent');
+                  break;
 
-                  foreach($tableValues as $key => $value) {
-                    $rowValues[$arrayIndex]['table'][$key] = $value['value'];
-                  }
+                case 'timeline':
+                  $rowValues[$arrayIndex]['year'] = $row->getFieldValue('year');
+                  $rowValues[$arrayIndex]['content'] = $row->getFieldValue('blockContent');
+                  break;
 
-                  if ($row->getFieldLayout()->getFieldByHandle('secondaryHeadline') && strlen($row->getFieldValue('secondaryHeadline')) > 0) {
-                    $rowValues[$arrayIndex]['secondaryHeadline'] = $row->getFieldValue('secondaryHeadline');
-                  }
-
-                  if ($row->getFieldLayout()->getFieldByHandle('secondarySubheadline') && strlen($row->getFieldValue('secondarySubheadline')) > 0) {
-                    $rowValues[$arrayIndex]['secondarySubheadline'] = $row->getFieldValue('secondarySubheadline');
-                  }
-
-                  if ($row->getFieldLayout()->getFieldByHandle('secondaryTable') && strlen($row->getFieldValue('secondaryTable')) > 0) {
-                    $rowValues[$arrayIndex]['secondaryTable'] = $row->getFieldValue('secondaryTable');
-                  }
+                case 'splitImageSection':
+                  $rowValues[$arrayIndex]['content'] = $row->getFieldValue('blockContent');
                   break;
 
                 case 'quoteSection':
                   $rowValues[$arrayIndex]['quote'] = $row->getFieldValue('quote');
-                  $rowValues[$arrayIndex]['citeTitle'] = $row->getFieldValue('citeTitle');
-                  $rowValues[$arrayIndex]['citeContent'] = $row->getFieldValue('citeContent');
+                  break;
+
+                case 'productionsAndApplications':
+                  $rowValues[$arrayIndex]['headline'] = $row->getFieldValue('headline');
+                  $rowValues[$arrayIndex]['leftColumnHeadline'] = $row->getFieldValue('leftColumnHeadline');
+                  $rowValues[$arrayIndex]['leftColumnContent'] = $row->getFieldValue('leftColumnContent');
+                  $rowValues[$arrayIndex]['rightColumnHeadline'] = $row->getFieldValue('rightColumnHeadline');
+                  $rowValues[$arrayIndex]['rightColumnContent'] = $row->getFieldValue('rightColumnContent');
+                  break;
+
+                case 'globalContent':
+                  $rowValues[$arrayIndex]['headline'] = $row->getFieldValue('headline');
+                  $rowValues[$arrayIndex]['content'] = $row->getFieldValue('blockContent');
+
+                  $tableValues = $row->getFieldValue('countryList');
+
+                  foreach($tableValues as $key => $value) {
+                    $rowValues[$arrayIndex]['table'][$key] = $value;
+                  }
+
+                  break;
+
+                case 'twoColumn':
+                case 'videoSection':
+                  $rowValues[$arrayIndex]['leftColumnContent'] = $row->getFieldValue('leftColumnContent');
+                  $rowValues[$arrayIndex]['rightColumnContent'] = $row->getFieldValue('rightColumnContent');
+                  break;
+
+                case 'threeColumn':
+                  $rowValues[$arrayIndex]['columnOneContent'] = $row->getFieldValue('columnOneContent');
+                  $rowValues[$arrayIndex]['columnTwoContent'] = $row->getFieldValue('columnTwoContent');
+                  $rowValues[$arrayIndex]['columnThreeContent'] = $row->getFieldValue('columnThreeContent');
+                  break;
+
+                case 'videoSection':
+                  $rowValues[$arrayIndex]['leftColumnContent'] = $row->getFieldValue('leftColumnContent');
+                  $rowValues[$arrayIndex]['rightColumnContent'] = $row->getFieldValue('rightColumnContent');
                   break;
 
                 default:
@@ -207,7 +271,7 @@ class SearchValue extends Component
     return $values;
   }
 
-  protected function setImage($field, $handle, $style = null)
+  protected function setImage($field, $handle, $parentHandle, $style = null)
   {
     $emptyImage = [
       'video' => false,
@@ -226,6 +290,12 @@ class SearchValue extends Component
       return $emptyImage;
     }
 
+    if ($field->kind !== 'image') {
+      return [
+        'url' => $field->url
+      ];
+    }
+
     $image = [
       'url' => $field->url,
       'alt' => !is_null($field->imageAltText) ? $field->imageAltText : '',
@@ -235,18 +305,11 @@ class SearchValue extends Component
       'videoUrlMobile' => $field->videoUrlMobile
     ];
 
-    $imageStyles = [
-      'half',
-      'landscape',
-      'nav',
-      'square',
-      'portrait',
-      'timeline'
-    ];
+    $imageStyles = SuperImage::$plugin->resize->getImageStyles();
 
     if (is_null($style)) {
-      foreach($imageStyles as $imageStyle) {
-        if (strpos(strtolower($handle), $imageStyle) !== false) {
+      foreach(array_keys($imageStyles) as $imageStyle) {
+        if (strpos(strtolower($handle), $imageStyle) !== false || $imageStyle === $parentHandle) {
           $style = $imageStyle;
           break;
         }
@@ -311,6 +374,11 @@ class SearchValue extends Component
   protected function isMatrixBlock($entry)
   {
     return $entry instanceof craft\elements\MatrixBlock;
+  }
+
+  protected function isSuperTableField($field)
+  {
+    return property_exists($field, 'staticField');
   }
 
   protected function isRelatedContentQuery($value)

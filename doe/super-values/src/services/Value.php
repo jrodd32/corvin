@@ -90,12 +90,12 @@ class Value extends Component
       return false;
     }
 
-    return $this->getFieldValues($entry, $entry->getFieldLayout()->getFields(), $stripTags, $skipEntries);
+    return $this->getFieldValues($entry, $entry->getFieldLayout()->getFields(), null, $stripTags, $skipEntries);
   }
 
   // Protected Methods
   // =========================================================================
-  protected function getFieldValues($entry, $fields, $stripTags = false, $skipEntries = false, $skipMatrixFields = false)
+  protected function getFieldValues($entry, $fields, $parentHandle = null, $stripTags = false, $skipEntries = false, $skipMatrixFields = false)
   {
     $values = [];
 
@@ -108,6 +108,10 @@ class Value extends Component
         'url' => str_replace(['__page__', '__home__'], '', $entry->url),
         'uri' => '/'.str_replace(['__page__', '__home__'], '', $entry->uri)
       ];
+
+      if ($this->isContent($entry) && property_exists($entry, 'postDate')) {
+        $values['publishedAt'] = str_replace(' ', 'T', date_format($entry->postDate,'Y-m-d H:i:s'));
+      }
 
       if ($entry->getFieldLayout()->getFieldByHandle('displayCanonicalUrl') && $entry->displayCanonicalUrl) {
         $baseEntry = Entry::find()->id($entry->id)->site('en')->one();
@@ -134,25 +138,37 @@ class Value extends Component
         $values[$fieldHandle] = strip_tags($values[$fieldHandle]);
       }
 
-      // image
+      // file
       if ($this->isAssetQuery($values[$fieldHandle])) {
-        $values[$fieldHandle] = $this->setImage($values[$fieldHandle], $field->handle);
+        $values[$fieldHandle] = $this->setImage($values[$fieldHandle], $field->handle, $parentHandle);
       }
 
       // super table field
       if ($this->isSuperTableField($field)) {
-        $superTableFields = SuperTableBlockElement::find()->fieldId($field->id)->one();
+        $superTableFields = SuperTableBlockElement::find()->ownerId($entry->id)->fieldId($field->id)->all();
+
+        if (is_null($superTableFields)) {
+          $values[$fieldHandle] = null;
+          continue;
+        }
+
+        if ($field->staticField === '1') {
+          if (count($superTableFields) > 0) {
+            $values[$fieldHandle] = $this->cleanUpSuperTableField($superTableFields[0]);
+            continue;
+          }
+
+          $values[$fieldHandle] = null;
+          continue;
+        }
+
         $superTableValues = [];
 
-        foreach($superTableFields as $superTableFieldKey => $superTableFieldValue) {
-          if (!in_array($superTableFieldKey, $this->disallowedSuperTableKeys)) {
-            $key = (strpos($superTableFieldKey, 'block') === 0) ? strtolower(str_replace('block', '', $superTableFieldKey)) : $superTableFieldKey;
-            $superTableValues[$key] = $superTableFieldValue;
-          }
+        foreach($superTableFields as $superTableField) {
+          $superTableValues[] = $this->cleanUpSuperTableField($superTableField);
         }
 
         $values[$fieldHandle] = $superTableValues;
-
         continue;
       }
 
@@ -163,7 +179,7 @@ class Value extends Component
 
         if (!$skipEntries && count($rows) > 0) {
           foreach($rows as $row) {
-            $rowValues[] = $this->getFieldValues($row, $row->getFieldLayout()->getFields(), $stripTags, true, true);
+            $rowValues[] = $this->getFieldValues($row, $row->getFieldLayout()->getFields(), $fieldHandle, $stripTags, true, true);
           }
         }
 
@@ -186,7 +202,7 @@ class Value extends Component
             }
 
             if ($this->isSlide($row)) {
-              $slides[] = $this->getFieldValues($row, $row->getFieldLayout()->getFields(), $stripTags, false, true);
+              $slides[] = $this->getFieldValues($row, $row->getFieldLayout()->getFields(), $row->type->handle, $stripTags, false, true);
             }
 
             if (count($slides) && ($this->isNotSlide($row) || count($rows) === $index + 1)) {
@@ -198,7 +214,7 @@ class Value extends Component
             }
 
             if ($this->isNotSlide($row)) {
-              $rowValue = $this->getFieldValues($row, $row->getFieldLayout()->getFields(), $stripTags, false);
+              $rowValue = $this->getFieldValues($row, $row->getFieldLayout()->getFields(), $row->type->handle, $stripTags, false);
 
               if ($arrayIndex) {
                 $rowValues[$arrayIndex] = $rowValue;
@@ -242,7 +258,7 @@ class Value extends Component
     return $values;
   }
 
-  protected function setImage($field, $handle, $style = null)
+  protected function setImage($field, $handle, $parentHandle, $style = null)
   {
     $emptyImage = [
       'video' => false,
@@ -261,27 +277,26 @@ class Value extends Component
       return $emptyImage;
     }
 
+    if ($field->kind !== 'image') {
+      return [
+        'url' => $field->url
+      ];
+    }
+
     $image = [
       'url' => $field->url,
       'alt' => !is_null($field->imageAltText) ? $field->imageAltText : '',
-      'title' => !is_null($field->imageTitle) ? $field->imageTitle : '',
+      'title' => $field->imageTitle,
       'dimensions' => null,
-      'videoUrl' => !is_null($field->videoUrl) ? $field->videoUrl : '',
-      'videoUrlMobile' => !is_null($field->videoUrlMobile) ? $field->videoUrlMobile : '',
+      'videoUrl' => $field->videoUrl,
+      'videoUrlMobile' => $field->videoUrlMobile
     ];
 
-    $imageStyles = [
-      'half',
-      'landscape',
-      'nav',
-      'square',
-      'portrait',
-      'timeline'
-    ];
+    $imageStyles = SuperImage::$plugin->resize->getImageStyles();
 
     if (is_null($style)) {
-      foreach($imageStyles as $imageStyle) {
-        if (strpos(strtolower($handle), $imageStyle) !== false) {
+      foreach(array_keys($imageStyles) as $imageStyle) {
+        if (strpos(strtolower($handle), $imageStyle) !== false || $imageStyle === $parentHandle) {
           $style = $imageStyle;
           break;
         }
@@ -301,6 +316,20 @@ class Value extends Component
     }
 
     return $image;
+  }
+
+  protected function cleanUpSuperTableField($field)
+  {
+    $fieldValues = [];
+
+    foreach($field as $fieldKey => $fieldValue) {
+      if (!in_array($fieldKey, $this->disallowedSuperTableKeys)) {
+        $key = (strpos($fieldKey, 'block') === 0) ? strtolower(str_replace('block', '', $fieldKey)) : $fieldKey;
+        $fieldValues[$key] = $fieldValue;
+      }
+    }
+
+    return $fieldValues;
   }
 
   protected function isAssetQuery($value)
@@ -401,11 +430,11 @@ class Value extends Component
     foreach ($array as $key => $value) {
       $newKey = lcfirst(str_replace($target, '', $key));
 
-      if(isset($array[$newKey])) {
+      if (isset($array[$newKey])) {
           continue;
       }
 
-      if($key === $newKey) {
+      if ($key === $newKey) {
           continue;
       }
 

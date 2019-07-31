@@ -2,11 +2,22 @@
   &:not(:first-child) {
     margin-top: $u6;
   }
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  margin-bottom: $u6;
 }
 
 .accordion-row {
   border-bottom: 1px solid $black;
   position: relative;
+
+  &:last-child,
+  &:last-child .accordion-row-title {
+    border-bottom: none;
+  }
 }
 
 .accordion-row-title {
@@ -41,6 +52,7 @@
   display: none;
   overflow: hidden;
   transition: max-height .5s linear;
+  margin-top: $u6;
   max-height: 0;
 
   h2 {
@@ -67,5 +79,9 @@
 
   &.is-visible {
     display: block;
+  }
+
+  @include desktop {
+    margin-top: $u10;
   }
 }

@@ -317,17 +317,20 @@
   }
 
   .social {
-    padding-bottom: $u10;
+    padding-bottom: 15rem;
     padding-left: $u4;
     padding-right: $u4;
-    padding-top: $u10;
+    padding-top: 15rem;
 
     h4 {
       @include font-primary;
+      font-size: 2.4rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
     }
 
     .content {
-      margin-bottom: $u6;
+      margin-bottom: 8rem;
       margin-left: auto;
       margin-right: auto;
       max-width: 80%;

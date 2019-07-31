@@ -20,9 +20,6 @@ use craft\services\Elements;
 use craft\utilities\ClearCaches;
 use craft\web\twig\variables\CraftVariable;
 
-use modules\superapi\services\DarkSky as DarkSkyService;
-use modules\superapi\services\Routes as RoutesService;
-use modules\superapi\services\Pages as PagesService;
 use modules\superapi\variables\SuperApiVariable;
 
 use yii\base\Event;

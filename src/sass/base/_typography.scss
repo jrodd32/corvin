@@ -58,6 +58,12 @@ h1 {
   }
 }
 
+h2 {
+  @include desktop() {
+    font-size: 3.2rem;
+  }
+}
+
 a:hover {
   color: $link-hover-color;
   text-decoration: none;

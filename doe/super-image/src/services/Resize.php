@@ -27,13 +27,28 @@ use craft\elements\Asset;
  */
 class Resize extends Component
 {
-  // Protected Properties
+  // Public Properties
   // =========================================================================
 
-  protected $imageStyles = [];
+  public $imageStyles = [];
+
+  public function init()
+  {
+    $imageStyles = $this->getImageStyles();
+  }
 
   // Public Methods
   // =========================================================================
+
+  public function getImageStyles()
+  {
+    if (!$this->imageStyles) {
+      $config = Craft::$app->getConfig()->getConfigFromFile('super-image');
+      $this->imageStyles = array_key_exists('imageStyles', $config) ? $config['imageStyles'] : [];
+    }
+
+    return $this->imageStyles;
+  }
 
   public function getSources(Asset $asset, $assetStyle)
   {
@@ -72,27 +87,15 @@ class Resize extends Component
 
   protected function getImageStyle($assetStyle)
   {
-    $imageStyles = $this->getImageStyles();
-
-    if (array_key_exists($assetStyle, $imageStyles)) {
-      return $imageStyles[$assetStyle];
+    if (array_key_exists($assetStyle, $this->imageStyles)) {
+      return $this->imageStyles[$assetStyle];
     }
 
-    if (array_key_exists('default', $imageStyles)) {
-      return $imageStyles['default'];
+    if (array_key_exists('default', $this->imageStyles)) {
+      return $this->imageStyles['default'];
     }
 
     return [];
-  }
-
-  protected function getImageStyles()
-  {
-    if (!$this->imageStyles) {
-      $config = Craft::$app->getConfig()->getConfigFromFile('super-image');
-      $this->imageStyles = array_key_exists('imageStyles', $config) ? $config['imageStyles'] : [];
-    }
-
-    return $this->imageStyles;
   }
 
   protected function getTransformedImages(Asset $asset, $imageStyle)

@@ -66,11 +66,11 @@ class Settings extends Model
    * @var array
    */
   public $entriesToSkip = [
-    'faqs',
     'footerNavigation',
     'mainNavigation',
-    'utilityNavigation',
-    'managementTeamProfiles'
+    'legalNavigation',
+    'products',
+    'events'
   ];
 
   // Public Methods

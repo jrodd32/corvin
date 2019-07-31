@@ -1,6 +1,6 @@
 <template>
   <main class="page is-inset is-gapless about">
-    <corvin-page-heading
+    <corvin-page-hero
       v-if="hasHeading"
       :heading="tempAboutHeading"
     />
@@ -52,7 +52,7 @@
 
 <script>
   import { ajaxPageProps } from '../core/page';
-  import CorvinPageHeading from '../components/CorvinPageHeading.vue';
+  import CorvinPageHero from '../components/CorvinPageHero.vue';
   import CorvinProfile from '../components/CorvinProfile.vue';
 
   const services = [
@@ -182,7 +182,7 @@
 
   export default {
     components: {
-      CorvinPageHeading,
+      CorvinPageHero,
       CorvinProfile
     },
     mixins: [ajaxPageProps],

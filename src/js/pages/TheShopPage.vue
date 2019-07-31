@@ -1,6 +1,6 @@
 <template>
   <main class="page has-inset is-gapless products">
-    <corvin-page-heading :heading="computedHeadingContent" />
+    <corvin-page-hero :heading="computedHeadingContent" />
 
     <corvin-products
       :has-filters="showFilters"
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import CorvinPageHeading from '../components/CorvinPageHeading.vue';
+  import CorvinPageHero from '../components/CorvinPageHero.vue';
   import CorvinProducts from '../components/CorvinProducts.vue';
 
   const tempStoreCategoryHeadingData = {
@@ -30,7 +30,7 @@
 
   export default {
     components: {
-      CorvinPageHeading,
+      CorvinPageHero,
       CorvinProducts
     },
     data() {

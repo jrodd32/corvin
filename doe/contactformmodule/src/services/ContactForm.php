@@ -60,49 +60,13 @@ class ContactForm extends Component
             ];
         }
 
+        $to = "digital@doeanderson.com";
+        $subject = "Inquiry from the website";
         $application = '';
 
         if (CRAFT_ENVIRONMENT === 'production') {
-          switch($contactModel->application) {
-              case 'p1':
-                  $to = "gernot.feldbacher@zeochem.com";
-                  $application = "Chemicals & Energy";
-              break;
-
-              case 'p2':
-                  $to = "matteo.caravati@zeochem.com";
-                  $application = "Industrial Gas";
-              break;
-
-              case 'p3':
-                  $to = "lwarne@zeochem.com";
-                  $application = "Medical Oxygen";
-              break;
-
-              case 'p4':
-                  $to = "gabriele.fenoggio@zeochem.com";
-                  $application = "Technical Desiccants";
-              break;
-
-              case 'p5':
-                  $to = "Baumann.rolf@zeochem.com";
-                  $application = "Chromatography Gels";
-              break;
-
-              case 'p6':
-                  $to = "info@zeochem.ch";
-                  $application = "Sonstiges resp. Other";
-              break;
-
-              default:
-                $application = '';
-              break;
-          }
+            $to = $this->sendTo($params['path'], $contactModel->country);
         }
-
-        $to = "digital@doeanderson.com";
-
-        $subject = "{$application} inquiry from the website";
 
         $body = "Name: {$contactModel->name} \n\n";
 
@@ -113,6 +77,7 @@ class ContactForm extends Component
         $body .= "Email: {$contactModel->email} \n\n";
 
         if (strlen($application) > 0) {
+          $subject = "{$application} inquiry from the website";
           $body .= "Application: {$application} \n\n";
         }
 
@@ -120,7 +85,9 @@ class ContactForm extends Component
           $body .= "Country: {$contactModel->country} \n\n";
         }
 
-        $body .= "Message: \n\n".$contactModel->message;
+        $body .= "Message: \n\n {$contactModel->message} \n\n";
+
+        $body .= "Contacted from URL: https://www.zeochem.com{$params['path']}";
 
         $emailMessage = new Message();
         $emailMessage->setFrom([$contactModel->email => $contactModel->name]);
@@ -155,5 +122,98 @@ class ContactForm extends Component
         }
 
         return $errors;
+    }
+
+    protected function sendTo($path, $country)
+    {
+        $paths = [
+            'ce' => [
+                '/our-applications/petrochemicals',
+                '/our-applications/refining',
+                '/our-applications/solvent-drying-and-treating',
+                '/our-applications/ammonia-syngas',
+                '/our-applications/natural-gas-processing-liquefied-natural-gas-lng',
+                '/technical-support',
+            ],
+            'deu.cge' => [
+                '/our-products/deuterium-labeled-compounds',
+                '/our-products/chromatography-gels',
+                '/our-applications/analytical',
+                '/our-applications/natural-products',
+                '/our-applications/pharmaceuticals',
+                '/our-applications/health-science-diagnostics',
+                '/our-applications/food-and-beverages',
+                '/our-applications/biopharmaceuticals',
+            ],
+            'hr' => [
+                '/careers',
+                '/management-team',
+            ],
+            'info' => [
+                '/',
+                '/our-products',
+                '/our-applications',
+                '/our-locations',
+                '/why-zeochem',
+                '/quality-systems',
+                '/environmental',
+                '/news',
+                '/history',
+                '/privacy-policy',
+                '/terms-conditions',
+                '/downloads',
+                '/our-products/molecular-sieves',
+                '/research-and-development',
+            ],
+            'sz.ted' => [
+                '/our-products/specialty-zeolites',
+                '/our-applications/coatings-adhesives-sealants-and-elastomers-case-industry',
+                '/our-applications/environmental',
+                '/our-applications/chemical',
+                '/our-applications/industrial-drying',
+            ],
+            'tg' => [
+                '/our-applications/psa-hydrogen-purification',
+                '/our-applications/molecular-sieve-regeneration-services',
+                '/our-applications/ethanol-dehydration',
+                '/our-applications/industrial-oxygen-generation',
+                '/our-applications/medical-oxygen-generation',
+            ]
+        ];
+
+        $dotChCountries = [
+            'Europe',
+            'Middle East',
+            'China',
+            'Asia-Pacific',
+            'Russia',
+            'Other',
+        ];
+
+        if (in_array($path, $paths['ce'])) {
+            return 'CE@zeochem.com';
+        }
+
+        if (in_array($path, $paths['deu.cge'])) {
+            return 'DEU.CGE@zeochem.com';
+        }
+
+        if (in_array($path, $paths['hr'])) {
+            return 'HR@zeochem.com';
+        }
+
+        if (in_array($path, $paths['sz.ted'])) {
+            return 'SZ.TED@zeochem.com';
+        }
+
+        if (in_array($path, $paths['tg'])) {
+            return 'TG@zeochem.com';
+        }
+
+        if (in_array($path, $paths['info']) && in_array($country, $dotChCountries)) {
+            return 'info@zeochem.ch';
+        }
+
+        return 'info@zeochem.com';
     }
 }

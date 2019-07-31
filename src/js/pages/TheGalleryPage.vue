@@ -1,6 +1,6 @@
 <template>
   <main class="page has-inset is-gapless gallery">
-    <corvin-page-heading :heading="tempGalleryHeadingData" />
+    <corvin-page-hero :heading="tempGalleryHeadingData" />
 
     <div class="image-gallery">
       <transition-group
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-  import CorvinPageHeading from '../components/CorvinPageHeading.vue';
+  import CorvinPageHero from '../components/CorvinPageHero.vue';
 
   const images = [
     {
@@ -120,7 +120,7 @@
 
   export default {
     components: {
-      CorvinPageHeading
+      CorvinPageHero
     },
     filters: {
       appendDirectory(imageName, dir) {

@@ -4,18 +4,19 @@
       class="accordion-row-title"
       @click="handleClick"
     >
-      {{ title }}
+      <h2>{{ heading }}</h2>
+      <p>{{ intro }}</p>
     </div>
     <div
       ref="content"
       class="accordion-row-content"
     >
       <slot>
-        <p>{{ content }}</p>
+        <div v-html="content" />
       </slot>
 
       <div class="accordion-row-footer">
-        <legent-link
+        <doe-link
           class="accordion-row-close"
           is-button
           is-icon-only
@@ -28,18 +29,20 @@
 </template>
 
 <script>
-  import DoeContent from '../doe/DoeContent.vue';
 
   export default {
-    components: {
-      DoeContent
-    },
     props: {
-      title: {
+      heading: {
         type: String,
         required: true
       },
       content: {
+        type: String,
+        default() {
+          return '';
+        }
+      },
+      intro: {
         type: String,
         default() {
           return '';
@@ -96,3 +99,11 @@
     }
   };
 </script>
+
+<style lang="scss" scoped>
+  /deep/ .accordion-row-content p strong {
+    @include font-primary();
+    font-size: 2rem;
+  }
+</style>
+
