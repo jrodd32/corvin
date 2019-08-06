@@ -63,7 +63,6 @@ class SuperApi extends Module
           'api/v1/app' => 'super-api/api/app',
           'api/v1/sitemap-urls' => 'super-api/sitemap/urls',
           'api/v1/mailchimp' => 'super-api/api/mailchimp',
-          'api/v1/test' => 'super-api/api/test',
           'sitemap.xml' => 'super-api/sitemap/index',
           '_health' => 'super-api/health/index',
           [

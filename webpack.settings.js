@@ -1,6 +1,6 @@
 const path = require('path');
 
-const libraryName = 'BaseSite';
+const libraryName = 'Corvin';
 
 const assetsOutputPath = path.resolve(__dirname, 'web', 'static');
 const assetsSourcePath = path.resolve(__dirname, 'src');
@@ -11,10 +11,10 @@ const entryJs = path.resolve(assetsSourcePath, 'js', 'app.js');
 const productionFileName = '[name].[chunkhash]';
 const productionChunkFileName = '[name].[chunkhash]';
 
-const shouldGenerateAssetTemplates = false;
-const assetTemplateDirName = 'assets';
-const jsTemplateFilename = 'js.blade.php';
-const cssTemplateFilename = 'css.blade.php';
+const shouldGenerateAssetTemplates = true;
+const assetTemplateDirName = '_twig';
+const jsTemplateFilename = 'js.twig';
+const cssTemplateFilename = 'css.twig';
 
 const prerenderOutputPath = path.resolve(__dirname, 'templates');
 const prerenderFileName = 'index.html';
@@ -42,7 +42,6 @@ const prerenderCallback = (html) => {
   // .replace('<!-- GTM_NOSCRIPT -->', '{% if craft.app.env != "dev" %}<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P3XTKBJ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>{% endif %}')
   .replace('<!-- PAGE_JSON -->', '{{ craft.superApi.pageJsonScript(currentSite.handle, craft.app.request.pathInfo)|raw }}')
   .replace('<meta name="csrf_token" content="">', '<meta name="csrf_token" content="{{ craft.app.request.getCsrfToken }}">')
-  .replace('<meta name="site" content="en">', '<meta name="site" content="{{ currentSite.handle }}">')
   .replace('<html>', '<html lang="{{ craft.app.language }}">')
   .replace('name="cdn_url" content=""', 'name="cdn_url" content="/static"')
   .replace('name="env" content=""', 'name="env" content="{{ craft.app.env }}"')
@@ -57,6 +56,14 @@ const prerenderCallback = (html) => {
 };
 
 const cleanIgnoreFiles = [];
+
+const devServerProxy = {
+  '/api': {
+    target: 'https://corvin.test',
+    secure: false,
+    changeOrigin: true
+  }
+};
 
 const manifestFilename = 'manifest.json';
 const manifestEntryPath = `${assetsSourcePath}/${manifestFilename}`;
@@ -116,5 +123,6 @@ module.exports = {
   shouldGenerateAssetTemplates,
   assetTemplateDirName,
   jsTemplateFilename,
-  cssTemplateFilename
+  cssTemplateFilename,
+  devServerProxy
 };

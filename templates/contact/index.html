@@ -1,4 +1,5 @@
 <!DOCTYPE html><html lang="en-US"><head>
+  {% set cdnUrl = craft.superApi.cdnUrl %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -39,18 +40,18 @@
 
   <meta name="csrf_token" content="{{ craft.app.request.getCsrfToken }}">
 
-  <!-- CRAFT_HEAD_CACHE -->
+  {% cache globally if craft.app.env != "dev" %}
   <meta name="site" content="en">
-  <meta name="cdn_url" content="">
+  <meta name="cdn_url" content="/static">
   <meta name="env" content="dev">
-  <!-- CRAFT_HEAD_CACHE_END -->
+  {% endcache %}
 
-  <link rel="manifest" href="/manifest.json">
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <!-- CSS -->
-<link href="/styles.c8fe612018a8683ac63b.css" rel="stylesheet"></head>
+  <link rel="manifest" href="/static/manifest.json">
+  <link rel="icon" type="image/png" href="/static/favicon.png">
+  {% include '_twig/css' %}
+</head>
 
-<body>
+<body data-last-updated="{{ craft.superApi.pageDateUpdated(currentSite.handle, craft.app.request.pathInfo)|raw }}">
   <div id="app"><a href="#main" class="skip-link hidden-element">
     Skip to content
   </a> <header data-v-65057352="" class="header"><div data-v-65057352="" class="utility"><div data-v-65057352="" class="is-contained"><div data-v-4ad80280="" data-v-65057352="" class="social-links"><ul data-v-4ad80280=""><li data-v-4ad80280=""><a data-v-4ad80280="" href="https://facebook.com/" target="_BLANK" rel="noopener" class="social-icon fb"><span data-v-4ad80280="" class="hidden-element">Facebook</span></a></li> <li data-v-4ad80280=""><a data-v-4ad80280="" href="https://twitter.com/" target="_BLANK" rel="noopener" class="social-icon tw"><span data-v-4ad80280="" class="hidden-element">Twitter</span></a></li> <li data-v-4ad80280=""><a data-v-4ad80280="" href="httsp://youtub.com/" target="_BLANK" rel="noopener" class="social-icon yt"><span data-v-4ad80280="" class="hidden-element">YouTube</span></a></li> <li data-v-4ad80280=""><a data-v-4ad80280="" href="https://instagram.com/" target="_BLANK" rel="noopener" class="social-icon ig"><span data-v-4ad80280="" class="hidden-element">Instagram</span></a></li></ul></div> <div data-v-65057352="" class="tagline"><p data-v-65057352="">Corvin's: A trusted name in Kentucky since 1987</p></div> <div data-v-65057352="" class="phone"><a data-v-65057352="" href="tel:1-502-348-7474">Call Us (502) 348-7474</a></div></div></div> <nav data-v-65057352="" role="navigation" aria-label="dropdown navigation" class="navbar is-fixed-top"><div data-v-65057352="" class="navbar-menu is-contained"><div data-v-65057352="" class="navbar-item home-link"><a data-v-65057352="" href="/" class="navbar-link router-link-active">
@@ -73,12 +74,15 @@
           Maintenance
         </a></div> <div data-v-65057352="" class="navbar-item"><a data-v-65057352="" href="/contact" class="navbar-link router-link-exact-active router-link-active">
           Contact Us
-        </a></div></div></nav></header> <main data-v-0ae86bae="" class="page" id="main"><div data-v-0ae86bae="" class="container"><h1 data-v-0ae86bae="">Contact Page</h1></div></main> <footer data-v-964edcf4="" class="footer"><div data-v-964edcf4="" class="footer-brand"><img data-v-964edcf4="" alt="" src="/images/corvins-combo-logo.png@2x.bed758e790276482e3275897604969ff.png"> <h3 data-v-964edcf4="">Championing every client's flooring with passion and integrity</h3></div> <div data-v-964edcf4="" class="footer-info"><div data-v-964edcf4="" class="footer-info-wrapper"><div data-v-964edcf4="" class="location-info"><div data-v-964edcf4="" class="location-listing"><h4 data-v-964edcf4="" class="location-heading">Bardstown Showroom</h4> <p data-v-964edcf4="">3465 E John Rowan Blvd</p> <p data-v-964edcf4="">Bardstown, KY 40004-2241</p> <p data-v-964edcf4="">P: (502) 348-7474 // F: (502) 337-6003</p></div> <div data-v-964edcf4="" class="location-hours"><h5 data-v-964edcf4="" class="location-heading">Our hours</h5> <p data-v-964edcf4="">Monday thru Friday: 9:00am–6:00pm</p> <p data-v-964edcf4="">Saturdays: 9:00am–6:00pm</p> <p data-v-964edcf4="">Sundays: Closed</p></div></div> <div data-v-964edcf4="" class="subscribe"><p data-v-964edcf4="">Subscribe for product releases <span data-v-964edcf4="">&amp; tips on maintainence</span></p> <div data-v-964edcf4="" class="field newsletter"><input data-v-964edcf4="" placeholder="Email" type="text" class="input has-placeholder"> <button data-v-964edcf4="" class="submit">
+        </a></div></div></nav></header> <main data-v-0ae86bae="" class="page" id="main"><div data-v-0ae86bae="" class="container"><h1 data-v-0ae86bae="">Contact Page</h1></div></main> <footer data-v-5844b6b6="" class="footer"><div data-v-5844b6b6="" class="footer-brand"><img data-v-5844b6b6="" alt="" src="/images/corvins-combo-logo.png@2x.bed758e790276482e3275897604969ff.png"> <h3 data-v-5844b6b6="">Championing every client's flooring with passion and integrity</h3></div> <div data-v-5844b6b6="" class="footer-info"><div data-v-5844b6b6="" class="footer-info-wrapper"><div data-v-5844b6b6="" class="location-info"><div data-v-5844b6b6="" class="location-listing"><h4 data-v-5844b6b6="" class="location-heading">Bardstown Showroom</h4> <p data-v-5844b6b6="">3465 E John Rowan Blvd</p> <p data-v-5844b6b6="">Bardstown, KY 40004-2241</p> <p data-v-5844b6b6="">P: (502) 348-7474 // F: (502) 337-6003</p></div> <div data-v-5844b6b6="" class="location-hours"><h5 data-v-5844b6b6="" class="location-heading">Our hours</h5> <p data-v-5844b6b6="">Monday thru Friday: 9:00am–6:00pm</p> <p data-v-5844b6b6="">Saturdays: 9:00am–6:00pm</p> <p data-v-5844b6b6="">Sundays: Closed</p></div></div> <div data-v-5844b6b6="" class="subscribe"><p data-v-5844b6b6="">Subscribe for product releases <span data-v-5844b6b6="">&amp; tips on maintainence</span></p> <div data-v-5844b6b6="" class="field newsletter"><input data-v-5844b6b6="" placeholder="Email" type="text" class="input has-placeholder"> <button data-v-5844b6b6="" class="submit">
             Submit
-          </button></div></div></div></div> <div data-v-964edcf4="" class="footer-sub"><div data-v-4ad80280="" data-v-964edcf4="" class="social-links"><ul data-v-4ad80280=""><li data-v-4ad80280=""><a data-v-4ad80280="" href="https://facebook.com/" target="_BLANK" rel="noopener" class="social-icon fb"><span data-v-4ad80280="" class="hidden-element">Facebook</span></a></li> <li data-v-4ad80280=""><a data-v-4ad80280="" href="https://twitter.com/" target="_BLANK" rel="noopener" class="social-icon tw"><span data-v-4ad80280="" class="hidden-element">Twitter</span></a></li> <li data-v-4ad80280=""><a data-v-4ad80280="" href="httsp://youtub.com/" target="_BLANK" rel="noopener" class="social-icon yt"><span data-v-4ad80280="" class="hidden-element">YouTube</span></a></li> <li data-v-4ad80280=""><a data-v-4ad80280="" href="https://instagram.com/" target="_BLANK" rel="noopener" class="social-icon ig"><span data-v-4ad80280="" class="hidden-element">Instagram</span></a></li></ul></div> <div data-v-964edcf4="" class="copyright"><p data-v-964edcf4="">
-        All content <sup data-v-964edcf4="">©</sup> Corvin’s Flooring &amp; Furniture, LLC or authorized vendors. All rights reserved.
-      </p></div> <div data-v-964edcf4="" class="flooring"><img data-v-964edcf4="" alt="Shaw flooring" src="/images/shaw-logo.png@2x.87fa49d5b324bc68bc3607e2818b5c00.png"></div></div></footer> <!----> <div id="outdated"></div></div>
-  <!-- JS -->
-<script type="text/javascript" src="/styles.c8fe612018a8683ac63b.js"></script><script type="text/javascript" src="/vendor.172061ec4d4f3f2e8264.js"></script><script type="text/javascript" src="/main.e417f54937378b739583.js"></script>
+          </button></div></div></div></div> <div data-v-5844b6b6="" class="footer-sub"><div data-v-4ad80280="" data-v-5844b6b6="" class="social-links"><ul data-v-4ad80280=""><li data-v-4ad80280=""><a data-v-4ad80280="" href="https://facebook.com/" target="_BLANK" rel="noopener" class="social-icon fb"><span data-v-4ad80280="" class="hidden-element">Facebook</span></a></li> <li data-v-4ad80280=""><a data-v-4ad80280="" href="https://twitter.com/" target="_BLANK" rel="noopener" class="social-icon tw"><span data-v-4ad80280="" class="hidden-element">Twitter</span></a></li> <li data-v-4ad80280=""><a data-v-4ad80280="" href="httsp://youtub.com/" target="_BLANK" rel="noopener" class="social-icon yt"><span data-v-4ad80280="" class="hidden-element">YouTube</span></a></li> <li data-v-4ad80280=""><a data-v-4ad80280="" href="https://instagram.com/" target="_BLANK" rel="noopener" class="social-icon ig"><span data-v-4ad80280="" class="hidden-element">Instagram</span></a></li></ul></div> <div data-v-5844b6b6="" class="copyright"><p data-v-5844b6b6="">
+        All content <sup data-v-5844b6b6="">©</sup> Corvin’s Flooring &amp; Furniture, LLC or authorized vendors. All rights reserved.
+      </p></div> <div data-v-5844b6b6="" class="flooring"><img data-v-5844b6b6="" alt="Shaw flooring" src="/images/shaw-logo.png@2x.87fa49d5b324bc68bc3607e2818b5c00.png"></div></div></footer> <!----> <div id="outdated"></div></div>
+  {% include '_twig/js' %}
+  <script>
+    window.csrfToken = "{{ craft.app.request.csrfToken }}"
+  </script>
+
 
 </body></html>

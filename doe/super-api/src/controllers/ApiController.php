@@ -57,7 +57,7 @@ class ApiController extends Controller
   {
       if (in_array($action->id, $this->postActions)) {
           $this->requirePostRequest();
-          // $this->requireAcceptsJson();
+          $this->requireAcceptsJson();
 
           $this->payload = Json::decode(Craft::$app->getRequest()->getRawBody(), true);
       }
@@ -133,10 +133,5 @@ class ApiController extends Controller
 
         return $this->asJson($response);
     }
-  }
-
-  public function actionTest()
-  {
-    return $this->asJson('Success');
   }
 }

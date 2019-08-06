@@ -72,6 +72,7 @@
 </template>
 
 <script>
+  import { stringify } from 'qs';
   import SocialLinks from '../components/SocialLinks.vue';
   import LandingPageFooter from './LandingPageFooter.vue';
 
@@ -104,8 +105,7 @@
           data,
           transformRequest: [(data, headers) => {
               // Do whatever you want to transform the data
-
-              return data;
+              return stringify(data);
             }
           ],
           headers: {

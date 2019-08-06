@@ -1,4 +1,4 @@
-importScripts("workbox-sw.js", "/precache-manifest.0acd07a741988d26f2ab1098b31e92fb.js");
+importScripts("workbox-sw.js", "/precache-manifest.d311724c05c644d7d21ca2515618902c.js");
 
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
 

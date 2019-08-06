@@ -1,4 +1,5 @@
 <!DOCTYPE html><html lang="en-US"><head>
+  {% set cdnUrl = craft.superApi.cdnUrl %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -39,22 +40,25 @@
 
   <meta name="csrf_token" content="{{ craft.app.request.getCsrfToken }}">
 
-  <!-- CRAFT_HEAD_CACHE -->
+  {% cache globally if craft.app.env != "dev" %}
   <meta name="site" content="en">
-  <meta name="cdn_url" content="">
+  <meta name="cdn_url" content="/static">
   <meta name="env" content="dev">
-  <!-- CRAFT_HEAD_CACHE_END -->
+  {% endcache %}
 
-  <link rel="manifest" href="/manifest.json">
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <!-- CSS -->
-<link href="/styles.c8fe612018a8683ac63b.css" rel="stylesheet"></head>
+  <link rel="manifest" href="/static/manifest.json">
+  <link rel="icon" type="image/png" href="/static/favicon.png">
+  {% include '_twig/css' %}
+</head>
 
-<body>
+<body data-last-updated="{{ craft.superApi.pageDateUpdated(currentSite.handle, craft.app.request.pathInfo)|raw }}">
   <div id="app"><a href="#main" class="skip-link hidden-element">
     Skip to content
-  </a> <header data-v-72025dfc="" data-v-65057352="" class="landing-page-header"><figure data-v-72025dfc=""><img data-v-72025dfc="" alt="Corvin's furiture and flooring logo" src="/images/corvins-combo-logo.png@2x.bed758e790276482e3275897604969ff.png" class="logo"></figure> <h1 data-v-72025dfc="">Welcome to Corvin’s in Bardstown, please choose a department.</h1></header> <main data-v-7456f1d6="" class="page is-gapless home" id="main"><div data-v-7456f1d6="" class="departments"><div data-v-7456f1d6="" class="furniture"><figure data-v-7456f1d6=""><a data-v-7456f1d6="" href="https://www.corvinsofbardstown.com/" target="_BLANK" rel="noopener" class="overlay-link"><span data-v-7456f1d6="" class="hidden-text">Corvin's of Bardstown</span></a> <img data-v-7456f1d6="" alt="Furniture landing page background image" src="/images/furniture-landing-img.jpg@2x.d27a22828ffba35f3c7d880596e4b477.png"> <figcaption data-v-7456f1d6=""><h2 data-v-7456f1d6="">Furniture</h2></figcaption></figure></div> <div data-v-7456f1d6="" class="flooring"><a data-v-7456f1d6="" href="/home" class=""><figure data-v-7456f1d6=""><img data-v-7456f1d6="" alt="Flooring landing page background image" src="/images/flooring-landing-img.jpg@2x.fdf578553ac46f2788179f06ad6c0cc0.png"> <figcaption data-v-7456f1d6=""><h2 data-v-7456f1d6="">Flooring</h2></figcaption></figure></a></div></div></main> <footer data-v-2d34f25c="" data-v-964edcf4="" class="footer landing-page-footer"><div data-v-2d34f25c="" class="wrapper"><div data-v-2d34f25c="" class="location-listing"><h4 data-v-2d34f25c="" class="location-heading">Our Showroom</h4> <p data-v-2d34f25c="">3465 E John Rowan Blvd</p> <p data-v-2d34f25c="">Bardstown, KY 40004-2241</p></div> <div data-v-2d34f25c="" class="location-phone"><p data-v-2d34f25c="">Call Us @ (502) 348-7474</p></div> <div data-v-2d34f25c="" class="location-hours"><h5 data-v-2d34f25c="" class="location-heading">Our hours</h5> <p data-v-2d34f25c="">Monday thru Friday: 9:00am–6:00pm</p> <p data-v-2d34f25c="">Saturdays: 9:00am–6:00pm</p></div></div></footer> <!----> <div id="outdated"></div></div>
-  <!-- JS -->
-<script type="text/javascript" src="/styles.c8fe612018a8683ac63b.js"></script><script type="text/javascript" src="/vendor.172061ec4d4f3f2e8264.js"></script><script type="text/javascript" src="/main.e417f54937378b739583.js"></script>
+  </a> <header data-v-72025dfc="" data-v-65057352="" class="landing-page-header"><figure data-v-72025dfc=""><img data-v-72025dfc="" alt="Corvin's furiture and flooring logo" src="/images/corvins-combo-logo.png@2x.bed758e790276482e3275897604969ff.png" class="logo"></figure> <h1 data-v-72025dfc="">Welcome to Corvin’s in Bardstown, please choose a department.</h1></header> <main data-v-7456f1d6="" class="page is-gapless home" id="main"><div data-v-7456f1d6="" class="departments"><div data-v-7456f1d6="" class="furniture"><figure data-v-7456f1d6=""><a data-v-7456f1d6="" href="https://www.corvinsofbardstown.com/" target="_BLANK" rel="noopener" class="overlay-link"><span data-v-7456f1d6="" class="hidden-text">Corvin's of Bardstown</span></a> <img data-v-7456f1d6="" alt="Furniture landing page background image" src="/images/furniture-landing-img.jpg@2x.d27a22828ffba35f3c7d880596e4b477.png"> <figcaption data-v-7456f1d6=""><h2 data-v-7456f1d6="">Furniture</h2></figcaption></figure></div> <div data-v-7456f1d6="" class="flooring"><a data-v-7456f1d6="" href="/home" class=""><figure data-v-7456f1d6=""><img data-v-7456f1d6="" alt="Flooring landing page background image" src="/images/flooring-landing-img.jpg@2x.fdf578553ac46f2788179f06ad6c0cc0.png"> <figcaption data-v-7456f1d6=""><h2 data-v-7456f1d6="">Flooring</h2></figcaption></figure></a></div></div></main> <footer data-v-2d34f25c="" data-v-5844b6b6="" class="footer landing-page-footer"><div data-v-2d34f25c="" class="wrapper"><div data-v-2d34f25c="" class="location-listing"><h4 data-v-2d34f25c="" class="location-heading">Our Showroom</h4> <p data-v-2d34f25c="">3465 E John Rowan Blvd</p> <p data-v-2d34f25c="">Bardstown, KY 40004-2241</p></div> <div data-v-2d34f25c="" class="location-phone"><p data-v-2d34f25c="">Call Us @ (502) 348-7474</p></div> <div data-v-2d34f25c="" class="location-hours"><h5 data-v-2d34f25c="" class="location-heading">Our hours</h5> <p data-v-2d34f25c="">Monday thru Friday: 9:00am–6:00pm</p> <p data-v-2d34f25c="">Saturdays: 9:00am–6:00pm</p></div></div></footer> <!----> <div id="outdated"></div></div>
+  {% include '_twig/js' %}
+  <script>
+    window.csrfToken = "{{ craft.app.request.csrfToken }}"
+  </script>
+
 
 </body></html>
