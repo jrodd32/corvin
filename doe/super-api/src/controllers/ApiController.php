@@ -14,7 +14,7 @@ use modules\superapi\SuperApi;
 use Craft;
 use craft\elements\Entry;
 use craft\web\Controller;
-use yii\caching\TagDependency;
+use craft\helpers\Json;
 
 /**
  * ApiController Controller
@@ -38,22 +38,42 @@ class ApiController extends Controller
   protected $allowAnonymous = [
     'routes',
     'app',
-    'page'
+    'page',
+    'mailchimp',
+    'test'
   ];
+
+  protected $postActions = [
+    'mailchimp'
+  ];
+
+  protected $payload;
 
   protected $site;
 
+  public $enableCsrfValidation = false;
+
+  public function beforeAction($action)
+  {
+      if (in_array($action->id, $this->postActions)) {
+          $this->requirePostRequest();
+          // $this->requireAcceptsJson();
+
+          $this->payload = Json::decode(Craft::$app->getRequest()->getRawBody(), true);
+      }
+
+      if (!parent::beforeAction($action)) {
+          return false;
+      }
+
+      return true;
+  }
 
   public function init()
   {
     $this->site = Craft::$app->getRequest()->getParam('site', 'en');
     $this->cache = Craft::$app->cache;
     $this->duration = 1;
-    $this->cacheDependency = new TagDependency([
-      'tags' => [
-        'SuperApi'
-      ]
-    ]);
 
     if (CRAFT_ENVIRONMENT === 'production') {
       $this->duration = 31536000; // 365 days
@@ -74,11 +94,12 @@ class ApiController extends Controller
             'https://corvin.test'
           ],
           'Access-Control-Request-Method' => [
-            'GET'
+            'GET',
+            'POST'
           ],
           'Access-Control-Request-Headers' => [
             'X-Requested-With',
-            'X-CSRF-TOKEN',
+            'X-CSRF-TOKEN'
           ]
         ]
     ];
@@ -102,5 +123,20 @@ class ApiController extends Controller
   public function actionPage($handle, $slug)
   {
     return $this->asJson(SuperApi::$instance->pages->getPageContent($this->site, $handle, $slug));
+  }
+
+  public function actionMailchimp() {
+    $msPlugin = Craft::$app->plugins->getPlugin('mailchimp-subscribe');
+
+    if ($msPlugin && $msPlugin instanceof \aelvan\mailchimpsubscribe\MailchimpSubscribe) {
+        $response = $msPlugin->mailchimpSubscribe->subscribe($this->payload['email'], getenv('MC_LIST_ID'));
+
+        return $this->asJson($response);
+    }
+  }
+
+  public function actionTest()
+  {
+    return $this->asJson('Success');
   }
 }

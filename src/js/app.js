@@ -56,11 +56,16 @@ let baseUrl = window.location.origin;
 if (Vue.prototype.$local) {
   baseUrl = 'https://corvin.test';
 }
+
+if (window.prerender) {
+  // TODO: should become prod url when launched
+  baseUrl = 'https://corvin.test';
+}
+
 Vue.prototype.$axios = axios.create();
 Vue.prototype.$axios.defaults.baseURL = `${baseUrl}/api`;
 Vue.prototype.$axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 Vue.prototype.$axios.defaults.headers.common['X-CSRF-Token'] = document.head.querySelector('meta[name="csrf_token"]').content;
-// Vue.prototype.$axios.defaults.headers.common['Access-Control-Allow-Headers'] = 'content-type,x-csrf-token,x-requested-with';
 
 // Set api endpoints for later use
 Vue.prototype.$api = api;
@@ -70,6 +75,8 @@ Vue.prototype.$eventBus = eventBus;
 
 // TODO: update dynamically
 Vue.prototype.$site = 'en';
+
+Vue.prototype.$cdnUrl = document.head.querySelector('meta[name="cdn_url"]') ? document.head.querySelector('meta[name="cdn_url"]').content : '';
 
 // Register Bit Components
 // https://webpack.js.org/guides/dependency-management/#require-context
