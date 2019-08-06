@@ -44,19 +44,6 @@ Vue.prototype.$dev = (window.location.hostname === 'corvin.test');
 Vue.prototype.$prod = (window.location.hostname === 'www.corvinfurnitureofbardstown.com');
 Vue.prototype.$prerender = window.prerender;
 
-// Error tracking
-// if (Vue.prototype.$prod || Vue.prototype.$staging) {
-//   Sentry.init({
-//     dsn: 'https://4d9267d1c4074ece8374826f3ba247e0@sentry.io/1441408',
-//     integrations: [
-//       new Integrations.Vue({
-//         Vue,
-//         attachProps: true
-//       })
-//     ]
-//   });
-// }
-
 // Setup GSAP references
 Vue.prototype.$gsapTimelineMax = TimelineMax;
 Vue.prototype.$gsapTweenLite = TweenLite;
@@ -70,11 +57,10 @@ if (Vue.prototype.$local) {
   baseUrl = 'https://corvin.test';
 }
 Vue.prototype.$axios = axios.create();
-Vue.prototype.$axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
 Vue.prototype.$axios.defaults.baseURL = `${baseUrl}/api`;
 Vue.prototype.$axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 Vue.prototype.$axios.defaults.headers.common['X-CSRF-Token'] = document.head.querySelector('meta[name="csrf_token"]').content;
+// Vue.prototype.$axios.defaults.headers.common['Access-Control-Allow-Headers'] = 'content-type,x-csrf-token,x-requested-with';
 
 // Set api endpoints for later use
 Vue.prototype.$api = api;

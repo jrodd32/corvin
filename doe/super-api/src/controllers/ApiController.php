@@ -71,16 +71,14 @@ class ApiController extends Controller
           'Origin' => [
             'http://localhost:8080',
             'http://localhost:8000',
-            'https://zeochem.doe1915.com',
-            'https://www.zeochem.com',
-            'https://www.zeochem.ch',
+            'https://corvin.test'
           ],
           'Access-Control-Request-Method' => [
             'GET'
           ],
           'Access-Control-Request-Headers' => [
             'X-Requested-With',
-            'X-CSRF-TOKEN'
+            'X-CSRF-TOKEN',
           ]
         ]
     ];

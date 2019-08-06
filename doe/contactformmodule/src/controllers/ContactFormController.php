@@ -71,7 +71,6 @@ class ContactFormController extends Controller
               'http://localhost:8000',
               'https://zeochem.doe1915.com',
               'https://www.zeochem.com',
-              'https://www.zeochem.ch',
             ],
             'Access-Control-Request-Method' => [
               'POST'

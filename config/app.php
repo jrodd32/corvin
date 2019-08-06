@@ -19,17 +19,11 @@
 
 return [
     'modules' => [
-        'contactformmodule' => \modules\contactformmodule\ContactFormModule::class,
+      'contactformmodule' => [
+        'class' => \modules\contactformmodule\ContactFormModule::class,
         'components' => [
-          'contactFormService' => [
+          'contactform' => [
             'class' => 'modules\contactformmodule\services\ContactForm',
-          ],
-      ],
-      'exception-reporter' => [
-        'class' => \modules\exceptionreporter\ExceptionReporter::class,
-        'components' => [
-          'sentry' => [
-            'class' => 'modules\exceptionreporter\services\Sentry',
           ],
         ],
       ],
@@ -67,5 +61,10 @@ return [
         ],
       ],
     ],
-    'bootstrap' => ['contactformmodule', 'exception-reporter', 'super-api', 'super-search', 'super-values'],
+    'bootstrap' => [
+      'contactformmodule',
+      'super-api',
+      'super-search',
+      'super-values'
+    ],
 ];

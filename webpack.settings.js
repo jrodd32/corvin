@@ -2,7 +2,7 @@ const path = require('path');
 
 const libraryName = 'BaseSite';
 
-const assetsOutputPath = path.resolve(__dirname, 'web/dist');
+const assetsOutputPath = path.resolve(__dirname, 'web', 'static');
 const assetsSourcePath = path.resolve(__dirname, 'src');
 
 const entryCss = path.resolve(assetsSourcePath, 'sass', 'app.scss');
@@ -16,20 +16,44 @@ const assetTemplateDirName = 'assets';
 const jsTemplateFilename = 'js.blade.php';
 const cssTemplateFilename = 'css.blade.php';
 
-const prerenderOutputPath = assetsOutputPath;
+const prerenderOutputPath = path.resolve(__dirname, 'templates');
 const prerenderFileName = 'index.html';
 const prerenderHeadless = false;
 const prerenderCallback = (html) => {
   return html.replace(/<script charset="utf-8" src="(.*).js"><\/script>/g, '')
-    // .replace(/<script type="text\/javascript" src="(.*).js"><\/script>/g, '')
-    .replace(/<link rel="stylesheet" type="text\/css" href="(.*).css">/g, '')
-    // .replace(/<link href="(.*).css" rel="stylesheet">/g, '')
-    .replace(/<script async="" src=""><\/script>/g, '')
-    .replace('<!-- MANIFEST -->', '<link rel="manifest" href="/manifest.json">')
-    .replace('<!-- FAVICON -->', '<link rel="icon" type="image/png" href="/favicon.png">');
+  .replace(/<script type="text\/javascript" src="(.*).js"><\/script>/g, '')
+  .replace(/<link rel="stylesheet" type="text\/css" href="(.*).css">/g, '')
+  .replace(/<link href="(.*).css" rel="stylesheet">/g, '')
+  .replace(/<script async="" src=""><\/script>/g, '')
+  .replace('<!-- MANIFEST -->', '<link rel="manifest" href="/static/manifest.json">')
+  .replace('<!-- FAVICON -->', '<link rel="icon" type="image/png" href="/static/favicon.png">')
 
-    // .replace('<!-- CSS -->', "@include('assets.css')")
-    // .replace('<!-- JS -->', "@include('assets.js')")
+  .replace('<!-- CSS -->', "{% include '_twig/css' %}")
+  .replace('<!-- JS -->', "{% include '_twig/js' %}")
+  .replace('<body', '<body data-last-updated="{{ craft.superApi.pageDateUpdated(currentSite.handle, craft.app.request.pathInfo)|raw }}"')
+
+  .replace('fade-enter-active', '')
+  .replace('fade-enter-to', '')
+  .replace('fade-enter', '')
+  .replace('v-enter', '')
+  .replace('v-enter-active')
+  .replace(' style="overflow: hidden;"', '')
+  .replace('<!-- CRAFT_CDN_VAR -->', '{% set cdnUrl = craft.superApi.cdnUrl %}')
+  // .replace('<!-- GTM_NOSCRIPT -->', '{% if craft.app.env != "dev" %}<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P3XTKBJ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>{% endif %}')
+  .replace('<!-- PAGE_JSON -->', '{{ craft.superApi.pageJsonScript(currentSite.handle, craft.app.request.pathInfo)|raw }}')
+  .replace('<meta name="csrf_token" content="">', '<meta name="csrf_token" content="{{ craft.app.request.getCsrfToken }}">')
+  .replace('<meta name="site" content="en">', '<meta name="site" content="{{ currentSite.handle }}">')
+  .replace('<html>', '<html lang="{{ craft.app.language }}">')
+  .replace('name="cdn_url" content=""', 'name="cdn_url" content="/static"')
+  .replace('name="env" content=""', 'name="env" content="{{ craft.app.env }}"')
+  .replace(new RegExp('<!-- CRAFT_HEAD_CACHE -->', 'g'), '{% cache globally if craft.app.env != "dev" %}')
+  .replace(new RegExp('<!-- CRAFT_HEAD_CACHE_END -->', 'g'), '{% endcache %}')
+  .replace(new RegExp('<img src="/static/images/', 'g'), '<img src="{{ cdnUrl }}/images/')
+  .replace(new RegExp('<img src="/images/', 'g'), '<img src="{{ cdnUrl }}/images/')
+  .replace(new RegExp('<img src="/images/', 'g'), '<img src="{{ cdnUrl }}images/')
+  .replace(new RegExp('http://localhost:8000', 'g'), 'https://www.corvinsfurnitureofbardstown.com')
+  .replace(new RegExp('http://localhost:8080', 'g'), 'https://www.corvinsfurnitureofbardstown.com')
+  .replace(new RegExp('corvins.test', 'g'), 'www.corvinsfurnitureofbardstown.com');
 };
 
 const cleanIgnoreFiles = [];
