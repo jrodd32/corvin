@@ -2,7 +2,7 @@
   <main class="page is-inset is-gapless about">
     <corvin-page-hero
       v-if="hasHeading"
-      :heading="tempAboutHeading"
+      :hero="tempAboutHeading"
     />
 
     <div class="about-intro is-contained">
@@ -172,11 +172,11 @@
   ];
 
   const tempAboutHeading = {
-    title: "About Corvin's",
+    headline: "About Corvin's",
     content: 'Corvin’s Flooring & Furniture, LLC has been a family-owned business in Bardstown, Kentucky since its founding in 1987. We are a current member of the Bardstown Chamber of Commerce.',
-    media: {
+    backgroundImage: {
       alt: 'Picture of the Corvin furniture team.',
-      src: 'https://satyr.io/1920x700'
+      url: '../images/about-hero@2x.jpg'
     }
   };
 

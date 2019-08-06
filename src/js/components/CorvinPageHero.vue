@@ -1,6 +1,6 @@
 <template>
   <div class="page-hero">
-    <div class="page-hero-wrapper is-contained">
+    <div class="page-hero-content is-contained">
       <h1
         v-if="hasHeadline"
         v-html="hero.headline"
@@ -9,7 +9,7 @@
       <div
         v-if="hasContent"
         v-html="hero.content"
-        class="intro"
+        class="page-hero-intro"
       />
     </div>
 
@@ -61,7 +61,7 @@
     margin-top: 0!important;
     margin-bottom: $u6;
 
-    &-wrapper {
+    &-content {
       padding-bottom: $u6;
       padding-left: $u6;
       padding-right: $u6;
@@ -78,7 +78,7 @@
     @include tablet() {
       margin-bottom: $u10;
 
-      &-wrapper {
+      &-content {
         padding-bottom: 10rem;
         padding-top: 10rem;
       }
@@ -90,23 +90,17 @@
     }
   }
 
-  /deep/ .intro {
-    p {
+  .page-hero-intro {
       color: #9A9A9A;
       margin-bottom: 0;
       font-size: 1.8rem;
-    }
 
     @include desktop() {
-      p {
-        max-width: 80vw;
-      }
+      max-width: 80vw;
     }
 
     @include cinema() {
-      p {
-        max-width: 50vw;
-      }
+      max-width: 50vw;
     }
   }
 </style>
