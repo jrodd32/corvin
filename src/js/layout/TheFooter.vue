@@ -190,19 +190,15 @@
     }
 
     h3 {
+      line-height: 1.4;
       margin-bottom: 0;
     }
 
     @include tablet() {
       h3 {
-        font-size: 2.4rem;
+        line-height: 4.2rem;
         text-align: center;
       }
-    }
-
-    @include desktop() {
-      font-size: 3.6rem;
-      line-height: 4.2rem;
     }
   }
 

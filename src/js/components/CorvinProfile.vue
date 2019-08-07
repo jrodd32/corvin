@@ -1,12 +1,16 @@
 <template>
   <div class="profile">
     <img
-      :alt="profile.image.alt"
-      :src="profile.image"
+      :alt="profile.teamMemberImage.alt"
+      :src="profile.teamMemberImage.src"
       class="profile-image"
     />
-    <h2 class="profile-name">{{ profile.name }}</h2>
-    <p class="profile-title">{{ profile.title }}</p>
+    <h2 class="profile-name">
+      {{ profile.teamMemberName }}
+    </h2>
+    <p class="profile-title">
+      {{ profile.teamMemberTitle }}
+    </p>
   </div>
 </template>
 
@@ -20,7 +24,7 @@
         }
       }
     }
-  }
+  };
 </script>
 
 <style lang="scss" scoped>
@@ -41,5 +45,4 @@
       margin-bottom: 0;
     }
   }
-
 </style>

@@ -97,11 +97,11 @@ const plugins = [
 
           fs.writeFileSync(settings.pathHelper.join(assetsDir, settings.jsTemplateFilename),
           `${stylesTag}
-          <script type="text/javascript" src="${assets.js[1]}"></script>
-          <script type="text/javascript" src="${assets.js[2]}"></script>`);
+          <script type="text/javascript" src="/static/${assets.js[1]}"></script>
+          <script type="text/javascript" src="/static/${assets.js[2]}"></script>`);
 
           fs.writeFileSync(settings.pathHelper.join(assetsDir, settings.cssTemplateFilename),
-            `<link rel="stylesheet" href="${assets.css}">`);
+            `<link rel="stylesheet" href="/static/${assets.css}">`);
         });
 
         // fs.unlinkSync(settings.pathHelper.join(settings.export, 'index.html'));

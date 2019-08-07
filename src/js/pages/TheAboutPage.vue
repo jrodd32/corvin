@@ -1,43 +1,26 @@
 <template>
-  <main class="page is-inset is-gapless about">
+  <corvin-loading v-if="loading" />
+
+  <main
+    v-else
+    class="page is-inset is-gapless about"
+  >
     <corvin-page-hero
       v-if="hasHeading"
-      :hero="tempAboutHeading"
+      :hero="data.content.hero"
     />
 
-    <div class="about-intro is-contained">
-      <div class="content">
-        <p>
-          Mark started the business in a small 5,000SF building selling only furniture and has since grown it to a 100,000SF building selling Furniture, Flooring, a Traders Mall and a Moving service.
-        </p>
-        <p>
-          People shop at Corvin's because we have one of the biggest showrooms in the state of Kentucky.
-          We will aggressively bid out any job small or big and promise to treat all of our customers
-          as if they are family. Our sales staff is very knowledgeable on all aspects of floorings
-          and will make sure each job is done correctly.
-        </p>
-        <p>
-          We offer a vast array of different options in Hardwood, Laminate, Tile, Vinyl and Carpet. Our
-          Shaw products include: Anso, Caress, Clearly Chic, ClearTouch, EverTouch, R2X Stain Remover,
-          LifeHappens, St. Jude Carpet Cushion, Tuftex, and Floorte. We also install all flooring and
-          we do custom showers.
-        </p>
-      </div>
-
-      <aside class="pull-quote">
-        <blockquote>
-          <span>Our Mission:</span>
-          To champion every client’s flooring with passion &amp; integrity.
-        </blockquote>
-      </aside>
-    </div>
+    <content-quote
+      :item="data.content.contentQuote"
+      class="about-intro"
+    />
 
     <div class="about-team is-contained">
       <h2 class="section-heading">Our Team</h2>
 
       <div class="profiles">
         <corvin-profile
-          v-for="(profile, index) in profiles"
+          v-for="(profile, index) in data.content.team.team"
           :profile="profile"
           :key="index"
         />
@@ -52,6 +35,8 @@
 
 <script>
   import { ajaxPageProps } from '../core/page';
+  import ContentQuote from '../components/ContentQuote.vue';
+  import CorvinLoading from '../components/CorvinLoading.vue';
   import CorvinPageHero from '../components/CorvinPageHero.vue';
   import CorvinProfile from '../components/CorvinProfile.vue';
 
@@ -171,17 +156,10 @@
     }
   ];
 
-  const tempAboutHeading = {
-    headline: "About Corvin's",
-    content: 'Corvin’s Flooring & Furniture, LLC has been a family-owned business in Bardstown, Kentucky since its founding in 1987. We are a current member of the Bardstown Chamber of Commerce.',
-    backgroundImage: {
-      alt: 'Picture of the Corvin furniture team.',
-      url: '../images/about-hero@2x.jpg'
-    }
-  };
-
   export default {
     components: {
+      ContentQuote,
+      CorvinLoading,
       CorvinPageHero,
       CorvinProfile
     },
@@ -189,8 +167,7 @@
     data() {
       return {
         jsonUrl: `/${this.$api.pages.home}`,
-        profiles,
-        tempAboutHeading
+        profiles
       };
     },
     computed: {
@@ -212,59 +189,6 @@
       padding-left: $u10;
       padding-right: $u10;
     }
-  }
-
-  .about-intro {
-    margin-bottom: $u10;
-    padding-bottom: $u10;
-
-    .pull-quote {
-      color: $tertiaryBlue;
-      font-family: $font-primary;
-      font-size: 3rem;
-      line-height: 1;
-
-      span {
-        color: $primaryBlue;
-        display: block;
-      }
-    }
-
-    @include tablet() {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: flex-start;
-
-      .content {
-        flex: 1 1 60%;
-      }
-
-      .pull-quote {
-        margin-left: $u6;
-        flex: 1 1 35%;
-
-        blockquote {
-          margin-top: 0;
-        }
-      }
-    }
-
-    @include desktop() {
-      .content {
-        flex: 1 1 50%;
-      }
-
-      .pull-quote {
-        flex: 1 1 40%;
-        margin-left: $u12;
-        font-size: 4rem;
-      }
-    }
-
-    // @include widescreen() {
-    //   padding-left: $u14;
-    //   padding-right: $u14;
-    // }
   }
 
   .about-team {

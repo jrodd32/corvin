@@ -25,7 +25,7 @@
 }
 
 @mixin tablet {
-  @media (min-width: $tablet), print {
+  @media (min-width: $tablet) {
     @content;
   }
 }
