@@ -2,7 +2,7 @@
 /**
  * ContactForm module for Craft CMS 3.x
  *
- * Basic contact form for Zeochem.
+ * Basic contact form for corvin.
  *
  * @link      https://doeanderson.com
  * @copyright Copyright (c) 2018 Doe-Anderson
@@ -87,7 +87,7 @@ class ContactForm extends Component
 
         $body .= "Message: \n\n {$contactModel->message} \n\n";
 
-        $body .= "Contacted from URL: https://www.zeochem.com{$params['path']}";
+        $body .= "Contacted from URL: https://www.corvin.com{$params['path']}";
 
         $emailMessage = new Message();
         $emailMessage->setFrom([$contactModel->email => $contactModel->name]);
@@ -154,7 +154,7 @@ class ContactForm extends Component
                 '/our-products',
                 '/our-applications',
                 '/our-locations',
-                '/why-zeochem',
+                '/why-corvin',
                 '/quality-systems',
                 '/environmental',
                 '/news',
@@ -191,29 +191,29 @@ class ContactForm extends Component
         ];
 
         if (in_array($path, $paths['ce'])) {
-            return 'CE@zeochem.com';
+            return 'CE@corvin.com';
         }
 
         if (in_array($path, $paths['deu.cge'])) {
-            return 'DEU.CGE@zeochem.com';
+            return 'DEU.CGE@corvin.com';
         }
 
         if (in_array($path, $paths['hr'])) {
-            return 'HR@zeochem.com';
+            return 'HR@corvin.com';
         }
 
         if (in_array($path, $paths['sz.ted'])) {
-            return 'SZ.TED@zeochem.com';
+            return 'SZ.TED@corvin.com';
         }
 
         if (in_array($path, $paths['tg'])) {
-            return 'TG@zeochem.com';
+            return 'TG@corvin.com';
         }
 
         if (in_array($path, $paths['info']) && in_array($country, $dotChCountries)) {
-            return 'info@zeochem.ch';
+            return 'info@corvin.ch';
         }
 
-        return 'info@zeochem.com';
+        return 'info@corvin.com';
     }
 }
