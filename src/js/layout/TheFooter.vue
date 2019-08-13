@@ -3,7 +3,7 @@
 
   <footer
     v-else
-    class="footer"
+    class="footer default-footer"
   >
     <div class="footer-brand">
       <img
@@ -146,12 +146,8 @@
 </script>
 
 <style lang="scss" scoped>
-  .footer {
+  .default-footer {
     background-color: $primaryBlue;
-    color: $white;
-    position: relative;
-    width: 100%;
-    z-index: 2;
 
     & > * {
       padding-bottom: $u6;
@@ -372,22 +368,6 @@
     }
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: $tertiaryBlue;
-  }
-
-  h4,
-  h5 {
-    font-size: 1.6rem;
-    margin-bottom: 0;
-    text-transform: uppercase;
-  }
-
   .footer-home {
     .wrapper {
       margin: 0 auto;
@@ -437,6 +417,31 @@
         order: initial;
         text-align: center;
       }
+    }
+  }
+</style>
+
+<style lang="scss">
+  .footer {
+    color: $white;
+    position: relative;
+    width: 100%;
+    z-index: 2;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: $tertiaryBlue;
+    }
+
+    h4,
+    h5 {
+      font-size: 1.6rem;
+      margin-bottom: 0;
+      text-transform: uppercase;
     }
   }
 </style>

@@ -39,54 +39,8 @@
 </script>
 
 <style lang="scss" scoped>
-.footer {
-    background-color: $secondaryBlue;
-    color: $white;
-    width: 100%;
-
-    & > * {
-      padding-bottom: $u6;
-      padding-left: $u4;
-      padding-right: $u4;
-      padding-top: $u6;
-    }
-
-    p {
-      margin-bottom: 0;
-    }
-
-    @include tablet() {
-      & > * {
-        padding-left: $u6;
-        padding-right: $u6;
-      }
-    }
-
-    @include ultrawide() {
-      & > * {
-        padding-left: 0;
-        padding-right: 0;
-      }
-    }
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: $tertiaryBlue;
-  }
-
-  h4,
-  h5 {
-    font-size: 1.6rem;
-    margin-bottom: 0;
-    text-transform: uppercase;
-  }
-
   .landing-page-footer {
+    background-color: $secondaryBlue;
     padding-bottom: $u8;
     padding-left: $u4;
     padding-right: $u4;
@@ -98,12 +52,18 @@
       flex-flow: column nowrap;
       margin: 0 auto;
       max-width: $container;
+      padding-bottom: $u6;
+      padding-top: $u6;
       width: 100%;
     }
 
     .location-listing,
     .location-hours {
       margin-bottom: $u6;
+    }
+
+    .location-phone:hover {
+      background-color: #2A3940;
     }
 
     .location-phone a,
@@ -122,6 +82,10 @@
     .location-phone {
       flex: 1 1 100%;
       order: 3;
+    }
+
+    p {
+      margin-bottom: 0;
     }
 
     @include tablet() {
@@ -161,6 +125,20 @@
           justify-content: center;
           min-height: 9rem;
         }
+      }
+    }
+
+    @include tablet() {
+      .wrapper {
+        padding-left: $u6;
+        padding-right: $u6;
+      }
+    }
+
+    @include ultrawide() {
+      .wrapper {
+        padding-left: 0;
+        padding-right: 0;
       }
     }
   }
