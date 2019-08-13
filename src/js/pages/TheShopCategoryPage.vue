@@ -1,5 +1,5 @@
 <template>
-  <main class="page has-inset is-gapless shop-item">
+  <main class="page has-inset is-gapless shop-category">
 
   </main>
 </template>

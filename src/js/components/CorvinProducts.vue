@@ -109,8 +109,6 @@
     @include tablet() {
       flex-flow: row wrap;
       justify-content: space-between;
-      padding-left: $u6;
-      padding-right: $u6;
 
       .product {
         flex: 0 1 calc(50% - (#{$u6} / 4));

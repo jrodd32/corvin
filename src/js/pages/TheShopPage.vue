@@ -33,12 +33,10 @@
       CorvinPageHero,
       CorvinProducts
     },
-    data() {
-      return {
-        categoryStyle: true
-      };
-    },
     computed: {
+      categoryStyle() {
+        return this.$route.params.slug === undefined;
+      },
       computedHeadingContent() {
         return this.categoryStyle
           ? tempStoreCategoryHeadingData

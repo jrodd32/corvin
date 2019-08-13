@@ -17,7 +17,7 @@ const routes = [
   { path: '/maintenance', component: TheMaintenancePage },
   { path: '/gallery', component: TheGalleryPage },
   { path: '/store/:slug', component: TheStoreItemPage },
-  { path: '/shop', component: TheShopPage },
+  { path: '/shop/:slug?', component: TheShopPage },
 
   { path: '*', name: '404', component: The404Page }
 ];

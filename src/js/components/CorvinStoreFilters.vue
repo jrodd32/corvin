@@ -36,8 +36,6 @@
     display: flex;
     flex-flow: column nowrap;
     margin-bottom: $u10;
-    margin-left: $u4;
-    margin-right: $u4;
     padding-bottom: $u6;
     padding-top: $u6;
 

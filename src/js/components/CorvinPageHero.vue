@@ -89,6 +89,13 @@
         line-height: 3.6rem;
       }
     }
+
+    @include desktop() {
+      &-content {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
   }
 
   .page-hero-intro {
@@ -101,7 +108,7 @@
     }
 
     @include cinema() {
-      max-width: 50vw;
+      max-width: 55vw;
     }
   }
 </style>
