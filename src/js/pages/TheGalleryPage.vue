@@ -1,8 +1,8 @@
 <template>
   <main class="page has-inset is-gapless gallery">
-    <corvin-page-hero :heading="tempGalleryHeadingData" />
+    <corvin-page-hero :hero="tempGalleryHeadingData" />
 
-    <div class="image-gallery">
+    <div class="image-gallery is-contained">
       <transition-group
         class="thumbnails"
         name="thumbnailfade"
@@ -114,7 +114,7 @@
   ];
 
   const tempGalleryHeadingData = {
-    title: 'Gallery',
+    headline: 'Gallery',
     content: 'Corvin’s wouldn’t exist without the amazing people with creative ideas we’ve had the opportunity to serve over the years. We’d love to show off your rooms with our products. Tag your photos on Instagram with #CorvinsFlooring or email your us to be featured.'
   };
 
@@ -155,10 +155,14 @@
 </script>
 
 <style lang="scss" scoped>
+/deep/ .page-hero-content {
+  padding-bottom: 0;
+}
+
 .thumbnails {
   display: flex;
   flex-direction: column;
-  margin: 0 $u4 $u4 $u4;
+  margin-bottom: $u4;
 
   figure {
     display: block;
@@ -168,36 +172,6 @@
   img {
     width: 100%;
   }
-
-  // @include tablet() {
-  //   flex-flow: row wrap;
-  //   justify-content: space-between;
-
-  //   figure {
-  //     flex: 0 1 49%;
-  //   }
-  // }
-
-  // @include desktop() {
-  //   justify-content: space-around;
-
-  //   figure {
-  //     flex: 0 1 33%;
-  //   }
-  // }
-
-  // @include ultrawide() {
-  //   justify-content: flex-start;
-
-  //   figure {
-  //     flex: 0 1 calc(25% - #{$u2});
-  //     margin-right: $u4;
-
-  //     &:nth-child(4n) {
-  //       margin-right: 0;
-  //     }
-  //   }
-  // }
 
   @include tablet() {
     flex-flow: row wrap;
