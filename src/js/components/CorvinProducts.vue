@@ -113,7 +113,7 @@
       padding-right: $u6;
 
       .product {
-        flex: 0 1 calc(50% - (#{$u6} / 2));
+        flex: 0 1 calc(50% - (#{$u6} / 4));
       }
     }
 
@@ -121,13 +121,13 @@
       justify-content: space-around;
 
       .product {
-        flex: 0 1 calc(33% - (#{$u6} / 3));
+        flex: 0 1 calc(33% - (#{$u6} / 6));
       }
     }
 
     @include tv() {
       .product {
-        flex: 0 1 calc(25% - (#{$u6} / 4));
+        flex: 0 1 calc(25% - (#{$u6} / 8));
       }
     }
   }

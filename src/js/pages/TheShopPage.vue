@@ -17,9 +17,9 @@
   const tempStoreCategoryHeadingData = {
     headline: 'What Are You Looking For?',
     content: 'At Corvin’s, we pride ourselves on championing every client’s flooring with passion and integrity. We offer a vast array of different options in hardwood, laminate, tile, vinyl and carpet. We also install flooring and custom showers. View our floor offerings below.',
-    media: {
+    backgroundImage: {
       alt: 'Image of a man cutting tile.',
-      src: '../../images/store-landing-hero.jpg.png'
+      url: '../../images/store-landing-hero.jpg.png'
     }
   };
 

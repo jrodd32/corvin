@@ -8,9 +8,10 @@
 
       <div
         v-if="hasContent"
-        v-html="hero.content"
         class="page-hero-intro"
-      />
+      >
+        <p v-html="hero.content" />
+      </div>
     </div>
 
     <div

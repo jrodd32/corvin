@@ -92,19 +92,19 @@
     }
 
     .product-image {
-      margin-bottom: $u6;
+      margin-bottom: 3rem;
     }
 
     .category-content,
     .product-content {
       border-bottom: 1px solid $tertiaryBlue;
-      padding-bottom: $u6;
+      padding-bottom: 3rem;
     }
 
     .product-title,
     .category-content {
-      padding-left: $u6;
-      padding-right: $u6;
+      padding-left: 3rem;
+      padding-right: 3rem;
     }
 
     .category-content {
@@ -116,11 +116,6 @@
 
       .product-title {
         padding-left: 0;
-      }
-
-      .category-content {
-        padding-left: $u6;
-        padding-right: $u6;
       }
 
       .product-content {
@@ -140,13 +135,6 @@
             }
           }
         }
-      }
-    }
-  }
-
-  .is-category-listing {
-    @include tablet() {
-      .read-more {
       }
     }
   }
