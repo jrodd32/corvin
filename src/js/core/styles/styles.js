@@ -25,6 +25,12 @@ const colorProps = {
         return false;
       }
     },
+    isBlueAlt: {
+      type: Boolean,
+      default() {
+        return false;
+      }
+    },
     isOrange: {
       type: Boolean,
       default() {
@@ -48,6 +54,7 @@ const colorProps = {
       return {
         'is-black': this.isBlack,
         'is-blue': this.isBlue,
+        'is-blue-alt': this.isBlueAlt,
         'is-orange': this.isOrange,
         'is-white': this.isWhite
       };

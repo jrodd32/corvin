@@ -37,11 +37,15 @@
     flex-flow: column nowrap;
     margin-bottom: $u10;
     padding-bottom: $u6;
+    padding-left: $u6;
+    padding-right: $u6;
     padding-top: $u6;
 
     @include tablet() {
       flex-flow: row wrap;
       justify-content: space-around;
+      padding-left: 0;
+      padding-right: 0;
     }
   }
 </style>

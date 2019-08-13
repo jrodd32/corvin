@@ -21,11 +21,11 @@
         class="product-description"
       />
 
-      <router-link
+      <doe-link
         :to="product.slug"
         class="read-more">
         Read More
-      </router-link>
+      </doe-link>
     </div>
 
     <div
@@ -38,12 +38,13 @@
       </div>
 
       <div class="link">
-        <router-link
+        <doe-link
           :to="`/store/${product.slug}`"
-          class="button product-button"
+          is-button
+          is-blue-alt
         >
           View details
-        </router-link>
+        </doe-link>
       </div>
     </div>
   </div>
@@ -101,8 +102,8 @@
       padding-bottom: 3rem;
     }
 
-    .product-title,
-    .category-content {
+    .category-content,
+    .product-content {
       padding-left: 3rem;
       padding-right: 3rem;
     }
@@ -111,31 +112,38 @@
       color: $font-color-dark;
     }
 
-    @include tablet() {
-      margin-bottom: $u10;
+    .product-content p {
+      font-weight: bold;
+      margin-bottom: 0;
 
-      .product-title {
-        padding-left: 0;
+      span {
+        color: $font-color-dark;
+        font-weight: normal;
       }
+    }
 
+    .link {
+      margin-top: $u6;
+    }
+
+    @media screen and (min-width: 414px) {
       .product-content {
         display: flex;
         flex-flow: row wrap;
-
-        .details {
-          flex: 1 1 60%;
-
-          p {
-            margin-bottom: 0;
-            font-weight: bold;
-
-            span {
-              color: $font-color-dark;
-              font-weight: normal;
-            }
-          }
-        }
       }
+
+      .details {
+        flex: 1 1 calc(50% - 6rem);
+        margin-right: $u4;
+      }
+
+      .link {
+        margin-top: 0;
+      }
+    }
+
+    @include tablet() {
+      margin-bottom: $u10;
     }
   }
 </style>

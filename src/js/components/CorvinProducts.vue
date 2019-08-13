@@ -105,27 +105,27 @@
   .products-listing {
     display: flex;
     flex-flow: column wrap;
+    margin-left: $u6;
+    margin-right: $u6;
 
     @include tablet() {
       flex-flow: row wrap;
       justify-content: space-between;
 
       .product {
-        flex: 0 1 calc(50% - (#{$u6} / 4));
+        flex: 0 1 calc(50% - (#{$u6} / 2));
       }
     }
 
     @include widescreen() {
-      justify-content: space-around;
-
       .product {
-        flex: 0 1 calc(33% - (#{$u6} / 6));
+        flex: 0 1 calc(33% - #{$u6} / 3);
       }
     }
 
     @include tv() {
       .product {
-        flex: 0 1 calc(25% - (#{$u6} / 8));
+        flex: 0 1 calc(25% - (#{$u6} / 3));
       }
     }
   }
