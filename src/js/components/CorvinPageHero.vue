@@ -1,5 +1,8 @@
 <template>
-  <div class="page-hero">
+  <div
+    :class="modifiers"
+    class="page-hero"
+  >
     <div class="page-hero-content is-contained">
       <h1
         v-if="hasHeadline"
@@ -37,6 +40,12 @@
       }
     },
     computed: {
+      modifiers() {
+        return {
+          'has-content': this.hasContent,
+          'has-media': this.hasMedia
+        };
+      },
       hasContent() {
         return this.hero
                && 'content' in this.hero
@@ -60,13 +69,22 @@
 <style lang="scss" scoped>
   .page-hero {
     margin-top: 0!important;
-    margin-bottom: $u6;
+
+    &.has-media {
+      margin-bottom: $u10;
+    }
 
     &-content {
       padding-bottom: $u6;
       padding-left: $u6;
       padding-right: $u6;
       padding-top: $u6;
+    }
+
+    &.has-content:not(.has-media) {
+      .page-hero-content {
+        padding-bottom: $u6;
+      }
     }
 
     &-media {
@@ -77,11 +95,13 @@
     }
 
     @include tablet() {
-      margin-bottom: $u10;
+      &.has-media {
+        margin-bottom: 14rem;
+      }
 
       &-content {
-        padding-bottom: 10rem;
-        padding-top: 10rem;
+        padding-bottom: 9.6rem;
+        padding-top: 9.6rem;
       }
 
       p {
@@ -89,19 +109,12 @@
         line-height: 3.6rem;
       }
     }
-
-    @include desktop() {
-      &-content {
-        padding-left: 0;
-        padding-right: 0;
-      }
-    }
   }
 
   .page-hero-intro {
-      color: #9A9A9A;
-      margin-bottom: 0;
-      font-size: 1.8rem;
+    color: #9A9A9A;
+    margin-bottom: 0;
+    font-size: 1.8rem;
 
     @include desktop() {
       max-width: 80vw;

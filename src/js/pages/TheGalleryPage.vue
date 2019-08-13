@@ -155,10 +155,6 @@
 </script>
 
 <style lang="scss" scoped>
-/deep/ .page-hero-content {
-  padding-bottom: 0;
-}
-
 .thumbnails {
   display: flex;
   flex-direction: column;

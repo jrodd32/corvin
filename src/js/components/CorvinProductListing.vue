@@ -23,7 +23,9 @@
 
       <doe-link
         :to="product.slug"
-        class="read-more">
+        class="read-more"
+        is-anchor
+      >
         Read More
       </doe-link>
     </div>
