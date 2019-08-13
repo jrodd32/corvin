@@ -10,12 +10,15 @@
       :hero="data.content.hero"
     />
 
+
     <content-quote
       :item="data.content.contentQuote"
-      class="about-intro"
+      class="about-intro is-contained content-wrapper"
     />
 
-    <div class="about-team is-contained">
+    <hr class="is-contained" />
+
+    <div class="about-team is-contained content-wrapper">
       <h2 class="section-heading">Our Team</h2>
 
       <div class="profiles">
@@ -28,7 +31,9 @@
     </div>
 
     <div class="about-cta">
-      <h3>Contact one of our team members today and we will assist you</h3>
+      <div class="is-contained">
+        <h3>Contact one of our team members today and we will assist you</h3>
+      </div>
     </div>
   </main>
 </template>
@@ -39,64 +44,6 @@
   import CorvinLoading from '../components/CorvinLoading.vue';
   import CorvinPageHero from '../components/CorvinPageHero.vue';
   import CorvinProfile from '../components/CorvinProfile.vue';
-
-  const services = [
-    {
-      name: 'Service Name',
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eaque non amet aliquid nemo laboriosam?',
-      icon: 'https://placehold.it/150x150',
-      class: 'column is-one-quarter'
-    },
-
-    {
-      name: 'Service Name',
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eaque non amet aliquid nemo laboriosam?',
-      icon: 'https://placehold.it/150x150',
-      class: 'column is-one-quarter'
-    },
-
-    {
-      name: 'Service Name',
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eaque non amet aliquid nemo laboriosam?',
-      icon: 'https://placehold.it/150x150',
-      class: 'column is-one-quarter'
-    },
-
-    {
-      name: 'Service Name',
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eaque non amet aliquid nemo laboriosam?',
-      icon: 'https://placehold.it/150x150',
-      class: 'column is-one-quarter'
-    },
-
-    {
-      name: 'Service Name',
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eaque non amet aliquid nemo laboriosam?',
-      icon: 'https://placehold.it/150x150',
-      class: 'column is-one-quarter'
-    },
-
-    {
-      name: 'Service Name',
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eaque non amet aliquid nemo laboriosam?',
-      icon: 'https://placehold.it/150x150',
-      class: 'column is-one-quarter'
-    },
-
-    {
-      name: 'Service Name',
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eaque non amet aliquid nemo laboriosam?',
-      icon: 'https://placehold.it/150x150',
-      class: 'column is-one-quarter'
-    },
-
-    {
-      name: 'Service Name',
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eaque non amet aliquid nemo laboriosam?',
-      icon: 'https://placehold.it/150x150',
-      class: 'column is-one-quarter'
-    }
-  ];
 
   const profiles = [
     {
@@ -179,20 +126,10 @@
 </script>
 
 <style lang="scss" scoped>
-  .about-intro,
-  .about-team,
-  .about-cta {
-    padding-left: $u6;
-    padding-right: $u6;
-
-    @include tablet() {
-      padding-left: $u10;
-      padding-right: $u10;
-    }
-  }
-
   .about-team {
     margin-bottom: $u6;
+    margin-top: $u10;
+    padding-top: $u10;
 
     h2 {
       font-size: 2.8rem;
@@ -250,5 +187,13 @@
         text-align: center;
       }
     }
+  }
+</style>
+
+<style lang="scss">
+  hr {
+    border-top: 1px solid #BFD4DE;
+    height: 0;
+    width: 100%;
   }
 </style>

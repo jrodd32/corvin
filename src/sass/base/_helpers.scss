@@ -36,8 +36,8 @@
   margin-right: auto;
 
   &.content-wrapper {
-    padding-left: $u4;
-    padding-right: $u4;
+    padding-left: $u6;
+    padding-right: $u6;
   }
 
   @include desktop() {

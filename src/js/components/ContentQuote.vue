@@ -1,5 +1,5 @@
 <template>
-  <div class="content-and-quote is-contained content-wrapper">
+  <div class="content-and-quote">
     <div
       v-html="item.content"
       class="content"
@@ -55,7 +55,7 @@
 
       .pull-quote {
         margin-left: $u6;
-        flex: 1 1 35%;
+        flex: 1 1 calc(40% - #{$u6});
 
         blockquote {
           margin-top: 0;
@@ -69,15 +69,10 @@
       }
 
       .pull-quote {
-        flex: 1 1 40%;
+        flex: 1 1 calc(50% - #{$u12});
         margin-left: $u12;
         font-size: 4rem;
       }
     }
-
-    // @include widescreen() {
-    //   padding-left: $u14;
-    //   padding-right: $u14;
-    // }
   }
 </style>

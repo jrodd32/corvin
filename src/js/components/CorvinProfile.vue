@@ -2,7 +2,7 @@
   <div class="profile">
     <img
       :alt="profile.teamMemberImage.alt"
-      :src="profile.teamMemberImage.src"
+      :src="profile.teamMemberImage.url|profileImage"
       class="profile-image"
     />
     <h2 class="profile-name">
@@ -23,6 +23,13 @@
           return {};
         }
       }
+    },
+    filters: {
+      profileImage(url) {
+        return url.length > 0
+               ? url
+               : 'https://placehold.it/256x280';
+      }
     }
   };
 </script>
@@ -30,6 +37,7 @@
 <style lang="scss" scoped>
   .profile {
     margin-bottom: $u10;
+    text-align: center;
 
     &-image {
       margin-bottom: $u4;
@@ -39,7 +47,7 @@
       font-size: 2.4rem;
     }
 
-    &-title,
+    &-name,
     &-email,
     &-phone {
       margin-bottom: 0;
