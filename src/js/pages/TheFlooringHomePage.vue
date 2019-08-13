@@ -269,7 +269,6 @@
     blockquote {
       color: $primaryBlue;
       font-family: $font-primary;
-      font-weight: bold;
       margin: 0 auto;
       max-width: $desktop;
 
@@ -308,8 +307,8 @@
     }
 
     @include cinema() {
-      padding-bottom: $u14;
-      padding-top: $u14;
+      padding-bottom: 20rem;
+      padding-top: 20rem;
       blockquote {
         width: 65%;
       }
