@@ -7,8 +7,7 @@ class CategorySortConfig
     'molecular-sieves',
     'specialty-zeolites',
     'chromatography-gels',
-    'deuterium-labeled-compounds',
-    'cg-irregular-shape',
+    'deuterium-labeled-compounds'
   ];
 
   const molecularSievesOrder = [
@@ -31,7 +30,7 @@ class CategorySortConfig
   const chromatographyGelsOrder = [
     'Spherical Shape',
     'Irregular Shape',
-    'Micro Beads',
+    'Microbeads',
   ];
 
   const deuteriumLabeledCompoundsOrder = [
@@ -42,14 +41,15 @@ class CategorySortConfig
     'Deuterium Gas',
   ];
 
-  const cGIrregularShapesOrder = [];
-
-  const cGSphericalShapeOrder = [
-    'Classical Reversed Phase - C4',
-    'Classical Reversed Phase - CN'
+  const productCategoriesToSkip = [
+    'cg-spherical-shape',
+    'cg-irregular-shape',
+    'cg-microbeads'
   ];
 
-  const cGMicroBeadsOrder = [];
+  const cGIrregularShapesOrder = [];
+  const cGSphericalShapeOrder = [];
+  const cGMicrobeadsOrder = [];
 
   public $categoryOrder;
   public $molecularSieves;
@@ -58,7 +58,8 @@ class CategorySortConfig
   public $deuteriumLabeledCompounds;
   public $cGIrregularShapes;
   public $cGSphericalShapes;
-  public $cGMicroBeads;
+  public $cGMicrobeads;
+  public $categoriesToSkip;
 
 
   public function __construct()
@@ -70,7 +71,8 @@ class CategorySortConfig
     $this->deuteriumLabeledCompounds = self::deuteriumLabeledCompoundsOrder;
     $this->cgIrregularShape = self::cGIrregularShapesOrder;
     $this->cgSphericalShape = self::cGSphericalShapeOrder;
-    $this->cgMicroBeads = self::cGMicroBeadsOrder;
+    $this->cgMicrobeads = self::cGMicrobeadsOrder;
+    $this->categoriesToSkip = self::productCategoriesToSkip;
   }
 
   public function sortProductsByCategory($products)
@@ -108,6 +110,10 @@ class CategorySortConfig
     }
 
     foreach($products as $index => $product) {
+      if (!$this->keepProduct($product['category'][0]['slug'])) {
+        continue;
+      }
+
       $orderIndex = array_search($product['title'], $this->$categoryOrder);
       $sortedProducts[$orderIndex] = $product;
     }
@@ -117,8 +123,27 @@ class CategorySortConfig
     return array_values($sortedProducts);
   }
 
+  public function removeSubProducts($products)
+  {
+    $filteredProducts = [];
+
+    $filteredProducts = array_filter(
+      $products,
+      function ($product) {
+        return $this->keepProduct($product['category'][0]['slug']);
+      }
+    );
+
+    return array_values($filteredProducts);
+  }
+
   protected function formatHandle($handle)
   {
     return lcfirst(str_replace('-', '', ucwords($handle, '-')));
+  }
+
+  protected function keepProduct($productCategory)
+  {
+    return !in_array($productCategory, $this->categoriesToSkip);
   }
 }

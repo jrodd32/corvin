@@ -6,48 +6,42 @@
   >
     <doe-honey-pot ref="honeyPot" />
 
-    <doe-input
-      v-model="form.email"
-      field="email"
-      label="Email address"
-      placeholder="warwick@doeanderson.com"
-      required
-      type="email"
-    />
-
     <doe-fields-wrapper>
       <doe-input
-        v-model="form.name"
-        :styles="[
-          'is-wide'
-        ]"
-        field="name"
-        placeholder="Warwick Anderson"
+        v-model="form.first_name"
+        field="first_name"
         required
       />
 
       <doe-input
-        v-mask="phoneMask"
-        v-model="form.phone"
-        :styles="[
-          'is-wide'
-        ]"
-        field="phone"
-        placeholder="555-555-5555"
-        type="phone"
+        v-model="form.last_name"
+        field="last_name"
+        required
       />
     </doe-fields-wrapper>
 
-    <h3>Your Address</h3>
+    <doe-fields-wrapper>
+      <doe-input
+        v-mask="phoneMask"
+        v-model="form.phone"
+        field="phone"
+        placeholder="XXX-XXX-XXXX"
+        type="phone"
+      />
 
-    <doe-address-inputs v-model="form.address" />
-
-    <h3>Comments</h3>
+      <doe-input
+        v-model="form.email"
+        field="email"
+        label="Email address"
+        required
+        type="email"
+      />
+    </doe-fields-wrapper>
 
     <doe-input
       v-model="form.message"
       field="message"
-      label="Give us any additional details"
+      label="Message"
       required
       type="textarea"
     />
@@ -56,7 +50,7 @@
       :disabled="isDisabled"
       :text="submitButtonText"
       is-button
-      is-red
+      is-blue
     />
   </base-form>
 </template>
@@ -72,16 +66,10 @@
       return {
         form: {
           email: '',
-          name: '',
+          first_name: '',
+          last_name: '',
           phone: '',
-          address: {
-            street1: '',
-            street2: '',
-            city: '',
-            region: '',
-            country: 'United States',
-            postalCode: ''
-          }
+          message: ''
         },
         submitButton: 'Send message'
       };

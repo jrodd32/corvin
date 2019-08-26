@@ -36,14 +36,26 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          isDev ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
+          {
+            loader: isDev ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
+            options: {
+              // overrides production publicPath so that assets remain relative to css
+              publicPath: './'
+            }
+          },
           { loader: 'css-loader', options: { sourceMap: isDev } }
         ]
       },
       {
         test: /\.scss$/,
         use: [
-          isDev ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
+          {
+            loader: isDev ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
+            options: {
+              // overrides production publicPath so that assets remain relative to css
+              publicPath: './'
+            }
+          },
           { loader: 'css-loader', options: { sourceMap: isDev } },
           'postcss-loader',
           {
@@ -61,18 +73,30 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        use: [
-          'babel-loader',
+        oneOf: [
           {
-            loader: 'vue-svg-loader',
-            options: {
-              svgo: {
-                plugins: [
-                  { removeDoctype: true },
-                  { removeComments: true },
-                  { cleanupIDs: false }
-                ]
+            resourceQuery: /inline/,
+            use: [
+              'babel-loader',
+              {
+                loader: 'vue-svg-loader',
+                options: {
+                  svgo: {
+                    plugins: [
+                      { removeDoctype: true },
+                      { removeComments: true },
+                      { cleanupIDs: false }
+                    ]
+                  }
+                }
               }
+            ]
+          },
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[contenthash].[ext]',
+              outputPath: 'images'
             }
           }
         ]
@@ -82,7 +106,7 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
-            name: '[name].[hash].[ext]',
+            name: '[name].[contenthash].[ext]',
             outputPath: 'images'
           }
         }
@@ -92,7 +116,7 @@ module.exports = {
         use: [{
             loader: 'file-loader',
             options: {
-                name: '[name].[ext]',
+                name: '[name].[contenthash].[ext]',
                 outputPath: 'fonts'
             }
         }]
@@ -102,9 +126,7 @@ module.exports = {
   resolve: {
     alias: {
       vue$: isDev ? 'vue/dist/vue.js' : 'vue/dist/vue.min.js',
-      '@': settings.entry,
-      scrollmagic: settings.pathHelper.resolve('node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js'),
-      'animation.gsap': settings.pathHelper.resolve('node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js')
+      '@': settings.entry
     }
   },
   plugins

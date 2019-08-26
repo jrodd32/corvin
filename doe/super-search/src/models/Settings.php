@@ -13,7 +13,6 @@ namespace modules\supersearch\models;
 use Craft;
 use craft\base\Model;
 use modules\supersearch\SuperSearch;
-use modules\supervalues\SuperValues;
 
 /**
  * Settings Model
@@ -69,7 +68,6 @@ class Settings extends Model
     'footerNavigation',
     'mainNavigation',
     'legalNavigation',
-    'products',
     'events'
   ];
 
@@ -102,6 +100,16 @@ class Settings extends Model
           ],
           'transformer' => function(craft\elements\Entry $entry) {
             return SuperSearch::$plugin->searchValue->getSearchEntryValues($entry, true, true);
+          }
+        ],
+        [
+          'indexName' => CRAFT_ENVIRONMENT . '_' . $site->handle,
+          'elementType' => \craft\elements\Category::class,
+          'criteria' => [
+            'site' => $site
+          ],
+          'transformer' => function(craft\elements\Category $category) {
+            return SuperSearch::$plugin->searchValue->getSearchEntryValues($category, true, true);
           }
         ]
       ]);

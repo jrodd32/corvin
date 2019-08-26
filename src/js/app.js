@@ -59,6 +59,7 @@ if (Vue.prototype.$local) {
 
 if (window.prerender) {
   // TODO: should become prod url when launched
+  // TODO: should be URL of staging server for now
   baseUrl = 'https://corvin.test';
 }
 
@@ -67,8 +68,20 @@ Vue.prototype.$axios.defaults.baseURL = `${baseUrl}/api`;
 Vue.prototype.$axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 Vue.prototype.$axios.defaults.headers.common['X-CSRF-Token'] = document.head.querySelector('meta[name="csrf_token"]').content;
 
+// handle prerender
+if (window.prerender) {
+  Vue.prototype.$prerender = true;
+} else {
+  // We're not prerendering so
+  // handle dynamic data from template
+  Vue.prototype.$prerender = false;
+}
+
 // Set api endpoints for later use
 Vue.prototype.$api = api;
+
+// Add generic message text
+Vue.prototype.$generalErrorMessage = 'Something went wrong, please try again.';
 
 // Set event bus
 Vue.prototype.$eventBus = eventBus;
@@ -120,8 +133,6 @@ const router = new VueRouter({
   routes,
   scrollBehavior
 });
-
-Vue.prototype.$isHomePage = window.location.pathname === '/';
 
 const app = new Vue({
   router,

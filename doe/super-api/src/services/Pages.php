@@ -72,16 +72,6 @@ class Pages extends Component
     $handle = $pathParts[0] === '' ? 'home' : $pathParts[0];
     $slug = array_key_exists(1, $pathParts) ? $pathParts[1] : null;
 
-    // TODO: is there a better way?
-    if ($handle === 'our-applications' && $slug) {
-      $handle = 'applications';
-    }
-
-    // TODO: is there a better way?
-    if ($handle === 'news' && !$slug) {
-      $handle = 'news-page';
-    }
-
     $content = [
       'app' => $this->getAppContent($site),
       'page' => $this->getPageContent($site, $handle, $slug)
@@ -122,34 +112,6 @@ class Pages extends Component
       $cacheKey,
       function () use ($site, $handle, $slug) {
         $entry = $this->getEntries($site, $handle, $slug);
-
-        if ($handle === 'our-applications' && !$slug) {
-          $handle = str_replace('our-', '', $handle);
-          $relatedIdOrNull = $slug ? $entry['id'] : null;
-          $entry[$handle] = $this->getEntries($site, $handle, null, $relatedIdOrNull);
-        }
-
-        if ($handle === 'our-products' && !$slug) {
-          $handle = str_replace('our-', '', $handle);
-          $relatedIdOrNull = $slug ? $entry['id'] : null;
-          $entry[$handle] = $this->categorySortConfig->sortProductsByCategory($this->getEntries($site, $handle, null, $relatedIdOrNull));
-        }
-
-        if ($handle === 'applications' && $slug) {
-          $relatedIdOrNull = $slug ? $entry['id'] : null;
-          $entry['products'] = $this->getEntries($site, 'products', null, $relatedIdOrNull, true);
-        }
-
-        if ($handle === 'our-products' && $slug) {
-          $relatedIdOrNull = $slug ? $entry['id'] : null;
-          $products = $this->getEntries($site, 'products', null, $relatedIdOrNull, false);
-          $entry['products'] = $this->categorySortConfig->sortProductsWithinCategory($products, $slug);
-        }
-
-        if ($handle === 'news-page' || $handle === 'news') {
-          $entry['news'] = $this->getEntries($site, 'news');
-          $entry['events'] = $this->getEntries($site, 'events');
-        }
 
         return $entry;
       },

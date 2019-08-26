@@ -2,6 +2,7 @@
 const request = require('request');
 const fs = require('fs');
 
-request('/base-site', (error, response, body) => {
+// TODO: update to prod domain
+request('https://corvin.test/api/v1/routes', (error, response, body) => {
   fs.writeFileSync('webpack.routes.json', body);
 });

@@ -102,15 +102,7 @@
         };
 
         this.$axios.post('/v1/mailchimp', {
-          data,
-          transformRequest: [(data, headers) => {
-              // Do whatever you want to transform the data
-              return stringify(data);
-            }
-          ],
-          headers: {
-            'Access-Control-Allow-Origin': '*'
-          }
+          data
         })
         .then((response) => {
           debugger

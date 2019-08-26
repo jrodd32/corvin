@@ -2,7 +2,7 @@
 /**
  * ContactForm module for Craft CMS 3.x
  *
- * Basic contact form for Zeochem.
+ * Basic contact form for corvin.
  *
  * @link      https://doeanderson.com
  * @copyright Copyright (c) 2018 Doe-Anderson

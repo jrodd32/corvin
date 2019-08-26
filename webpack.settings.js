@@ -39,22 +39,23 @@ const prerenderCallback = (html) => {
     .replace('v-enter-active', '')
     .replace(' style="overflow: hidden;"', '')
     .replace('<!-- CRAFT_CDN_VAR -->', '{% set cdnUrl = craft.superApi.cdnUrl %}')
-    // .replace('<!-- GTM_NOSCRIPT -->', '{% if craft.app.env != "dev" %}<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FMGX93" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>{% endif %}')
+    .replace('<!-- GTM_NOSCRIPT -->', '{% if craft.app.env != "dev" %}<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FMGX93" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>{% endif %}')
     .replace('<!-- PAGE_JSON -->', '{{ craft.superApi.pageJsonScript(currentSite.handle, craft.app.request.pathInfo)|raw }}')
     .replace('<meta name="csrf_token" content="">', '<meta name="csrf_token" content="{{ craft.app.request.getCsrfToken }}">')
     .replace('<meta name="site" content="en">', '<meta name="site" content="{{ currentSite.handle }}">')
     .replace('<html>', '<html lang="{{ craft.app.language }}">')
-    .replace('name="cdn_url" content=""', 'name="cdn_url" content="/static"')
+    .replace('name="cdn_url" content=""', 'name="cdn_url" content="{{ cdnUrl }}"')
     .replace('name="env" content=""', 'name="env" content="{{ craft.app.env }}"')
     .replace(new RegExp('<!-- CRAFT_HEAD_CACHE -->', 'g'), '{% cache globally if craft.app.env != "dev" %}')
     .replace(new RegExp('<!-- CRAFT_HEAD_CACHE_END -->', 'g'), '{% endcache %}')
     .replace(new RegExp('<img src="/static/images/', 'g'), '<img src="{{ cdnUrl }}/images/')
     .replace(new RegExp('<img src="/images/', 'g'), '<img src="{{ cdnUrl }}/images/')
     .replace(new RegExp('<img src="/images/', 'g'), '<img src="{{ cdnUrl }}images/')
-    .replace(new RegExp('http://localhost:8000', 'g'), 'https://corvin.test')
-    .replace(new RegExp('http://localhost:8080', 'g'), 'https://corvin.test')
-    .replace(new RegExp('corvin.test', 'g'), 'corvin.test');
-    // .replace(new RegExp('corvin.test', 'g'), 'www.corvin.com');
+    .replace(new RegExp('<img src="/uploads/', 'g'), '<img src="{{ cdnUrl }}uploads/')
+    .replace(new RegExp('http://localhost:8000', 'g'), 'https://www.corvin.com')
+    .replace(new RegExp('http://localhost:8080', 'g'), 'https://www.corvin.com')
+    .replace(new RegExp('corvin.test', 'g'), 'www.corvin.com')
+    .replace(new RegExp('corvin.doe1915.com', 'g'), 'www.corvin.com');
 };
 
 const cleanIgnoreFiles = [];

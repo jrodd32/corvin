@@ -113,7 +113,7 @@
     mixins: [ajaxPageProps],
     data() {
       return {
-        jsonUrl: `/${this.$api.pages.home}`,
+        jsonUrl: `/${this.$api.pages.about}`,
         profiles
       };
     },

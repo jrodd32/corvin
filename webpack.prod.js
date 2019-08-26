@@ -10,6 +10,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
 const { InjectManifest } = require('workbox-webpack-plugin');
+const replace = require('replace-in-file');
 const common = require('./webpack.common');
 const routes = require('./webpack.routes.json');
 const settings = require('./webpack.settings');
@@ -67,14 +68,8 @@ const plugins = [
   {
     apply: (compiler) => {
       // This method runs after the webpack build finishes
-      compiler.hooks.done.tap('afterDone', () => {
-        if (!fs.existsSync(settings.pathHelper.join(settings.export, 'assets.json'))) {
-          return;
-        }
-
-        if (!settings.shouldGenerateAssetTemplates) {
-          // fs.unlinkSync(settings.pathHelper.join(settings.export, 'index.html'));
-          fs.unlinkSync(settings.pathHelper.join(settings.export, 'assets.json'));
+      compiler.hooks.done.tap('afterDone', (stats) => {
+        if (!settings.shouldGenerateAssetTemplates || !fs.existsSync(settings.pathHelper.join(settings.export, 'assets.json'))) {
           return;
         }
 
@@ -95,17 +90,36 @@ const plugins = [
           const stylesFile = fs.readdirSync(settings.export).find(file => file.startsWith('styles') && file.endsWith('.js'));
           const stylesTag = `<script>${fs.readFileSync(settings.pathHelper.join(settings.export, stylesFile), 'utf8')}</script>`;
 
+          const js = assets.js.filter(f => !f.startsWith('/styles'));
+
           fs.writeFileSync(settings.pathHelper.join(assetsDir, settings.jsTemplateFilename),
           `${stylesTag}
-          <script type="text/javascript" src="/static/${assets.js[1]}"></script>
-          <script type="text/javascript" src="/static/${assets.js[2]}"></script>`);
+          <script type="text/javascript" src="{{ cdnUrl }}${js[0]}"></script>
+          <script type="text/javascript" src="{{ cdnUrl }}${js[1]}"></script>`);
 
           fs.writeFileSync(settings.pathHelper.join(assetsDir, settings.cssTemplateFilename),
-            `<link rel="stylesheet" href="/static/${assets.css}">`);
+            `<link rel="stylesheet" href="{{ cdnUrl }}${assets.css}">`);
         });
 
-        // fs.unlinkSync(settings.pathHelper.join(settings.export, 'index.html'));
+        fs.unlinkSync(settings.pathHelper.join(settings.export, 'index.html'));
         fs.unlinkSync(settings.pathHelper.join(settings.export, 'assets.json'));
+
+        const uniqueHash = new Date().getTime() + stats.hash;
+        const cdnUrl = 'https://corvin.s3.us-east-2.amazonaws.com/static';
+
+        // Adds S3 url to service worker manifest
+        replace({
+          files: `${settings.export}/precache-manifest.*.js`,
+          from: /"url": "/g,
+          to: `"url": "${cdnUrl}`
+        });
+
+        // Adds hash to service worker cache ID
+        replace({
+          files: settings.serviceWorkerPath.export,
+          from: ['"/precache-manifest', "const cacheVersion = '';"],
+          to: ['"/static/precache-manifest', `const cacheVersion = '${uniqueHash}';`]
+        });
       });
     }
   }
@@ -120,6 +134,16 @@ if (process.env.PRERENDER) {
     postProcess(context) {
       context.html = settings.prerender.updateHtml(context.html);
       context.outputPath = settings.pathHelper.join(settings.prerender.export, context.route, settings.prerender.filename);
+
+      if (context.route.includes('/errors/')) {
+        // saves error pages to templates/_twig/###.html instead of /errors/###/index.html
+        const templateName = context.route.split('/')[2] === '500' ? 'error' : context.route.split('/')[2];
+        context.outputPath = settings.pathHelper.join(settings.prerender.export, '_twig', `${templateName}.html`);
+
+        if (['500', '503'].includes(context.route.split('/')[2])) {
+          context.html = context.html.replace('{{ craft.superApi.pageJsonScript(currentSite.handle, craft.app.request.pathInfo)|raw }}', `<script>window.errorCode = ${context.route.split('/')[2]};</script>`);
+        }
+      }
 
       return context;
     },
@@ -143,8 +167,8 @@ module.exports = merge(common, {
     filename: `${settings.productionFileName}.js`,
     path: settings.export,
     library: settings.libraryName,
-    publicPath: '/',
-    chunkFilename: `${settings.productionChunkFileName}.js`
+    chunkFilename: `${settings.productionChunkFileName}.js`,
+    publicPath: '/'
   },
   optimization: {
     minimizer: [

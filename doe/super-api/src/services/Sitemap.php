@@ -160,13 +160,13 @@ class Sitemap extends Component
   {
     switch($environment) {
       case 'staging':
-        return 'https://zeochem.doe1915.com/';
+        return 'https://corvin.doe1915.com/';
         break;
       case 'production':
-        return 'https://www.zeochem.ch/';
+        return 'https://www.corvin.com/';
         break;
       default:
-        return 'https://zeochem.test/';
+        return 'https://corvin.test/';
         break;
     }
   }

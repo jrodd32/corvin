@@ -2,7 +2,7 @@
 /**
  * ContactForm module for Craft CMS 3.x
  *
- * Basic contact form for Zeochem.
+ * Basic contact form for corvin.
  *
  * @link      https://doeanderson.com
  * @copyright Copyright (c) 2018 Doe-Anderson
@@ -69,8 +69,8 @@ class ContactFormController extends Controller
             'Origin' => [
               'http://localhost:8080',
               'http://localhost:8000',
-              'https://zeochem.doe1915.com',
-              'https://www.zeochem.com',
+              'https://corvin.doe1915.com',
+              'https://www.corvin.com',
             ],
             'Access-Control-Request-Method' => [
               'POST'

@@ -12,7 +12,6 @@
   "autoload": {
     "psr-4": {
       "modules\\": "modules/",
-      "modules\\contactformmodule\\": "doe/contactformmodule/src/",
       "modules\\superapi\\": "doe/super-api/src",
       "modules\\supersearch\\": "doe/super-search/src",
       "modules\\supervalues\\": "doe/super-values/src"

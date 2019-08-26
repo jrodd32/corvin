@@ -14,7 +14,7 @@ use modules\superapi\SuperApi;
 use Craft;
 use craft\elements\Entry;
 use craft\web\Controller;
-use craft\helpers\Json;
+use yii\caching\TagDependency;
 
 /**
  * ApiController Controller
@@ -39,41 +39,21 @@ class ApiController extends Controller
     'routes',
     'app',
     'page',
-    'mailchimp',
-    'test'
   ];
-
-  protected $postActions = [
-    'mailchimp'
-  ];
-
-  protected $payload;
 
   protected $site;
 
-  public $enableCsrfValidation = false;
-
-  public function beforeAction($action)
-  {
-      if (in_array($action->id, $this->postActions)) {
-          $this->requirePostRequest();
-          $this->requireAcceptsJson();
-
-          $this->payload = Json::decode(Craft::$app->getRequest()->getRawBody(), true);
-      }
-
-      if (!parent::beforeAction($action)) {
-          return false;
-      }
-
-      return true;
-  }
 
   public function init()
   {
     $this->site = Craft::$app->getRequest()->getParam('site', 'en');
     $this->cache = Craft::$app->cache;
     $this->duration = 1;
+    $this->cacheDependency = new TagDependency([
+      'tags' => [
+        'SuperApi'
+      ]
+    ]);
 
     if (CRAFT_ENVIRONMENT === 'production') {
       $this->duration = 31536000; // 365 days
@@ -89,13 +69,12 @@ class ApiController extends Controller
         'class' => \yii\filters\Cors::className(),
         'cors' => [
           'Origin' => [
-            'http://localhost:8080',
+            'http://localhost:3232',
             'http://localhost:8000',
-            'https://corvin.test'
+            'https://www.corvin.com',
           ],
           'Access-Control-Request-Method' => [
-            'GET',
-            'POST'
+            'GET'
           ],
           'Access-Control-Request-Headers' => [
             'X-Requested-With',
@@ -122,16 +101,8 @@ class ApiController extends Controller
 
   public function actionPage($handle, $slug)
   {
+    var_dump('here');
+    die;
     return $this->asJson(SuperApi::$instance->pages->getPageContent($this->site, $handle, $slug));
-  }
-
-  public function actionMailchimp() {
-    $msPlugin = Craft::$app->plugins->getPlugin('mailchimp-subscribe');
-
-    if ($msPlugin && $msPlugin instanceof \aelvan\mailchimpsubscribe\MailchimpSubscribe) {
-        $response = $msPlugin->mailchimpSubscribe->subscribe($this->payload['email'], getenv('MC_LIST_ID'));
-
-        return $this->asJson($response);
-    }
   }
 }

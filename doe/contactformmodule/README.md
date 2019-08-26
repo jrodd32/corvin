@@ -1,6 +1,6 @@
 # ContactForm module for Craft CMS 3.x
 
-Basic contact form for Zeochem.
+Basic contact form for corvin.
 
 ## Requirements
 
@@ -37,7 +37,7 @@ You'll also need to make sure that you add the following to your project's `comp
 After you have added this, you will need to do:
 
     composer dump-autoload
- 
+
  …from the project’s root directory, to rebuild the Composer autoload map. This will happen automatically any time you do a `composer install` or `composer update` as well.
 
 ## ContactForm Overview
