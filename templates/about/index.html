@@ -1,142 +1,139 @@
-<!DOCTYPE html><html lang="en-US"><head>
-  {% set cdnUrl = craft.superApi.cdnUrl %}
+<html lang="en-US"><head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title>Corvin's Furniture of Bardstown</title>
+<title>Corvin's Furniture of Bardstown</title>
 
-  <meta name="description" content="">
+<meta name="description" content="">
 
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="application-name" content="base-site">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="base-site">
 
-  <meta name="apple-mobile-web-app-title" content="base-site">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="base-site">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-capable" content="yes">
 
-  <meta name="msapplication-navbutton-color" content="#000">
-  <meta name="msapplication-starturl" content="/index.html">
+<meta name="msapplication-navbutton-color" content="#000">
+<meta name="msapplication-starturl" content="/index.html">
 
-  <meta name="theme-color" content="#000">
+<meta name="theme-color" content="#000">
 
-  <meta name="description" content="">
-  <meta property="og:description" content="">
-  <meta name="twitter:description" content="">
-  <meta itemprop="description" content="">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@CorvinsFurnitureOfBardstown">
-  <meta name="twitter:domain" content="CorvinsFurnitureOfBardstown">
-  <meta name="twitter:creator" content="@CorvinsFurnitureOfBardstown">
-  <meta property="og:title" content="Corvin's Furniture of Bardstown">
-  <meta name="twitter:title" content="Corvin's Furniture of Bardstown">
-  <meta itemprop="name" content="Corvin's Furniture of Bardstown">
-  <meta property="og:url" content="https://corvin.test/about">
-  <meta name="twitter:url" content="https://corvin.test/about">
-  <meta property="og:image" content="/images/og-image.jpg">
-  <meta itemprop="image" content="/images/og-image.jpg">
-  <meta name="twitter:image:src" content="/images/og-image.jpg">
-  <meta name="theme-color" content="#0F0F0F">
+<meta name="description" content="">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta itemprop="description" content="">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@CorvinsFurnitureOfBardstown">
+<meta name="twitter:domain" content="CorvinsFurnitureOfBardstown">
+<meta name="twitter:creator" content="@CorvinsFurnitureOfBardstown">
+<meta property="og:title" content="Corvin's Furniture of Bardstown">
+<meta name="twitter:title" content="Corvin's Furniture of Bardstown">
+<meta itemprop="name" content="Corvin's Furniture of Bardstown">
+<meta property="og:url" content="https://corvin.test/about">
+<meta name="twitter:url" content="https://corvin.test/about">
+<meta property="og:image" content="/static/images/og-image.jpg">
+<meta itemprop="image" content="/static/images/og-image.jpg">
+<meta name="twitter:image:src" content="/static/images/og-image.jpg">
+<meta name="theme-color" content="#0F0F0F">
 
-  <meta name="csrf_token" content="{{ craft.app.request.getCsrfToken }}">
+<meta name="csrf_token" content="SSuojuokiLMuVdUiMIhwPE9Dz4q8Wq-U-WVoh1Z0piN9qlAKI5OQWpaufC3WZE6uSMZ60XQYk06iWDGxFk7mBuCAVw0tAczBobE3uBJJGKe8g0froTXEppMkHCpRGKLNL7cSb_Sv21mKkMOKftKsbT0pJvUHoRORwNnQVtJZch1u22r62sAwhpiKq2l5lXkbDphDqy6Jg8AN9ct55OQ7zndbi3_APQu-t0RvFbWp58R_FYaGdvokJXj9-VuMWT_Tq0bfS1kdhNXJ_JmZaMTgDjFZzuWiXc76Sj6KcGbpSBEGF5W53w2b04shGbIeHfFKFNg8TGj84nfqy0hP4AF-nnvxSeBGLvZ5xjtV1S981jWCsGBvHjGo95LXAYlwLXyRheF13cJT88L1HX0ZZyrAqU7WdFyRl7po7-ix7BWa1St0TU2qVfdyqe2QhAzhOiUpKakui--IWdHx49kFP94WaSPkctcKu_rkPMbvH5CybL4eK88KlG9p3MYdOiTZ4qmyUTrc9kG3bkATraw-9jR35to2l3kYSOu7na3v9D-thW8=">
 
-  {% cache globally if craft.app.env != "dev" %}
-  <meta name="site" content="{{ currentSite.handle }}">
-  <meta name="cdn_url" content="/static">
-  <meta name="env" content="dev">
-  {% endcache %}
+  <meta name="site" content="en">
+<meta name="cdn_url" content="/static">
+<meta name="env" content="dev">
 
-  <link rel="manifest" href="/static/manifest.json">
-  <link rel="icon" type="image/png" href="/static/favicon.png">
-  {% include '_twig/css' %}
-</head>
+<link rel="manifest" href="/static/manifest.json">
+<link rel="icon" type="image/png" href="/static/favicon.png">
+<link rel="stylesheet" href="/static//styles.db6309dbb692e3ac62f0.css"><script charset="utf-8" src="/static/page-home.6e605ecf258001295e86.js"></script><script async="" src=""></script><script charset="utf-8" src="/static/page-flooring.a1421062809799361a69.js"></script><script charset="utf-8" src="/static/page-about.e3983785889825086020.js"></script></head>
 
-<body data-last-updated="{{ craft.superApi.pageDateUpdated(currentSite.handle, craft.app.request.pathInfo)|raw }}">
-  <div id="app"><a href="#main" class="skip-link hidden-element">
-    Skip to content
-  </a> <header data-v-65057352="" class="header"><div data-v-65057352="" class="utility"><div data-v-65057352="" class="is-contained"><div data-v-4ad80280="" data-v-65057352="" class="social-links"><ul data-v-4ad80280=""><li data-v-4ad80280=""><a data-v-4ad80280="" href="https://facebook.com/" target="_BLANK" rel="noopener" class="social-icon fb"><span data-v-4ad80280="" class="hidden-element">Facebook</span></a></li> <li data-v-4ad80280=""><a data-v-4ad80280="" href="https://twitter.com/" target="_BLANK" rel="noopener" class="social-icon tw"><span data-v-4ad80280="" class="hidden-element">Twitter</span></a></li> <li data-v-4ad80280=""><a data-v-4ad80280="" href="httsp://youtub.com/" target="_BLANK" rel="noopener" class="social-icon yt"><span data-v-4ad80280="" class="hidden-element">YouTube</span></a></li> <li data-v-4ad80280=""><a data-v-4ad80280="" href="https://instagram.com/" target="_BLANK" rel="noopener" class="social-icon ig"><span data-v-4ad80280="" class="hidden-element">Instagram</span></a></li></ul></div> <div data-v-65057352="" class="tagline"><p data-v-65057352="">Corvin's: A trusted name in Kentucky since 1987</p></div> <div data-v-65057352="" class="phone"><a data-v-65057352="" href="tel:1-502-348-7474">Call Us (502) 348-7474</a></div></div></div> <nav data-v-65057352="" role="navigation" aria-label="dropdown navigation" class="navbar is-fixed-top"><div data-v-65057352="" class="navbar-menu is-contained"><div data-v-65057352="" class="navbar-item home-link"><a data-v-65057352="" href="/" class="navbar-link router-link-active">
-          Home
-        </a></div> <div data-v-65057352="" class="navbar-item has-dropdown"><a data-v-65057352="" href="/shop" class="navbar-link">
-          Shop Now
-        </a> <div data-v-65057352="" class="navbar-dropdown"><a data-v-65057352="" class="navbar-item">
-            Sub 1
-          </a> <a data-v-65057352="" class="navbar-item">
-            Sub 2
-          </a> <a data-v-65057352="" class="navbar-item">
-            Sub 3
-          </a> <hr data-v-65057352="" class="navbar-divider"> <div data-v-65057352="" class="navbar-item">
-            Sub under divider
-          </div></div></div> <div data-v-65057352="" class="navbar-item"><a data-v-65057352="" href="/about" class="navbar-link router-link-exact-active router-link-active">
-          About
-        </a></div> <div data-v-65057352="" class="navbar-logo"><a data-v-65057352="" href="/home" class="navbar-item"><img data-v-65057352="" alt="Corvin's flooring logo" src="/images/menu-logo.jpg@2x.14b5106b531468f2d6b3e5bd64a11064.png"></a></div> <div data-v-65057352="" class="navbar-item"><a data-v-65057352="" href="/gallery" class="navbar-link">
-          Gallery
-        </a></div> <div data-v-65057352="" class="navbar-item"><a data-v-65057352="" href="/maintenance" class="navbar-link">
-          Maintenance
-        </a></div> <div data-v-65057352="" class="navbar-item"><a data-v-65057352="" href="/contact" class="navbar-link">
-          Contact Us
-        </a></div></div></nav></header> <main data-v-6aa0d976="" class="page is-inset is-gapless about" id="main"><div data-v-4e0643d5="" data-v-6aa0d976="" class="page-hero"><div data-v-4e0643d5="" class="page-hero-content is-contained"><h1 data-v-4e0643d5="">About Corvin's</h1> <div data-v-4e0643d5="" class="page-hero-intro"><p>Corvin’s Flooring &amp; Furniture, LLC has been a family-owned business in Bardstown, Kentucky since its founding in 1987. We are a current member of the Bardstown Chamber of Commerce.</p></div></div> <div data-v-4e0643d5="" class="page-hero-media"><img data-v-4e0643d5="" alt="" src="https://corvin.nyc3.digitaloceanspaces.com/dev/hero/about/about-hero@2x.jpg"></div></div> <div data-v-9887dafa="" data-v-6aa0d976="" class="content-and-quote is-contained content-wrapper about-intro"><div data-v-9887dafa="" class="content"><p>Mark started the business in a small 5,000SF building selling only furniture and has since grown it to a 100,000SF building selling Furniture, Flooring, a Traders Mall and a Moving service.</p>
+<body data-last-updated="a50188971853ffaa29c3dafd3f070736c63348a89141f414a5837c2e20f08296">
+<div id="app"><a href="#main" class="skip-link hidden-element">
+  Skip to content
+</a> <header data-v-65057352="" class="header"><div data-v-65057352="" class="utility"><div data-v-65057352="" class="is-contained"><div data-v-4ad80280="" data-v-65057352="" class="social-links"><ul data-v-4ad80280=""><li data-v-4ad80280=""><a data-v-4ad80280="" href="https://facebook.com/" target="_BLANK" rel="noopener" class="social-icon fb"><span data-v-4ad80280="" class="hidden-element">Facebook</span></a></li> <li data-v-4ad80280=""><a data-v-4ad80280="" href="https://twitter.com/" target="_BLANK" rel="noopener" class="social-icon tw"><span data-v-4ad80280="" class="hidden-element">Twitter</span></a></li> <li data-v-4ad80280=""><a data-v-4ad80280="" href="httsp://youtub.com/" target="_BLANK" rel="noopener" class="social-icon yt"><span data-v-4ad80280="" class="hidden-element">YouTube</span></a></li> <li data-v-4ad80280=""><a data-v-4ad80280="" href="https://instagram.com/" target="_BLANK" rel="noopener" class="social-icon ig"><span data-v-4ad80280="" class="hidden-element">Instagram</span></a></li></ul></div> <div data-v-65057352="" class="tagline"><p data-v-65057352="">Corvin's: A trusted name in Kentucky since 1987</p></div> <div data-v-65057352="" class="phone"><a data-v-65057352="" href="tel:1-502-348-7474">Call Us (502) 348-7474</a></div></div></div> <nav data-v-65057352="" role="navigation" aria-label="dropdown navigation" class="navbar is-fixed-top"><div data-v-65057352="" class="navbar-menu is-contained"><div data-v-65057352="" class="navbar-item home-link"><a data-v-65057352="" href="/" class="navbar-link router-link-active">
+        Home
+      </a></div> <div data-v-65057352="" class="navbar-item has-dropdown"><a data-v-65057352="" href="/shop" class="navbar-link">
+        Shop Now
+      </a> <div data-v-65057352="" class="navbar-dropdown"><a data-v-65057352="" class="navbar-item">
+          Sub 1
+        </a> <a data-v-65057352="" class="navbar-item">
+          Sub 2
+        </a> <a data-v-65057352="" class="navbar-item">
+          Sub 3
+        </a> <hr data-v-65057352="" class="navbar-divider"> <div data-v-65057352="" class="navbar-item">
+          Sub under divider
+        </div></div></div> <div data-v-65057352="" class="navbar-item"><a data-v-65057352="" href="/about" class="navbar-link router-link-exact-active router-link-active">
+        About
+      </a></div> <div data-v-65057352="" class="navbar-logo"><a data-v-65057352="" href="/home" class="navbar-item"><img data-v-65057352="" alt="Corvin's flooring logo" src="/static/images/menu-logo.jpg@2x.14b5106b531468f2d6b3e5bd64a11064.png"></a></div> <div data-v-65057352="" class="navbar-item"><a data-v-65057352="" href="/gallery" class="navbar-link">
+        Gallery
+      </a></div> <div data-v-65057352="" class="navbar-item"><a data-v-65057352="" href="/maintenance" class="navbar-link">
+        Maintenance
+      </a></div> <div data-v-65057352="" class="navbar-item"><a data-v-65057352="" href="/contact" class="navbar-link">
+        Contact Us
+      </a></div></div></nav></header> <main data-v-6aa0d976="" class="page is-inset is-gapless about" id="main"><div data-v-4e0643d5="" data-v-6aa0d976="" class="page-hero"><div data-v-4e0643d5="" class="page-hero-content is-contained"><h1 data-v-4e0643d5="">About Corvin's</h1> <div data-v-4e0643d5="" class="page-hero-intro"><p>Corvin’s Flooring &amp; Furniture, LLC has been a family-owned business in Bardstown, Kentucky since its founding in 1987. We are a current member of the Bardstown Chamber of Commerce.</p></div></div> <div data-v-4e0643d5="" class="page-hero-media"><img data-v-4e0643d5="" alt="" src="https://corvin.nyc3.digitaloceanspaces.com/dev/hero/about/about-hero@2x.jpg"></div></div> <div data-v-9887dafa="" data-v-6aa0d976="" class="content-and-quote is-contained content-wrapper about-intro"><div data-v-9887dafa="" class="content"><p>Mark started the business in a small 5,000SF building selling only furniture and has since grown it to a 100,000SF building selling Furniture, Flooring, a Traders Mall and a Moving service.</p>
 <p>People shop at Corvin's because we have one of the biggest showrooms in the state of Kentucky. We will aggressively bid out any job small or big and promise to treat all of our customers as if they are family. Our sales staff is very knowledgeable on all aspects of floorings and will make sure each job is done correctly.</p>
 <p>We offer a vast array of different options in Hardwood, Laminate, Tile, Vinyl and Carpet. Our Shaw products include: Anso, Caress, Clearly Chic, ClearTouch, EverTouch, R2X Stain Remover, LifeHappens, St. Jude Carpet Cushion, Tuftex, and Floorte. We also install all flooring and we do custom showers.</p></div> <aside data-v-9887dafa="" class="pull-quote"><blockquote data-v-9887dafa=""><span data-v-9887dafa="">Our Mission:</span> <div data-v-9887dafa="">To champion every client’s flooring with passion &amp; integrity.</div></blockquote></aside></div> <div data-v-6aa0d976="" class="about-team is-contained"><h2 data-v-6aa0d976="" class="section-heading">Our Team</h2> <div data-v-6aa0d976="" class="profiles"><div data-v-1b4da756="" data-v-6aa0d976="" class="profile"><img data-v-1b4da756="" alt="" class="profile-image"> <h2 data-v-1b4da756="" class="profile-name">
-    Mark Corvin
-  </h2> <p data-v-1b4da756="" class="profile-title">
-    Owner
-  </p></div><div data-v-1b4da756="" data-v-6aa0d976="" class="profile"><img data-v-1b4da756="" alt="" class="profile-image"> <h2 data-v-1b4da756="" class="profile-name">
-    David Brown
-  </h2> <p data-v-1b4da756="" class="profile-title">
-    Flooring Manager
-  </p></div><div data-v-1b4da756="" data-v-6aa0d976="" class="profile"><img data-v-1b4da756="" alt="" class="profile-image"> <h2 data-v-1b4da756="" class="profile-name">
-    Tyler Corvin
-  </h2> <p data-v-1b4da756="" class="profile-title">
-    Flooring Manager
-  </p></div><div data-v-1b4da756="" data-v-6aa0d976="" class="profile"><img data-v-1b4da756="" alt="" class="profile-image"> <h2 data-v-1b4da756="" class="profile-name">
-    Jeff Unseld
-  </h2> <p data-v-1b4da756="" class="profile-title">
-    Flooring Sales Associate
-  </p></div><div data-v-1b4da756="" data-v-6aa0d976="" class="profile"><img data-v-1b4da756="" alt="" class="profile-image"> <h2 data-v-1b4da756="" class="profile-name">
-    Chad Welch
-  </h2> <p data-v-1b4da756="" class="profile-title">
-    Flooring Sales Associate
-  </p></div><div data-v-1b4da756="" data-v-6aa0d976="" class="profile"><img data-v-1b4da756="" alt="" class="profile-image"> <h2 data-v-1b4da756="" class="profile-name">
-    Carrie Tyson
-  </h2> <p data-v-1b4da756="" class="profile-title">
-    Flooring Sales Associate
-  </p></div><div data-v-1b4da756="" data-v-6aa0d976="" class="profile"><img data-v-1b4da756="" alt="" class="profile-image"> <h2 data-v-1b4da756="" class="profile-name">
-    Tim Avery
-  </h2> <p data-v-1b4da756="" class="profile-title">
-    Flooring Sales Associate
-  </p></div><div data-v-1b4da756="" data-v-6aa0d976="" class="profile"><img data-v-1b4da756="" alt="" class="profile-image"> <h2 data-v-1b4da756="" class="profile-name">
-    Eric Newton
-  </h2> <p data-v-1b4da756="" class="profile-title">
-    Flooring Sales Associate
-  </p></div><div data-v-1b4da756="" data-v-6aa0d976="" class="profile"><img data-v-1b4da756="" alt="" class="profile-image"> <h2 data-v-1b4da756="" class="profile-name">
-    Jon Drury
-  </h2> <p data-v-1b4da756="" class="profile-title">
-    Flooring Sales Associate
-  </p></div><div data-v-1b4da756="" data-v-6aa0d976="" class="profile"><img data-v-1b4da756="" alt="" class="profile-image"> <h2 data-v-1b4da756="" class="profile-name">
-    Matt Riser
-  </h2> <p data-v-1b4da756="" class="profile-title">
-    Warehouse Manager
-  </p></div><div data-v-1b4da756="" data-v-6aa0d976="" class="profile"><img data-v-1b4da756="" alt="" class="profile-image"> <h2 data-v-1b4da756="" class="profile-name">
-    Trae Hartney
-  </h2> <p data-v-1b4da756="" class="profile-title">
-    Warehouse Associate
-  </p></div><div data-v-1b4da756="" data-v-6aa0d976="" class="profile"><img data-v-1b4da756="" alt="" class="profile-image"> <h2 data-v-1b4da756="" class="profile-name">
-    Sheryl Metzger
-  </h2> <p data-v-1b4da756="" class="profile-title">
-    Financial Administrator
-  </p></div><div data-v-1b4da756="" data-v-6aa0d976="" class="profile"><img data-v-1b4da756="" alt="" class="profile-image"> <h2 data-v-1b4da756="" class="profile-name">
-    Meghan Dickie
-  </h2> <p data-v-1b4da756="" class="profile-title">
-    Receptionist
-  </p></div></div></div> <div data-v-6aa0d976="" class="about-cta"><h3 data-v-6aa0d976="">Contact one of our team members today and we will assist you</h3></div></main> <footer data-v-4c14e5b5="" class="footer"><div data-v-4c14e5b5="" class="footer-brand"><img data-v-4c14e5b5="" alt="" src="/images/corvins-combo-logo.png@2x.bed758e790276482e3275897604969ff.png"> <h3 data-v-4c14e5b5="">Championing every client's flooring with passion and integrity</h3></div> <div data-v-4c14e5b5="" class="footer-info"><div data-v-4c14e5b5="" class="footer-info-wrapper"><div data-v-4c14e5b5="" class="location-info"><div data-v-4c14e5b5="" class="location-listing"><h4 data-v-4c14e5b5="" class="location-heading">Bardstown Showroom</h4> <p data-v-4c14e5b5="">3465 E John Rowan Blvd</p> <p data-v-4c14e5b5="">Bardstown, KY 40004-2241</p> <p data-v-4c14e5b5="">P: (502) 348-7474 // F: (502) 337-6003</p></div> <div data-v-4c14e5b5="" class="location-hours"><h5 data-v-4c14e5b5="" class="location-heading">Our hours</h5> <p data-v-4c14e5b5="">Monday thru Friday: 9:00am–6:00pm</p> <p data-v-4c14e5b5="">Saturdays: 9:00am–6:00pm</p> <p data-v-4c14e5b5="">Sundays: Closed</p></div></div> <div data-v-4c14e5b5="" class="subscribe"><p data-v-4c14e5b5="">Subscribe for product releases <span data-v-4c14e5b5="">&amp; tips on maintainence</span></p> <div data-v-4c14e5b5="" class="field newsletter"><input data-v-4c14e5b5="" placeholder="Email" type="text" class="input has-placeholder"> <button data-v-4c14e5b5="" class="submit">
-            Submit
-          </button></div></div></div></div> <div data-v-4c14e5b5="" class="footer-sub"><div data-v-4ad80280="" data-v-4c14e5b5="" class="social-links"><ul data-v-4ad80280=""><li data-v-4ad80280=""><a data-v-4ad80280="" href="https://facebook.com/" target="_BLANK" rel="noopener" class="social-icon fb"><span data-v-4ad80280="" class="hidden-element">Facebook</span></a></li> <li data-v-4ad80280=""><a data-v-4ad80280="" href="https://twitter.com/" target="_BLANK" rel="noopener" class="social-icon tw"><span data-v-4ad80280="" class="hidden-element">Twitter</span></a></li> <li data-v-4ad80280=""><a data-v-4ad80280="" href="httsp://youtub.com/" target="_BLANK" rel="noopener" class="social-icon yt"><span data-v-4ad80280="" class="hidden-element">YouTube</span></a></li> <li data-v-4ad80280=""><a data-v-4ad80280="" href="https://instagram.com/" target="_BLANK" rel="noopener" class="social-icon ig"><span data-v-4ad80280="" class="hidden-element">Instagram</span></a></li></ul></div> <div data-v-4c14e5b5="" class="copyright"><p data-v-4c14e5b5="">
-        All content <sup data-v-4c14e5b5="">©</sup> Corvin’s Flooring &amp; Furniture, LLC or authorized vendors. All rights reserved.
-      </p></div> <div data-v-4c14e5b5="" class="flooring"><img data-v-4c14e5b5="" alt="Shaw flooring" src="/images/shaw-logo.png@2x.87fa49d5b324bc68bc3607e2818b5c00.png"></div></div></footer> <!----> <div id="outdated"></div></div>
-  {% include '_twig/js' %}
-  <script>
-    window.csrfToken = "{{ craft.app.request.csrfToken }}"
-  </script>
+  Mark Corvin
+</h2> <p data-v-1b4da756="" class="profile-title">
+  Owner
+</p></div><div data-v-1b4da756="" data-v-6aa0d976="" class="profile"><img data-v-1b4da756="" alt="" class="profile-image"> <h2 data-v-1b4da756="" class="profile-name">
+  David Brown
+</h2> <p data-v-1b4da756="" class="profile-title">
+  Flooring Manager
+</p></div><div data-v-1b4da756="" data-v-6aa0d976="" class="profile"><img data-v-1b4da756="" alt="" class="profile-image"> <h2 data-v-1b4da756="" class="profile-name">
+  Tyler Corvin
+</h2> <p data-v-1b4da756="" class="profile-title">
+  Flooring Manager
+</p></div><div data-v-1b4da756="" data-v-6aa0d976="" class="profile"><img data-v-1b4da756="" alt="" class="profile-image"> <h2 data-v-1b4da756="" class="profile-name">
+  Jeff Unseld
+</h2> <p data-v-1b4da756="" class="profile-title">
+  Flooring Sales Associate
+</p></div><div data-v-1b4da756="" data-v-6aa0d976="" class="profile"><img data-v-1b4da756="" alt="" class="profile-image"> <h2 data-v-1b4da756="" class="profile-name">
+  Chad Welch
+</h2> <p data-v-1b4da756="" class="profile-title">
+  Flooring Sales Associate
+</p></div><div data-v-1b4da756="" data-v-6aa0d976="" class="profile"><img data-v-1b4da756="" alt="" class="profile-image"> <h2 data-v-1b4da756="" class="profile-name">
+  Carrie Tyson
+</h2> <p data-v-1b4da756="" class="profile-title">
+  Flooring Sales Associate
+</p></div><div data-v-1b4da756="" data-v-6aa0d976="" class="profile"><img data-v-1b4da756="" alt="" class="profile-image"> <h2 data-v-1b4da756="" class="profile-name">
+  Tim Avery
+</h2> <p data-v-1b4da756="" class="profile-title">
+  Flooring Sales Associate
+</p></div><div data-v-1b4da756="" data-v-6aa0d976="" class="profile"><img data-v-1b4da756="" alt="" class="profile-image"> <h2 data-v-1b4da756="" class="profile-name">
+  Eric Newton
+</h2> <p data-v-1b4da756="" class="profile-title">
+  Flooring Sales Associate
+</p></div><div data-v-1b4da756="" data-v-6aa0d976="" class="profile"><img data-v-1b4da756="" alt="" class="profile-image"> <h2 data-v-1b4da756="" class="profile-name">
+  Jon Drury
+</h2> <p data-v-1b4da756="" class="profile-title">
+  Flooring Sales Associate
+</p></div><div data-v-1b4da756="" data-v-6aa0d976="" class="profile"><img data-v-1b4da756="" alt="" class="profile-image"> <h2 data-v-1b4da756="" class="profile-name">
+  Matt Riser
+</h2> <p data-v-1b4da756="" class="profile-title">
+  Warehouse Manager
+</p></div><div data-v-1b4da756="" data-v-6aa0d976="" class="profile"><img data-v-1b4da756="" alt="" class="profile-image"> <h2 data-v-1b4da756="" class="profile-name">
+  Trae Hartney
+</h2> <p data-v-1b4da756="" class="profile-title">
+  Warehouse Associate
+</p></div><div data-v-1b4da756="" data-v-6aa0d976="" class="profile"><img data-v-1b4da756="" alt="" class="profile-image"> <h2 data-v-1b4da756="" class="profile-name">
+  Sheryl Metzger
+</h2> <p data-v-1b4da756="" class="profile-title">
+  Financial Administrator
+</p></div><div data-v-1b4da756="" data-v-6aa0d976="" class="profile"><img data-v-1b4da756="" alt="" class="profile-image"> <h2 data-v-1b4da756="" class="profile-name">
+  Meghan Dickie
+</h2> <p data-v-1b4da756="" class="profile-title">
+  Receptionist
+</p></div></div></div> <div data-v-6aa0d976="" class="about-cta"><h3 data-v-6aa0d976="">Contact one of our team members today and we will assist you</h3></div></main> <footer data-v-4c14e5b5="" class="footer"><div data-v-4c14e5b5="" class="footer-brand"><img data-v-4c14e5b5="" alt="" src="/static/images/corvins-combo-logo.png@2x.bed758e790276482e3275897604969ff.png"> <h3 data-v-4c14e5b5="">Championing every client's flooring with passion and integrity</h3></div> <div data-v-4c14e5b5="" class="footer-info"><div data-v-4c14e5b5="" class="footer-info-wrapper"><div data-v-4c14e5b5="" class="location-info"><div data-v-4c14e5b5="" class="location-listing"><h4 data-v-4c14e5b5="" class="location-heading">Bardstown Showroom</h4> <p data-v-4c14e5b5="">3465 E John Rowan Blvd</p> <p data-v-4c14e5b5="">Bardstown, KY 40004-2241</p> <p data-v-4c14e5b5="">P: (502) 348-7474 // F: (502) 337-6003</p></div> <div data-v-4c14e5b5="" class="location-hours"><h5 data-v-4c14e5b5="" class="location-heading">Our hours</h5> <p data-v-4c14e5b5="">Monday thru Friday: 9:00am–6:00pm</p> <p data-v-4c14e5b5="">Saturdays: 9:00am–6:00pm</p> <p data-v-4c14e5b5="">Sundays: Closed</p></div></div> <div data-v-4c14e5b5="" class="subscribe"><p data-v-4c14e5b5="">Subscribe for product releases <span data-v-4c14e5b5="">&amp; tips on maintainence</span></p> <div data-v-4c14e5b5="" class="field newsletter"><input data-v-4c14e5b5="" placeholder="Email" type="text" class="input has-placeholder"> <button data-v-4c14e5b5="" class="submit">
+          Submit
+        </button></div></div></div></div> <div data-v-4c14e5b5="" class="footer-sub"><div data-v-4ad80280="" data-v-4c14e5b5="" class="social-links"><ul data-v-4ad80280=""><li data-v-4ad80280=""><a data-v-4ad80280="" href="https://facebook.com/" target="_BLANK" rel="noopener" class="social-icon fb"><span data-v-4ad80280="" class="hidden-element">Facebook</span></a></li> <li data-v-4ad80280=""><a data-v-4ad80280="" href="https://twitter.com/" target="_BLANK" rel="noopener" class="social-icon tw"><span data-v-4ad80280="" class="hidden-element">Twitter</span></a></li> <li data-v-4ad80280=""><a data-v-4ad80280="" href="httsp://youtub.com/" target="_BLANK" rel="noopener" class="social-icon yt"><span data-v-4ad80280="" class="hidden-element">YouTube</span></a></li> <li data-v-4ad80280=""><a data-v-4ad80280="" href="https://instagram.com/" target="_BLANK" rel="noopener" class="social-icon ig"><span data-v-4ad80280="" class="hidden-element">Instagram</span></a></li></ul></div> <div data-v-4c14e5b5="" class="copyright"><p data-v-4c14e5b5="">
+      All content <sup data-v-4c14e5b5="">©</sup> Corvin’s Flooring &amp; Furniture, LLC or authorized vendors. All rights reserved.
+    </p></div> <div data-v-4c14e5b5="" class="flooring"><img data-v-4c14e5b5="" alt="Shaw flooring" src="/static/images/shaw-logo.png@2x.87fa49d5b324bc68bc3607e2818b5c00.png"></div></div></footer> <!----> <div id="outdated"></div></div>
+<script>(window["webpackJsonpcorvin"]=window["webpackJsonpcorvin"]||[]).push([[0],[]]);</script>
+        <script type="text/javascript" src="/static//vendor.7da598f7c67e6b487074.js"></script>
+        <script type="text/javascript" src="/static//main.efbfb8a200e74b2795e9.js"></script>  <script>
+  window.csrfToken = "SSuojuokiLMuVdUiMIhwPE9Dz4q8Wq-U-WVoh1Z0piN9qlAKI5OQWpaufC3WZE6uSMZ60XQYk06iWDGxFk7mBuCAVw0tAczBobE3uBJJGKe8g0froTXEppMkHCpRGKLNL7cSb_Sv21mKkMOKftKsbT0pJvUHoRORwNnQVtJZch1u22r62sAwhpiKq2l5lXkbDphDqy6Jg8AN9ct55OQ7zndbi3_APQu-t0RvFbWp58R_FYaGdvokJXj9-VuMWT_Tq0bfS1kdhNXJ_JmZaMTgDjFZzuWiXc76Sj6KcGbpSBEGF5W53w2b04shGbIeHfFKFNg8TGj84nfqy0hP4AF-nnvxSeBGLvZ5xjtV1S981jWCsGBvHjGo95LXAYlwLXyRheF13cJT88L1HX0ZZyrAqU7WdFyRl7po7-ix7BWa1St0TU2qVfdyqe2QhAzhOiUpKakui--IWdHx49kFP94WaSPkctcKu_rkPMbvH5CybL4eK88KlG9p3MYdOiTZ4qmyUTrc9kG3bkATraw-9jR35to2l3kYSOu7na3v9D-thW8="
+</script>
 
 
 </body></html>
