@@ -19,8 +19,6 @@
         <doe-link
           class="accordion-row-close"
           is-button
-          is-icon-only
-          icon="cancel"
           @click.native.prevent="hide"
         />
       </div>

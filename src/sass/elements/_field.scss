@@ -65,7 +65,7 @@
   .field & {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 5px;
     color: inherit;
     display: block;
     transform: translateY(1.46em);
@@ -91,7 +91,7 @@
   .field.has-placeholder &,
   .field.has-multiple &,
   .field.has-value & {
-    transform: translateY(-.25em) scale(.85);
+    transform: translateY(-.65em) scale(.85);
     pointer-events: auto;
   }
 
@@ -213,7 +213,7 @@
     @extend .icomoon;
     position: absolute;
     top: ($field-height / 2) - ($field-padding / 2);
-    right: 0;
+    right: 5px;
     width: $field-icon-size;
     height: $field-icon-size;
     z-index: 2;
@@ -444,12 +444,8 @@
 .fields {
   display: flex;
   flex-wrap: wrap;
-  align-items: top;
+  align-items: flex-start;
   justify-content: flex-start;
-
-  &:not(:last-child) {
-    margin-bottom: 1rem;
-  }
 
   &.is-center {
     justify-content: center;

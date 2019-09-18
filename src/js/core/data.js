@@ -171,54 +171,54 @@ const productCategories = [
     description: ['Rich and inviting, hardwood makes a distinctive statement. Because of a great range of natural variations—from boards with extreme character, graining, and …'],
     image: {
       alt: 'Carpet image',
-      src: 'https://satyr.io/530x380'
+      src: '../../images/shop/carpet.jpg'
     },
-    slug: '/product-category/carpet'
+    slug: '/shop/carpet'
   },
   {
     title: 'Solid Hardwood',
     description: [' Carpet has so many things going for it. It’s soft, safe, warm and quiet. It’s stain-resistant and gives excellent value for the price—and it saves energy. Carpet is …'],
     image: {
       alt: 'image',
-      src: 'https://satyr.io/530x380'
+      src: '../../images/shop/solid-hardwood.jpg'
     },
-    slug: '/product-category/solid-hardwood'
+    slug: '/shop/solid-hardwood'
   },
   {
     title: 'Engineered Hardwood',
     description: ['We need someone to write a three line sentence about engineered hardwood for this space. Can really just be an introduction to another paragraph describing …'],
     image: {
       alt: 'image',
-      src: 'https://satyr.io/530x380'
+      src: '../../images/shop/engineered-hardwood.jpg'
     },
-    slug: '/product-category/engineered-hardwood'
+    slug: '/shop/engineered-hardwood'
   },
   {
     title: 'Laminate',
     description: ['Appealing hardwood visuals and marvelous slate and stone looks are the hallmark of today’s laminate. Laminate is great for busy families and simply looks…'],
     image: {
       alt: 'image',
-      src: 'https://satyr.io/530x380'
+      src: '../../images/shop/laminate.jpg'
     },
-    slug: '/product-category/laminate'
+    slug: '/shop/laminate'
   },
   {
     title: 'Tile & Stone',
     description: ['Carpet has so many things going for it. It’s soft, safe, warm and quiet. It’s stain-resistant and gives excellent value for the price—and it saves energy. Carpet is also prov…'],
     image: {
       alt: 'image',
-      src: 'https://satyr.io/530x380'
+      src: '../../images/shop/tile-stone.jpg'
     },
-    slug: '/product-category/tile-stone'
+    slug: '/shop/tile-stone'
   },
   {
     title: 'Vinyl Plank',
     description: ['We need someone to write a three line sentence about engineered hardwood for this space. Can really just be an introduction to another paragraph describing …'],
     image: {
       alt: 'image',
-      src: 'https://satyr.io/530x380'
+      src: '../../images/shop/vinyl-plank.jpg'
     },
-    slug: '/product-category/vinyl-plank'
+    slug: '/shop/vinyl-plank'
   }
 ];
 
