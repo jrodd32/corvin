@@ -69,8 +69,8 @@ class ContactFormController extends Controller
             'Origin' => [
               'http://localhost:8080',
               'http://localhost:8000',
-              'https://corvin.doe1915.com',
-              'https://www.corvin.com',
+              'https://corvins.test',
+              'https://www.corvinsfurnitureofbardstown.com',
             ],
             'Access-Control-Request-Method' => [
               'POST'

@@ -101,8 +101,6 @@ class ApiController extends Controller
 
   public function actionPage($handle, $slug)
   {
-    var_dump('here');
-    die;
     return $this->asJson(SuperApi::$instance->pages->getPageContent($this->site, $handle, $slug));
   }
 }
