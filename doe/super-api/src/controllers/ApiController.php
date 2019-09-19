@@ -35,11 +35,7 @@ class ApiController extends Controller
 
   protected $cacheDependency;
 
-  protected $allowAnonymous = [
-    'routes',
-    'app',
-    'page',
-  ];
+  protected $allowAnonymous = self::ALLOW_ANONYMOUS_LIVE;
 
   protected $site;
 

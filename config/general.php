@@ -28,12 +28,14 @@ return [
         // Whether to save the project config out to config/project.yaml
         // (see https://docs.craftcms.com/v3/project-config.html)
         'useProjectConfigFile' => false,
+        'sendPoweredByHeader' => false
     ],
 
     // Dev environment settings
     'dev' => [
         // Dev Mode (see https://craftcms.com/guides/what-dev-mode-does)
         'devMode' => true,
+        'enableCsrfProtection' => false
     ],
 
     // Staging environment settings
