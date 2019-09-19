@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5ab41ae7083a2a7eeee9f2375ac4a107",
+    "content-hash": "4f868f22bc7e3d223574b6c7269e4d9c",
     "packages": [
         {
             "name": "aelvan/mailchimp-subscribe",
