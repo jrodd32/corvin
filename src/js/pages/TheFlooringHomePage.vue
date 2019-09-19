@@ -31,7 +31,7 @@
             </figure>
 
             <doe-link
-              :href="category.uri"
+              :href="category.slug|categoryUrl"
               text="Shop Now"
               is-blue
             />
@@ -120,6 +120,11 @@
   export default {
     components: {
       FixedHero
+    },
+    filters: {
+      categoryUrl(slug) {
+        return `/shop/${slug}`;
+      }
     },
     mixins: [ajaxPageProps],
     data() {
