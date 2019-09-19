@@ -18,7 +18,7 @@ const cssTemplateFilename = 'css.twig';
 
 const prerenderOutputPath = path.resolve(__dirname, 'templates');
 const prerenderFileName = 'index.html';
-const prerenderHeadless = true;
+const prerenderHeadless = false;
 const prerenderCallback = (html) => {
   return html.replace(/<script charset="utf-8" src="(.*).js"><\/script>/g, '')
     .replace(/<script type="text\/javascript" src="(.*).js"><\/script>/g, '')

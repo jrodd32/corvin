@@ -12,7 +12,7 @@ const TheStoreItemPage = () => import(/* webpackChunkName: 'page-store' */ '../p
 const routes = [
   { path: '/', component: TheHomePage },
   { path: '/about', component: TheAboutPage },
-  { path: '/contact', component: TheContactPage },
+  // { path: '/contact', component: TheContactPage },
   { path: '/home', component: TheFlooringHomePage },
   { path: '/maintenance', component: TheMaintenancePage },
   { path: '/gallery', component: TheGalleryPage },
