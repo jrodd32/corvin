@@ -7,7 +7,7 @@
 
     <img
       :alt="product.image.alt"
-      :src="product.image.src"
+      :src="product.image.url"
       class="product-image"
     />
 
@@ -16,13 +16,12 @@
       class="category-content"
     >
       <p
-        v-for="paragraph in product.description"
-        v-html="paragraph"
+        v-html="product.shortDescription"
         class="product-description"
       />
 
       <doe-link
-        :to="product.slug"
+        :href="'/shop/' + product.slug"
         class="read-more"
         is-anchor
       >

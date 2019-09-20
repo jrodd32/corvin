@@ -18,11 +18,6 @@
 </template>
 
 <script>
-  import {
-    products,
-    productCategories
-  } from '../core/data';
-
   import CorvinProductListing from './CorvinProductListing.vue';
   import CorvinStoreFilters from './CorvinStoreFilters.vue';
 
@@ -43,31 +38,30 @@
         default() {
           return '';
         }
+      },
+      products: {
+        type: Array,
+        default() {
+          return [];
+        }
       }
     },
     data() {
       return {
-        filterBy: '',
-        products,
-        productCategories
+        filterBy: ''
       };
     },
     computed: {
-      activeProducts() {
-        return this.listingType === 'category'
-               ? productCategories
-               : products;
-      },
       hasProducts() {
         return this.products
                && this.products.length > 0;
       },
       filteredProducts() {
         if (this.filterBy) {
-          return this.activeProducts.filter(product => product.tags.includes(this.filterBy));
+          return this.products.filter(product => product.tags.includes(this.filterBy));
         }
 
-        return this.activeProducts;
+        return this.products;
       },
       styleModifiers() {
         return this.listingType === 'category' ? 'is-category-listing' : '';
