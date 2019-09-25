@@ -3,7 +3,7 @@
 
   <main
     v-else
-    class="page has-inset is-gapless maintenance"
+    class="page has-inset is-gapless has-cta maintenance"
   >
     <corvin-page-hero :hero="data.content.hero" />
 
@@ -17,7 +17,7 @@
       />
     </corvin-accordion>
 
-    <div class="maintenance-cta">
+    <div class="cta maintenance-cta">
       <h3>Still have questions? Contact us and one of our staff will help.</h3>
     </div>
   </main>

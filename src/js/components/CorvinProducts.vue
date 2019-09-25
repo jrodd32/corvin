@@ -88,13 +88,13 @@
 </script>
 
 <style lang="scss" scoped>
-  .products-filters {
-    margin-bottom: $u6;
+  // .products-filters {
+  //   margin-bottom: $u6;
 
-    @include tablet() {
-      margin-bottom: $u10;
-    }
-  }
+  //   @include tablet() {
+  //     margin-bottom: $u10;
+  //   }
+  // }
 
   .products-listing {
     display: flex;

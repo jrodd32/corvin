@@ -1,5 +1,5 @@
 <template>
-  <main class="page flooring-home is-gapless is-inset">
+  <main class="page flooring-home is-gapless no-bottom-padding is-inset">
     <fixed-hero
       v-if="hasHero"
       :hero="data.content.hero"

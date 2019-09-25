@@ -36,7 +36,7 @@
 
 <style lang="scss" scoped>
   .profile {
-    margin-bottom: $u10;
+    padding-top: $u10;
     text-align: center;
 
     &-image {
@@ -50,6 +50,10 @@
     &-name,
     &-email,
     &-phone {
+      margin-bottom: 0;
+    }
+
+    p:last-of-type {
       margin-bottom: 0;
     }
   }

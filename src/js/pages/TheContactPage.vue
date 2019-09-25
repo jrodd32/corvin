@@ -94,7 +94,6 @@
 
 <style lang="scss" scoped>
   .contact-sidebar {
-    margin-bottom: 5rem;
     margin-top: 5rem;
   }
 

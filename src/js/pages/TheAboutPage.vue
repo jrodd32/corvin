@@ -3,7 +3,7 @@
 
   <main
     v-else
-    class="page is-inset is-gapless about"
+    class="page is-inset is-gapless has-cta about"
   >
     <corvin-page-hero
       v-if="hasHeading"
@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    <div class="about-cta">
+    <div class="cta about-cta">
       <div class="is-contained">
         <h3>Contact one of our team members today and we will assist you</h3>
       </div>
@@ -127,7 +127,6 @@
 
 <style lang="scss" scoped>
   .about-team {
-    margin-bottom: $u6;
     margin-top: $u10;
     padding-top: $u10;
 
@@ -144,8 +143,6 @@
     }
 
     @include tablet() {
-      margin-bottom: $u10;
-
       .profiles {
         flex-flow: row wrap;
         justify-content: space-between;

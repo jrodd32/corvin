@@ -1,5 +1,5 @@
 <template>
-  <main class="page is-gapless home">
+  <main class="page is-gapless no-bottom-margin home">
     <div class="departments">
       <div class="furniture">
         <figure>

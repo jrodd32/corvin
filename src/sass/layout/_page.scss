@@ -16,6 +16,15 @@
   }
 }
 
+.page {
+  padding-bottom: 15rem;
+
+  &.has-cta,
+  &.no-bottom-padding {
+    padding-bottom: 0;
+  }
+}
+
 .page:not(.is-gapless) {
   > * {
     &:first-child {

@@ -83,7 +83,7 @@
 
 <style lang="scss" scoped>
   .product {
-    margin-bottom: $u6;
+    padding-top: $u6;
 
     h2 {
       font-size: 2.4rem;
@@ -144,7 +144,7 @@
     }
 
     @include tablet() {
-      margin-bottom: $u10;
+      padding-top: $u10;
     }
   }
 </style>
