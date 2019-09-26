@@ -20,7 +20,7 @@
           <figure class="media">
             <img
               alt="Image of a map to Corvin furniture"
-              src="../../images/corvin-location-map.jpg"
+              src="../../images/contact/corvin-location-map.jpg"
             />
           </figure>
 
