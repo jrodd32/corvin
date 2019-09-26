@@ -6,8 +6,8 @@
     />
 
     <img
-      :alt="product.image.alt"
-      :src="product.image.url"
+      :alt="product.shopListingImage.alt"
+      :src="product.shopListingImage.url"
       class="product-image"
     />
 

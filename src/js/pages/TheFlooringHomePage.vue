@@ -25,8 +25,8 @@
 
             <figure>
               <img
-                :alt="category.image.alt"
-                :src="category.image.url"
+                :alt="category.homeImage.alt"
+                :src="category.homeImage.url"
               />
             </figure>
 
