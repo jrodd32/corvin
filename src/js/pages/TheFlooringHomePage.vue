@@ -41,6 +41,7 @@
 
       <div
         v-if="hasQuote"
+        :style="quoteBackground"
         class="customer-quote"
       >
         <blockquote>
@@ -159,6 +160,9 @@
       },
       heroOffset() {
         return `margin-top: ${this.heroHeight}px`;
+      },
+      quoteBackground() {
+        return `background-image:url(${this.data.content.blockquote.backgroundImage.url})`;
       }
     },
     methods: {
@@ -261,7 +265,6 @@
   }
 
   .customer-quote {
-    background-image: url('../../images/homepage-quote-bg.jpg@2x.png');
     background-size: cover;
 
     padding-bottom: 20rem;
