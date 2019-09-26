@@ -1,20 +1,27 @@
 <template>
-  <main class="page has-inset is-gapless gallery">
-    <corvin-page-hero :hero="tempGalleryHeadingData" />
+  <corvin-loading v-if="loading" />
+  <main
+    v-else
+    class="page has-inset is-gapless gallery"
+  >
+    <corvin-page-hero :hero="data.content.hero" />
 
-    <div class="image-gallery is-contained">
+    <div
+      v-if="hasImages"
+      class="image-gallery is-contained"
+    >
       <transition-group
         class="thumbnails"
         name="thumbnailfade"
         tag="div"
       >
         <figure
-          v-for="(thumb, index) in images"
+          v-for="(thumb, index) in data.content.gallery.galleryImages"
           :key="index"
         >
           <img
-            @click="showLightbox(thumb.name)"
-            :src="thumb.name|appendDirectory(assetDir)"
+            @click="showLightbox(thumb.url)"
+            :src="thumb.url"
             :alt="thumb.alt"
             :title="thumb.alt"
           />
@@ -25,7 +32,7 @@
         id="mylightbox"
         ref="lightbox"
         :directory="assetDir"
-        :images="images"
+        :images="transformedImages"
         :timeoutDuration="5000"
       />
     </div>
@@ -33,93 +40,13 @@
 </template>
 
 <script>
+  import { ajaxPageProps } from '../core/page';
+  import CorvinLoading from '../components/CorvinLoading.vue';
   import CorvinPageHero from '../components/CorvinPageHero.vue';
-
-  const images = [
-    {
-      alt: '',
-      filter: '',
-      name: 'bathroom@2x.jpg'
-    },
-    {
-      alt: '',
-      filter: '',
-      name: 'bed@2x.jpg'
-    },
-    {
-      alt: '',
-      filter: '',
-      name: 'brown-flooring@2x.jpg'
-    },
-    {
-      alt: '',
-      filter: '',
-      name: 'carpet@2x.jpg'
-    },
-    {
-      alt: '',
-      filter: '',
-      name: 'couch@2x.jpg'
-    },
-    {
-      alt: '',
-      filter: '',
-      name: 'dark-flooring@2x.jpg'
-    },
-    {
-      alt: '',
-      filter: '',
-      name: 'family-room@2x.jpg'
-    },
-    {
-      alt: '',
-      filter: '',
-      name: 'grey-flooring@2x.jpg'
-    },
-    {
-      alt: '',
-      filter: '',
-      name: 'half-wall@2x.jpg'
-    },
-    {
-      alt: '',
-      filter: '',
-      name: 'kitchen-island@2x.jpg'
-    },
-    {
-      alt: '',
-      filter: '',
-      name: 'light-hardwood@2x.jpg'
-    },
-    {
-      alt: '',
-      filter: '',
-      name: 'stairs@2x.jpg'
-    },
-    {
-      alt: '',
-      filter: '',
-      name: 'stools@2x.jpg'
-    },
-    {
-      alt: '',
-      filter: '',
-      name: 'tile@2x.jpg'
-    },
-    {
-      alt: '',
-      filter: '',
-      name: 'white-stools@2x.jpg'
-    }
-  ];
-
-  const tempGalleryHeadingData = {
-    headline: 'Gallery',
-    content: 'Corvin’s wouldn’t exist without the amazing people with creative ideas we’ve had the opportunity to serve over the years. We’d love to show off your rooms with our products. Tag your photos on Instagram with #CorvinsFlooring or email your us to be featured.'
-  };
 
   export default {
     components: {
+      CorvinLoading,
       CorvinPageHero
     },
     filters: {
@@ -127,19 +54,30 @@
         return dir + imageName;
       }
     },
+    mixins: [ajaxPageProps],
     data() {
       return {
-        images,
-        tempGalleryHeadingData
+        assetDir: 'https://corvin.nyc3.digitaloceanspaces.com/gallery/',
+        jsonUrl: `/${this.$api.pages.gallery}`
       };
     },
     computed: {
-      assetDir() {
-        if (this.$local || this.$dev) {
-          return 'https://corvin.nyc3.digitaloceanspaces.com/dev/gallery/';
-        }
+      hasImages() {
+        return 'content' in this.data
+               && 'gallery' in this.data.content
+               && 'galleryImages' in this.data.content.gallery
+               && this.data.content.gallery.galleryImages.length > 0;
+      },
+      transformedImages() {
+        const images = [];
 
-        return 'https://corvin.nyc3.digitaloceanspaces.com/prod/gallery/';
+        this.data.content.gallery.galleryImages.forEach((image) => {
+          images.push({
+            name: image.url.split('/').pop()
+          });
+        });
+
+        return images;
       }
     },
     activated() {
@@ -158,7 +96,6 @@
 .thumbnails {
   display: flex;
   flex-direction: column;
-  margin-bottom: $u4;
 
   figure {
     display: block;

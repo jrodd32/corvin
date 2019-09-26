@@ -100,6 +100,7 @@ class Value extends Component
     $values = [];
 
     if ($this->isContent($entry)) {
+      // NOTE: Might want this later.
       // $entry->uri = str_replace('product-categories', 'shop', $entry->uri);
 
       $values = [
@@ -142,7 +143,7 @@ class Value extends Component
 
       // file
       if ($this->isAssetQuery($values[$fieldHandle])) {
-        if ($field->handle === 'media') {
+        if ($field->handle === 'media' || $field->handle === 'galleryImages') {
           $values[$fieldHandle] = $this->setImageGroup($values[$fieldHandle], $field->handle, $parentHandle);
         } else {
           $values[$fieldHandle] = $this->setImage($values[$fieldHandle], $field->handle, $parentHandle);

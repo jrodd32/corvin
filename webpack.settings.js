@@ -54,8 +54,7 @@ const prerenderCallback = (html) => {
     .replace(new RegExp('<img src="/uploads/', 'g'), '<img src="{{ cdnUrl }}uploads/')
     .replace(new RegExp('http://localhost:8000', 'g'), 'https://www.corvin.com')
     .replace(new RegExp('http://localhost:8080', 'g'), 'https://www.corvin.com')
-    .replace(new RegExp('corvin.test', 'g'), 'www.corvin.com')
-    .replace(new RegExp('corvin.doe1915.com', 'g'), 'www.corvin.com');
+    .replace(new RegExp('corvin.test', 'g'), 'www.corvin.com');
 };
 
 const cleanIgnoreFiles = [];
