@@ -13,7 +13,7 @@
         v-if="hasContent"
         class="page-hero-intro"
       >
-        <p v-html="hero.content" />
+        <div v-html="hero.content" />
       </div>
     </div>
 
@@ -83,7 +83,11 @@
 
     &.has-content:not(.has-media) {
       .page-hero-content {
-        padding-bottom: $u6;
+        padding-bottom: $u10;
+      }
+
+      p:last-of-type {
+        margin-bottom: 0;
       }
     }
 
@@ -99,12 +103,18 @@
         margin-bottom: 14rem;
       }
 
+      &.has-content:not(.has-media) {
+        .page-hero-content {
+          padding-bottom: 14rem;
+        }
+      }
+
       &-content {
         padding-bottom: 9.6rem;
         padding-top: 9.6rem;
       }
 
-      p {
+      div {
         font-size: 2.4rem;
         line-height: 3.6rem;
       }
