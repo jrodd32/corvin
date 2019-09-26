@@ -62,11 +62,14 @@
           <div v-html="data.content.social.description" />
         </div>
 
-        <div class="media">
-          <figure v-for="image in media">
+        <div
+          v-if="hasSocialMedia"
+          class="media"
+        >
+          <figure v-for="image in data.content.social.media">
             <img
               :alt="image.alt"
-              :src="image.href"
+              :src="image.url"
             />
           </figure>
         </div>
@@ -78,45 +81,6 @@
 <script>
   import { ajaxPageProps } from '../core/page';
   import FixedHero from '../components/FixedHero.vue';
-
-  const media = [
-    {
-      alt: 'Social media image',
-      href: '../../images/social.png'
-    },
-    {
-      alt: 'Social media image',
-      href: '../../images/social2.png'
-    },
-    {
-      alt: 'Social media image',
-      href: '../../images/social3.png'
-    },
-    {
-      alt: 'Social media image',
-      href: '../../images/social4.png'
-    },
-    {
-      alt: 'Social media image',
-      href: '../../images/social5.png'
-    },
-    {
-      alt: 'Social media image',
-      href: '../../images/social6.png'
-    },
-    {
-      alt: 'Social media image',
-      href: '../../images/social7.png'
-    },
-    {
-      alt: 'Social media image',
-      href: '../../images/social8.png'
-    },
-    {
-      alt: 'Social media image',
-      href: '../../images/social9.png'
-    }
-  ];
 
   export default {
     components: {
@@ -131,8 +95,7 @@
     data() {
       return {
         heroHeight: 0,
-        jsonUrl: `/${this.$api.pages.home}`,
-        media
+        jsonUrl: `/${this.$api.pages.home}`
       };
     },
     computed: {
@@ -157,6 +120,10 @@
       hasSocial() {
         return this.hasContent
                && 'social' in this.data.content;
+      },
+      hasSocialMedia() {
+        return this.hasSocial
+               && 'media' in this.data.content.social;
       },
       heroOffset() {
         return `margin-top: ${this.heroHeight}px`;
