@@ -54,7 +54,7 @@
 <script>
   import CorvinPageHero from '../components/CorvinPageHero.vue';
   import ContactForm from '../components/forms/ContactForm.vue';
-  // import { ajaxPageProps } from '../core/page';
+  import { ajaxPageProps } from '../core/page';
 
   const data = {
     content: {
@@ -70,9 +70,9 @@
   };
 
   export default {
-    // mixins: [
-    //   ajaxPageProps
-    // ],
+    mixins: [
+      ajaxPageProps
+    ],
     components: {
       ContactForm,
       CorvinPageHero

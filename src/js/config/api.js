@@ -7,7 +7,8 @@ const api = {
     flooring: 'maintenance',
     gallery: 'gallery',
     home: 'home',
-    shop: 'shop'
+    shop: 'shop',
+    shopByCategory: 'product-category'
   }
 };
 

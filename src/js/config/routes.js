@@ -6,7 +6,8 @@ const TheContactPage = () => import(/* webpackChunkName: 'page-contact' */ '../p
 const TheMaintenancePage = () => import(/* webpackChunkName: 'page-flooring' */ '../pages/TheMaintenancePage.vue');
 const TheFlooringHomePage = () => import(/* webpackChunkName: 'page-flooring' */ '../pages/TheFlooringHomePage.vue');
 const TheGalleryPage = () => import(/* webpackChunkName: 'page-gallery' */ '../pages/TheGalleryPage.vue');
-const TheShopPage = () => import(/* webpackChunkName: 'page-store' */ '../pages/TheShopPage.vue');
+const TheStorePage = () => import(/* webpackChunkName: 'page-store' */ '../pages/TheStorePage.vue');
+const TheStoreCategoryPage = () => import(/* webpackChunkName: 'page-store' */ '../pages/TheStoreCategoryPage.vue');
 const TheStoreItemPage = () => import(/* webpackChunkName: 'page-store' */ '../pages/TheStoreItemPage.vue');
 
 const routes = [
@@ -16,8 +17,9 @@ const routes = [
   { path: '/home', component: TheFlooringHomePage },
   { path: '/maintenance', component: TheMaintenancePage },
   { path: '/gallery', component: TheGalleryPage },
-  { path: '/store/:slug', component: TheStoreItemPage },
-  { path: '/shop/:slug?', component: TheShopPage },
+  { path: '/shop/:category/:slug', component: TheStoreItemPage },
+  { path: '/shop/:category', component: TheStoreCategoryPage },
+  { path: '/shop', component: TheStorePage },
 
   { path: '*', name: '404', component: The404Page }
 ];

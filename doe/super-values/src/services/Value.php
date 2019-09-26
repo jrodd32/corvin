@@ -100,6 +100,8 @@ class Value extends Component
     $values = [];
 
     if ($this->isContent($entry)) {
+      // $entry->uri = str_replace('product-categories', 'shop', $entry->uri);
+
       $values = [
         'id' => $entry->id,
         'lastUpdated' => md5(json_encode($entry->dateUpdated)),
