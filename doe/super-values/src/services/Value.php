@@ -140,7 +140,11 @@ class Value extends Component
 
       // file
       if ($this->isAssetQuery($values[$fieldHandle])) {
-        $values[$fieldHandle] = $this->setImage($values[$fieldHandle], $field->handle, $parentHandle);
+        if ($field->handle === 'media') {
+          $values[$fieldHandle] = $this->setImageGroup($values[$fieldHandle], $field->handle, $parentHandle);
+        } else {
+          $values[$fieldHandle] = $this->setImage($values[$fieldHandle], $field->handle, $parentHandle);
+        }
       }
 
       // super table field
@@ -316,6 +320,72 @@ class Value extends Component
     }
 
     return $image;
+  }
+
+  protected function setImageGroup($field, $handle, $parentHandle, $style = null)
+  {
+    $emptyImage = [
+      'video' => false,
+      'url' => '',
+      'alt' => '',
+      'title' => null
+    ];
+
+    if ($field === null) {
+      return $emptyImage;
+    }
+
+    $fields = $field->all();
+    $images = [];
+
+    foreach($fields as $field) {
+      if (is_null($field)) {
+        return $emptyImage;
+      }
+
+      if ($field->kind !== 'image') {
+        return [
+          'url' => $field->url
+        ];
+      }
+
+      $image = [
+        'url' => $field->url,
+        'alt' => !is_null($field->imageAltText) ? $field->imageAltText : '',
+        'title' => $field->imageTitle,
+        'dimensions' => null,
+        'videoUrl' => $field->videoUrl,
+        'videoUrlMobile' => $field->videoUrlMobile
+      ];
+
+      $imageStyles = SuperImage::$plugin->resize->getImageStyles();
+
+      if (is_null($style)) {
+        foreach(array_keys($imageStyles) as $imageStyle) {
+          if (strpos(strtolower($handle), $imageStyle) !== false || $imageStyle === $parentHandle) {
+            $style = $imageStyle;
+            break;
+          }
+        }
+      }
+
+      if (
+        Craft::$app->plugins->getPlugin('super-image', false) &&
+        Craft::$app->plugins->getPlugin('super-image', false)->isInstalled
+      ) {
+        $image['dimensions'] = SuperImage::$plugin->resize->getOriginalDimensions($field);
+        $image['loadingUrl'] = SuperImage::$plugin->resize->getLowQualityUrl($field);
+
+        if (!is_null($style)) {
+          $image['sources'] = SuperImage::$plugin->resize->getSources($field, $style);
+        }
+      }
+
+      $images[] = $image;
+    }
+
+
+    return $images;
   }
 
   protected function cleanUpSuperTableField($field)
