@@ -142,7 +142,7 @@ const app = new Vue({
 
 document.addEventListener('DOMContentLoaded', () => {
   router.onReady(() => {
-    app.$mount('#app', true);
+    app.$mount('#app');
   });
 
   // Add service worker if on production and browser supports it

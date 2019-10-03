@@ -13,8 +13,8 @@
           </a>
 
           <img
+            :src="furnitureImage"
             alt="Furniture landing page background image"
-            src="../../images/furniture-landing-img.jpg"
           />
 
           <figcaption>
@@ -32,8 +32,8 @@
           </router-link>
 
           <img
+            :src="flooringImage"
             alt="Flooring landing page background image"
-            src="../../images/flooring-landing-img.jpg"
           />
 
           <figcaption>
@@ -47,9 +47,20 @@
 
 <script>
   export default {
-    components: {},
-    data() {
-      return {};
+    computed: {
+      imagePath() {
+        if (this.$prerender) {
+          return '/static/images';
+        }
+
+        return '../../images';
+      },
+      flooringImage() {
+        return `${this.imagePath}/flooring-landing-img.jpg`;
+      },
+      furnitureImage() {
+        return `${this.imagePath}/furniture-landing-img.jpg`;
+      }
     },
     activated() {
       this.$emit('page-activated');
