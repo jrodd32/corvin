@@ -12,92 +12,104 @@
 }
 
 // Breakpoints
+@mixin iPhone5 {
+  @media (max-width: 320px) {
+    @content;
+  }
+}
+
 @mixin small-mobile {
-  @media (max-width: calc(#{$mobile} - .1rem)) {
+  @media (max-width: $mobile - 1px) {
     @content;
   }
 }
 
 @mixin mobile {
-  @media (max-width: calc(#{$tablet} - .1rem)) {
+  @media (max-width: $tablet - 1px) {
+    @content;
+  }
+}
+
+@mixin mobile-landscape {
+  @media (orientation: landscape) and (max-width: $tablet - 1px) {
     @content;
   }
 }
 
 @mixin tablet {
-  @media (min-width: $tablet) {
+  @media (min-width: $tablet), print {
     @content;
   }
 }
 
 @mixin tablet-only {
-  @media (min-width: $tablet) and (max-width: calc(#{$desktop} + (2 * #{$gap}) - .1rem)) {
+  @media (min-width: $tablet) and (max-width: $desktop - 1px) {
     @content;
   }
 }
 
 @mixin touch {
-  @media (max-width: calc(#{$desktop} - .1rem)) {
+  @media (max-width: $desktop - 1px) {
     @content;
   }
 }
 
 @mixin desktop {
-  @media (min-width: calc(#{$desktop} + (2 * #{$gap}))) {
+  @media (min-width: $desktop) {
     @content;
   }
 }
 
 @mixin desktop-only {
-  @media (min-width: calc(#{$desktop} + (2 * #{$gap})) and (max-width: calc(#{$widescreen} + (2 * #{$gap}) - .1rem))) {
+  @media (min-width: $desktop) and (max-width: $widescreen - 1px) {
     @content;
   }
 }
 
 @mixin desktop-to-cinema {
-  @media (min-width: calc(#{$desktop} + (2 * #{$gap})) and (max-width: calc(#{$cinema} + (2 * #{$gap}) - .1rem))) {
+  @media (min-width: $desktop) and (max-width: $cinema - 1px) {
     @content;
   }
 }
 
 @mixin widescreen {
-  @media (min-width: calc(#{$widescreen} + (2 * #{$gap}))) {
+  @media (min-width: $widescreen) {
     @content;
   }
 }
 
 @mixin widescreen-only {
-  @media (min-width: calc(#{$widescreen} + (2 * #{$gap})) and (max-width: calc(#{$cinema} + (2 * #{$gap}) - .1rem))) {
+  @media (min-width: $widescreen) and (max-width: $cinema - 1px) {
     @content;
   }
 }
 
 @mixin widescreen-down {
-  @media (max-width: calc(#{$cinema} + (2 * #{$gap}))) {
+  @media (max-width: $cinema) {
     @content;
   }
 }
 
 @mixin cinema {
-  @media (min-width: calc(#{$cinema} + (2 * #{$gap}))) {
+  @media (min-width: $cinema) {
     @content;
   }
 }
 
 @mixin cinema-only {
-  @media (min-width: calc(#{$cinema} + (2 * #{$gap})) and (max-width: calc(#{$ultrawide} + (2 * #{$gap}) - .1rem))) {
+  @media (min-width: $cinema) and (max-width: $ultrawide - 1px) {
     @content;
   }
 }
 
 @mixin ultrawide {
-  @media (min-width: calc(#{$ultrawide} + (2 * #{$gap}))) {
+  @media (min-width: $ultrawide) {
     @content;
   }
 }
 
 @mixin tv {
-  @media (min-width: calc(#{$tv} + (2 * #{$gap}))) {
+  @media (min-width: $tv) {
     @content;
   }
 }
@@ -174,8 +186,8 @@
     content: "";
     display: table;
     clear: both;
-    width: .1rem;
-    margin-left: -.1rem;
+    width: 1px;
+    margin-left: -1px;
   }
 
   &::before {
