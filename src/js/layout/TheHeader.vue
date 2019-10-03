@@ -334,6 +334,11 @@
       color: $white;
       font-weight: bold;
       font-size: 1.8rem;
+
+      &:hover,
+      &.router-link-exact-active {
+        color: $orange;
+      }
     }
 
     @include tablet() {
