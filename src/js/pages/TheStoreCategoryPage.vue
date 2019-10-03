@@ -2,7 +2,14 @@
   <main class="page has-inset is-gapless products">
     <corvin-page-hero
       v-if="hasHero"
-      :hero="data.content.hero"
+      :hero="{
+        headline: data.title,
+        backgroundImage: {
+          alt: data.image.alt,
+          url: data.image.url
+        },
+        content: data.fullDescription
+      }"
     />
 
     <corvin-products
@@ -28,7 +35,8 @@
     mixins: [ajaxPageProps],
     data() {
       return {
-        jsonUrl: `/${this.$api.pages.shopByCategory}/${this.route.params.category}`,
+        handle: 'product-categories',
+        slug: this.$route.params.category
       };
     },
     computed: {
@@ -42,8 +50,9 @@
         return 'content' in this.data;
       },
       hasHero() {
-        return this.hasContent
-               && 'hero' in this.data.content;
+        return 'image' in this.data
+               && 'title' in this.data
+               && 'fullDescription' in this.data;
       },
       hasProducts() {
         return this.hasContent
