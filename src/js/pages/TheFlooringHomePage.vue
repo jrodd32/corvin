@@ -14,7 +14,10 @@
         v-if="hasCategories"
         class="shop-by-category"
       >
-        <h2 v-html="data.content.categories.headline" />
+        <h2
+          class="section-heading"
+          v-html="data.content.categories.headline"
+        />
 
         <div class="category-wrapper">
           <div
@@ -58,7 +61,10 @@
         class="social"
       >
         <div class="content">
-          <h4 v-html="data.content.social.headline" />
+          <h4
+            class="section-heading"
+            v-html="data.content.social.headline"
+          />
           <div v-html="data.content.social.description" />
         </div>
 
@@ -135,7 +141,7 @@
     methods: {
       handleSetHeroOffset(height) {
         console.log(height);
-        this.heroHeight = height;
+        this.heroHeight = height + 50;
       }
     }
   };
@@ -167,7 +173,6 @@
     h2 {
       color: $tertiaryBlue;
       font-size: 2.4rem;
-      letter-spacing: 5px;
       margin-bottom: $u10;
       text-align: center;
       text-transform: uppercase;
@@ -299,7 +304,6 @@
     h4 {
       @include font-primary;
       font-size: 2.4rem;
-      letter-spacing: 5px;
       text-transform: uppercase;
     }
 
