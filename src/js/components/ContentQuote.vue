@@ -72,6 +72,7 @@
         flex: 1 1 calc(50% - #{$u12});
         margin-left: $u12;
         font-size: 4rem;
+        padding: 0 4rem;
       }
     }
   }
