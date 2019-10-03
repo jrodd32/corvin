@@ -6,11 +6,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://corvin.s3.us-east-2.amazonaws.com/static/fonts/icomoon.8b75d1cbc569367247904547c69c0cd6.woff"
   },
   {
-    "revision": "caef946369d092eec96f32de3ccb52f2",
+    "revision": "5f4da5d92dac75aeedf86846583cc199",
     "url": "https://corvin.s3.us-east-2.amazonaws.com/static/index.html"
   },
   {
-    "url": "https://corvin.s3.us-east-2.amazonaws.com/static/main.01c7f48bffd34d35abc9.js"
+    "url": "https://corvin.s3.us-east-2.amazonaws.com/static/main.006c9916f6aa1328c7a8.js"
   },
   {
     "revision": "4407108eef93eec6356222f1eea930d6",

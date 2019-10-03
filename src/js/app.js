@@ -140,9 +140,16 @@ const app = new Vue({
   template: '<App />'
 });
 
+let hydrate = !Vue.prototype.$staging;
+
+if (hydrate) {
+  const body = document.querySelector('body');
+  hydrate = ((body.hasAttribute('data-last-updated') && body.dataset.lastUpdated) === (body.hasAttribute('data-last-rendered') && body.dataset.lastRendered));
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   router.onReady(() => {
-    app.$mount('#app');
+    app.$mount('#app', hydrate);
   });
 
   // Add service worker if on production and browser supports it
