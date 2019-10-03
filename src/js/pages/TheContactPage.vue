@@ -102,6 +102,10 @@
 <style lang="scss" scoped>
   .contact-sidebar {
     margin-top: 5rem;
+
+    img {
+      width: 100%;
+    }
   }
 
   .media {
