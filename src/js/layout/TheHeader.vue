@@ -133,7 +133,7 @@
         <div class="navbar-item">
           <router-link
             class="navbar-link"
-            to="/contact"
+            to="/contact-us"
           >
             Contact Us
           </router-link>

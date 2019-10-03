@@ -6,22 +6,25 @@
   >
     <doe-honey-pot ref="honeyPot" />
 
-    <doe-fields-wrapper>
+    <doe-fields-wrapper class="is-space-between">
       <doe-input
+        class="is-wide"
         v-model="form.first_name"
         field="first_name"
         required
       />
 
       <doe-input
+        class="is-wide"
         v-model="form.last_name"
         field="last_name"
         required
       />
     </doe-fields-wrapper>
 
-    <doe-fields-wrapper>
+    <doe-fields-wrapper class="is-space-between">
       <doe-input
+        class="is-wide"
         v-mask="phoneMask"
         v-model="form.phone"
         field="phone"
@@ -30,6 +33,7 @@
       />
 
       <doe-input
+        class="is-wide"
         v-model="form.email"
         field="email"
         label="Email address"

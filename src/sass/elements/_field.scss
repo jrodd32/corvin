@@ -10,7 +10,8 @@
   max-width: 100%;
   width: 100%;
   background-color: transparent;
-  border-color: currentColor;
+  // border-color: currentColor;
+  border-color: #9a9a9a;
   border-width: 1px;
   border-style: solid;
   border-radius: 0;
@@ -63,10 +64,11 @@
   }
 
   .field & {
+    @include font-primary;
     position: absolute;
     top: 0;
     left: 5px;
-    color: inherit;
+    color: $primaryBlue;
     display: block;
     transform: translateY(1.46em);
     transform-origin: 0% 100%;
@@ -166,6 +168,7 @@
   max-width: 100%;
   min-width: 100%;
   line-height: 1.5;
+  min-height: 300px;
 
   > textarea,
   > pre {

@@ -3,7 +3,7 @@ const api = {
   },
   pages: {
     about: 'about',
-    contact: 'contact',
+    contact: 'contact-us',
     flooring: 'maintenance',
     gallery: 'gallery',
     home: 'home',
