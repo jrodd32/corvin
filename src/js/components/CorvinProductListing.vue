@@ -5,11 +5,13 @@
       class="product-title"
     />
 
-    <img
-      :alt="product.shopListingImage.alt"
-      :src="product.shopListingImage.url"
-      class="product-image"
-    />
+    <figure class="product-image">
+      <div class="overlay-effect"><div></div></div>
+      <img
+        :alt="product.shopListingImage.alt"
+        :src="product.shopListingImage.url"
+      />
+    </figure>
 
     <div
       v-if="isCategoryStyle"
@@ -82,6 +84,26 @@
 </script>
 
 <style lang="scss" scoped>
+  .overlay-effect {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgba(75, 83, 87, 0.85);
+
+    div {
+      background-image: url('../../images/shopping-bag-icon.svg');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 4rem;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
   .product {
     padding-top: $u6;
 
@@ -89,12 +111,19 @@
       font-size: 2.4rem;
     }
 
-    img {
-      width: 100%;
-    }
-
     .product-image {
+      position: relative;
       margin-bottom: 3rem;
+
+      &:hover {
+        .overlay-effect {
+          opacity: 1;
+        }
+      }
+
+      img {
+        width: 100%;
+      }
     }
 
     .category-content,

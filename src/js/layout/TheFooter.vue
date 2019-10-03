@@ -169,11 +169,11 @@
 
   .footer-brand {
     padding-top: 10rem;
-    padding-bottom: 6rem;
+    padding-bottom: 10rem;
 
     img {
       display: block;
-      margin: 0 auto $u6 auto;
+      margin: 0 auto $u8 auto;
       width: 237px;
     }
 
@@ -186,6 +186,18 @@
       h3 {
         line-height: 4.2rem;
         text-align: center;
+        max-width: 60vw;
+        margin: 0 auto;
+      }
+
+      img {
+        margin-bottom: $u10;
+      }
+    }
+
+    @include desktop() {
+      h3 {
+        max-width: initial;
       }
     }
   }
