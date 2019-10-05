@@ -37,13 +37,6 @@ h6,
   }
 }
 
-h1 {
-  @include desktop() {
-    font-size: 6.4rem;
-    margin-bottom: 4rem;
-  }
-}
-
 .is-alternative {
   @include font-secondary();
 }
@@ -55,6 +48,17 @@ h1 {
     @include desktop() {
       font-size: $size;
     }
+  }
+}
+
+h1 {
+  @include iPhone5() {
+    font-size: 4rem;
+  }
+
+  @include desktop() {
+    font-size: 6.4rem;
+    margin-bottom: 4rem;
   }
 }
 
