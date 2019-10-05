@@ -3,7 +3,7 @@
     :class="modifiers"
     class="page-hero"
   >
-    <div class="page-hero-content is-contained">
+    <div class="page-hero-content is-contained content-wrapper">
       <h1
         v-if="hasHeadline"
         v-html="hero.headline"
@@ -76,8 +76,8 @@
 
     &-content {
       padding-bottom: $u6;
-      padding-left: $u6;
-      padding-right: $u6;
+      // padding-left: $u6;
+      // padding-right: $u6;
       padding-top: $u6;
     }
 
