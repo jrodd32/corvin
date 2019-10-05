@@ -144,6 +144,7 @@
 
     @include tablet() {
       .profiles {
+        align-items: flex-start;
         flex-flow: row wrap;
         justify-content: space-between;
       }
