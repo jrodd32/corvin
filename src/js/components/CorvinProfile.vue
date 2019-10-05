@@ -11,11 +11,30 @@
     <p class="profile-title">
       {{ profile.teamMemberTitle }}
     </p>
+    <p
+      v-if="hasPhone"
+      class="profile-phone"
+    >
+      {{ profile.phone }}
+    </p>
+    <p
+      v-if="hasEmail"
+      class="profile-email"
+    >
+      {{ profile.email }}
+    </p>
   </div>
 </template>
 
 <script>
   export default {
+    filters: {
+      profileImage(url) {
+        return url.length > 0
+               ? url
+               : 'https://placehold.it/256x280';
+      }
+    },
     props: {
       profile: {
         type: Object,
@@ -24,11 +43,15 @@
         }
       }
     },
-    filters: {
-      profileImage(url) {
-        return url.length > 0
-               ? url
-               : 'https://placehold.it/256x280';
+    computed: {
+      hasEmail() {
+        return 'email' in this.profile
+               && this.profile.email.length > 0;
+      },
+      hasPhone() {
+        return 'phone' in this.profile
+               && this.profile.phone !== null
+               && this.profile.phone.length > 0;
       }
     }
   };
@@ -48,6 +71,7 @@
     }
 
     &-name,
+    &-title,
     &-email,
     &-phone {
       margin-bottom: 0;
