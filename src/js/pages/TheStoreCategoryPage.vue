@@ -8,16 +8,16 @@
           alt: data.image.alt,
           url: data.image.url
         },
-        content: data.fullDescription
+        content: description
       }"
     />
 
     <corvin-products
       v-if="hasProducts"
-      :has-filters="showFilters"
-      :listing-type="computedListingType"
-      :products="data.content.products.grid.items"
+      :products="data.products"
       class="is-contained"
+      has-filters.boolean="true"
+      listing-type="category"
     />
   </main>
 </template>
@@ -40,11 +40,20 @@
       };
     },
     computed: {
-      categoryStyle() {
-        return this.$route.params.slug === undefined;
-      },
-      computedListingType() {
-        return this.categoryStyle ? 'category' : '';
+      description() {
+        if ('fullDescription' in this.data
+            && this.data.fullDescription
+            && this.data.fullDescription.length > 0) {
+          return this.data.fullDescription;
+        }
+
+        if ('shortDescription' in this.data
+            && this.data.shortDescription
+            && this.data.shortDescription.length > 0) {
+          return this.data.shortDescription;
+        }
+
+        return 'description needed';
       },
       hasContent() {
         return 'content' in this.data;
@@ -55,14 +64,8 @@
                && 'fullDescription' in this.data;
       },
       hasProducts() {
-        return this.hasContent
-               && 'products' in this.data.content
-               && 'grid' in this.data.content.products
-               && 'items' in this.data.content.products.grid
-               && this.data.content.products.grid.items.length > 0;
-      },
-      showFilters() {
-        return !this.categoryStyle;
+        return 'products' in this.data
+               && this.data.products.length > 0;
       }
     },
     activated() {

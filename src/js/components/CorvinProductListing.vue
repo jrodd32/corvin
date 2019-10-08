@@ -6,15 +6,20 @@
     />
 
     <figure class="product-image">
-      <div class="overlay-effect"><div></div></div>
+      <doe-link
+        :href="productLink"
+        class="overlay-effect"
+      >
+        <div></div>
+      </doe-link>
       <img
-        :alt="product.shopListingImage.alt"
-        :src="product.shopListingImage.url"
+        :alt="productListingAlt"
+        :src="productListingUrl"
       />
     </figure>
 
     <div
-      v-if="isCategoryStyle"
+      v-if="isStoreOverview"
       class="category-content"
     >
       <p
@@ -23,7 +28,7 @@
       />
 
       <doe-link
-        :href="'/shop/' + product.slug"
+        :href="productLink"
         class="read-more"
         is-anchor
       >
@@ -36,14 +41,13 @@
       class="product-content"
     >
       <div class="details">
-        <p class="brand">Brand: <span>{{ product.brand }}</span></p>
-        <p class="color">Color: <span>{{ product.color }}</span></p>
+        <p class="brand">Brand: <span>{{ productBrand }}</span></p>
+        <p class="color">Color: <span>{{ product.productColor }}</span></p>
       </div>
 
       <div class="link">
         <doe-link
-          :to="`/store/${product.slug}`"
-          is-button
+          :href="productLink"
           is-blue-alt
         >
           View details
@@ -76,10 +80,48 @@
       }
     },
     computed: {
-      isCategoryStyle() {
-        return this.productStyle === 'category';
+      productBrand() {
+        if ('productBrand' in this.product
+          && this.product.productBrand
+          && this.product.productBrand.length >= 1) {
+            return this.product.productBrand[0].title;
+          }
+
+          return 'Need brand';
+      },
+      productLink() {
+        if (this.productStyle === 'category') {
+          return `/shop${this.product.uri}`;
+        }
+
+        return `/shop/${this.product.slug}`;
+      },
+      productListingAlt() {
+        if ('shopListingImage' in this.product) {
+          return this.product.shopListingImage.alt;
+        }
+
+        if ('productGallery' in this.product && this.product.productGallery.length > 0) {
+          return this.product.productGallery[0].alt;
+        }
+
+        return '';
+      },
+      productListingUrl() {
+        if ('shopListingImage' in this.product) {
+          return this.product.shopListingImage.url;
+        }
+
+        if ('productGallery' in this.product && this.product.productGallery.length > 0) {
+          return this.product.productGallery[0].url;
+        }
+
+        return '';
+      },
+      isStoreOverview() {
+        return this.productStyle === 'store';
       }
-    }
+    },
   }
 </script>
 
@@ -114,6 +156,10 @@
     .product-image {
       position: relative;
       margin-bottom: 3rem;
+
+      .overlay-effect {
+        height: 100%;
+      }
 
       &:hover {
         .overlay-effect {

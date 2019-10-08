@@ -7,10 +7,10 @@
 
     <corvin-products
       v-if="hasProducts"
-      :has-filters="showFilters"
-      :listing-type="computedListingType"
       :products="data.content.products.grid.items"
       class="is-contained"
+      has-filters.boolean="false"
+      listing-type="store"
     />
   </main>
 </template>
@@ -32,12 +32,6 @@
       };
     },
     computed: {
-      categoryStyle() {
-        return this.$route.params.slug === undefined;
-      },
-      computedListingType() {
-        return this.categoryStyle ? 'category' : '';
-      },
       hasContent() {
         return 'content' in this.data;
       },
@@ -51,9 +45,6 @@
                && 'grid' in this.data.content.products
                && 'items' in this.data.content.products.grid
                && this.data.content.products.grid.items.length > 0;
-      },
-      showFilters() {
-        return !this.categoryStyle;
       }
     },
     activated() {
