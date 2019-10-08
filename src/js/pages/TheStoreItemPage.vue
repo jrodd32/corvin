@@ -63,7 +63,7 @@
 </template>
 
 <script>
-  import { products } from '../core/data';
+  import { ajaxPageProps } from '../core/page';
   import CorvinLoading from '../components/CorvinLoading.vue';
   import CorvinProductListing from '../components/CorvinProductListing.vue';
 
@@ -72,18 +72,9 @@
       CorvinLoading,
       CorvinProductListing
     },
-    data() {
-      return {
-        activeProduct: {},
-        products,
-        relatedProducts: []
-      };
-    },
+    mixins: [ajaxPageProps],
+    data() {},
     activated() {
-      this.activeProduct = products.find(product => product.slug === window.location.pathname.replace('/store/', ''));
-
-      this.relatedProducts = products.filter(product => this.activeProduct.relatedProducts.includes(product.id));
-
       this.$emit('page-activated');
       this.$eventBus.$emit('page-loaded');
     }

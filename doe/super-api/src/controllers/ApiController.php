@@ -95,8 +95,8 @@ class ApiController extends Controller
     return $this->asJson(SuperApi::$instance->pages->getAppContent($this->site));
   }
 
-  public function actionPage($handle, $slug)
+  public function actionPage($handle, $slug, $product)
   {
-    return $this->asJson(SuperApi::$instance->pages->getPageContent($this->site, $handle, $slug));
+    return $this->asJson(SuperApi::$instance->pages->getPageContent($this->site, $handle, $slug, $product));
   }
 }

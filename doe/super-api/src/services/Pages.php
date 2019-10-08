@@ -76,11 +76,13 @@ class Pages extends Component
     array_shift($pathParts);
 
     $handle = $pathParts[0] === '' ? 'home' : $pathParts[0];
-    $slug = array_key_exists(1, $pathParts) ? $pathParts[1] : null;
+    $slug = array_key_exists(1, $pathParts) ? $pathParts[1] :
+    null;
+    $product = array_key_exists(2, $pathParts) ? $pathParts[2] : null;
 
     $content = [
       'app' => $this->getAppContent($site),
-      'page' => $this->getPageContent($site, $handle, $slug)
+      'page' => $this->getPageContent($site, $handle, $slug, $product)
     ];
 
     // If page wasn't found, reset the page content
@@ -102,7 +104,7 @@ class Pages extends Component
     return $content;
   }
 
-  public function getPageContent($site = 'en', $handle = null, $slug = null)
+  public function getPageContent($site = 'en', $handle = null, $slug = null, $product = null)
   {
     if (!$handle || (!$handle && !$slug)) {
       return $this->respondWith404();
@@ -116,12 +118,25 @@ class Pages extends Component
 
     $entry = $this->cache->getOrSet(
       $cacheKey,
-      function () use ($site, $handle, $slug) {
-        $entry = $this->getEntries($site, $handle, $slug);
-        if ($handle === 'product-categories' && !is_null($slug)) {
-          $entry['products'] = $this->getEntries($site, $slug);
+      function () use ($site, $handle, $slug, $product) {
+        // All non-product-item pages
+        if (is_null($product)) {
+          $entry = $this->getEntries($site, $handle, $slug);
         }
 
+        // product-item pages
+        if (!is_null($product)) {
+          $entry = $this->getEntries($site, $slug, $product);
+        }
+
+        // Product Categories
+        if ($handle === 'product-categories'
+            && !is_null($slug)
+            && is_null($product)) {
+              $entry['products'] = $this->getEntries($site, $slug);
+        }
+
+        // Overwrite for all-flooring catch-all page
         if ($handle === 'all-flooring' || $slug === 'all-flooring') {
           $flatProducts = [];
 

@@ -66,7 +66,7 @@ class SuperApi extends Module
           '_health' => 'super-api/health/index',
           [
             // <variable_name:{regex_pattern}>
-            'pattern' => 'api/v1/<handle:{slug}>/<slug:{slug}>',
+            'pattern' => 'api/v1/<handle:{slug}>/<slug:{slug}>/<product:{slug}>',
             'route' => 'super-api/api/page',
             'defaults' => [
               'handle' => null,
