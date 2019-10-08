@@ -45,64 +45,6 @@
   import CorvinPageHero from '../components/CorvinPageHero.vue';
   import CorvinProfile from '../components/CorvinProfile.vue';
 
-  const profiles = [
-    {
-      name: 'Mark Corvin',
-      title: 'CO-OWNER, PRESIDENT',
-      image: 'https://placehold.it/256x280',
-      alt: 'Profile image'
-    },
-
-    {
-      name: 'David Brown',
-      title: 'FLOORING MANAGER',
-      image: 'https://placehold.it/256x280',
-      alt: 'Profile image'
-    },
-
-    {
-      name: 'Tyler Corvin',
-      title: 'ASSISTANT FLOORING MANAGER',
-      image: 'https://placehold.it/256x280',
-      alt: 'Profile image'
-    },
-
-    {
-      name: 'Paola Ogadzhanova ',
-      title: 'MARKETING MANAGER',
-      image: 'https://placehold.it/256x280',
-      alt: 'Profile image'
-    },
-
-    {
-      name: 'Mark Corvin',
-      title: 'CO-OWNER, PRESIDENT',
-      image: 'https://placehold.it/256x280',
-      alt: 'Profile image'
-    },
-
-    {
-      name: 'David Brown',
-      title: 'FLOORING MANAGER',
-      image: 'https://placehold.it/256x280',
-      alt: 'Profile image'
-    },
-
-    {
-      name: 'Tyler Corvin',
-      title: 'ASSISTANT FLOORING MANAGER',
-      image: 'https://placehold.it/256x280',
-      alt: 'Profile image'
-    },
-
-    {
-      name: 'Paola Ogadzhanova ',
-      title: 'MARKETING MANAGER',
-      image: 'https://placehold.it/256x280',
-      alt: 'Profile image'
-    }
-  ];
-
   export default {
     components: {
       ContentQuote,
@@ -114,7 +56,6 @@
     data() {
       return {
         jsonUrl: `/${this.$api.pages.about}`,
-        profiles
       };
     },
     computed: {
