@@ -19,7 +19,6 @@ use craft\elements\Entry;
 use craft\helpers\UrlHelper;
 use yii\caching\TagDependency;
 use modules\supervalues\SuperValues;
-use modules\superapi\classes\CategorySortConfig;
 
 /**
  * Pages
@@ -42,7 +41,7 @@ class Pages extends Component
 
   protected $cacheDependency;
 
-  protected $categorySortConfig;
+  protected $productCategories;
 
   public function init()
   {
@@ -58,7 +57,14 @@ class Pages extends Component
       $this->duration = 31536000; // 365 days
     }
 
-    $this->categorySortConfig = new CategorySortConfig();
+    $this->productCategories = [
+      'carpet',
+      'hardwood',
+      'engineered-hardwood',
+      'laminate',
+      'tile',
+      'vinyl-plank'
+    ];
   }
 
   // Public Methods
@@ -112,6 +118,20 @@ class Pages extends Component
       $cacheKey,
       function () use ($site, $handle, $slug) {
         $entry = $this->getEntries($site, $handle, $slug);
+        if ($handle === 'product-categories' && !is_null($slug)) {
+          $entry['products'] = $this->getEntries($site, $slug);
+        }
+
+        if ($handle === 'all-flooring' || $slug === 'all-flooring') {
+          $flatProducts = [];
+
+          foreach($this->productCategories as $slug) {
+            $products = $this->getEntries($site, $slug);
+            $flatProducts = array_merge($flatProducts, $products);
+          }
+
+          $entry['products'] = $flatProducts;
+        }
 
         return $entry;
       },

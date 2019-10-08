@@ -2,6 +2,7 @@ const The404Page = () => import(/* webpackChunkName: 'page-errors' */ '../pages/
 
 const TheHomePage = () => import(/* webpackChunkName: 'page-home' */ '../pages/TheHomePage.vue');
 const TheAboutPage = () => import(/* webpackChunkName: 'page-about' */ '../pages/TheAboutPage.vue');
+const TheAllFloursPage = () => import(/* webpackChunkName: 'page-about' */ '../pages/TheAllFloursPage.vue');
 const TheContactPage = () => import(/* webpackChunkName: 'page-contact' */ '../pages/TheContactPage.vue');
 const TheMaintenancePage = () => import(/* webpackChunkName: 'page-flooring' */ '../pages/TheMaintenancePage.vue');
 const TheFlooringHomePage = () => import(/* webpackChunkName: 'page-flooring' */ '../pages/TheFlooringHomePage.vue');
@@ -17,6 +18,7 @@ const routes = [
   { path: '/home', component: TheFlooringHomePage },
   { path: '/maintenance', component: TheMaintenancePage },
   { path: '/gallery', component: TheGalleryPage },
+  { path: '/shop/all-flooring', component: TheAllFloursPage },
   { path: '/shop/:category/:slug', component: TheStoreItemPage },
   { path: '/shop/:category', component: TheStoreCategoryPage },
   { path: '/shop', component: TheStorePage },
