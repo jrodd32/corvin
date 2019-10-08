@@ -1,5 +1,10 @@
 <template>
-  <main class="page flooring-home is-gapless no-bottom-padding is-inset">
+  <corvin-loading v-if="loading" />
+
+  <main
+    v-else
+    class="page flooring-home is-gapless no-bottom-padding is-inset"
+  >
     <fixed-hero
       v-if="hasHero"
       :hero="data.content.hero"
@@ -86,10 +91,12 @@
 
 <script>
   import { ajaxPageProps } from '../core/page';
+  import CorvinLoading from '../components/CorvinLoading.vue';
   import FixedHero from '../components/FixedHero.vue';
 
   export default {
     components: {
+      CorvinLoading,
       FixedHero
     },
     filters: {

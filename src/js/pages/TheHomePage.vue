@@ -1,5 +1,10 @@
 <template>
-  <main class="page is-gapless no-bottom-padding home">
+  <corvin-loading v-if="loading" />
+
+  <main
+    v-else
+    class="page is-gapless no-bottom-padding home"
+  >
     <div class="departments">
       <div class="furniture">
         <figure>
@@ -46,7 +51,12 @@
 </template>
 
 <script>
+  import CorvinLoading from '../components/CorvinLoading.vue';
+
   export default {
+    components: {
+      CorvinLoading
+    },
     computed: {
       imagePath() {
         if (this.$prerender) {

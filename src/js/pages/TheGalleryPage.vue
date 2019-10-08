@@ -1,5 +1,6 @@
 <template>
   <corvin-loading v-if="loading" />
+
   <main
     v-else
     class="page has-inset is-gapless gallery"

@@ -1,5 +1,10 @@
 <template>
-  <main class="page store-item-page">
+  <corvin-loading v-if="loading" />
+
+  <main
+    v-else
+    class="page store-item-page"
+  >
     <h2>Store</h2>
 
     <div class="container">
@@ -59,10 +64,12 @@
 
 <script>
   import { products } from '../core/data';
+  import CorvinLoading from '../components/CorvinLoading.vue';
   import CorvinProductListing from '../components/CorvinProductListing.vue';
 
   export default {
     components: {
+      CorvinLoading,
       CorvinProductListing
     },
     data() {

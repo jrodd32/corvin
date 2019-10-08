@@ -1,5 +1,10 @@
 <template>
-  <main class="page has-inset is-gapless products">
+  <corvin-loading v-if="loading" />
+
+  <main
+    v-else
+    class="page has-inset is-gapless products"
+  >
     <corvin-page-hero
       v-if="hasHero"
       :hero="data.content.hero"
@@ -17,11 +22,13 @@
 
 <script>
   import { ajaxPageProps } from '../core/page';
+  import CorvinLoading from '../components/CorvinLoading.vue';
   import CorvinPageHero from '../components/CorvinPageHero.vue';
   import CorvinProducts from '../components/CorvinProducts.vue';
 
   export default {
     components: {
+      CorvinLoading,
       CorvinPageHero,
       CorvinProducts
     },
