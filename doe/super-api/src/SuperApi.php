@@ -70,7 +70,8 @@ class SuperApi extends Module
             'route' => 'super-api/api/page',
             'defaults' => [
               'handle' => null,
-              'slug' => null
+              'slug' => null,
+              'product' => null
             ]
           ]
         ];

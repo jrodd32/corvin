@@ -19,7 +19,7 @@ const routes = [
   { path: '/maintenance', component: TheMaintenancePage },
   { path: '/gallery', component: TheGalleryPage },
   { path: '/shop/all-flooring', component: TheAllFloursPage },
-  { path: '/shop/:category/:slug', component: TheStoreItemPage },
+  { path: '/shop/:category/:product', component: TheStoreItemPage },
   { path: '/shop/:category', component: TheStoreCategoryPage },
   { path: '/shop', component: TheStorePage },
 

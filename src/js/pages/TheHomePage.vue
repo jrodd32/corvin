@@ -52,10 +52,18 @@
 
 <script>
   import CorvinLoading from '../components/CorvinLoading.vue';
+  import { nonAjaxPageProps } from '../core/page';
+import { loadavg } from 'os';
 
   export default {
     components: {
       CorvinLoading
+    },
+    mixins: [nonAjaxPageProps],
+    data() {
+      return {
+        loading: true
+      };
     },
     computed: {
       imagePath() {
@@ -75,6 +83,9 @@
     activated() {
       this.$emit('page-activated');
       this.$eventBus.$emit('page-loaded');
+    },
+    mounted() {
+      this.loading = false;
     }
   };
 </script>

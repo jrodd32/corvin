@@ -40,10 +40,20 @@
     padding-right: $u6;
   }
 
+  &.margin-wrapper {
+    margin-left: $u6;
+    margin-right: $u6;
+  }
+
   @include desktop() {
     &.content-wrapper {
       padding-left: $u10;
       padding-right: $u10;
+    }
+
+    &.margin-wrapper {
+      margin-left: $u10;
+      margin-right: $u10;
     }
   }
 
@@ -51,6 +61,11 @@
     &.content-wrapper {
       padding-left: $u14;
       padding-right: $u14;
+    }
+
+    &.margin-wrapper {
+      margin-left: $u14;
+      margin-right: $u14;
     }
   }
 

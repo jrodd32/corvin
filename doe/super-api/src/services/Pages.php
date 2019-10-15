@@ -127,6 +127,8 @@ class Pages extends Component
         // product-item pages
         if (!is_null($product)) {
           $entry = $this->getEntries($site, $slug, $product);
+          $entry['category'] = $this->formatCategory($slug);
+          $entry['categorySlug'] = $slug;
         }
 
         // Product Categories
@@ -283,5 +285,10 @@ class Pages extends Component
   protected function formatHandle($handle)
   {
     return lcfirst(str_replace('-', '', ucwords($handle, '-')));
+  }
+
+  protected function formatCategory($handle)
+  {
+    return str_replace('-', '', ucwords($handle, '-'));
   }
 }

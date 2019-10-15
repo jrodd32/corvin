@@ -51,6 +51,7 @@ const ajaxPageProps = {
 
       let handle = pathParts[0];
       let slug = pathParts[1];
+      let product = pathParts[2];
 
       // If handle isn't present, use the home page handle
       if (handle.length === 0) {
@@ -67,7 +68,8 @@ const ajaxPageProps = {
       }
 
       // Combine handle and slug into one URL string
-      const pageEndpoint = slug === undefined ? `${handle}` : `${handle}/${slug}`;
+      let pageEndpoint = slug === undefined ? `${handle}` : `${handle}/${slug}`;
+      pageEndpoint = product === undefined ? pageEndpoint : `${handle}/${slug}/${product}`;
 
       this.$axios.get(url || this.url || `/v1/${pageEndpoint}`)
         .then((response) => {

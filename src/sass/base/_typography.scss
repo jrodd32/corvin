@@ -51,7 +51,8 @@ h6,
   }
 }
 
-h1 {
+h1,
+.is-h1 {
   @include iPhone5() {
     font-size: 4rem;
   }
@@ -62,7 +63,8 @@ h1 {
   }
 }
 
-h2 {
+h2,
+.is-h2 {
   @include desktop() {
     font-size: 3.2rem;
   }
