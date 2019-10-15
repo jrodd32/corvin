@@ -21,7 +21,7 @@
 
         <doe-link
           v-if="hasCategoryLink"
-          :href="`shop/${data.categorySlug}`"
+          :href="`/shop/${data.categorySlug}`"
           :text="data.category"
           is-anchor
         />
