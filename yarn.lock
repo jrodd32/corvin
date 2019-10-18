@@ -819,6 +819,16 @@
   dependencies:
     "@bit/doeanderson.components.core.utilities" "1.0.2"
 
+"@bit/doeanderson.components.components.doe-modal@^0.0.9":
+  version "0.0.9"
+  resolved "https://node.bit.dev/doeanderson.components.components.doe-modal/-/doeanderson.components.components.doe-modal-0.0.9.tgz#24b3ddcfe6c04e7756f5fd12336ad4472ae8998e"
+  integrity sha1-JLPdz+bATndW9f0SM2rURyromY4=
+  dependencies:
+    "@bit/doeanderson.components.components.doe-overlay" "0.0.9"
+    "@bit/doeanderson.components.core.mixins" "0.0.11"
+    "@bit/doeanderson.components.elements.doe-link" "0.0.10"
+    body-scroll-lock "^2.5.10"
+
 "@bit/doeanderson.components.components.doe-notification@1.0.3":
   version "1.0.3"
   resolved "https://node.bit.dev/doeanderson.components.components.doe-notification/-/doeanderson.components.components.doe-notification-1.0.3.tgz#14faee4ba18cdec01908afbf913c99590ec2fb0b"
@@ -836,6 +846,11 @@
     "@bit/doeanderson.components.components.doe-content" "0.0.8"
     "@bit/doeanderson.components.core.styles" "0.0.6"
     "@bit/doeanderson.components.elements.doe-link" "0.0.7"
+
+"@bit/doeanderson.components.components.doe-overlay@0.0.9", "@bit/doeanderson.components.components.doe-overlay@^0.0.9":
+  version "0.0.9"
+  resolved "https://node.bit.dev/doeanderson.components.components.doe-overlay/-/doeanderson.components.components.doe-overlay-0.0.9.tgz#8b567d9ab5d9987ffcfb3c42657e96dd0b774403"
+  integrity sha1-i1Z9mrXZmH/8+zxCZX6W3Qt3RAM=
 
 "@bit/doeanderson.components.core.event-bus@^0.0.6":
   version "0.0.6"
@@ -868,6 +883,11 @@
   version "0.0.10"
   resolved "https://node.bit.dev/doeanderson.components.core.locales/-/doeanderson.components.core.locales-0.0.10.tgz#cb355d730518dc91ec6c9862d8c86dcbcfbfb8e7"
   integrity sha1-yzVdcwUY3JHsbJhi2Mhty8+/uOc=
+
+"@bit/doeanderson.components.core.mixins@0.0.11":
+  version "0.0.11"
+  resolved "https://node.bit.dev/doeanderson.components.core.mixins/-/doeanderson.components.core.mixins-0.0.11.tgz#4c7982f9057bf8c73fa237d8012d40f9a3cc75c0"
+  integrity sha1-THmC+QV7+Mc/ojfYAS1A+aPMdcA=
 
 "@bit/doeanderson.components.core.styles@0.0.6", "@bit/doeanderson.components.core.styles@0.0.9", "@bit/doeanderson.components.core.styles@file:./src/js/core/styles":
   version "0.0.6"

@@ -6,7 +6,7 @@
     <transition name="fade">
       <div :class="modalClassNames">
         <div class="modal-body">
-          <legent-link
+          <doe-link
             class="modal-close"
             icon="cancel"
             is-button
@@ -33,7 +33,7 @@
 <script>
   import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
   import { escKeyProps } from '../core/mixins';
-  import DoeOverlay from '../doe/DoeOverlay.vue';
+  import DoeOverlay from '@bit/doeanderson.components.components.doe-overlay';
 
   const bodyElement = document.body;
 

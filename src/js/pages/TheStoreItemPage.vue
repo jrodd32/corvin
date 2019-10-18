@@ -140,12 +140,36 @@
           />
         </div>
       </div>
-    </div>
+    </div>'
 
     <corvin-related-products
       v-if="hasRelatedProducts"
       :products="data.relatedProducts"
     />
+
+    <doe-modal
+      v-if="showModal"
+      class="calculator-modal"
+      @close="handleModalClose"
+    >
+      <div class="calculator">
+        <h3>Cost Estimate</h3>
+        <p>Enter the number of square feet needed and we will calculate the price for you.</p>
+        <doe-input
+          v-model="price"
+          field="price"
+          disabled
+          skip-validation
+        />
+
+        <doe-input
+          v-model="feet"
+          field="feet"
+        />
+
+        <p class="total">Estimated total: {{ calculatedPrice }}</p>
+      </div>
+    </doe-modal>
   </main>
 </template>
 
@@ -169,7 +193,19 @@
       ajaxPageProps,
       windowProps
     ],
+    data() {
+      return {
+        feet: '',
+        showModal: false
+      };
+    },
     computed: {
+      calculatedPrice() {
+        const cost = (parseFloat(this.price) * parseInt(this.feet, 10)).toFixed(2);
+        return isNaN(cost)
+               ? ''
+               : cost;
+      },
       hasBrand() {
         return 'productBrand' in this.data
                && this.data.productBrand
@@ -250,6 +286,17 @@
         return this.isMobile
                ? 'is-h3'
                : 'is-h1';
+      },
+      price() {
+        return this.data.productPrice.match(/[+-]?\d+(?:\.\d+)?/g);
+      }
+    },
+    methods: {
+      handleCalculateSqFt() {
+        this.showModal = true;
+      },
+      handleModalClose() {
+        this.showModal = false;
       }
     }
   };
