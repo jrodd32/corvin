@@ -5,11 +5,11 @@
     v-else
     class="page store-item-page no-bottom-padding"
   >
-    <h2 class="is-contained content-wrapper is-h1 is-small-margin">
-      Shop
-    </h2>
-
     <div class="is-contained content-wrapper is-no-margin">
+      <h2 :class="pageHeadlineClass">
+        Shop
+      </h2>
+
       <div class="breadcrumbs">
         <doe-link
           href="/shop"
@@ -42,7 +42,7 @@
       </div>
     </div>
 
-    <div class="is-contained content-wrapper">
+    <div class="is-contained content-wrapper is-small-margin">
       <div class="product-item">
         <div class="product-image">
           <img
@@ -117,19 +117,27 @@
               <span class="product-label">Specs:</span>
               {{ data.productSpecs|filterHtml }}
             </p>
-
-            <div
-              v-if="hasGallery"
-              class="gallery"
-            >
-              <img
-                v-for="(pic, index) in data.productGallery"
-                :key="index"
-                :alt="pic.alt"
-                :src="pic.url"
-              />
-            </div>
           </div>
+
+          <div
+            v-if="hasGallery"
+            class="product-gallery"
+          >
+            <img
+              v-for="(pic, index) in data.productGallery"
+              :key="index"
+              :alt="pic.alt"
+              :src="pic.url"
+            />
+          </div>
+
+          <doe-link
+            class="calculate-sq-ft"
+            is-button
+            is-blue
+            text="Calculate Sq. Footage"
+            @click.native="handleCalculateSqFt"
+          />
         </div>
       </div>
     </div>
@@ -143,6 +151,7 @@
 
 <script>
   import { ajaxPageProps } from '../core/page';
+  import { windowProps } from '../core/mixins';
   import CorvinLoading from '../components/CorvinLoading.vue';
   import CorvinRelatedProducts from '../components/CorvinRelatedProducts.vue';
 
@@ -156,7 +165,10 @@
       CorvinLoading,
       CorvinRelatedProducts
     },
-    mixins: [ajaxPageProps],
+    mixins: [
+      ajaxPageProps,
+      windowProps
+    ],
     computed: {
       hasBrand() {
         return 'productBrand' in this.data
@@ -233,16 +245,33 @@
         return 'relatedProducts' in this.data
                && this.data.relatedProducts
                && this.data.relatedProducts.length > 0;
+      },
+      pageHeadlineClass() {
+        return this.isMobile
+               ? 'is-h3'
+               : 'is-h1';
       }
     }
   };
 </script>
 
 <style lang="scss" scoped>
+  h2 {
+    margin-top: $u6;
+
+    @include tablet() {
+      margin-top: 6rem;
+    }
+
+    @include desktop() {
+      margin-top: 10rem;
+    }
+  }
+
   .breadcrumbs {
     border-bottom: 1px solid $tertiaryBlue;
     border-top: 1px solid $tertiaryBlue;
-    display: flex;
+    display: none;
     flex-flow: row nowrap;
     margin-bottom: 10rem;
     overflow: hidden;
@@ -258,7 +287,11 @@
       text-transform: uppercase;
     }
 
-    .product-name
+    .product-name {
+      font-weight: 600;
+    }
+
+    .product-name,
     a:hover {
       color: $orange;
     }
@@ -267,58 +300,22 @@
       margin: 0;
     }
 
+    @include tablet() {
+      display: flex;
+    }
+
     @include desktop() {
       padding-bottom: $u8;
       padding-top: $u8;
     }
   }
 
-  .gallery {
-    display: flex;
-    flex-flow: row nowrap;
-    overflow: hidden;
-
-    & > * {
-      flex: 0 1 calc(50% - #{$u4});
-      margin-right: $u4;
-    }
-
-    img {
-      max-width: 12rem;
-    }
-  }
-
-  .product-overview {
-    border-bottom: 1px solid $tertiaryBlue;
-    margin-bottom: $u8;
-    padding-bottom: $u8;
-
-    p {
-      margin-bottom: 0;
-    }
-
-    & > * {
-      margin-bottom: 1rem;
-    }
-  }
-
   .product-item {
-    display: flex;
-    flex-flow: column nowrap;
-
-    .product-image {
-      flex: 1 1 calc(60% - $u14);
-      margin-right: $u14;
-    }
-
-    .product-quick-facts {
-      flex: 1 1 40%;
-    }
-
     .product-brand {
       @include font-primary();
       color: $primaryBlue;
       font-size: 3.6rem;
+      margin-top: $u6;
     }
 
     .product-name {
@@ -327,20 +324,116 @@
       font-size: 2.4rem;
       font-style: italic;
     }
+
     .product-color {}
     .product-price {}
 
-    @include tablet() {
+    @include desktop {
+      display: flex;
       flex-direction: row;
+
+      .product-brand {
+        margin-top: 0;
+      }
+
+      .product-image {
+        flex: 1 1 calc(60% - #{$u14});
+        margin-right: $u14;
+      }
+
+      .product-quick-facts {
+        display: block;
+        flex: 1 1 40%;
+      }
     }
   }
 
-  .product-name {
-    color: $orange;
-    font-weight: 600;
+  .product-quick-facts {
+    display: flex;
+    flex-flow: column nowrap;
+
+    .product-overview {
+      order: 1;
+    }
+
+    .product-gallery {
+      order: 2
+    }
+
+    .product-meta {
+      order: 3;
+    }
+
+    .calculate-sq-ft {
+      @include font-secondary;
+      justify-content: center;
+      order: 4;
+    }
+
+    @include tablet() {
+      flex-flow: row wrap;
+      align-items: center;
+
+      & > * {
+        flex: 0 1 calc(50% - #{$u6});
+        margin-right: $u6;
+
+        &:nth-child(even) {
+          margin-right: 0;
+        }
+      }
+
+      .product-gallery {
+        order: 3;
+      }
+
+      .product-meta {
+        order: 2;
+      }
+    }
+  }
+
+  .product-gallery {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-bottom: $u6;
+    overflow: hidden;
+
+    & > * {
+      flex: 0 1 calc(50% - #{$u4});
+      margin-right: $u4;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+
+    img {
+      max-width: 12rem;
+    }
+  }
+
+  .product-overview {
+    margin-bottom: $u6;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    & > * {
+      margin-bottom: 1rem;
+    }
+
+    @include tablet() {
+      border-bottom: 1px solid $tertiaryBlue;
+      margin-bottom: $u8;
+      padding-bottom: $u8;
+    }
   }
 
   .product-meta {
+    margin-bottom: $u6;
+
     p {
       color: $font-color-dark;
       margin-bottom: 0.5rem;
@@ -349,6 +442,7 @@
         display: inline;
       }
     }
+
     .product-label {
       color: $primaryBlue;
       font-weight: 600;

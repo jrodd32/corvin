@@ -57,15 +57,26 @@
   }
 
   /deep/ .product {
+
     .product-image {
       margin-bottom: -3rem;
     }
 
+    .link {
+      margin-right: $u6;
+      margin-top: 0;
+    }
+
     .product-content {
+      display: flex;
       justify-content: flex-end;
       padding-right: 0;
       position: relative;
       z-index: 20;
+    }
+
+    @include tablet() {
+      padding-top: 0;
     }
 
     @include desktop() {
@@ -82,24 +93,10 @@
     }
   }
 
-  @include desktop() {
+  @include tablet() {
     .related-products {
-      padding-left: 0;
-      padding-right: 0;
-      padding-bottom: 10rem;
-      padding-top: 10rem;
-    }
-
-    .content-wrapper {
-      align-items: center;
-      display: flex;
-      flex-flow: row nowrap;
-
-      h2 {
-        flex: 0 1 22vw;
-        margin-bottom: 0;
-        padding: 0 $u10;
-      }
+      padding-bottom: 6rem;
+      padding-top: 6rem;
     }
 
     .products {
@@ -125,6 +122,27 @@
         /deep/ .product-content {
           border-bottom: 0;
         }
+      }
+    }
+  }
+
+  @include desktop() {
+    .related-products {
+      padding-left: 0;
+      padding-right: 0;
+      padding-bottom: 10rem;
+      padding-top: 10rem;
+    }
+
+    .content-wrapper {
+      align-items: center;
+      display: flex;
+      flex-flow: row nowrap;
+
+      h2 {
+        flex: 0 1 22vw;
+        margin-bottom: 0;
+        padding: 0 $u10;
       }
     }
   }
