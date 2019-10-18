@@ -1,0 +1,127 @@
+<template>
+  <div class="related-products container">
+    <div class="content-wrapper">
+      <h2>
+        Still Looking? You Might Also Like These Additional Options  or
+        <doe-link
+          class="cta-link"
+          href="/shop"
+          is-anchor
+          text="Shop All Floors›"
+        />
+      </h2>
+
+      <div class="products">
+        <corvin-product-listing
+          v-if="hasProducts"
+          v-for="product in products"
+          :product="product"
+          :key="product.id"
+          :show-product-content.boolean="false"
+        />
+      </div>
+    </div>
+    </div>
+</template>
+
+<script>
+  import CorvinProductListing from './CorvinProductListing.vue';
+
+  export default {
+    components: {
+      CorvinProductListing
+    },
+    props: {
+      products: {
+        type: Array,
+        default() {
+          return [];
+        }
+      }
+    },
+    computed: {
+      hasProducts() {
+        return this.products.length > 0;
+      }
+    }
+  };
+</script>
+
+<style lang="scss" scoped>
+  .related-products {
+    background-color: $cream;
+    padding-bottom: $u6;
+    padding-top: $u6;
+  }
+
+  /deep/ .product {
+    .product-image {
+      margin-bottom: -3rem;
+    }
+
+    .product-content {
+      justify-content: flex-end;
+      padding-right: 0;
+      position: relative;
+      z-index: 20;
+    }
+
+    @include desktop() {
+      padding-top: 0;
+    }
+  }
+
+  .cta-link {
+    color: $orange;
+    text-decoration: underline;
+
+    &:hover {
+      color: darken($orange, 10%);
+    }
+  }
+
+  @include desktop() {
+    .related-products {
+      padding-bottom: 10rem;
+      padding-top: 10rem;
+    }
+
+    .content-wrapper {
+      align-items: center;
+      display: flex;
+      flex-flow: row nowrap;
+
+      h2 {
+        flex: 0 1 22vw;
+        margin-bottom: 0;
+        padding: 0 $u10;
+      }
+    }
+
+    .products {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+
+      .product {
+        flex: 0 1 calc(33% - #{$u6});
+        margin-right: $u6;
+
+        &:nth-child(3) {
+          margin-right: 0;
+        }
+
+        /deep/ .product-image {
+          align-items: center;
+          display: flex;
+          max-height: 22.9rem;
+          overflow: hidden;
+        }
+
+        /deep/ .product-content {
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+</style>

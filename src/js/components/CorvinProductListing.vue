@@ -40,7 +40,10 @@
       v-else
       class="product-content"
     >
-      <div class="details">
+      <div
+        v-if="showProductContent"
+        class="details"
+      >
         <p class="brand">Brand: <span>{{ productBrand }}</span></p>
         <p class="color">Color: <span>{{ product.productColor }}</span></p>
       </div>
@@ -76,6 +79,12 @@
         type: String,
         default() {
           return '';
+        }
+      },
+      showProductContent: {
+        type: Boolean,
+        default() {
+          return true;
         }
       }
     },

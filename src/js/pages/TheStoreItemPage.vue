@@ -3,7 +3,7 @@
 
   <main
     v-else
-    class="page store-item-page"
+    class="page store-item-page no-bottom-padding"
   >
     <h2 class="is-contained content-wrapper is-h1 is-small-margin">
       Shop
@@ -132,21 +132,17 @@
       </div>
     </div>
 
-    <div class="container">
-      <h2>You might also like</h2>
-      <corvin-product-listing
-        v-if="hasRelatedProducts"
-        v-for="product in data.relatedProducts"
-        :product="product"
-        :key="product.id"
-      />
-    </div>
+    <corvin-related-products
+      v-if="hasRelatedProducts"
+      :products="data.relatedProducts"
+    />
   </main>
 </template>
 
 <script>
   import { ajaxPageProps } from '../core/page';
   import CorvinLoading from '../components/CorvinLoading.vue';
+  import CorvinRelatedProducts from '../components/CorvinRelatedProducts.vue';
 
   export default {
     filters: {
@@ -155,7 +151,8 @@
       }
     },
     components: {
-      CorvinLoading
+      CorvinLoading,
+      CorvinRelatedProducts
     },
     mixins: [ajaxPageProps],
     computed: {
