@@ -111,9 +111,11 @@
               {{ data.productJankaRating }}
             </p>
 
-            <p v-if="hasProductSpecs">
+            <p
+              v-if="hasProductSpecs"
+            >
               <span class="product-label">Specs:</span>
-              {{ data.productSpecs }}
+              {{ data.productSpecs|filterHtml }}
             </p>
 
             <div
@@ -231,9 +233,6 @@
         return 'relatedProducts' in this.data
                && this.data.relatedProducts
                && this.data.relatedProducts.length > 0;
-      },
-      labelAndWarranty() {
-        return `<span class="product-label">Warranty: </span> ${this.data.productWarranty}`;
       }
     }
   };

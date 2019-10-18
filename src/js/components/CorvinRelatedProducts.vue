@@ -52,6 +52,8 @@
     background-color: $cream;
     padding-bottom: $u6;
     padding-top: $u6;
+    padding-left: $u6;
+    padding-right: $u6;
   }
 
   /deep/ .product {
@@ -82,6 +84,8 @@
 
   @include desktop() {
     .related-products {
+      padding-left: 0;
+      padding-right: 0;
       padding-bottom: 10rem;
       padding-top: 10rem;
     }
