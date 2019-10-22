@@ -15,6 +15,7 @@ use Craft;
 use craft\elements\Entry;
 use craft\web\Controller;
 use yii\caching\TagDependency;
+use craft\helpers\Json;
 
 /**
  * ApiController Controller
@@ -38,6 +39,25 @@ class ApiController extends Controller
   protected $allowAnonymous = self::ALLOW_ANONYMOUS_LIVE;
 
   protected $site;
+
+  protected $postActions = ['mailchimp'];
+
+  protected $payload;
+
+  // public function beforeAction($action)
+  // {
+  //     if (in_array($action->id, $this->postActions)) {
+  //         $this->requirePostRequest();
+
+  //         $this->payload = Json::decode(Craft::$app->getRequest()->getRawBody(), true);
+  //     }
+
+  //     if (!parent::beforeAction($action)) {
+  //         return false;
+  //     }
+
+  //     return true;
+  // }
 
 
   public function init()
@@ -70,7 +90,8 @@ class ApiController extends Controller
             'https://www.corvin.com',
           ],
           'Access-Control-Request-Method' => [
-            'GET'
+            'GET',
+            'POST'
           ],
           'Access-Control-Request-Headers' => [
             'X-Requested-With',
@@ -100,12 +121,27 @@ class ApiController extends Controller
     return $this->asJson(SuperApi::$instance->pages->getPageContent($this->site, $handle, $slug, $product));
   }
 
-  public function actionMailchimp($email = '')
+  public function actionMailchimp()
   {
+    $this->requirePostRequest();
+
+    $this->payload = Json::decode(Craft::$app->getRequest()->getRawBody(), true);
+
     $msPlugin = Craft::$app->plugins->getPlugin('mailchimp-subscribe');
 
     if ($msPlugin && $msPlugin instanceof \aelvan\mailchimpsubscribe\MailchimpSubscribe) {
-      $response = $msPlugin->mailchimpSubscribe->subscribe('jrodd32+test@gmail.com', getenv('MC_LIST_ID'), [
+
+      $member = $msPlugin->mailchimpSubscribe->getMemberByEmail($this->payload['email'], getenv('MC_LIST_ID'));
+
+      if ($member) {
+        return $this->asJson([
+          'status' => 200,
+          'success' => true,
+          'message' => 'Already subscribed to the list',
+        ]);
+      }
+
+      $response = $msPlugin->mailchimpSubscribe->subscribe($this->payload['email'], getenv('MC_LIST_ID'), [
         'email_type' => 'html',
         'language' => 'en',
         'vip' => false,
@@ -114,13 +150,11 @@ class ApiController extends Controller
         'status' => 'subscribed'
       ]);
 
-      // var_dump($response);
-      // die;
-
-      // $member = $msPlugin->mailchimpSubscribe->getMemberByEmail('jrodd32@gmail.com', '0f262c304b');
-
-      var_dump($response);
-      die;
+      return $this->asJson([
+        'status' => 200,
+        'success' => $response['success'],
+        'message' => $response['message'],
+      ]);
     }
   }
 }

@@ -6,11 +6,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://corvin.s3.us-east-2.amazonaws.com/static/fonts/icomoon.8b75d1cbc569367247904547c69c0cd6.woff"
   },
   {
-    "revision": "0cfe62f967e58657a88f33eb79fd0e7c",
+    "revision": "68cd632d3d1d1a0cd08054114d26137a",
     "url": "https://corvin.s3.us-east-2.amazonaws.com/static/index.html"
   },
   {
-    "url": "https://corvin.s3.us-east-2.amazonaws.com/static/main.9b51c7056a25111850ec.js"
+    "url": "https://corvin.s3.us-east-2.amazonaws.com/static/main.a224e30aafadfd96b82e.js"
   },
   {
     "revision": "4407108eef93eec6356222f1eea930d6",
@@ -41,10 +41,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://corvin.s3.us-east-2.amazonaws.com/static/page-store.baf40f9b1ee4a237c623.js"
   },
   {
-    "url": "https://corvin.s3.us-east-2.amazonaws.com/static/styles.a0fc44ea7964181927af.css"
+    "url": "https://corvin.s3.us-east-2.amazonaws.com/static/styles.23076b53ea663aba0fdb.css"
   },
   {
-    "url": "https://corvin.s3.us-east-2.amazonaws.com/static/styles.a0fc44ea7964181927af.js"
+    "url": "https://corvin.s3.us-east-2.amazonaws.com/static/styles.23076b53ea663aba0fdb.js"
   },
   {
     "url": "https://corvin.s3.us-east-2.amazonaws.com/static/vendor.8a029c39678a5b42acf8.js"
