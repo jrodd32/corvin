@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "NODE_ENV=development webpack-dev-server --config webpack.dev.js",
     "build": "NODE_ENV=production webpack --config webpack.prod.js",
-    "prerender": "PRERENDER=true yarn build",
+    "prerender": "node webpack.fetch-routes.js && PRERENDER=true yarn build",
     "analyze:dev": "ANALYZE=true NODE_ENV=development webpack --config webpack.dev.js",
     "analyze:prod": "ANALYZE=true NODE_ENV=production webpack --config webpack.prod.js"
   },

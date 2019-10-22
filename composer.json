@@ -1,7 +1,7 @@
 {
   "require": {
     "aelvan/mailchimp-subscribe": "^3.0",
-    "craftcms/cms": "^3.3.4.1",
+    "craftcms/cms": "3.3.11",
     "craftcms/feed-me": "^4.1.2",
     "craftcms/redactor": "^2.4.0",
     "doeanderson/super-image": "^1.0",
