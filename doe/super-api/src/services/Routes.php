@@ -33,6 +33,20 @@ class Routes extends Component
   // Public Methods
   // =========================================================================
 
+  protected $productCategories = [
+    'hardwood',
+    'vinyl-plank',
+    'tile',
+    'laminate',
+    'engineered-hardwood',
+    'carpet'
+  ];
+
+  protected $elementsToSkip = [
+    'team',
+    'product-brands',
+  ];
+
   public function getAllUrls(array $criteria = []): array
   {
     $urls = [];
@@ -45,6 +59,7 @@ class Routes extends Component
     foreach ($sites as $site) {
       foreach ($elementTypes as $elementType) {
         $urls = array_merge($urls, $this->getElementUrls($elementType, $criteria, $site->handle));
+
       }
 
       // add tags separately since Craft doesn't give them routes out of the box
@@ -81,7 +96,7 @@ class Routes extends Component
 
     foreach ($elements as $element) {
       if ($element instanceof Element && $element->uri !== null && !in_array($element->uri, $resultingUrls, true)) {
-        if (!in_array($element->uri, $skipUris)) {
+        if (!in_array($element->uri, $skipUris) && strpos($element->uri, 'product-brands') === false) {
           $uri = $this->normalizeUri($element->uri, $siteHandle);
           $resultingUrls[] = $uri;
         }
@@ -118,13 +133,17 @@ class Routes extends Component
       $url = '';
     }
 
-    // en is main site, don't include it's handle
-    if ($siteHandle === 'en') {
-      return "/{$url}";
+    if (strpos($url, 'product-categories') !== false) {
+      $url = str_replace('product-categories', 'shop', $url);
     }
 
-    // preprend site handle to url
-    return "/{$siteHandle}/{$url}";
+    foreach($this->productCategories as $category) {
+      if (strpos($url, $category) !== false && strpos($url, 'shop') !== 0) {
+        $url = "shop/{$url}";
+      }
+    }
+
+    return "/{$url}";
   }
 
   // Protected Methods
