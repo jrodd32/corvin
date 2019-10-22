@@ -64,6 +64,7 @@ class SuperApi extends Module
           'api/v1/sitemap-urls' => 'super-api/sitemap/urls',
           'sitemap.xml' => 'super-api/sitemap/index',
           '_health' => 'super-api/health/index',
+          'api/v1/mailchimp' => 'super-api/api/mailchimp',
           [
             // <variable_name:{regex_pattern}>
             'pattern' => 'api/v1/<handle:{slug}>/<slug:{slug}>/<product:{slug}>',

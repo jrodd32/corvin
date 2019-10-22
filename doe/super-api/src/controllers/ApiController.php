@@ -99,4 +99,28 @@ class ApiController extends Controller
   {
     return $this->asJson(SuperApi::$instance->pages->getPageContent($this->site, $handle, $slug, $product));
   }
+
+  public function actionMailchimp($email = '')
+  {
+    $msPlugin = Craft::$app->plugins->getPlugin('mailchimp-subscribe');
+
+    if ($msPlugin && $msPlugin instanceof \aelvan\mailchimpsubscribe\MailchimpSubscribe) {
+      $response = $msPlugin->mailchimpSubscribe->subscribe('jrodd32+test@gmail.com', getenv('MC_LIST_ID'), [
+        'email_type' => 'html',
+        'language' => 'en',
+        'vip' => false,
+        'tags' => null,
+        'doubleOptIn' => false,
+        'status' => 'subscribed'
+      ]);
+
+      // var_dump($response);
+      // die;
+
+      // $member = $msPlugin->mailchimpSubscribe->getMemberByEmail('jrodd32@gmail.com', '0f262c304b');
+
+      var_dump($response);
+      die;
+    }
+  }
 }
