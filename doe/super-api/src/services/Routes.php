@@ -96,7 +96,7 @@ class Routes extends Component
 
     foreach ($elements as $element) {
       if ($element instanceof Element && $element->uri !== null && !in_array($element->uri, $resultingUrls, true)) {
-        if (!in_array($element->uri, $skipUris) && strpos($element->uri, 'product-brands') === false) {
+        if (!in_array($element->uri, $skipUris) && strpos($element->uri, 'product-brands') === false && strpos($element->uri, 'team') === false) {
           $uri = $this->normalizeUri($element->uri, $siteHandle);
           $resultingUrls[] = $uri;
         }
