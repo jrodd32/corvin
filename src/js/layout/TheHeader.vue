@@ -59,7 +59,7 @@
       <div class="navbar-menu is-contained">
         <div class="navbar-item home-link">
           <router-link
-            to="/"
+            to="/home"
             class="navbar-link"
           >
             Home
