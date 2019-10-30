@@ -227,7 +227,7 @@
       hasGallery() {
         return 'productGallery' in this.data
                && this.data.productGallery !== null
-               && this.data.productGallery.length > 0;
+               && this.data.productGallery.length > 1;
       },
       hasProductColor() {
         return 'productColor' in this.data
