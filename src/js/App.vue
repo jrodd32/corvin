@@ -26,13 +26,10 @@
       name="modals"
       slim
     />
-
-    <div id="outdated" />
   </div>
 </template>
 
 <script>
-  import outdatedBrowserRework from 'outdated-browser-rework';
   import TheHeader from './layout/TheHeader.vue';
   import TheFooter from './layout/TheFooter.vue';
 
@@ -61,10 +58,6 @@
       $route() {
         this.show500Page = false;
         this.showOfflinePage = false;
-
-        this.$nextTick(() => {
-          this.updateDataLayer();
-        });
       }
     },
     created() {
@@ -77,49 +70,10 @@
         this.show500Page = true;
       });
 
-      // Smooth scrolls to target
-      this.$eventBus.$on('scroll', (target, container = window) => {
-          this.$gsapTweenLite.to(container, 0.5, { scrollTo: target });
-      });
-
       if (this.$prerender) {
         this.$eventBus.$on('page-loaded', () => {
           document.dispatchEvent(new Event('page-rendered'));
         });
-      }
-
-      window.dataLayer = [];
-
-      const dataLayerUser = {};
-
-      this.baseGtmDataLayer = {
-        user: dataLayerUser,
-        global: {}
-      };
-
-      this.updateDataLayer(true);
-    },
-    mounted() {
-      if (!this.$prerender) {
-        outdatedBrowserRework();
-      }
-    },
-    methods: {
-      updateDataLayer(addScript = false) {
-        window.dataLayer.push(this.baseGtmDataLayer);
-
-        if (addScript) {
-          const script = document.createElement('script');
-          script.async = true;
-          script.src = '';
-
-          window.dataLayer.push({
-            event: 'gtm.js',
-            'gtm.start': new Date().getTime()
-          });
-
-          document.head.appendChild(script);
-        }
       }
     }
   };

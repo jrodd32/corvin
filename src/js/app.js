@@ -5,13 +5,7 @@ import Vue from 'vue';
 import VueCookies from 'vue-cookies';
 import VueRouter from 'vue-router';
 import VueTheMask from 'vue-the-mask';
-import { detect } from 'detect-browser';
-import {
-  TweenLite,
-  TimelineMax
-} from 'gsap/TweenMax';
 import eventBus from '@bit/doeanderson.components.core.event-bus/event-bus';
-import GtmPlugin from '@bit/doeanderson.components.core.gtm-plugin/gtm-plugin';
 import Lightbox from 'vue-my-photos';
 import routes from './config/routes';
 import api from './config/api';
@@ -19,35 +13,18 @@ import App from './App.vue';
 
 Vue.component('lightbox', Lightbox);
 
-require('./core/gsap/ScrollToPlugin');
 require('objectFitPolyfill');
-require('intersection-observer');
 
-Vue.use(GtmPlugin);
 Vue.use(PortalVue);
 Vue.use(VueCookies);
 Vue.use(VueRouter);
 Vue.use(VueTheMask);
-
-// Detect and set browser
-// {
-//   name,
-//   version,
-//   os
-// }
-const browser = detect();
-Vue.prototype.$browser = browser;
 
 // Setup env helpers
 Vue.prototype.$local = (window.location.hostname === 'localhost');
 Vue.prototype.$dev = (window.location.hostname === 'corvin.test');
 Vue.prototype.$prod = (window.location.hostname === 'www.corvinfurnitureofbardstown.com');
 Vue.prototype.$prerender = window.prerender;
-
-// Setup GSAP references
-Vue.prototype.$gsapTimelineMax = TimelineMax;
-Vue.prototype.$gsapTweenLite = TweenLite;
-Vue.prototype.$gsapEases = {};
 
 // Set axios default headers
 // Axios is the HTTP request library
