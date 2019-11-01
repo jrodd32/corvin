@@ -1,6 +1,6 @@
 const api = {
   forms: {
-    contact: 'contact'
+    contact: 'v1/forms/contact'
   },
   pages: {
     about: 'about',

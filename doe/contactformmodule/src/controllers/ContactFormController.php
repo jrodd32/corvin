@@ -12,10 +12,9 @@ namespace modules\contactformmodule\controllers;
 
 use Craft;
 
+use craft\helpers\Json;
 use craft\web\Controller;
-use craft\web\UploadedFile;
 use modules\contactformmodule\services\ContactForm as ContactService;
-
 /**
  * ContactForm Controller
  *
@@ -67,7 +66,8 @@ class ContactFormController extends Controller
             'Origin' => [
               'http://localhost:8080',
               'http://localhost:8000',
-              'https://corvins.test',
+              'http://localhost:3232',
+              'https://corvin.test',
               'https://www.corvinsfurnitureofbardstown.com',
             ],
             'Access-Control-Request-Method' => [
@@ -94,8 +94,7 @@ class ContactFormController extends Controller
         $this->requirePostRequest();
         $this->requireAcceptsJson();
 
-        $this->payload = Craft::$app->request->post();
-        $this->payload['file'] = UploadedFile::getInstanceByName('file');
+        $this->payload = Json::decode(Craft::$app->getRequest()->getRawBody(), true);
 
         return true;
     }
@@ -109,19 +108,26 @@ class ContactFormController extends Controller
     public function actionContact()
     {
         // Setup and send email
-        $response = $this->contactService->handleContactForm($this->payload);
+        if (!array_key_exists('honeyPot', $this->payload) || $this->payload['honeyPot'] === '') {
+          $response = $this->contactService->handleContactForm($this->payload);
 
-        if ($response['status'] === 'failed') {
+          if ($response['status'] === 'failed') {
+            return $this->asJson([
+                'success' => false,
+                'message' => 'Sending your message failed. Please try again.',
+                'errors' => $response['data']
+            ]);
+          }
+
           return $this->asJson([
-              'success' => false,
-              'message' => 'Sending your message failed. Please try again.',
-              'errors' => $response['data']
+              'success' => true,
+              'message' => 'Your message has been sent.'
           ]);
-      }
+        }
 
-      return $this->asJson([
-          'success' => true,
-          'message' => 'Your message has been sent.'
-      ]);
+        return $this->asJson([
+          'success' => false,
+          'message' => 'go away bot'
+        ]);
     }
 }

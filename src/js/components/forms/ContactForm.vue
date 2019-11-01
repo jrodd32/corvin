@@ -55,13 +55,14 @@
       :text="submitButtonText"
       is-button
       is-blue
+      @click.native="handleSubmit"
     />
   </base-form>
 </template>
 
 <script>
-  import { api } from '../../config/api';
   import { formProps } from '@bit/doeanderson.components.core.forms';
+  import api from '../../config/api';
 
   export default {
     mixins: [
@@ -69,13 +70,16 @@
     ],
     data() {
       return {
-        api,
+        notification: {
+          message: ''
+        },
         form: {
           email: '',
           first_name: '',
           last_name: '',
           phone: '',
-          message: ''
+          message: '',
+          honeyPot: ''
         },
         submitButton: 'Send message'
       };
@@ -90,35 +94,72 @@
     },
     methods: {
       handleSubmit() {
-        this.$axios.post(this.api.forms.contact, this.data.form)
-        .then((response) => {
+        if (this.form.honeyPot.length === 0) {
+          delete this.form.honeyPot;
 
-        })
-        .catch((error) => {
-          if (error.response) {
-            // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
-            console.log('Data:');
-            console.log(error.response.data);
-            console.log('Status:');
-            console.log(error.response.status);
-            console.log('Headers:');
-            console.log(error.response.headers);
-          } else if (error.request) {
-            // The request was made but no response was received
-            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-            // http.ClientRequest in node.js
-            console.log('Request:');
-            console.log(error.request);
-          } else {
-            // Something happened in setting up the request that triggered an Error
-            console.log('Error', error.message);
-          }
+          this.$axios.post(api.forms.contact, this.form)
+          .then((response) => {
+            this.isSubmitting = false;
 
-          console.log('Config:');
-          console.log(error.config);
-          console.error(error);
-        });
+            const {
+              errors, message, success,
+            } = response.data;
+
+            this.notification.message = message;
+            this.notification.status = 200;
+
+            if (!success) {
+              // set server-side error on each field
+              this.fieldKeys.forEach((key) => {
+                if (errors[key]) {
+                  this.findField(key).setError(errors[key].join(', '));
+                }
+                this.notification.status = 400;
+              });
+
+              return;
+            }
+
+            // Form was successful so reset it
+            this.form = {
+              first_name: '',
+              last_name: '',
+              email: '',
+              phone: '',
+              message: '',
+              honeyPot: '',
+            };
+
+            this.$nextTick(() => {
+              this.resetFields();
+            });
+          })
+          .catch((error) => {
+            if (error.response) {
+              // The request was made and the server responded with a status code
+              // that falls out of the range of 2xx
+              console.log('Data:');
+              console.log(error.response.data);
+              console.log('Status:');
+              console.log(error.response.status);
+              console.log('Headers:');
+              console.log(error.response.headers);
+            } else if (error.request) {
+              // The request was made but no response was received
+              // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+              // http.ClientRequest in node.js
+              console.log('Request:');
+              console.log(error.request);
+            } else {
+              // Something happened in setting up the request that triggered an Error
+              console.log('Error', error.message);
+            }
+
+            console.log('Config:');
+            console.log(error.config);
+            console.error(error);
+          });
+        }
       }
     }
   };
