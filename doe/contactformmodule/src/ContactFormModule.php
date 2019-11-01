@@ -112,7 +112,7 @@ class ContactFormModule extends Module
             UrlManager::EVENT_REGISTER_SITE_URL_RULES,
             function (RegisterUrlRulesEvent $event) {
                 $rules = [
-                    'api/v1/forms/contact' => 'contactformmodule/contact-form/contact-form'
+                    'api/v1/forms/contact' => 'contact-form-module/contact-form/contact'
                 ];
 
                 $event->rules = array_merge($event->rules, $rules);

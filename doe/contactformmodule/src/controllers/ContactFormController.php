@@ -11,11 +11,9 @@
 namespace modules\contactformmodule\controllers;
 
 use Craft;
-use craft\helpers\Json;
 
 use craft\web\Controller;
 use craft\web\UploadedFile;
-use modules\contactformmodule\ContactFormModule;
 use modules\contactformmodule\services\ContactForm as ContactService;
 
 /**
@@ -50,7 +48,7 @@ class ContactFormController extends Controller
      * @access protected
      */
     protected $allowAnonymous = [
-      'contact-form'
+      'contact'
     ];
 
     protected $payload;
@@ -108,7 +106,7 @@ class ContactFormController extends Controller
      *
      * @return mixed
      */
-    public function actionContactForm()
+    public function actionContact()
     {
         // Setup and send email
         $response = $this->contactService->handleContactForm($this->payload);

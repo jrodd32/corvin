@@ -27,28 +27,27 @@ use craft\base\Model;
  */
 class ZeoContactForm extends Model
 {
-    public $name;
-    public $country;
+    public $first_name;
+    public $last_name;
     public $phone;
     public $email;
-    public $application;
     public $message;
-    public $file;
+    public $hp;
 
     protected $requiredFields = [
-      'name',
+      'first_name',
+      'last_name',
       'email',
       'message'
     ];
 
     protected $allFields = [
-      'name',
-      'country',
-      'phone',
+      'first_name',
+      'last_name',
       'email',
-      'application',
       'message',
-      'file'
+      'phone',
+      'hp',
     ];
 
     public function scenarios()
@@ -57,7 +56,6 @@ class ZeoContactForm extends Model
       // when you add a ! in front of the field name, that field will NOT be mass assigned or validated
       $scenarios = parent::scenarios();
       $scenarios['contact-form-submission'] = $this->allFields;
-      $scenarios['file-form-submission'] = $this->allFields;
       return $scenarios;
     }
 
@@ -66,8 +64,6 @@ class ZeoContactForm extends Model
       return [
         [$this->requiredFields, 'required'],
         ['email', 'email', 'skipOnEmpty' => false, 'skipOnError' => false, 'message' => 'Email must be a valid format'],
-        ['file', 'required', 'on' => 'file-form-submission'],
-        ['file', 'file', 'extensions' => ['pdf', 'doc', 'docx'], 'on' => 'file-form-submission'],
       ];
     }
 }

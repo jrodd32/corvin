@@ -19,14 +19,6 @@
 
 return [
     'modules' => [
-      // 'contactformmodule' => [
-      //   'class' => \modules\contactformmodule\ContactFormModule::class,
-      //   'components' => [
-      //     'contactform' => [
-      //       'class' => 'modules\contactformmodule\services\ContactForm',
-      //     ],
-      //   ],
-      // ],
       'super-api' => [
         'class' => \modules\superapi\SuperApi::class,
         'components' => [
@@ -60,9 +52,17 @@ return [
             ],
         ],
       ],
+      'contact-form-module' => [
+          'class' => \modules\contactformmodule\ContactFormModule::class,
+          'components' => [
+              'contactForm' => [
+                  'class' => 'modules\contactformmodule\services\ContactForm',
+              ],
+          ],
+      ],
     ],
     'bootstrap' => [
-      // 'contactformmodule',
+      'contact-form-module',
       'super-api',
       'super-search',
       'super-values'

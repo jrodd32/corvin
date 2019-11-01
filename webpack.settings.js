@@ -39,7 +39,7 @@ const prerenderCallback = (html) => {
     .replace('v-enter-active', '')
     .replace(' style="overflow: hidden;"', '')
     .replace('<!-- CRAFT_CDN_VAR -->', '{% set cdnUrl = craft.superApi.cdnUrl %}')
-    .replace('<!-- GTM_NOSCRIPT -->', '{% if craft.app.env != "dev" %}<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FMGX93" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>{% endif %}')
+    .replace('<!-- GTM_NOSCRIPT -->', '{% if craft.app.env != "dev" %}<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>{% endif %}')
     .replace('<!-- PAGE_JSON -->', '{{ craft.superApi.pageJsonScript(currentSite.handle, craft.app.request.pathInfo)|raw }}')
     .replace('<meta name="csrf_token" content="">', '<meta name="csrf_token" content="{{ craft.app.request.getCsrfToken }}">')
     .replace('<meta name="site" content="en">', '<meta name="site" content="{{ currentSite.handle }}">')

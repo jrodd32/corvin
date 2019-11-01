@@ -5,6 +5,8 @@
     "craftcms/feed-me": "^4.1.2",
     "craftcms/redactor": "^2.4.0",
     "doeanderson/super-image": "^1.0",
+    "mailgun/mailgun-php": "^2.8",
+    "php-http/guzzle6-adapter": "^1.1",
     "vaersaagod/dospaces": "^1.1",
     "verbb/super-table": "^2.1.20",
     "vlucas/phpdotenv": "^2.4.0"
@@ -14,7 +16,8 @@
       "modules\\": "modules/",
       "modules\\superapi\\": "doe/super-api/src",
       "modules\\supersearch\\": "doe/super-search/src",
-      "modules\\supervalues\\": "doe/super-values/src"
+      "modules\\supervalues\\": "doe/super-values/src",
+      "modules\\contactformmodule\\": "doe/contactformmodule/src"
     }
   },
   "config": {
