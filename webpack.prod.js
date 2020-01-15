@@ -99,6 +99,10 @@ const plugins = [
 
           fs.writeFileSync(settings.pathHelper.join(assetsDir, settings.cssTemplateFilename),
             `<link rel="stylesheet" href="{{ cdnUrl }}${assets.css}">`);
+          fs.writeFileSync(settings.pathHelper.join(assetsDir, settings.cssTemplateFilename),
+            `<link rel="stylesheet" href="{{ cdnUrl }}${assets.css[0]}">`);
+            fs.writeFileSync(settings.pathHelper.join(assetsDir, settings.cssTemplateFilename),
+            `<link rel="stylesheet" href="{{ cdnUrl }}${assets.css[1]}">`);
         });
 
         fs.unlinkSync(settings.pathHelper.join(settings.export, 'index.html'));
