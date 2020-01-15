@@ -34,30 +34,7 @@
         <div class="subscribe">
           <p>Subscribe for product releases <span>&amp; tips on maintainence</span></p>
 
-          <base-form
-            :notification="notification"
-            :show-required-field-text="false"
-            @form-close="handleFormClose"
-            @submit.native.prevent="handleNewsletterSubmit"
-          >
-            <div class="newsletter">
-              <doe-input
-                v-model="emailAddress"
-                field="email"
-                required
-                type="email"
-              />
-
-              <doe-link
-                :disabled="isDisabled"
-                class="submit"
-                is-button
-                @click.native="handleNewsletterSubmit"
-              >
-                Submit
-              </doe-link>
-            </div>
-          </base-form>
+          <newsletter-form />
         </div>
       </div>
     </div>
@@ -82,78 +59,29 @@
 </template>
 
 <script>
-  import { formProps } from '@bit/doeanderson.components.core.forms';
   import SocialLinks from '../components/SocialLinks.vue';
   import LandingPageFooter from './LandingPageFooter.vue';
+  import NewsletterForm from '../components/forms/NewsletterForm.vue';
 
   export default {
     components: {
       LandingPageFooter,
-      SocialLinks
+      NewsletterForm,
+      SocialLinks,
     },
-    mixins: [formProps],
     data() {
       return {
-        emailAddress: '',
-        newsletterMessage: '',
-        notification: {
-          message: ''
-        },
         showLandingPageFooter: false
       };
     },
     watch: {
       $route() {
         this.showLandingPageFooter = window.location.pathname === '/';
-      }
+      },
     },
     created() {
       this.showLandingPageFooter = window.location.pathname === '/';
     },
-    methods: {
-      handleNewsletterSubmit() {
-        const data = {
-          email: this.emailAddress
-        };
-
-        this.$axios.post('/v1/mailchimp', {
-          data
-        })
-        .then((response) => {
-          const { message } = response;
-          this.notification.message = message;
-          this.resetFields();
-        })
-        .catch((error) => {
-          const { message } = error;
-          this.notification.message = message;
-
-          if (error.response) {
-            // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
-            console.log('Data:');
-            console.log(error.response.data);
-            console.log('Status:');
-            console.log(error.response.status);
-            console.log('Headers:');
-            console.log(error.response.headers);
-          } else if (error.request) {
-            // The request was made but no response was received
-            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-            // http.ClientRequest in node.js
-            console.log('Request:');
-            console.log(error.request);
-          } else {
-            // Something happened in setting up the request that triggered an Error
-            console.log('Error', error.message);
-          }
-
-          console.log('Config:');
-          console.log(error.config);
-          console.error(error);
-        });
-      }
-    }
   };
 </script>
 

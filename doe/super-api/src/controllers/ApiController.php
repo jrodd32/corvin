@@ -102,6 +102,8 @@ class ApiController extends Controller
 
   public function actionMailchimp($email = '')
   {
+    var_dump(Craft::$app->request->getPost());
+    die;
     $msPlugin = Craft::$app->plugins->getPlugin('mailchimp-subscribe');
 
     if ($msPlugin && $msPlugin instanceof \aelvan\mailchimpsubscribe\MailchimpSubscribe) {
