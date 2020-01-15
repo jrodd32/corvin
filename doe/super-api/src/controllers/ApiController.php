@@ -15,6 +15,7 @@ use Craft;
 use craft\elements\Entry;
 use craft\web\Controller;
 use yii\caching\TagDependency;
+use craft\helpers\Json;
 
 /**
  * ApiController Controller
@@ -38,6 +39,8 @@ class ApiController extends Controller
   protected $allowAnonymous = self::ALLOW_ANONYMOUS_LIVE;
 
   protected $site;
+
+  protected $payload;
 
 
   public function init()
@@ -67,6 +70,7 @@ class ApiController extends Controller
           'Origin' => [
             'http://localhost:3232',
             'http://localhost:8000',
+            'https://corvin.test',
             'https://www.corvin.com',
           ],
           'Access-Control-Request-Method' => [
@@ -102,27 +106,29 @@ class ApiController extends Controller
 
   public function actionMailchimp($email = '')
   {
-    var_dump(Craft::$app->request->getPost());
-    die;
+    $this->requirePostRequest();
+    $this->requireAcceptsJson();
+    $this->payload = Json::decode(Craft::$app->getRequest()->getRawBody(), true);
+
     $msPlugin = Craft::$app->plugins->getPlugin('mailchimp-subscribe');
 
     if ($msPlugin && $msPlugin instanceof \aelvan\mailchimpsubscribe\MailchimpSubscribe) {
-      $response = $msPlugin->mailchimpSubscribe->subscribe('jrodd32+test@gmail.com', getenv('MC_LIST_ID'), [
-        'email_type' => 'html',
-        'language' => 'en',
-        'vip' => false,
-        'tags' => null,
-        'doubleOptIn' => false,
-        'status' => 'subscribed'
+      $response = $msPlugin->mailchimpSubscribe->subscribe(
+        $this->payload['email'], getenv('MC_LIST_ID'),
+        [
+          'email_type' => 'html',
+          'language' => 'en',
+          'vip' => false,
+          'tags' => null,
+          'doubleOptIn' => false,
+          'status' => 'subscribed'
+        ]
+      );
+
+      return $this->asJson([
+        'success' => $response['success'],
+        'message' => $response['message']
       ]);
-
-      // var_dump($response);
-      // die;
-
-      // $member = $msPlugin->mailchimpSubscribe->getMemberByEmail('jrodd32@gmail.com', '0f262c304b');
-
-      var_dump($response);
-      die;
     }
   }
 }

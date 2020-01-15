@@ -26,11 +26,11 @@
 </template>
 
 <script>
-  import { formProps } from '@bit/doeanderson.components.core.forms';
+  import { formMixin } from '@bit/doeanderson.components.core.forms';
 
   export default {
     mixins: [
-      formProps,
+      formMixin,
     ],
     data() {
       return {
@@ -45,18 +45,19 @@
     },
     methods: {
       handleNewsletterSubmit() {
-        const data = {
-          email: this.form.emailAddress,
-        };
-
         this.$axios.post('/v1/mailchimp', {
-          data,
+          email: this.form.email,
         })
         .then((response) => {
-          debugger;
-          const { message } = response;
+          const {
+            message,
+            success,
+          } = response;
+
           this.notification.message = message;
-          this.notification.status = 200;
+          this.notification.status = success === true ? 200 : 400;
+
+          console.log(this.notification.message, this.notification.status);
 
           this.$nextTick(() => {
             this.resetFields();
@@ -96,5 +97,24 @@
 </script>
 
 <style lang="scss" scoped>
+  .newsletter {
+    display: flex;
+    flex-flow: row nowrap;
+  }
 
+  .button {
+    @include font-secondary();
+    color: $black;
+    height: 3.9rem;
+    margin-top: 1.5rem;
+  }
+
+  .field {
+    flex: 1;
+
+    /deep/ .label {
+      @include font-secondary();
+      color: $white;
+    }
+  }
 </style>

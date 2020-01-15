@@ -171,28 +171,6 @@
         padding-bottom: 1.8rem;
         text-transform: uppercase;
       }
-
-      .newsletter {
-        display: flex;
-        flex-flow: row nowrap;
-      }
-
-      .button {
-        @include font-secondary();
-        color: $black;
-        height: 3.9rem;
-        margin-top: 1.5rem;
-      }
-
-      .field {
-        flex: 1;
-
-        /deep/ .label {
-          @include font-secondary();
-          color: $white;
-        }
-      }
-
     }
 
     .location-hours,

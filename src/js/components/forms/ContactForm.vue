@@ -61,12 +61,12 @@
 </template>
 
 <script>
-  import { formProps } from '@bit/doeanderson.components.core.forms';
+  import { formMixin } from '@bit/doeanderson.components.core.forms';
   import api from '../../config/api';
 
   export default {
     mixins: [
-      formProps,
+      formMixin,
     ],
     data() {
       return {
