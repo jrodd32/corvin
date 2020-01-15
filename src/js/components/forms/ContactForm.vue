@@ -66,12 +66,12 @@
 
   export default {
     mixins: [
-      formProps
+      formProps,
     ],
     data() {
       return {
         notification: {
-          message: ''
+          message: '',
         },
         form: {
           email: '',
@@ -79,7 +79,7 @@
           last_name: '',
           phone: '',
           message: '',
-          honeyPot: ''
+          honeyPot: '',
         },
         submitButton: 'Send message'
       };
