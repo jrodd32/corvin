@@ -50,12 +50,12 @@
         })
         .then((response) => {
           const {
-            message,
-            success,
+            data,
+            status,
           } = response;
 
-          this.notification.message = message;
-          this.notification.status = success === true ? 200 : 400;
+          this.notification.message = data.message;
+          this.notification.status = status;
 
           console.log(this.notification.message, this.notification.status);
 
