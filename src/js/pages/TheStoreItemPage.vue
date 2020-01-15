@@ -1,4 +1,4 @@
-<template>
+data.<template>
   <corvin-loading v-if="loading" />
 
   <main
@@ -59,9 +59,9 @@
               </p>
             </div>
             <h1
-              v-if="hasStyleNumber"
+              v-if="hasName"
               class="product-name"
-              v-html="data.productStyle"
+              v-html="calculatedProductName"
             />
             <p
               class="product-color"
@@ -187,11 +187,11 @@
     },
     components: {
       CorvinLoading,
-      CorvinRelatedProducts
+      CorvinRelatedProducts,
     },
     mixins: [
       ajaxPageProps,
-      windowProps
+      windowProps,
     ],
     data() {
       return {
@@ -205,6 +205,13 @@
         return isNaN(cost)
                ? ''
                : cost;
+      },
+      calculatedProductName() {
+        if (this.hasBrand) {
+          return this.data.productName.replace(this.data.productBrand[0].title, '');
+        }
+
+        return this.data.productName;
       },
       hasBrand() {
         return 'productBrand' in this.data
@@ -228,6 +235,11 @@
         return 'productGallery' in this.data
                && this.data.productGallery !== null
                && this.data.productGallery.length > 1;
+      },
+      hasName() {
+        return 'productName' in this.data
+               && this.data.productName !== null
+               && this.data.productName.length > 0;
       },
       hasProductColor() {
         return 'productColor' in this.data
