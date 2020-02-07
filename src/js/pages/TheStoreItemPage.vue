@@ -46,8 +46,8 @@ data.<template>
       <div class="product-item">
         <div class="product-image">
           <img
-            alt=""
-            src="https://placehold.it/946x686"
+            :alt="data.productGallery[0].alt"
+            :src="data.productGallery[0].url"
           />
         </div>
 
