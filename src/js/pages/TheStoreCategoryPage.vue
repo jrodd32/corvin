@@ -22,7 +22,7 @@
       :products="data.products"
       class="is-contained"
       has-filters.boolean="true"
-      listing-type="category"
+      listing-type="product"
     />
 
     <corvin-related-categories
