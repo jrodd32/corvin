@@ -15,10 +15,10 @@
         <corvin-product-listing
           v-if="hasProducts"
           v-for="product in products"
-          :product="product"
           :key="product.id"
+          :product="product"
+          :product-style="listingType"
           :show-product-content.boolean="false"
-          product-style="category"
         />
       </div>
     </div>
@@ -37,6 +37,12 @@
         type: Array,
         default() {
           return [];
+        },
+      },
+      listingStyle: {
+        type: String,
+        default() {
+          return 'product';
         },
       },
     },

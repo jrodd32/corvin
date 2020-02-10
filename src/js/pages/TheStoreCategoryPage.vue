@@ -28,6 +28,7 @@
     <corvin-related-categories
       v-if="hasRelatedCategories"
       :products="data.relatedCategories"
+      listing-style="category"
     />
   </main>
 </template>

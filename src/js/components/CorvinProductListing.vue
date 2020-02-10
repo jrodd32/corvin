@@ -103,7 +103,7 @@
           return 'Need brand';
       },
       productLink() {
-        if (this.productStyle === 'category') {
+        if (this.productStyle === 'product') {
           return `/shop${this.product.uri}`;
         }
 
