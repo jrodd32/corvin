@@ -2,7 +2,7 @@
   <div class="profile">
     <img
       :alt="profile.teamMemberImage.alt"
-      :src="profile.teamMemberImage.url|profileImage"
+      :src="profile.teamMemberImage.url"
       class="profile-image"
     />
     <h2 class="profile-name">
@@ -28,33 +28,26 @@
 
 <script>
   export default {
-    filters: {
-      profileImage(url) {
-        return url.length > 0
-               ? url
-               : 'https://placehold.it/256x280';
-      }
-    },
     props: {
       profile: {
         type: Object,
         default() {
           return {};
-        }
-      }
+        },
+      },
     },
     computed: {
       hasEmail() {
         return 'email' in this.profile
-               && this.email.profile !== null
+               && this.profile.email !== null
                && this.profile.email.length > 0;
       },
       hasPhone() {
         return 'phone' in this.profile
                && this.profile.phone !== null
                && this.profile.phone.length > 0;
-      }
-    }
+      },
+    },
   };
 </script>
 
