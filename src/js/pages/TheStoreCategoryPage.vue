@@ -24,6 +24,8 @@
       has-filters.boolean="true"
       listing-type="category"
     />
+
+    <corvin-related-products :products="data.relatedProducts" />
   </main>
 </template>
 
@@ -32,12 +34,14 @@
   import CorvinLoading from '../components/CorvinLoading.vue';
   import CorvinPageHero from '../components/CorvinPageHero.vue';
   import CorvinProducts from '../components/CorvinProducts.vue';
+  import CorvinRelatedProducts from '../components/CorvinRelatedProducts.vue';
 
   export default {
     components: {
       CorvinLoading,
       CorvinPageHero,
-      CorvinProducts
+      CorvinProducts,
+      CorvinRelatedProducts,
     },
     mixins: [ajaxPageProps],
     data() {

@@ -46,6 +46,7 @@
     computed: {
       hasEmail() {
         return 'email' in this.profile
+               && this.email.profile !== null
                && this.profile.email.length > 0;
       },
       hasPhone() {

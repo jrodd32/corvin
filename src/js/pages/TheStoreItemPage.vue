@@ -167,7 +167,9 @@ data.<template>
           field="feet"
         />
 
-        <p class="total">Estimated total: {{ calculatedPrice }}</p>
+        <p class="total">
+          Estimated total: {{ calculatedPrice }}
+        </p>
       </div>
     </doe-modal>
   </main>

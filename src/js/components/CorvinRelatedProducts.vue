@@ -21,7 +21,7 @@
         />
       </div>
     </div>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -29,21 +29,21 @@
 
   export default {
     components: {
-      CorvinProductListing
+      CorvinProductListing,
     },
     props: {
       products: {
         type: Array,
         default() {
           return [];
-        }
-      }
+        },
+      },
     },
     computed: {
       hasProducts() {
         return this.products.length > 0;
-      }
-    }
+      },
+    },
   };
 </script>
 
