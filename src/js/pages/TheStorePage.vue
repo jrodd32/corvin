@@ -30,9 +30,11 @@
     components: {
       CorvinLoading,
       CorvinPageHero,
-      CorvinProducts
+      CorvinProducts,
     },
-    mixins: [ajaxPageProps],
+    mixins: [
+      ajaxPageProps,
+    ],
     data() {
       return {
         jsonUrl: `/${this.$api.pages.shop}`,
@@ -52,11 +54,11 @@
                && 'grid' in this.data.content.products
                && 'items' in this.data.content.products.grid
                && this.data.content.products.grid.items.length > 0;
-      }
+      },
     },
     activated() {
       this.$emit('page-activated');
       this.$eventBus.$emit('page-loaded');
-    }
+    },
   };
 </script>

@@ -18,6 +18,7 @@
           :product="product"
           :key="product.id"
           :show-product-content.boolean="false"
+          product-style="category"
         />
       </div>
     </div>

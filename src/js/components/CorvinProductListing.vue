@@ -44,8 +44,12 @@
         v-if="showProductContent"
         class="details"
       >
-        <p class="brand">Brand: <span>{{ productBrand }}</span></p>
-        <p class="color">Color: <span>{{ product.productColor }}</span></p>
+        <p class="brand">
+          Brand: <span>{{ productBrand }}</span>
+        </p>
+        <p class="color">
+          Color: <span>{{ product.productColor }}</span>
+        </p>
       </div>
 
       <div class="link">
@@ -66,27 +70,27 @@
       categoryStyle: {
         type: Boolean,
         default() {
-          return false
-        }
+          return false;
+        },
       },
       product: {
         type: Object,
         default() {
           return {};
-        }
+        },
       },
       productStyle: {
         type: String,
         default() {
           return '';
-        }
+        },
       },
       showProductContent: {
         type: Boolean,
         default() {
           return true;
-        }
-      }
+        },
+      },
     },
     computed: {
       productBrand() {
@@ -129,9 +133,9 @@
       },
       isStoreOverview() {
         return this.productStyle === 'store';
-      }
+      },
     },
-  }
+  };
 </script>
 
 <style lang="scss" scoped>

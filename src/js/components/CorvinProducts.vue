@@ -24,31 +24,31 @@
   export default {
     components: {
       CorvinProductListing,
-      CorvinStoreFilters
+      CorvinStoreFilters,
     },
     props: {
       hasFilters: {
         type: Boolean,
         default() {
           return false;
-        }
+        },
       },
       listingType: {
         type: String,
         default() {
           return '';
-        }
+        },
       },
       products: {
         type: Array,
         default() {
           return [];
-        }
-      }
+        },
+      },
     },
     data() {
       return {
-        filterBy: ''
+        filterBy: '',
       };
     },
     computed: {
@@ -65,7 +65,7 @@
       },
       styleModifiers() {
         return this.listingType === 'category' ? 'is-category-listing' : '';
-      }
+      },
     },
     created() {
       this.$eventBus.$on('filter-products', (target) => {
@@ -82,8 +82,8 @@
       },
       handleFilterProducts(filterBy) {
         this.filterBy = filterBy;
-      }
-    }
+      },
+    },
   };
 </script>
 

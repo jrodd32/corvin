@@ -30,7 +30,7 @@
     components: {
       CorvinLoading,
       CorvinPageHero,
-      CorvinProducts
+      CorvinProducts,
     },
     mixins: [ajaxPageProps],
     data() {
@@ -49,11 +49,11 @@
       hasProducts() {
         return 'products' in this.data
                && this.data.products.length > 0;
-      }
+      },
     },
     activated() {
       this.$emit('page-activated');
       this.$eventBus.$emit('page-loaded');
-    }
+    },
   };
 </script>

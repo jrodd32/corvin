@@ -36,8 +36,8 @@ data.<template>
         /
 
         <p
-          class="product-name"
           v-html="data.productName"
+          class="product-name"
         />
       </div>
     </div>
@@ -60,18 +60,18 @@ data.<template>
             </div>
             <h1
               v-if="hasName"
-              class="product-name"
               v-html="calculatedProductName"
+              class="product-name"
             />
             <p
-              class="product-color"
               v-if="data.productColor"
+              class="product-color"
             >
               {{ data.productColor }}
             </p>
             <p
-              class="product-price"
               v-if="data.productPrice"
+              class="product-price"
             >
               {{ data.productPrice }}
             </p>
@@ -132,11 +132,11 @@ data.<template>
           </div>
 
           <doe-link
+            @click.native="handleCalculateSqFt"
             class="calculate-sq-ft"
             is-button
             is-blue
             text="Calculate Sq. Footage"
-            @click.native="handleCalculateSqFt"
           />
         </div>
       </div>
@@ -149,8 +149,8 @@ data.<template>
 
     <doe-modal
       v-if="showModal"
-      class="calculator-modal"
       @close="handleModalClose"
+      class="calculator-modal"
     >
       <div class="calculator">
         <h3>Cost Estimate</h3>
@@ -185,7 +185,7 @@ data.<template>
     filters: {
       filterHtml(data) {
         return data.replace('<p>', '').replace('</p>', '');
-      }
+      },
     },
     components: {
       CorvinLoading,
@@ -198,7 +198,7 @@ data.<template>
     data() {
       return {
         feet: '',
-        showModal: false
+        showModal: false,
       };
     },
     computed: {
@@ -303,7 +303,7 @@ data.<template>
       },
       price() {
         return this.data.productPrice.match(/[+-]?\d+(?:\.\d+)?/g);
-      }
+      },
     },
     methods: {
       handleCalculateSqFt() {
@@ -311,8 +311,8 @@ data.<template>
       },
       handleModalClose() {
         this.showModal = false;
-      }
-    }
+      },
+    },
   };
 </script>
 

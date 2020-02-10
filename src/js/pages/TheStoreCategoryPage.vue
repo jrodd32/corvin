@@ -3,7 +3,7 @@
 
   <main
     v-else
-    class="page has-inset is-gapless products"
+    class="page has-inset is-gapless products no-bottom-padding"
   >
     <corvin-page-hero
       v-if="hasHero"
@@ -25,7 +25,10 @@
       listing-type="category"
     />
 
-    <corvin-related-products :products="data.relatedProducts" />
+    <corvin-related-categories
+      v-if="hasRelatedCategories"
+      :products="data.relatedCategories"
+    />
   </main>
 </template>
 
@@ -34,20 +37,22 @@
   import CorvinLoading from '../components/CorvinLoading.vue';
   import CorvinPageHero from '../components/CorvinPageHero.vue';
   import CorvinProducts from '../components/CorvinProducts.vue';
-  import CorvinRelatedProducts from '../components/CorvinRelatedProducts.vue';
+  import CorvinRelatedCategories from '../components/CorvinRelatedProducts.vue';
 
   export default {
     components: {
       CorvinLoading,
       CorvinPageHero,
       CorvinProducts,
-      CorvinRelatedProducts,
+      CorvinRelatedCategories,
     },
-    mixins: [ajaxPageProps],
+    mixins: [
+      ajaxPageProps,
+    ],
     data() {
       return {
         handle: 'product-categories',
-        slug: this.$route.params.category
+        slug: this.$route.params.category,
       };
     },
     computed: {
@@ -77,11 +82,16 @@
       hasProducts() {
         return 'products' in this.data
                && this.data.products.length > 0;
-      }
+      },
+      hasRelatedCategories() {
+        return 'relatedCategories' in this.data
+               && this.data.relatedCategories
+               && this.data.relatedCategories.length > 0;
+      },
     },
     activated() {
       this.$emit('page-activated');
       this.$eventBus.$emit('page-loaded');
-    }
+    },
   };
 </script>
