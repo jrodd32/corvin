@@ -2,72 +2,80 @@
 
   return [
     'imageStyles' => [
-      'half' => [
-        'aspectRatio' => 4/3,
+      'background' => [
+        'aspectRatio' => 2.4/1,
         'widths' => [
-          2000,
+          1920,
           1200,
+          800,
         ],
         'breakpoints' => [
-          601,
-          null
-        ]
-      ],
-
-      'landscape' => [
-        'aspectRatio' => 9/5,
-        'widths' => [
-          2700,
-          1800,
-          900,
-        ],
-        'breakpoints' => [
-          900,
-          451,
-          null
-        ]
-      ],
-
-      'nav' => [
-        'aspectRatio' => 5/3,
-        'widths' => [
-          640
-        ],
-        'breakpoints' => [
+          1024,
+          600,
           null
         ]
       ],
 
       'portrait' => [
-        'aspectRatio' => 3/4,
+        'aspectRatio' => 0.8/1,
         'widths' => [
-          1200
+          1660,
+          780,
         ],
         'breakpoints' => [
-          1008
-        ]
-      ],
-
-      'square' => [
-        'aspectRatio' => 1/1,
-        'widths' => [
-          1300,
-          800
-        ],
-        'breakpoints' => [
-          401,
+          800,
           null
         ]
       ],
 
-      'timeline' => [
-        'aspectRatio' => 16/9,
+      'team' => [
+        'aspectRatio' => 0.8/1,
         'widths' => [
-          1200,
-          800
+          1660,
+          780,
         ],
         'breakpoints' => [
-          1008,
+          800,
+          null
+        ]
+      ],
+
+      'home' => [
+        'aspectRatio' => 0.8/1,
+        'widths' => [
+          1660,
+          780,
+        ],
+        'breakpoints' => [
+          800,
+          null
+        ]
+      ],
+
+      'cta' => [
+        'aspectRatio' => 4/1,
+        'widths' => [
+          1920,
+          1200,
+          800,
+        ],
+        'breakpoints' => [
+          870,
+          600,
+          null
+        ]
+      ],
+
+      'square' => [
+        'aspectRatio' => 1.03/1,
+        'widths' => [
+          1576,
+          788,
+          532
+        ],
+        'breakpoints' => [
+          788,
+          394,
           null
         ]
       ],
