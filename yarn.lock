@@ -831,12 +831,10 @@
   resolved "https://node.bit.dev/doeanderson.components.base.base-ordered-list/-/doeanderson.components.base.base-ordered-list-0.0.6.tgz#1c3e2b04bb1ed88ccd026ce8c21d4ea2e0619752"
   integrity sha1-HD4rBLse2IzNAmzowh1OouBhl1I=
 
-"@bit/doeanderson.components.base.base-picture@^0.1.1":
-  version "0.1.1"
-  resolved "https://node.bit.dev/doeanderson.components.base.base-picture/-/doeanderson.components.base.base-picture-0.1.1.tgz#499d5179d80f9d2ce1cd9ef22f6a0ac4cbb2ecd6"
-  integrity sha1-SZ1RedgPnSzhzZ7yL2oKxMuy7NY=
-  dependencies:
-    "@bit/doeanderson.components.base.base-source" "0.0.2"
+"@bit/doeanderson.components.base.base-picture@^0.0.18":
+  version "0.0.18"
+  resolved "https://node.bit.dev/doeanderson.components.base.base-picture/-/doeanderson.components.base.base-picture-0.0.18.tgz#171416b1bb9332bf1e66c281e9d68533a23854f6"
+  integrity sha1-FxQWsbuTMr8eZsKB6daFM6I4VPY=
 
 "@bit/doeanderson.components.base.base-select@1.0.20":
   version "1.0.20"
@@ -844,11 +842,6 @@
   integrity sha1-RmOs9vzhi6L7PWkjiswqcwsjjNA=
   dependencies:
     "@bit/doeanderson.components.core.inputs" "1.0.20"
-
-"@bit/doeanderson.components.base.base-source@0.0.2":
-  version "0.0.2"
-  resolved "https://node.bit.dev/doeanderson.components.base.base-source/-/doeanderson.components.base.base-source-0.0.2.tgz#f741fc8e3fc64cf4863d72f0d9f0ed1dc46d35b5"
-  integrity sha1-90H8jj/GTPSGPXLw2fDtHcRtNbU=
 
 "@bit/doeanderson.components.base.base-textarea@1.0.20":
   version "1.0.20"

@@ -64,7 +64,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@bit/doeanderson.components.base.base-form": "1.1.17",
-    "@bit/doeanderson.components.base.base-picture": "^0.1.1",
+    "@bit/doeanderson.components.base.base-picture": "0.0.18",
     "@bit/doeanderson.components.components.doe-content": "^0.0.8",
     "@bit/doeanderson.components.components.doe-fields-wrapper": "^0.0.1",
     "@bit/doeanderson.components.components.doe-honey-pot": "^0.0.5",
