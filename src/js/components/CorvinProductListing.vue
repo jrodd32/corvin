@@ -110,8 +110,8 @@
         return `/shop/${this.product.slug}`;
       },
       productListingAlt() {
-        if ('shopListingImage' in this.product) {
-          return this.product.shopListingImage.alt;
+        if ('image' in this.product) {
+          return this.product.image.alt;
         }
 
         if ('productGallery' in this.product && this.product.productGallery.length > 0) {
@@ -121,8 +121,8 @@
         return '';
       },
       productListingUrl() {
-        if ('shopListingImage' in this.product) {
-          return this.product.shopListingImage.url;
+        if ('image' in this.product) {
+          return this.product.image.url;
         }
 
         if ('productGallery' in this.product && this.product.productGallery.length > 0) {
