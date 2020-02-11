@@ -17,7 +17,7 @@
         tag="div"
       >
         <figure
-          v-for="(thumb, index) in data.content.gallery.galleryImages"
+          v-for="(thumb, index) in data.content.gallery.square"
           :key="index"
         >
           <img
@@ -42,44 +42,51 @@
 
 <script>
   import { ajaxPageProps } from '../core/page';
+  import {
+    clearAllBodyScrollLocks,
+    disableBodyScroll,
+  } from 'body-scroll-lock';
+
   import CorvinLoading from '../components/CorvinLoading.vue';
   import CorvinPageHero from '../components/CorvinPageHero.vue';
+
+  const bodyElement = document.body;
 
   export default {
     components: {
       CorvinLoading,
-      CorvinPageHero
+      CorvinPageHero,
     },
     filters: {
       appendDirectory(imageName, dir) {
         return dir + imageName;
-      }
+      },
     },
     mixins: [ajaxPageProps],
     data() {
       return {
         assetDir: 'https://corvin.nyc3.digitaloceanspaces.com/gallery/',
-        jsonUrl: `/${this.$api.pages.gallery}`
+        jsonUrl: `/${this.$api.pages.gallery}`,
       };
     },
     computed: {
       hasImages() {
         return 'content' in this.data
                && 'gallery' in this.data.content
-               && 'galleryImages' in this.data.content.gallery
-               && this.data.content.gallery.galleryImages.length > 0;
+               && 'square' in this.data.content.gallery
+               && this.data.content.gallery.square.length > 0;
       },
       transformedImages() {
         const images = [];
 
-        this.data.content.gallery.galleryImages.forEach((image) => {
+        this.data.content.gallery.square.forEach((image) => {
           images.push({
-            name: image.url.split('/').pop()
+            name: image.url.split('/').pop(),
           });
         });
 
         return images;
-      }
+      },
     },
     activated() {
       this.$emit('page-activated');
@@ -87,9 +94,10 @@
     },
     methods: {
       showLightbox(imageName) {
+        disableBodyScroll(bodyElement);
         this.$refs.lightbox.show(imageName);
-      }
-    }
+      },
+    },
   };
 </script>
 

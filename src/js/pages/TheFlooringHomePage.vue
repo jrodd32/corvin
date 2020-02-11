@@ -72,12 +72,16 @@
           v-if="hasSocialMedia"
           class="media"
         >
-          <figure v-for="image in data.content.social.media">
+          <!-- <figure v-for="image in data.content.social.media">
             <img
               :alt="image.alt"
               :src="image.url"
             />
-          </figure>
+          </figure> -->
+          <base-picture
+            v-for="image in data.content.social.square"
+            :picture="image"
+          />
         </div>
       </div>
     </div>
@@ -131,7 +135,7 @@
       },
       hasSocialMedia() {
         return this.hasSocial
-               && 'media' in this.data.content.social;
+               && 'square' in this.data.content.social;
       },
       heroOffset() {
         return `margin-top: ${this.heroHeight}px`;
@@ -317,7 +321,7 @@
     }
 
     .media {
-      figure {
+      div {
         margin-bottom: $u4;
       }
 
@@ -335,7 +339,7 @@
         padding-left: $u6;
         padding-right: $u6;
 
-        figure {
+        div {
           flex: 0 1 49%;
           margin-right: $u3;
         }
@@ -343,18 +347,18 @@
     }
 
     @include tablet-only() {
-      .media figure:first-child {
+      .media div:first-child {
         flex: 1 0 100%;
         margin-right: 0;
       }
 
-      .media figure:nth-child(odd) {
+      .media div:nth-child(odd) {
         margin-right: 0;
       }
     }
 
     @include desktop() {
-      .media figure {
+      .media div {
         flex: 0 1 calc(33% - #{$u3 * 3});
       }
     }
@@ -369,7 +373,7 @@
         grid-template-rows: auto auto;
         grid-row-gap: 2rem;
 
-        figure {
+        div {
             margin: 0;
 
             &:first-child {
