@@ -31,12 +31,7 @@
           >
             <h3>{{ category.title }}</h3>
 
-            <figure>
-              <img
-                :alt="category.homeImage.alt"
-                :src="category.homeImage.url"
-              />
-            </figure>
+            <base-picture :picture="category.portrait" />
 
             <doe-link
               :href="category.slug|categoryUrl"
@@ -97,18 +92,18 @@
   export default {
     components: {
       CorvinLoading,
-      FixedHero
+      FixedHero,
     },
     filters: {
       categoryUrl(slug) {
         return `/shop/${slug}`;
-      }
+      },
     },
     mixins: [ajaxPageProps],
     data() {
       return {
         heroHeight: 0,
-        jsonUrl: `/${this.$api.pages.home}`
+        jsonUrl: `/${this.$api.pages.home}`,
       };
     },
     computed: {
@@ -142,15 +137,14 @@
         return `margin-top: ${this.heroHeight}px`;
       },
       quoteBackground() {
-        return `background-image:url(${this.data.content.blockquote.backgroundImage.url})`;
-      }
+        return `background-image:url(${this.data.content.blockquote.background.url})`;
+      },
     },
     methods: {
       handleSetHeroOffset(height) {
-        console.log(height);
         this.heroHeight = height + 50;
-      }
-    }
+      },
+    },
   };
 </script>
 

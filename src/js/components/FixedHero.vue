@@ -5,10 +5,6 @@
   >
     <figure ref="hero">
       <base-picture :picture="hero.featured" />
-      <img
-        :alt="hero.featuredImage.alt"
-        :src="hero.featuredImage.url"
-      />
 
       <figcaption>
         <h1 v-html="hero.headline" />
@@ -34,21 +30,21 @@
         type: Object,
         default() {
           return {};
-        }
-      }
+        },
+      },
     },
     computed: {
       hasBackgroundImage() {
         return 'background' in this.hero;
       },
-      hasFeaturedImage() {
+      hasfeatured() {
         return 'featured' in this.hero;
       },
       background() {
         return this.hasBackgroundImage
                ? `background-image: url('${this.hero.background.url}')`
                : '';
-      }
+      },
     },
     mounted() {
       this.$nextTick(() => {
@@ -63,11 +59,9 @@
       getHeroHeight() {
         const header = document.getElementsByClassName('header')[0].offsetHeight;
         const heroHeight = window.innerHeight - header;
-        // debugger;
-        // const heroHeight = this.$el.offsetHeight;
         return this.$emit('set-hero-offset', heroHeight);
-      }
-    }
+      },
+    },
   };
 </script>
 
@@ -83,7 +77,7 @@
     bottom: 0;
     right:0;
 
-    img {
+    div {
       display: none;
       width: 100%;
     }
@@ -129,11 +123,11 @@
       }
 
       figcaption,
-      img {
+      div {
         grid-row: 2;
       }
 
-      img {
+      div {
         display: initial;
         grid-column: 2;
       }
