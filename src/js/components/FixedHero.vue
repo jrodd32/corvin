@@ -4,6 +4,7 @@
     class="fixed-hero"
   >
     <figure ref="hero">
+      <base-picture :picture="hero.featured" />
       <img
         :alt="hero.featuredImage.alt"
         :src="hero.featuredImage.url"
@@ -38,14 +39,14 @@
     },
     computed: {
       hasBackgroundImage() {
-        return 'backgroundImage' in this.hero;
+        return 'background' in this.hero;
       },
       hasFeaturedImage() {
-        return 'featuredImage' in this.hero;
+        return 'featured' in this.hero;
       },
       background() {
         return this.hasBackgroundImage
-               ? `background-image: url('${this.hero.backgroundImage.url}')`
+               ? `background-image: url('${this.hero.background.url}')`
                : '';
       }
     },

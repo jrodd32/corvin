@@ -1,11 +1,7 @@
 <template>
   <div class="profile">
     <base-picture :picture="profile.team" />
-    <!-- <img
-      :alt="profile.teamMemberImage.alt"
-      :src="profile.teamMemberImage.url"
-      class="profile-image"
-    /> -->
+
     <h2 class="profile-name">
       {{ profile.teamMemberName }}
     </h2>

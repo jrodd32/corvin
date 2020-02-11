@@ -21,10 +21,7 @@
       v-if="hasMedia"
       class="page-hero-media"
     >
-      <img
-        :alt="hero.backgroundImage.alt"
-        :src="hero.backgroundImage.url"
-      />
+      <base-picture :picture="hero.background" />
     </div>
   </div>
 </template>
@@ -58,9 +55,9 @@
       },
       hasMedia() {
         return this.hero
-               && 'backgroundImage' in this.hero
-               && 'url' in this.hero.backgroundImage
-               && this.hero.backgroundImage.url.length > 0;
+               && 'background' in this.hero
+               && 'url' in this.hero.background
+               && this.hero.background.url.length > 0;
       }
     }
   };
