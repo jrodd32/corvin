@@ -143,7 +143,7 @@ class Value extends Component
 
       // file
       if ($this->isAssetQuery($values[$fieldHandle])) {
-        if (in_array($field->handle, ['media', 'galleryImages', 'productGallery'])) {
+        if (in_array($field->handle, ['square', 'galleryImages', 'productGallery'])) {
           $values[$fieldHandle] = $this->setImageGroup($values[$fieldHandle], $field->handle, $parentHandle);
         } else {
           $values[$fieldHandle] = $this->setImage($values[$fieldHandle], $field->handle, $parentHandle);
