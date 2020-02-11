@@ -17,7 +17,6 @@
           v-for="product in products"
           :key="product.id"
           :product="product"
-          :product-style="listingType"
           :show-product-content.boolean="false"
         />
       </div>

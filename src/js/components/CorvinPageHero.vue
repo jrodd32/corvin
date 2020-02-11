@@ -33,8 +33,8 @@
         type: Object,
         default() {
           return {};
-        }
-      }
+        },
+      },
     },
     computed: {
       modifiers() {
@@ -58,7 +58,7 @@
                && 'background' in this.hero
                && 'url' in this.hero.background
                && this.hero.background.url.length > 0;
-      }
+      },
     }
   };
 </script>

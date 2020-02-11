@@ -303,8 +303,6 @@ class Value extends Component
 
     if (is_null($style)) {
       foreach(array_keys($imageStyles) as $imageStyle) {
-        // var_dump($handle);
-        // var_dump($imageStyle);
         if (strpos(strtolower($handle), $imageStyle) !== false || $imageStyle === $parentHandle) {
           $style = $imageStyle;
           break;
