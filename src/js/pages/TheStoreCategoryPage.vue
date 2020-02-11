@@ -9,10 +9,7 @@
       v-if="hasHero"
       :hero="{
         headline: data.title,
-        backgroundImage: {
-          alt: data.image.alt,
-          url: data.image.url
-        },
+        background: data.image,
         content: description
       }"
     />
