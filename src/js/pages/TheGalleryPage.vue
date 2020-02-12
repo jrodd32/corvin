@@ -20,11 +20,15 @@
           v-for="(thumb, index) in data.content.gallery.square"
           :key="index"
         >
-          <img
+          <!-- <img
             @click="showLightbox(thumb.url)"
             :src="thumb.url"
             :alt="thumb.alt"
             :title="thumb.alt"
+          /> -->
+          <base-picture
+            :picture="thumb"
+            @click.native="showLightbox(thumb.url)"
           />
         </figure>
       </transition-group>
@@ -94,7 +98,7 @@
     },
     methods: {
       showLightbox(imageName) {
-        disableBodyScroll(bodyElement);
+        // TODO: disabled / re-enable body-scoll
         this.$refs.lightbox.show(imageName);
       },
     },
