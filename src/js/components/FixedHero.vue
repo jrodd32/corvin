@@ -3,10 +3,16 @@
     :style="background"
     class="fixed-hero"
   >
-    <figure ref="hero">
-      <base-picture :picture="hero.featured" />
+    <div
+      ref="hero"
+      class="figure"
+    >
+      <base-picture
+        :picture="hero.featured"
+        class="featured"
+      />
 
-      <figcaption>
+      <article>
         <h1 v-html="hero.headline" />
         <div
           v-html="hero.content"
@@ -18,8 +24,8 @@
           :text="hero.button.text"
           is-orange
         />
-      </figcaption>
-    </figure>
+      </article>
+    </div>
   </div>
 </template>
 
@@ -77,12 +83,12 @@
     bottom: 0;
     right:0;
 
-    div {
+    .featured {
       display: none;
       width: 100%;
     }
 
-    figcaption {
+    article {
       background-color: rgba(42, 57, 64, .8);
       padding: 3rem;
     }
@@ -116,23 +122,23 @@
     }
 
     @include cinema() {
-      figure {
+      .figure {
         display: grid;
         grid-template-columns: minmax($gap, 15%) 1fr minmax($gap, 15%);
         grid-template-rows: minmax(100px, 15%) 1fr minmax(100px, 15%);
       }
 
-      figcaption,
-      div {
+      article,
+      .featured {
         grid-row: 2;
       }
 
-      div {
+      .featured {
         display: initial;
         grid-column: 2;
       }
 
-      figcaption {
+      article {
         align-self: center;
         grid-column: 2;
         max-width: 500px;
