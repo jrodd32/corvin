@@ -45,10 +45,7 @@ data.<template>
     <div class="is-contained content-wrapper is-small-margin">
       <div class="product-item">
         <div class="product-image">
-          <img
-            :alt="data.productGallery[0].alt"
-            :src="data.productGallery[0].url"
-          />
+          <base-picture :picture="data.square[0]" />
         </div>
 
         <div class="product-quick-facts">
@@ -123,11 +120,16 @@ data.<template>
             v-if="hasGallery"
             class="product-gallery"
           >
-            <img
-              v-for="(pic, index) in data.productGallery"
+            <!-- <img
+              v-for="(pic, index) in data.square"
               :key="index"
               :alt="pic.alt"
               :src="pic.url"
+            /> -->
+            <base-picture
+              v-for="(picture, index) in data.square"
+              :picture="picture"
+              :key="index"
             />
           </div>
 
@@ -234,9 +236,9 @@ data.<template>
         return this.hasCategory && this.hasCategorySlug;
       },
       hasGallery() {
-        return 'productGallery' in this.data
-               && this.data.productGallery !== null
-               && this.data.productGallery.length > 1;
+        return 'square' in this.data
+               && this.data.square !== null
+               && this.data.square.length > 1;
       },
       hasName() {
         return 'productName' in this.data
@@ -469,7 +471,7 @@ data.<template>
       }
     }
 
-    img {
+    .image {
       max-width: 12rem;
     }
   }
