@@ -53,7 +53,6 @@
 <script>
   import CorvinLoading from '../components/CorvinLoading.vue';
   import { nonAjaxPageProps } from '../core/page';
-import { loadavg } from 'os';
 
   export default {
     components: {
@@ -77,8 +76,8 @@ import { loadavg } from 'os';
         return `${this.imagePath}/flooring-landing-img.jpg`;
       },
       furnitureImage() {
-        return `${this.imagePath}/furniture-landing-img.jpg`;
-      }
+        return `${this.imagePath}/furniture-landing.jpg`;
+      },
     },
     activated() {
       this.$emit('page-activated');
