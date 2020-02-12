@@ -72,12 +72,6 @@
           v-if="hasSocialMedia"
           class="media"
         >
-          <!-- <figure v-for="image in data.content.social.media">
-            <img
-              :alt="image.alt"
-              :src="image.url"
-            />
-          </figure> -->
           <base-picture
             v-for="image in data.content.social.square"
             :picture="image"
@@ -168,6 +162,10 @@
     .category-wrapper {
       max-width: $ultrawide;
       margin: 0 auto;
+
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
     }
 
     h2 {
@@ -179,6 +177,7 @@
     }
 
     .category {
+      flex: 1 0 100%;
       margin-bottom: $u10;
       text-align: center;
 
@@ -212,21 +211,25 @@
       width: 100%;
     }
 
-    @include tablet() {
-      .category-wrapper {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
-      }
-
+    @media screen and (min-width: 550px) and (max-width: $desktop) {
       .category {
-        flex: 1 1 50%;
+        flex: 1 1 calc(50% - 2rem);
+        margin-right: 1rem;
+
+        &:nth-child(even) {
+          margin-right: 0;
+        }
       }
     }
 
     @include desktop() {
       .category {
-        flex: 1 1 33%;
+        flex: 1 1 calc(33% - 6rem);
+        margin-right: 2rem;
+
+        &:nth-child(3n) {
+          margin-right: 0;
+        }
       }
     }
 
