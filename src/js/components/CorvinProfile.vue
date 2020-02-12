@@ -53,7 +53,7 @@
     padding-top: $u10;
     text-align: center;
 
-    &-image {
+    .image {
       margin-bottom: $u4;
     }
 

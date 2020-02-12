@@ -79,27 +79,33 @@
 
     .profiles {
       display: flex;
-      flex-flow: column nowrap;
-      align-items: center;
+      flex-flow: row wrap;
+      justify-content: space-between;
     }
 
-    @include tablet() {
-      .profiles {
-        align-items: flex-start;
-        flex-flow: row wrap;
-        justify-content: space-between;
+    @include mobile {
+      .profile {
+        width: 100%;
+      }
+    }
+
+    @media screen and (min-width: 500px) {
+      .profile {
+        flex: 1 1 calc(50% - 1rem);
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
       }
     }
 
     @include desktop() {
       .profile {
-        flex: 0 1 33%;
+        flex: 0 1 calc(33% - 2rem);
       }
     }
 
     @include cinema {
       .profile {
-        flex: 0 1 25%;
+        flex: 0 1 calc(25% - 4rem);
       }
     }
   }
