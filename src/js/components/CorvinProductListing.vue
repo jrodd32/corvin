@@ -97,6 +97,10 @@
           return this.product.square[0];
         }
 
+        if ('background' in this.product) {
+          return this.product.background;
+        }
+
         if ('image' in this.product) {
           return this.product.image;
         }
