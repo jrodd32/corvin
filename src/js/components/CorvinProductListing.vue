@@ -12,10 +12,8 @@
       >
         <div></div>
       </doe-link>
-      <img
-        :alt="productListingAlt"
-        :src="productListingUrl"
-      />
+
+      <base-picture :picture="picture" />
     </figure>
 
     <div
@@ -45,7 +43,7 @@
         class="details"
       >
         <p class="brand">
-          Brand: <span>{{ productBrand }}</span>
+          Brand: <span>{{ product.productBrand[0].title }}</span>
         </p>
         <p class="color">
           Color: <span>{{ product.productColor }}</span>
@@ -67,12 +65,6 @@
 <script>
   export default {
     props: {
-      categoryStyle: {
-        type: Boolean,
-        default() {
-          return false;
-        },
-      },
       product: {
         type: Object,
         default() {
@@ -93,15 +85,6 @@
       },
     },
     computed: {
-      productBrand() {
-        if ('productBrand' in this.product
-          && this.product.productBrand
-          && this.product.productBrand.length >= 1) {
-            return this.product.productBrand[0].title;
-          }
-
-          return 'Need brand';
-      },
       productLink() {
         if (this.productStyle === 'product') {
           return `/shop${this.product.uri}`;
@@ -109,27 +92,16 @@
 
         return `/shop/${this.product.slug}`;
       },
-      productListingAlt() {
+      picture() {
+        if ('square' in this.product) {
+          return this.product.square[0];
+        }
+
         if ('image' in this.product) {
-          return this.product.image.alt;
+          return this.product.image;
         }
 
-        if ('productGallery' in this.product && this.product.productGallery.length > 0) {
-          return this.product.productGallery[0].alt;
-        }
-
-        return '';
-      },
-      productListingUrl() {
-        if ('image' in this.product) {
-          return this.product.image.url;
-        }
-
-        if ('productGallery' in this.product && this.product.productGallery.length > 0) {
-          return this.product.productGallery[0].url;
-        }
-
-        return '';
+        return {};
       },
       isStoreOverview() {
         return this.productStyle === 'store';

@@ -40,7 +40,7 @@
         ]
       ],
 
-      'home' => [
+      'image' => [
         'aspectRatio' => 0.8/1,
         'widths' => [
           1660,

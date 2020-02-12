@@ -34,7 +34,7 @@
             <base-picture :picture="category.portrait" />
 
             <doe-link
-              :href="category.slug|categoryUrl"
+              :href="category.uri"
               text="Shop Now"
               is-blue
             />
@@ -97,11 +97,6 @@
     components: {
       CorvinLoading,
       FixedHero,
-    },
-    filters: {
-      categoryUrl(slug) {
-        return `/shop/${slug}`;
-      },
     },
     mixins: [ajaxPageProps],
     data() {
@@ -196,8 +191,14 @@
         text-transform: uppercase;
       }
 
-      figure {
+      .image {
         margin-bottom: 2rem;
+      }
+
+      .image-content {
+        height: auto;
+        width: 100%;
+
       }
     }
 
@@ -325,7 +326,7 @@
         margin-bottom: $u4;
       }
 
-      img {
+      .image picture {
         height: auto;
         width: 100%
       }
