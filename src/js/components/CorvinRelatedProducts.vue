@@ -65,6 +65,8 @@
   /deep/ .product {
 
     .product-image {
+      max-height: 22.9rem;
+      overflow: hidden;
       margin-bottom: -3rem;
     }
 
@@ -108,7 +110,8 @@
     .products {
       display: flex;
       flex-flow: row nowrap;
-      justify-content: space-between;
+      justify-content: space-around;
+      width: 100%;
 
       .product {
         flex: 0 1 calc(33% - #{$u6});
@@ -116,13 +119,6 @@
 
         &:nth-child(3) {
           margin-right: 0;
-        }
-
-        /deep/ .product-image {
-          align-items: center;
-          display: flex;
-          max-height: 22.9rem;
-          overflow: hidden;
         }
 
         /deep/ .product-content {
