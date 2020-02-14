@@ -324,15 +324,13 @@
       text-align: center;
     }
 
-    .media {
-      div {
-        margin-bottom: $u4;
-      }
+    .media .image {
+      margin-bottom: $u4;
+    }
 
-      .image picture {
-        height: auto;
-        width: 100%
-      }
+    /deep/ .image-content {
+      height: auto;
+      width: 100%;
     }
 
     @include tablet() {
@@ -343,7 +341,7 @@
         padding-left: $u6;
         padding-right: $u6;
 
-        div {
+        .imgage {
           flex: 0 1 49%;
           margin-right: $u3;
         }
@@ -351,18 +349,18 @@
     }
 
     @include tablet-only() {
-      .media div:first-child {
+      .media .image:first-child {
         flex: 1 0 100%;
         margin-right: 0;
       }
 
-      .media div:nth-child(odd) {
+      .media .image:nth-child(odd) {
         margin-right: 0;
       }
     }
 
     @include desktop() {
-      .media div {
+      .media .image {
         flex: 0 1 calc(33% - #{$u3 * 3});
       }
     }
@@ -377,7 +375,7 @@
         grid-template-rows: auto auto;
         grid-row-gap: 2rem;
 
-        div {
+        .image {
             margin: 0;
 
             &:first-child {
