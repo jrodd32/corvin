@@ -2,44 +2,40 @@
   <div class="social-links">
     <ul>
       <li>
-        <a
+        <doe-link
           class="social-icon fb"
-          href="https://facebook.com/"
-          target="_BLANK"
-          rel="noopener"
+          href="https://www.facebook.com/corvinsflooring/"
+          new-window
         >
           <span class="hidden-element">Facebook</span>
-        </a>
+        </doe-link>
       </li>
       <li>
-        <a
+        <doe-link
           class="social-icon tw"
-          href="https://twitter.com/"
-          target="_BLANK"
-          rel="noopener"
+          href="https://twitter.com/CorvinsFAF"
+          new-window
         >
           <span class="hidden-element">Twitter</span>
-        </a>
+        </doe-link>
       </li>
       <li>
-        <a
+        <doe-link
           class="social-icon yt"
-          href="httsp://youtub.com/"
-          target="_BLANK"
-          rel="noopener"
+          href="https://www.youtube.com/channel/UCDY-gaYV_eT1jfS2Cr521ow?view_as=subscriber"
+          new-window
         >
           <span class="hidden-element">YouTube</span>
-        </a>
+        </doe-link>
       </li>
       <li>
-        <a
+        <doe-link
           class="social-icon ig"
-          href="https://instagram.com/"
-          target="_BLANK"
-          rel="noopener"
+          href="https://www.instagram.com/corvinsfurnitureandflooring/"
+          new-window
         >
           <span class="hidden-element">Instagram</span>
-        </a>
+        </doe-link>
       </li>
     </ul>
   </div>
@@ -65,7 +61,7 @@
 
   .social-icon {
       background-repeat: no-repeat;
-      background-size: cover;
+      background-position: center;
       display: block;
       height: 3.6rem;
       width: 3.6rem;

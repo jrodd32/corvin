@@ -83,10 +83,10 @@
     components: {
       LandingPageHeader,
       NavLinks,
-      SocialLinks
+      SocialLinks,
     },
     mixins: [
-      windowProps
+      windowProps,
     ],
     data() {
       return {
