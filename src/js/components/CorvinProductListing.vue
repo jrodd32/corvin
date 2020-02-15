@@ -1,9 +1,11 @@
 <template>
   <div class="product">
-    <h2
-      v-html="product.title"
-      class="product-title"
-    />
+    <doe-link :href="productLink">
+      <h2
+        v-html="product.title"
+        class="product-title"
+      />
+    </doe-link>
 
     <figure class="product-image">
       <doe-link
@@ -124,6 +126,7 @@
     opacity: 0;
     transition: .5s ease;
     background-color: rgba(75, 83, 87, 0.85);
+    z-index: 1;
 
     div {
       background-image: url('../../images/shopping-bag-icon.svg');

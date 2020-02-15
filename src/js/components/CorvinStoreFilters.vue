@@ -9,24 +9,44 @@
 </template>
 
 <script>
-  import { filters } from '../core/data';
   import CorvinStoreFilter from './CorvinStoreFilter.vue';
 
   export default {
     components: {
-      CorvinStoreFilter
+      CorvinStoreFilter,
     },
     data() {
       return {
-        filters
+        brands: [],
+        categories: [],
+        colors: [],
+        filters: [],
       };
+    },
+    props: {
+      products: {
+        type: Array,
+        default() {
+          return [];
+        },
+      },
+    },
+    created() {
+      this.setFilters();
     },
     methods: {
       clearAllFilters() {
         this.$eventBus.$emit('clear-filters');
+      },
+      setFilters() {
+        this.products.forEach((p) => {
+          this.brands.push(p.productBrand[0]);
+          this.categories.push(p.productCategory[0]);
+          this.colors.push(p.productColor);
+        });
       }
-    }
-  }
+    },
+  };
 </script>
 
 <style lang="scss" scoped>

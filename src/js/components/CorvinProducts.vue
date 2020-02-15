@@ -1,6 +1,9 @@
 <template>
   <div class="products-filters">
-    <corvin-store-filters v-if="hasFilters" />
+    <corvin-store-filters
+      v-if="hasFilters"
+      :products="products"
+    />
 
     <div
       :class="styleModifiers"
@@ -107,13 +110,38 @@
       justify-content: space-between;
 
       .product {
-        flex: 0 1 calc(50% - (#{$u6} / 2));
+        flex: 1 1 calc(50% - (#{$u10} / 2));
+        margin-left: $u3;
+        margin-right: $u3;
+      }
+    }
+
+    @include tablet-only {
+      .product:nth-child(even) {
+        margin-right: 0;
+      }
+
+      .product:nth-child(odd) {
+        margin-left: 0;
       }
     }
 
     @include widescreen() {
+      margin-left: $u10;
+      margin-right: $u10
+      ;
       .product {
-        flex: 0 1 calc(33% - #{$u6} / 3);
+        flex: 0 1 calc(30% - #{$u6} / 3);
+      }
+    }
+
+    @include widescreen-only {
+      .product:nth-child(3n) {
+        margin-right: 0;
+      }
+
+      .product:nth-child(1n) {
+        margin-left: 0;
       }
     }
 
