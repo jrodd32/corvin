@@ -16,21 +16,12 @@
         name="thumbnailfade"
         tag="div"
       >
-        <figure
-          v-for="(thumb, index) in data.content.gallery.square"
-          :key="index"
-        >
-          <!-- <img
-            @click="showLightbox(thumb.url)"
-            :src="thumb.url"
-            :alt="thumb.alt"
-            :title="thumb.alt"
-          /> -->
-          <base-picture
-            :picture="thumb"
-            @click.native="showLightbox(thumb.url)"
-          />
-        </figure>
+        <base-picture
+          v-for="thumb in data.content.gallery.square"
+          :key="thumb.url"
+          :picture="thumb"
+          @click.native="showLightbox(thumb.url)"
+        />
       </transition-group>
 
       <lightbox
@@ -110,12 +101,12 @@
   display: flex;
   flex-direction: column;
 
-  figure {
+  .image {
     display: block;
     margin-bottom: $u4;
   }
 
-  img {
+  /deep/ .image-content {
     width: 100%;
   }
 
@@ -123,7 +114,7 @@
     flex-flow: row wrap;
     justify-content: flex-start;
 
-    figure {
+    .image {
       flex: 0 1 calc(50% - #{$u2});
       margin-right: $u4;
 
@@ -134,7 +125,7 @@
   }
 
   @include desktop() {
-    figure {
+    .image {
       flex: 0 1 calc(33% - #{$u2});
 
       &:nth-child(2n) {
@@ -148,7 +139,7 @@
   }
 
   @include ultrawide() {
-    figure {
+    .image {
       flex: 0 1 calc(25% - #{$u3});
 
       &:nth-child(2n),
