@@ -21,12 +21,15 @@
         <contact-form />
 
         <aside class="contact-sidebar">
-          <figure class="media">
-            <img
-              alt="Image of a map to Corvin furniture"
-              src="../../images/contact/corvin-location-map.jpg"
-            />
-          </figure>
+          <doe-link
+            v-if="hasMedia"
+            class="media"
+            href="https://www.google.com/maps/place/Corvin's+Furniture+and+Flooring/@37.8051981,-85.4346541,17z/data=!4m5!3m4!1s0x88684e03de6dc2fb:0xc7d862ea25029012!8m2!3d37.8051981!4d-85.4324656"
+            is-anchor
+            new-window
+          >
+            <base-picture :picture="data.landscape" />
+          </doe-link>
 
           <div
             v-if="hasSidebar"
@@ -47,10 +50,10 @@
   export default {
     components: {
       ContactForm,
-      CorvinPageHero
+      CorvinPageHero,
     },
     mixins: [
-      ajaxPageProps
+      ajaxPageProps,
     ],
     data() {
       return {
@@ -72,8 +75,13 @@
       hasSubHeading() {
         return 'headline' in this.data
                && this.data.headline.length > 0;
-      }
-    }
+      },
+      hasMedia() {
+        return 'landscape'in this.data
+               && 'sources' in this.data.landscape
+               && this.data.landscape.sources.length > 0;
+      },
+    },
   };
 </script>
 <style lang="scss">
@@ -104,13 +112,15 @@
   .contact-sidebar {
     margin-top: 5rem;
 
-    img {
+    /deep/ .image-content {
       width: 100%;
     }
   }
 
   .media {
+    display: block;
     margin-bottom: 3rem;
+    width: 100%;
   }
 
   .contact-form-wrapper {

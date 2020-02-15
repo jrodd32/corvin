@@ -28,6 +28,20 @@
         ]
       ],
 
+      'landscape' => [
+        'aspectRatio' => 4/3,
+        'widths' => [
+          1920,
+          1280,
+          800
+        ],
+        'breakpoints' => [
+          1024,
+          600,
+          null
+        ]
+      ],
+
       'team' => [
         'aspectRatio' => 0.8/1,
         'widths' => [
