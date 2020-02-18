@@ -67,7 +67,11 @@
     },
     computed: {
       productLink() {
-        return `/shop/${this.product.slug}`;
+        if (this.showProductContent === false) {
+          return `/shop${this.product.uri}`;
+        }
+
+        return `${this.$route.path}/${this.product.slug}`;
       },
       picture() {
         if ('square' in this.product) {

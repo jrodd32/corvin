@@ -1,4 +1,4 @@
-data.<template>
+<template>
   <corvin-loading v-if="loading" />
 
   <main
@@ -44,7 +44,10 @@ data.<template>
 
     <div class="is-contained content-wrapper is-small-margin">
       <div class="product-item">
-        <div class="product-image">
+        <div
+          v-if="hasPicture"
+          class="product-image"
+        >
           <base-picture :picture="data.square[0]" />
         </div>
 
@@ -120,12 +123,6 @@ data.<template>
             v-if="hasGallery"
             class="product-gallery"
           >
-            <!-- <img
-              v-for="(pic, index) in data.square"
-              :key="index"
-              :alt="pic.alt"
-              :src="pic.url"
-            /> -->
             <base-picture
               v-for="(picture, index) in data.square"
               :picture="picture"
@@ -244,6 +241,9 @@ data.<template>
         return 'productName' in this.data
                && this.data.productName !== null
                && this.data.productName.length > 0;
+      },
+      hasPicture() {
+        return 'square' in this.data;
       },
       hasProductColor() {
         return 'productColor' in this.data

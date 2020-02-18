@@ -3,7 +3,7 @@
     <h2 class="category-title">
       <doe-link
         v-html="category.title"
-        :href="categoryLink"
+        :href="category.uri"
       />
     </h2>
 
@@ -43,11 +43,6 @@
         default() {
           return {};
         },
-      },
-    },
-    computed: {
-      categoryLink() {
-        return `shop/${this.category.uri}`;
       },
     },
   };

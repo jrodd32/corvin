@@ -289,6 +289,6 @@ class Pages extends Component
 
   protected function formatCategory($handle)
   {
-    return str_replace('-', '', ucwords($handle, '-'));
+    return str_replace('-', ' ', ucwords($handle, '-'));
   }
 }

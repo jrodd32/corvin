@@ -22,8 +22,8 @@
 
     <corvin-related-categories
       v-if="hasRelatedCategories"
-      :products="data.relatedCategories"
-      listing-style="category"
+      :categories="data.relatedCategories"
+      :current-category="data.title"
     />
   </main>
 </template>
@@ -33,7 +33,7 @@
   import CorvinLoading from '../components/CorvinLoading.vue';
   import CorvinPageHero from '../components/CorvinPageHero.vue';
   import CorvinProducts from '../components/CorvinProducts.vue';
-  import CorvinRelatedCategories from '../components/CorvinRelatedProducts.vue';
+  import CorvinRelatedCategories from '../components/CorvinRelatedCategories.vue';
 
   export default {
     components: {
