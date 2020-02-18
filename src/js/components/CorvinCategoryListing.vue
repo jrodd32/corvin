@@ -1,44 +1,36 @@
 <template>
-  <div class="product">
-    <h2 class="product-title">
+  <div class="category">
+    <h2 class="category-title">
       <doe-link
-        v-html="product.productStyleNumber"
-        :href="productLink"
+        v-html="category.title"
+        :href="categoryLink"
       />
     </h2>
 
-    <div class="product-image">
+    <div class="category-image">
       <doe-link
-        :href="productLink"
+        :href="category.uri"
         class="overlay-effect"
       >
         <div></div>
       </doe-link>
 
-      <base-picture :picture="picture" />
+      <base-picture :picture="category.background" />
     </div>
 
-    <div class="product-content">
-      <div
-        v-if="showProductContent"
-        class="details"
-      >
-        <p class="brand">
-          Brand: <span>{{ product.productBrand[0].title }}</span>
-        </p>
-        <p class="color">
-          Color: <span>{{ product.productColor }}</span>
-        </p>
-      </div>
+    <div class="category-content">
+      <p
+        v-html="category.shortDescription"
+        class="category-description"
+      />
 
-      <div class="link">
-        <doe-link
-          :href="productLink"
-          is-blue-alt
-        >
-          View details
-        </doe-link>
-      </div>
+      <doe-link
+        :href="category.uri"
+        class="read-more"
+        is-anchor
+      >
+        Read More
+      </doe-link>
     </div>
   </div>
 </template>
@@ -46,43 +38,16 @@
 <script>
   export default {
     props: {
-      product: {
+      category: {
         type: Object,
         default() {
           return {};
         },
       },
-      productStyle: {
-        type: String,
-        default() {
-          return '';
-        },
-      },
-      showProductContent: {
-        type: Boolean,
-        default() {
-          return true;
-        },
-      },
     },
     computed: {
-      productLink() {
-        return `/shop/${this.product.slug}`;
-      },
-      picture() {
-        if ('square' in this.product) {
-          return this.product.square[0];
-        }
-
-        if ('background' in this.product) {
-          return this.product.background;
-        }
-
-        if ('image' in this.product) {
-          return this.product.image;
-        }
-
-        return {};
+      categoryLink() {
+        return `shop/${this.category.uri}`;
       },
     },
   };
@@ -110,12 +75,12 @@
     }
   }
 
-  .product {
+  .category {
     padding-left: $u2;
     padding-right: $u2;
     padding-top: $u6;
 
-    .product-title {
+    .category-title {
       margin-bottom: 0;
 
       a {
@@ -127,7 +92,7 @@
       }
     }
 
-    .product-image {
+    .category-image {
       position: relative;
       margin-bottom: 3rem;
 
@@ -142,15 +107,15 @@
       }
     }
 
-    .product-content {
+    .category-content {
       border-bottom: 1px solid $tertiaryBlue;
       padding-bottom: 3rem;
       padding-left: 3rem;
       padding-right: 3rem;
+      color: $font-color-dark;
     }
 
-    .product-content p {
-      font-weight: bold;
+    .category-content p {
       margin-bottom: 0;
 
       span {
@@ -164,7 +129,7 @@
     }
 
     @media screen and (min-width: 414px) {
-      .product-content {
+      .category-content {
         display: flex;
         flex-flow: row wrap;
       }

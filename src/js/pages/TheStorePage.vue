@@ -10,10 +10,10 @@
       :hero="data.content.hero"
     />
 
-    <corvin-products
+    <corvin-categories
       v-if="hasProducts"
-      :products="data.content.products.grid.items"
-      class="is-contained"
+      :categories="data.content.products.grid.items"
+      class="is-contained content-wrapper"
       has-filters.boolean="false"
       listing-type="store"
     />
@@ -24,13 +24,13 @@
   import { ajaxPageProps } from '../core/page';
   import CorvinLoading from '../components/CorvinLoading.vue';
   import CorvinPageHero from '../components/CorvinPageHero.vue';
-  import CorvinProducts from '../components/CorvinProducts.vue';
+  import CorvinCategories from '../components/CorvinCategories.vue';
 
   export default {
     components: {
       CorvinLoading,
       CorvinPageHero,
-      CorvinProducts,
+      CorvinCategories,
     },
     mixins: [
       ajaxPageProps,

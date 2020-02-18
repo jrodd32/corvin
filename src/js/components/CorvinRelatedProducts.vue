@@ -2,7 +2,7 @@
   <div class="related-products container">
     <div class="content-wrapper">
       <h2>
-        Still Looking? You Might Also Like These Additional Options  or
+        Still Looking? You Might Also Like These Additional Options or
         <doe-link
           class="cta-link"
           href="/shop"

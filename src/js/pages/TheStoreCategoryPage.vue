@@ -17,9 +17,7 @@
     <corvin-products
       v-if="hasProducts"
       :products="data.products"
-      class="is-contained"
-      has-filters.boolean="true"
-      listing-type="product"
+      class="is-contained content-wrapper"
     />
 
     <corvin-related-categories

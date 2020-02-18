@@ -1,13 +1,13 @@
 <template>
   <div class="products-filters">
-    <corvin-store-filters
+    <!-- <corvin-store-filters
       v-if="hasFilters"
       :products="products"
-    />
+    /> -->
 
     <div
       :class="styleModifiers"
-      class="products-listing"
+      class="products"
     >
       <corvin-product-listing
         v-if="hasProducts"
@@ -91,63 +91,28 @@
 </script>
 
 <style lang="scss" scoped>
-  // .products-filters {
-  //   margin-bottom: $u6;
-
-  //   @include tablet() {
-  //     margin-bottom: $u10;
-  //   }
-  // }
-
-  .products-listing {
+  .products {
     display: flex;
-    flex-flow: column wrap;
-    margin-left: $u6;
-    margin-right: $u6;
+    flex-flow: row wrap;
+    justify-content: flex-start;
 
     @include tablet() {
-      flex-flow: row wrap;
-      justify-content: space-between;
-
       .product {
-        flex: 1 1 calc(50% - (#{$u10} / 2));
-        margin-left: $u3;
-        margin-right: $u3;
+        flex: 1 1 50%;
       }
     }
 
-    @include tablet-only {
-      .product:nth-child(even) {
-        margin-right: 0;
-      }
-
-      .product:nth-child(odd) {
-        margin-left: 0;
-      }
-    }
-
-    @include widescreen() {
-      margin-left: $u10;
-      margin-right: $u10
-      ;
+    @include desktop() {
       .product {
-        flex: 0 1 calc(30% - #{$u6} / 3);
-      }
-    }
-
-    @include widescreen-only {
-      .product:nth-child(3n) {
-        margin-right: 0;
-      }
-
-      .product:nth-child(1n) {
-        margin-left: 0;
+        flex-basis: 33%;
+        max-width: 33%;
       }
     }
 
     @include tv() {
       .product {
-        flex: 0 1 calc(25% - (#{$u6} / 3));
+        flex-basis: 25%;
+        max-width: 25%;
       }
     }
   }
