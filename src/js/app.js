@@ -126,15 +126,6 @@ if (hydrate) {
 
 document.addEventListener('DOMContentLoaded', () => {
   router.onReady(() => {
-    app.$mount('#app', hydrate);
+    app.$mount('#app');
   });
-
-  // Add service worker if on production and browser supports it
-  // NOTE: if you want to test in dev or staging, change the hostname condition
-  // TODO: set hostname
-  if ('serviceWorker' in navigator && window.location.hostname === 'https://corvin.com') {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/service-worker.js');
-    });
-  }
 });
