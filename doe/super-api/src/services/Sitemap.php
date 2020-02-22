@@ -163,7 +163,7 @@ class Sitemap extends Component
         return 'https://corvin.doe1915.com/';
         break;
       case 'production':
-        return 'https://www.corvin.com/';
+        return 'https://www.corvinsflooring.com/';
         break;
       default:
         return 'https://corvin.test/';
