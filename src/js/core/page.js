@@ -36,17 +36,17 @@ const ajaxPageProps = {
     afterLoadData() {}, // NOTE: useful for running methods after data is present
     loadData(url = null, updateHead = true) {
       if (!this.forceAjax) {
-        if (window.data && window.data.page && window.data.page.url && window.data.page.url === window.location.href.split('?')[0]) {
-          this.data = window.data.page;
-          this.loadedViaJson = true;
-          this.afterLoadData();
+        // if (window.data && window.data.page && window.data.page.url && window.data.page.url === window.location.href.split('?')[0]) {
+        //   this.data = window.data.page;
+        //   this.loadedViaJson = true;
+        //   this.afterLoadData();
 
-          if (updateHead) {
-            this.updateHead();
-          }
+        //   if (updateHead) {
+        //     this.updateHead();
+        //   }
 
-          return;
-        }
+        //   return;
+        // }
       }
 
       // Parse handle and slug from current url
