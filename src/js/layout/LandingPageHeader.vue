@@ -3,7 +3,7 @@
     <figure>
       <img
         alt="Corvin's furiture and flooring logo"
-        src="../../images/corvins-combo-logo.png@2x.png"
+        src="../../images/logos/corvins-combo-logo-landing-page.svg"
         class="logo"
       />
     </figure>
@@ -21,6 +21,9 @@
     background-color: $primaryBlue;
     padding-bottom: $u8;
     padding-top: $u8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     figure {
       align-items: center;
@@ -28,6 +31,7 @@
       justify-content: center;
       margin: 0;
       padding: 0;
+      width: 240px;
     }
 
     h1 {

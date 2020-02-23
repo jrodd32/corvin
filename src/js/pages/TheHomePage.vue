@@ -56,12 +56,14 @@
 
   export default {
     components: {
-      CorvinLoading
+      CorvinLoading,
     },
-    mixins: [nonAjaxPageProps],
+    mixins: [
+      nonAjaxPageProps,
+    ],
     data() {
       return {
-        loading: true
+        loading: true,
       };
     },
     computed: {
