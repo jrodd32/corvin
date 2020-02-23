@@ -7,8 +7,8 @@
   >
     <div class="footer-brand">
       <img
-        alt=""
-        src="../../images/corvins-combo-logo.png@2x.png"
+        alt="Corvin's flooring and furniture logo"
+        src="../../images/logos/corvins-combo-logo-footer.svg"
       />
       <h3>Championing every client's flooring with passion and integrity</h3>
     </div>
