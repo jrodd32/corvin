@@ -52,9 +52,9 @@ const prerenderCallback = (html) => {
     .replace(new RegExp('<img src="/images/', 'g'), '<img src="{{ cdnUrl }}/images/')
     .replace(new RegExp('<img src="/images/', 'g'), '<img src="{{ cdnUrl }}images/')
     .replace(new RegExp('<img src="/uploads/', 'g'), '<img src="{{ cdnUrl }}uploads/')
-    .replace(new RegExp('http://localhost:8000', 'g'), 'https://www.corvinsflooring.com')
-    .replace(new RegExp('http://localhost:8080', 'g'), 'https://www.corvinsflooring.com')
-    .replace(new RegExp('corvin.test', 'g'), 'www.corvinsflooring.com');
+    .replace(new RegExp('http://localhost:8000', 'g'), 'https://corvinsflooring.com')
+    .replace(new RegExp('http://localhost:8080', 'g'), 'https://corvinsflooring.com')
+    .replace(new RegExp('corvin.test', 'g'), 'corvinsflooring.com');
 };
 
 const cleanIgnoreFiles = [];

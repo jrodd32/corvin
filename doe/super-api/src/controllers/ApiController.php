@@ -71,7 +71,7 @@ class ApiController extends Controller
             'http://localhost:3232',
             'http://localhost:8000',
             'https://corvin.test',
-            'https://www.corvinsflooring.com',
+            'https://corvinsflooring.com',
           ],
           'Access-Control-Request-Method' => [
             'GET'
