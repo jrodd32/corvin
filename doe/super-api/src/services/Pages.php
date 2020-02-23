@@ -134,7 +134,7 @@ class Pages extends Component
         }
 
         // Product Categories
-        if ($handle === 'shop' && !is_null($slug) && is_null($product)) {
+        if (($handle === 'product-categories' || $handle === 'shop') && !is_null($slug) && is_null($product)) {
               $entry['products'] = $this->getEntries($site, $slug);
         }
 
