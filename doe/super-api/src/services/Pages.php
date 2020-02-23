@@ -116,6 +116,10 @@ class Pages extends Component
       $cacheKey = "{$cacheKey}.{$slug}";
     }
 
+    if ($product) {
+      $cacheKey = "{$cacheKey}.{$product}";
+    }
+
     $entry = $this->cache->getOrSet(
       $cacheKey,
       function () use ($site, $handle, $slug, $product) {
@@ -124,30 +128,17 @@ class Pages extends Component
           $entry = $this->getEntries($site, $handle, $slug);
         }
 
+        // Product Categories
+        if ($handle === 'shop' && !is_null($slug) && is_null($product)) {
+          $entry['products'] = $this->getEntries($site, $slug);
+        }
+
         // product-item pages
         if (!is_null($product)) {
-          // $entry = SuperValues::$instance->value->getEntryValues(Entry::find()->section($slug)->slug($product)->site($site)->one());
           $entry = $this->getEntries($site, $slug, $product);
-          // $entry = SuperValues::$instance->value->getEntryValues($site, $slug, $product);
+          $entry['uri'] = '/shop' . $entry['uri'];
           $entry['category'] = $this->formatCategory($slug);
           $entry['categorySlug'] = $slug;
-        }
-
-        // Product Categories
-        if (($handle === 'product-categories' || $handle === 'shop') && !is_null($slug) && is_null($product)) {
-              $entry['products'] = $this->getEntries($site, $slug);
-        }
-
-        // Overwrite for all-flooring catch-all page
-        if ($handle === 'all-flooring' || $slug === 'all-flooring') {
-          $flatProducts = [];
-
-          foreach($this->productCategories as $slug) {
-            $products = $this->getEntries($site, $slug);
-            $flatProducts = array_merge($flatProducts, $products);
-          }
-
-          $entry['products'] = $flatProducts;
         }
 
         return $entry;
