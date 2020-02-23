@@ -4,8 +4,8 @@ const ajaxPageProps = {
       type: Boolean,
       default() {
         return false;
-      }
-    }
+      },
+    },
   },
   data() {
     return {
@@ -14,7 +14,7 @@ const ajaxPageProps = {
       loadedViaJson: false,
       loading: !(window.data && window.data.page && window.data.page.url && window.data.page.url === window.location.href.split('?')[0]),
       slug: null,
-      url: null
+      url: null,
     };
   },
   created() {
@@ -27,6 +27,10 @@ const ajaxPageProps = {
   },
   activated() {
     this.updateHead();
+
+    if (this.data && !this.$prerender) {
+      this.$eventBus.$emit('page-loaded', this.data.lastUpdated);
+    }
   },
   methods: {
     afterLoadData() {}, // NOTE: useful for running methods after data is present
@@ -71,8 +75,6 @@ const ajaxPageProps = {
       let pageEndpoint = slug === undefined ? `${handle}` : `${handle}/${slug}`;
       pageEndpoint = product === undefined ? pageEndpoint : `${handle}/${slug}/${product}`;
 
-      console.log(pageEndpoint);
-
       this.$axios.get(url || this.url || `/v1/${pageEndpoint}`)
         .then((response) => {
           this.data = response.data;
@@ -91,9 +93,7 @@ const ajaxPageProps = {
 
           this.loading = false;
 
-          if (this.$prerender) {
-            this.$eventBus.$emit('page-loaded', this.data.lastUpdated);
-          }
+          this.$eventBus.$emit('page-loaded', this.data.lastUpdated);
         })
         .catch((error) => {
           if (error.response && error.response.status === 404) {
@@ -155,12 +155,8 @@ const ajaxPageProps = {
         const canonicalLink = document.head.querySelector("[rel='canonical']");
         canonicalLink.parentNode.removeChild(canonicalLink);
       }
-
-      if (this.data) {
-        this.$eventBus.$emit('set-breadcrumb', this.data.title);
-      }
-    }
-  }
+    },
+  },
 };
 
 const nonAjaxPageProps = {
@@ -168,7 +164,7 @@ const nonAjaxPageProps = {
     return {
       metaTitle: null,
       metaDescription: null,
-      socialImage: null
+      socialImage: null,
     };
   },
   created() {
@@ -216,11 +212,11 @@ const nonAjaxPageProps = {
       document.head.querySelector('meta[property="og:image"]').content = image;
       document.head.querySelector('meta[name="twitter:image:src"]').content = image;
       document.head.querySelector('meta[itemprop="image"]').content = image;
-    }
-  }
+    },
+  },
 };
 
 export {
   ajaxPageProps,
-  nonAjaxPageProps
+  nonAjaxPageProps,
 };
