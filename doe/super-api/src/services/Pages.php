@@ -126,15 +126,15 @@ class Pages extends Component
 
         // product-item pages
         if (!is_null($product)) {
+          // $entry = SuperValues::$instance->value->getEntryValues(Entry::find()->section($slug)->slug($product)->site($site)->one());
           $entry = $this->getEntries($site, $slug, $product);
+          // $entry = SuperValues::$instance->value->getEntryValues($site, $slug, $product);
           $entry['category'] = $this->formatCategory($slug);
           $entry['categorySlug'] = $slug;
         }
 
         // Product Categories
-        if ($handle === 'product-categories'
-            && !is_null($slug)
-            && is_null($product)) {
+        if ($handle === 'shop' && !is_null($slug) && is_null($product)) {
               $entry['products'] = $this->getEntries($site, $slug);
         }
 

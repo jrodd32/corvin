@@ -85,9 +85,5 @@
                && this.data.relatedCategories.length > 0;
       },
     },
-    activated() {
-      this.$emit('page-activated');
-      this.$eventBus.$emit('page-loaded');
-    },
   };
 </script>

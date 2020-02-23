@@ -39,7 +39,6 @@ const prerenderCallback = (html) => {
     .replace('v-enter-active', '')
     .replace(' style="overflow: hidden;"', '')
     .replace('<!-- CRAFT_CDN_VAR -->', '{% set cdnUrl = craft.superApi.cdnUrl %}')
-    .replace('<!-- GTM_NOSCRIPT -->', '{% if craft.app.env != "dev" %}<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>{% endif %}')
     .replace('<!-- PAGE_JSON -->', '{{ craft.superApi.pageJsonScript("en", craft.app.request.pathInfo)|raw }}')
     .replace('<meta name="csrf_token" content="">', '<meta name="csrf_token" content="{{ craft.app.request.getCsrfToken }}">')
     .replace('<html>', '<html lang="{{ craft.app.language }}">')
@@ -51,9 +50,9 @@ const prerenderCallback = (html) => {
     .replace(new RegExp('<img src="/images/', 'g'), '<img src="{{ cdnUrl }}/images/')
     .replace(new RegExp('<img src="/images/', 'g'), '<img src="{{ cdnUrl }}images/')
     .replace(new RegExp('<img src="/uploads/', 'g'), '<img src="{{ cdnUrl }}uploads/')
-    .replace(new RegExp('http://localhost:8000', 'g'), 'https://corvinsflooring.com')
-    .replace(new RegExp('http://localhost:8080', 'g'), 'https://corvinsflooring.com')
-    .replace(new RegExp('corvin.test', 'g'), 'corvinsflooring.com');
+    .replace(new RegExp('http://localhost:8000', 'g'), 'https://www.corvinsflooring.com')
+    .replace(new RegExp('http://localhost:8080', 'g'), 'https://www.corvinsflooring.com')
+    .replace(new RegExp('corvin.test', 'g'), 'https://www.corvinsflooring.com');
 };
 
 const cleanIgnoreFiles = [];

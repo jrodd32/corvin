@@ -83,10 +83,6 @@
         return images;
       },
     },
-    activated() {
-      this.$emit('page-activated');
-      this.$eventBus.$emit('page-loaded');
-    },
     methods: {
       showLightbox(imageName) {
         // TODO: disabled / re-enable body-scoll

@@ -68,10 +68,10 @@ class ApiController extends Controller
         'class' => \yii\filters\Cors::className(),
         'cors' => [
           'Origin' => [
-            'http://localhost:3232',
+            'http://localhost:8080',
             'http://localhost:8000',
             'https://corvin.test',
-            'https://corvinsflooring.com',
+            'https://www.corvinsflooring.com',
           ],
           'Access-Control-Request-Method' => [
             'GET'

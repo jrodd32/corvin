@@ -71,13 +71,16 @@ const ajaxPageProps = {
       let pageEndpoint = slug === undefined ? `${handle}` : `${handle}/${slug}`;
       pageEndpoint = product === undefined ? pageEndpoint : `${handle}/${slug}/${product}`;
 
+      console.log(url);
+      console.log(this.url);
+      console.log(pageEndpoint);
+
       this.$axios.get(url || this.url || `/v1/${pageEndpoint}`)
         .then((response) => {
           this.data = response.data;
 
           if (this.data.status) {
-            // TODO: revert once pages exist in CMS
-            // this.$eventBus.$emit('error', 404);
+            this.$eventBus.$emit('error', 404);
             this.loading = false;
             return;
           }
@@ -95,28 +98,6 @@ const ajaxPageProps = {
           }
         })
         .catch((error) => {
-          if (error.response) {
-            // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
-            console.log('Data:');
-            console.log(error.response.data);
-            console.log('Status:');
-            console.log(error.response.status);
-            console.log('Headers:');
-            console.log(error.response.headers);
-          } else if (error.request) {
-            // The request was made but no response was received
-            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-            // http.ClientRequest in node.js
-            console.log('Request:');
-            console.log(error.request);
-          } else {
-            // Something happened in setting up the request that triggered an Error
-            console.log('Error', error.message);
-          }
-          console.log('Config:');
-          console.log(error.config);
-
           if (error.response && error.response.status === 404) {
             this.$eventBus.$emit('error', 404);
             return;
@@ -205,20 +186,20 @@ const nonAjaxPageProps = {
   },
   methods: {
     updateHead() {
-      let title = 'Corvin Furniture of Bardstown';
+      let title = 'Corvin\'s Furniture of Bardstown';
       let description = '';
       let image = `${this.$cdnUrl}/images/og-image.jpg`;
 
-      if (this.metaTitle) {
-        title = `${this.metaTitle}`;
+      if (this.data && this.data.meta && this.data.meta.title) {
+        title = `${this.data.meta.title}`;
       }
 
-      if (this.metaDescription) {
-        description = this.metaDescription;
+      if (this.data && this.data.meta && this.data.meta.description) {
+        description = this.data.meta.description;
       }
 
-      if (this.socialImage) {
-        image = this.data.socialImage;
+      if (this.data && this.data.meta && this.data.meta.socialImage && this.data.meta.socialImage.url) {
+        image = this.data.socialImage.url;
       }
 
       document.title = title;

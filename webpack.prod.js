@@ -129,6 +129,42 @@ const plugins = [
   }
 ];
 
+// if (process.env.PRERENDER) {
+//   const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
+
+//   plugins.push(new PrerenderSPAPlugin({
+//     indexPath: settings.pathHelper.join(settings.export, 'index.html'),
+//     outputDir: settings.prerender.export,
+//     postProcess(context) {
+//       context.html = settings.prerender.updateHtml(context.html);
+//       context.outputPath = settings.pathHelper.join(settings.prerender.export, context.route, settings.prerender.filename);
+
+//       if (context.route.includes('/errors/')) {
+//         // saves error pages to templates/_twig/###.html instead of /errors/###/index.html
+//         const templateName = context.route.split('/')[2] === '500' ? 'error' : context.route.split('/')[2];
+//         context.outputPath = settings.pathHelper.join(settings.prerender.export, '_twig', `${templateName}.html`);
+
+//         if (['500', '503'].includes(context.route.split('/')[2])) {
+//           context.html = context.html.replace('{{ craft.superApi.pageJsonScript("en", craft.app.request.pathInfo)|raw }}', `<script>window.errorCode = ${context.route.split('/')[2]};</script>`);
+//         }
+//       }
+
+//       return context;
+//     },
+//     routes,
+//     renderer: new Renderer({
+//       inject: {
+//         isPrendering: true
+//       },
+//       injectProperty: 'prerender',
+//       maxConcurrentRoutes: 10,
+//       renderAfterDocumentEvent: 'page-rendered',
+//       headless: settings.prerender.headless
+//     }),
+//     staticDir: settings.export
+//   }));
+// }
+
 if (process.env.PRERENDER) {
   const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
 
@@ -139,13 +175,20 @@ if (process.env.PRERENDER) {
       context.html = settings.prerender.updateHtml(context.html);
       context.outputPath = settings.pathHelper.join(settings.prerender.export, context.route, settings.prerender.filename);
 
+      if (context.route === '/empty-page') {
+        // saves empty-page to default blade template
+        context.outputPath = settings.pathHelper.join(settings.prerender.export, 'default.html');
+        context.html = context.html.replace('data-last-updated="{{ craft.superApi.pageDateUpdated("en", craft.app.request.pathInfo)|raw }}" ', '');
+      }
+
       if (context.route.includes('/errors/')) {
         // saves error pages to templates/_twig/###.html instead of /errors/###/index.html
         const templateName = context.route.split('/')[2] === '500' ? 'error' : context.route.split('/')[2];
         context.outputPath = settings.pathHelper.join(settings.prerender.export, '_twig', `${templateName}.html`);
+        context.html = context.html.replace('data-last-updated="{{ craft.superApi.pageDateUpdated("en", craft.app.request.pathInfo)|raw }}" ', '');
 
         if (['500', '503'].includes(context.route.split('/')[2])) {
-          context.html = context.html.replace('{{ craft.superApi.pageJsonScript(currentSite.handle, craft.app.request.pathInfo)|raw }}', `<script>window.errorCode = ${context.route.split('/')[2]};</script>`);
+          context.html = context.html.replace('{{ craft.superApi.pageJsonScript("en", craft.app.request.pathInfo)|raw }}', `<script>window.errorCode = ${context.route.split('/')[2]};</script>`);
         }
       }
 

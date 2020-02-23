@@ -33,7 +33,7 @@ module.exports = merge(common, {
     hot: true,
     open: true,
     overlay: true,
-    port: 3232,
+    port: 8080,
     proxy: settings.devServerProxy,
     stats: {
       normal: true

@@ -81,10 +81,6 @@
         return `${this.imagePath}/furniture-landing.jpg`;
       },
     },
-    activated() {
-      this.$emit('page-activated');
-      this.$eventBus.$emit('page-loaded');
-    },
     mounted() {
       this.loading = false;
     }

@@ -63,12 +63,6 @@ class Routes extends Component
 
       }
 
-      // add tags separately since Craft doesn't give them routes out of the box
-      $tags = Tag::find()->site($site)->all();
-      foreach($tags as $tag) {
-        $urls[] = $this->normalizeUri("tags/{$tag->slug}", $site->handle);
-      }
-
       if ($site->handle === 'en') {
         $customUrls = array_merge($customUrls, [
           'errors/404',
@@ -90,7 +84,8 @@ class Routes extends Component
     $elements = $this->getElementsByType($elementType, $criteria, $siteHandle);
 
     $skipUris = [
-      '__footer__'
+      '__footer__',
+      'testimonials'
     ];
 
     $resultingUrls = [];
@@ -130,12 +125,8 @@ class Routes extends Component
     $url = str_replace('__page__', '', $url);
 
     // Handle the special '__home__' URI
-    if ($url === '__home__') {
+    if ($url === 'home') {
       $url = '';
-    }
-
-    if (strpos($url, 'product-categories') !== false) {
-      $url = str_replace('product-categories', 'shop', $url);
     }
 
     foreach($this->productCategories as $category) {
