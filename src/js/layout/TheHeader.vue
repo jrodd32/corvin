@@ -15,15 +15,15 @@
         >
           <img
             alt="Corvin's flooring logo"
-            src="../../images/menu-logo.jpg@2x.png"
+            src="../../images/logos/corvins-combo-logo-navbar.svg"
           />
         </router-link>
       </div>
 
       <button
         :class="toggleMobileNavClassNames"
-        class="navbar-button"
         @click.prevent="toggleNav"
+        class="navbar-button"
       >
         <div class="navbar-button-icon">
           <span />
@@ -71,8 +71,11 @@
 </template>
 
 <script>
+  import {
+    disableBodyScroll,
+    clearAllBodyScrollLocks,
+  } from 'body-scroll-lock';
   import { windowProps } from '../core/mixins';
-  import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
   import NavLinks from '../components/NavLinks.vue';
   import LandingPageHeader from './LandingPageHeader.vue';
   import SocialLinks from '../components/SocialLinks.vue';
@@ -91,24 +94,24 @@
     data() {
       return {
         showLandingHeader: false,
-        showNav: false
+        showNav: false,
       };
     },
     computed: {
       mobileNavWrapperClasses() {
         return {
-          active: this.showNav
+          active: this.showNav,
         };
       },
       toggleMobileNavClassNames() {
         return {
           'has-mobile-nav-active': this.showNav,
-          'has-active-nav-item': this.activeNavItem
+          'has-active-nav-item': this.activeNavItem,
         };
       },
       toggleText() {
         return this.showNav ? 'Close' : 'Menu';
-      }
+      },
     },
     watch: {
       $route() {
@@ -122,7 +125,7 @@
         }
 
         clearAllBodyScrollLocks();
-      }
+      },
     },
     created() {
       this.showLandingHeader = window.location.pathname === '/';
@@ -131,9 +134,8 @@
       toggleNav() {
         this.showNav = !this.showNav;
         bodyElement.classList.toggle('disable-scroll');
-
-      }
-    }
+      },
+    },
   };
 </script>
 
@@ -144,6 +146,10 @@
     left: 0;
     width: 100%;
     z-index: 2;
+  }
+
+  .navbar-logo img {
+    width: 14.4rem;
   }
 
   .header-mobile {

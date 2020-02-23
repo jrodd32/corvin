@@ -34,7 +34,7 @@
       >
         <img
           alt="Corvin's flooring logo"
-          src="../../images/menu-logo.jpg@2x.png"
+          src="../../images/logos/corvins-combo-logo-navbar.svg"
         />
       </router-link>
     </div>
@@ -82,6 +82,9 @@
     &.router-link-exact-active {
       color: $orange;
     }
+  }
+  .navbar-logo img {
+    width: 14.4rem;
   }
   @include tablet() {
     .navbar-menu {
