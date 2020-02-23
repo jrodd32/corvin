@@ -6,7 +6,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://corvin.s3.us-east-2.amazonaws.com/static/fonts/icomoon.8b75d1cbc569367247904547c69c0cd6.woff"
   },
   {
-    "revision": "475e90cfda2edac3e8e10bbf11bbc11a",
+    "revision": "39db398699f725b1090e3adf0e135204",
     "url": "https://corvin.s3.us-east-2.amazonaws.com/static/index.html"
   },
   {
