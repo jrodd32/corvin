@@ -45,12 +45,6 @@
     mixins: [
       ajaxPageProps,
     ],
-    data() {
-      return {
-        handle: 'product-categories',
-        slug: this.$route.params.category,
-      };
-    },
     computed: {
       description() {
         if ('fullDescription' in this.data

@@ -71,8 +71,6 @@ const ajaxPageProps = {
       let pageEndpoint = slug === undefined ? `${handle}` : `${handle}/${slug}`;
       pageEndpoint = product === undefined ? pageEndpoint : `${handle}/${slug}/${product}`;
 
-      console.log(url);
-      console.log(this.url);
       console.log(pageEndpoint);
 
       this.$axios.get(url || this.url || `/v1/${pageEndpoint}`)
