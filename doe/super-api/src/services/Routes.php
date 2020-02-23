@@ -45,6 +45,7 @@ class Routes extends Component
   protected $elementsToSkip = [
     'team',
     'product-brands',
+    'testamonials',
   ];
 
   public function getAllUrls(array $criteria = []): array

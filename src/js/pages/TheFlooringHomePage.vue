@@ -27,6 +27,7 @@
         <div class="category-wrapper">
           <div
             v-for="category in data.content.categories.grid.items"
+            :key="category.title"
             class="category"
           >
             <h3>{{ category.title }}</h3>
@@ -74,6 +75,7 @@
         >
           <base-picture
             v-for="image in data.content.social.square"
+            :key="image.src"
             :picture="image"
           />
         </div>

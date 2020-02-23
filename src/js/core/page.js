@@ -51,7 +51,7 @@ const ajaxPageProps = {
 
       let handle = pathParts[0];
       let slug = pathParts[1];
-      let product = pathParts[2];
+      const product = pathParts[2];
 
       // If handle isn't present, use the home page handle
       if (handle.length === 0) {
@@ -135,7 +135,7 @@ const ajaxPageProps = {
       }
 
       if (this.data && this.data.meta && this.data.meta.description) {
-        description = this.data.metaDescription;
+        description = this.data.meta.description;
       }
 
       if (this.data && this.data.meta && this.data.meta.socialImage && this.data.meta.socialImage.url) {
