@@ -16,19 +16,21 @@
         name="thumbnailfade"
         tag="div"
       >
-        <base-picture
-          v-for="thumb in data.content.gallery.square"
-          :key="thumb.url"
-          :picture="thumb"
-          @click.native="showLightbox(thumb.url)"
-        />
+        <figure
+          v-for="thumb in formattedImages"
+          :key="thumb.name"
+        >
+          <img
+            :src="thumb.name"
+            @click="showLightbox(thumb.name)"
+          />
+        </figure>
       </transition-group>
 
       <lightbox
         id="mylightbox"
         ref="lightbox"
-        :directory="assetDir"
-        :images="transformedImages"
+        :images="formattedImages"
         :timeoutDuration="5000"
       />
     </div>
@@ -37,26 +39,20 @@
 
 <script>
   import { ajaxPageProps } from '../core/page';
-  import {
-    clearAllBodyScrollLocks,
-    disableBodyScroll,
-  } from 'body-scroll-lock';
 
   import CorvinLoading from '../components/CorvinLoading.vue';
   import CorvinPageHero from '../components/CorvinPageHero.vue';
-
-  const bodyElement = document.body;
 
   export default {
     components: {
       CorvinLoading,
       CorvinPageHero,
     },
-    filters: {
-      appendDirectory(imageName, dir) {
-        return dir + imageName;
-      },
-    },
+    // filters: {
+    //   appendDirectory(imageName, dir) {
+    //     return dir + imageName;
+    //   },
+    // },
     mixins: [ajaxPageProps],
     data() {
       return {
@@ -65,22 +61,26 @@
       };
     },
     computed: {
+      formattedImages() {
+        const images = [];
+
+        if (this.hasImages) {
+          this.data.content.gallery.square.forEach((image) => {
+            images.push({
+              name: image.url,
+              alt: image.alt,
+              id: image.url,
+            });
+          });
+        }
+
+        return images;
+      },
       hasImages() {
         return 'content' in this.data
                && 'gallery' in this.data.content
                && 'square' in this.data.content.gallery
                && this.data.content.gallery.square.length > 0;
-      },
-      transformedImages() {
-        const images = [];
-
-        this.data.content.gallery.square.forEach((image) => {
-          images.push({
-            name: image.url.split('/').pop(),
-          });
-        });
-
-        return images;
       },
     },
     methods: {
@@ -97,12 +97,12 @@
   display: flex;
   flex-direction: column;
 
-  .image {
+  figure {
     display: block;
     margin-bottom: $u4;
   }
 
-  /deep/ .image-content {
+  /deep/ img {
     width: 100%;
   }
 
@@ -110,7 +110,7 @@
     flex-flow: row wrap;
     justify-content: flex-start;
 
-    .image {
+    figure {
       flex: 0 1 calc(50% - #{$u2});
       margin-right: $u4;
 
@@ -121,7 +121,7 @@
   }
 
   @include desktop() {
-    .image {
+    figure {
       flex: 0 1 calc(33% - #{$u2});
 
       &:nth-child(2n) {
@@ -135,7 +135,7 @@
   }
 
   @include ultrawide() {
-    .image {
+    figure {
       flex: 0 1 calc(25% - #{$u3});
 
       &:nth-child(2n),
