@@ -48,7 +48,10 @@
           v-if="hasPicture"
           class="product-image"
         >
-          <base-picture :picture="data.square[0]" />
+          <img
+            :alt="data.square[activePictureIndex].alt"
+            :src="data.square[activePictureIndex].url"
+          />
         </div>
 
         <div class="product-quick-facts">
@@ -127,6 +130,7 @@
               v-for="(picture, index) in data.square"
               :picture="picture"
               :key="index"
+              @click.native="handleImageClick(index)"
             />
           </div>
 
@@ -139,7 +143,7 @@
           />
         </div>
       </div>
-    </div>'
+    </div>
 
     <corvin-related-products
       v-if="hasRelatedProducts"
@@ -196,11 +200,15 @@
     ],
     data() {
       return {
+        activePictureIndex: 0,
         feet: '',
         showModal: false,
       };
     },
     computed: {
+      activePicture() {
+        return this.data.square[this.activePictureIndex];
+      },
       calculatedPrice() {
         const cost = (parseFloat(this.price) * parseInt(this.feet, 10)).toFixed(2);
         return isNaN(cost)
@@ -310,6 +318,13 @@
     methods: {
       handleCalculateSqFt() {
         this.showModal = true;
+      },
+      handleImageClick(index) {
+        this.$nextTick(() => {
+          this.activePictureIndex = index;
+        });
+
+        console.log(this.activePicture.url);
       },
       handleModalClose() {
         this.showModal = false;
