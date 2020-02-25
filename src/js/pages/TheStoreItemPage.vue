@@ -76,15 +76,14 @@
               v-if="data.productPrice"
               class="product-price"
             >
-              {{ data.productPrice }}
+              {{ computedPrice }}
             </p>
           </div>
 
           <div class="product-meta">
             <p v-if="hasProductSqFtBox">
               <span class="product-label">SQ. FT. / BOX:</span>
-              <!-- {{ data.productSqFtBox }} -->
-              36.30
+              {{ data.productSqFtBox }}
             </p>
 
             <p v-if="hasProductSize">
@@ -221,6 +220,11 @@
         }
 
         return this.data.productName;
+      },
+      computedPrice() {
+        return this.data.productPrice.includes('SF')
+               ? this.data.productPrice
+               : `${this.data.productPrice} SF`;
       },
       hasBrand() {
         return 'productBrand' in this.data
