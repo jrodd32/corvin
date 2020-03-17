@@ -26,7 +26,7 @@
           <div class="location-hours">
             <h5 class="location-heading">Our hours</h5>
             <p>Monday thru Friday: 9:00am–6:00pm</p>
-            <p>Saturdays: 9:00am–6:00pm</p>
+            <p>Saturdays: 9:00am–4:00pm</p>
             <p>Sundays: Closed</p>
           </div>
         </div>

@@ -6,3 +6,5 @@ node_modules/
 bit_dist
 .vscode/
 vendor
+*.pem
+*.key
