@@ -81,7 +81,6 @@ const plugins = [
 
         fs.readFile(require.resolve(settings.pathHelper.join(settings.export, 'assets.json')), (err, data) => {
           const assets = JSON.parse(data).main;
-
           // NOTE: inline script is needed for our component css extraction. It could be an external file, but we can save one extra resource load
           // via Evan You: https://github.com/webpack-contrib/mini-css-extract-plugin/issues/85#issuecomment-379430752
           // Hopefully this issue in Webpack is resolved soon:
