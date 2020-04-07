@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5968cec4a86718c91357d257bdda6fb7",
+    "content-hash": "95ca5b228e2b995d4b56e9ecd1441115",
     "packages": [
         {
             "name": "aelvan/mailchimp-subscribe",
@@ -5105,15 +5105,15 @@
         },
         {
             "name": "verbb/super-table",
-            "version": "2.4.4",
+            "version": "2.4.7",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/verbb/super-table/zipball/746cc0122329dff4548227caa68852222bceabee",
-                "reference": "746cc0122329dff4548227caa68852222bceabee",
+                "url": "https://api.github.com/repos/verbb/super-table/zipball/33c1586bc153c03579087d9f1e88daef180c2200",
+                "reference": "33c1586bc153c03579087d9f1e88daef180c2200",
                 "shasum": ""
             },
             "require": {
-                "craftcms/cms": "^3.4.0",
+                "craftcms/cms": "^3.4.8",
                 "verbb/base": "^1.0.0"
             },
             "type": "craft-plugin",
@@ -5130,7 +5130,6 @@
                     "verbb\\supertable\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -5142,13 +5141,20 @@
             ],
             "description": "Super-charge your Craft workflow with Super Table. Use it to group fields together or build complex Matrix-in-Matrix solutions.",
             "keywords": [
-                "Craft",
                 "cms",
+                "craft",
                 "craft-plugin",
                 "craftcms",
                 "super table"
             ],
-            "time": "2020-02-03T01:25:40+00:00"
+            "support": {
+                "email": "support@verbb.io",
+                "issues": "https://github.com/verbb/super-table/issues?state=open",
+                "source": "https://github.com/verbb/super-table",
+                "docs": "https://github.com/verbb/super-table",
+                "rss": "https://github.com/verbb/super-table/commits/v2.atom"
+            },
+            "time": "2020-04-02T10:16:04+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
