@@ -126,6 +126,6 @@ if (hydrate) {
 
 document.addEventListener('DOMContentLoaded', () => {
   router.onReady(() => {
-    app.$mount('#app');
+    app.$mount('#app', hydrate);
   });
 });
