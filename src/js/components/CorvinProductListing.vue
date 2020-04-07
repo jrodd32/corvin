@@ -29,6 +29,7 @@
         <p class="color">
           Color: <span>{{ product.productColor }}</span>
         </p>
+        <p>$ <span> {{ computedPrice }}</span></p>
       </div>
 
       <div class="link">
@@ -66,6 +67,11 @@
       },
     },
     computed: {
+      computedPrice() {
+        return this.product.productPrice.includes('SF')
+               ? this.product.productPrice
+               : `${this.product.productPrice} SF`;
+      },
       productLink() {
         if (this.showProductContent === false) {
           return `/shop${this.product.uri}`;
