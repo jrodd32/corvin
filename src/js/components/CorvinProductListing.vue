@@ -29,7 +29,7 @@
         <p class="color">
           Color: <span>{{ product.productColor }}</span>
         </p>
-        <p>$ <span> {{ computedPrice }}</span></p>
+        <p>Cost: <span> {{ computedPrice }}</span></p>
       </div>
 
       <div class="link">
