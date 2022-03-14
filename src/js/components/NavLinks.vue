@@ -1,33 +1,6 @@
 <template>
   <div class="navbar-menu is-contained">
-    <div class="navbar-item home-link">
-      <router-link
-        to="/home"
-        class="navbar-link"
-      >
-        Home
-      </router-link>
-    </div>
-
-    <div class="navbar-item has-dropdown">
-      <router-link
-        class="navbar-link"
-        to="/shop"
-      >
-        Shop Now
-      </router-link>
-    </div>
-
-    <div class="navbar-item">
-      <router-link
-        class="navbar-link"
-        to="/about"
-      >
-        About
-      </router-link>
-    </div>
-
-    <div class="navbar-logo">
+    <div class="navbar-logo home-link">
       <router-link
         class="navbar-item"
         to="/home"
@@ -39,32 +12,46 @@
       </router-link>
     </div>
 
-    <div class="navbar-item">
-      <router-link
-        class="navbar-link"
-        to="/gallery"
-      >
-        Gallery
-      </router-link>
+    <div class="navbar-links">
+      <div class="navbar-item has-dropdown">
+        <a
+          class="navbar-link"
+          href="https://visualizer.corvinsflooring.com"
+          rel="nofollow"
+          target="_blank"
+        >
+          Flooring visualizer
+        </a>
+      </div>
+
+      <div class="navbar-item has-dropdown">
+        <router-link
+          class="navbar-link"
+          to="/shop"
+        >
+          Shop
+        </router-link>
+      </div>
+
+      <div class="navbar-item">
+        <router-link
+          class="navbar-link"
+          to="/about"
+        >
+          About
+        </router-link>
+      </div>
+
+      <div class="navbar-item">
+        <router-link
+          class="navbar-link"
+          to="/gallery"
+        >
+          Gallery
+        </router-link>
+      </div>
     </div>
 
-    <div class="navbar-item">
-      <router-link
-        class="navbar-link"
-        to="/maintenance"
-      >
-        Maintenance
-      </router-link>
-    </div>
-
-    <div class="navbar-item">
-      <router-link
-        class="navbar-link"
-        to="/contact-us"
-      >
-        Contact Us
-      </router-link>
-    </div>
   </div>
 </template>
 
@@ -82,10 +69,20 @@
     &.router-link-exact-active {
       color: $orange;
     }
+
+    @include desktop() {
+      font-size: 2rem;
+    }
+
+    @include widescreen() {
+      font-size: 2.2rem;
+    }
   }
+
   .navbar-logo img {
     width: 14.4rem;
   }
+
   @include tablet() {
     .navbar-menu {
       align-items: center;
@@ -97,27 +94,29 @@
       padding-right: $u4;
     }
 
-    .home-link {
-      display: none;
-    }
-
-    .navbar-logo {
-      order: 1;
+    .navbar-links {
+      display: flex;
+      flex-flow: row wrap;
     }
 
     .navbar-item {
-      order: 2;
+      margin-right: $u4;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
     }
   }
 
   @include desktop() {
-    .home-link {
-      display: block;
-    }
-
-    .navbar-logo,
     .navbar-item {
-      order: initial;
+      margin-right: $u8;
+    }
+  }
+
+  @include widescreen() {
+    .navbar-item {
+      margin-right: $u12;
     }
   }
 </style>

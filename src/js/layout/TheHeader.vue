@@ -48,14 +48,28 @@
   >
     <div class="utility">
       <div class="is-contained">
-        <social-links />
+        <div class="links">
+          <div class="link">
+            <router-link
+              class="navbar-link"
+              to="/contact-us"
+            >
+              Contact
+            </router-link>
+          </div>
 
-        <div class="tagline">
-          <p>Corvin's: A trusted name in Kentucky since 1987</p>
-        </div>
+          <div class="link">
+            <router-link
+              class="navbar-link"
+              to="/maintenance"
+            >
+              Maintenance Tips
+            </router-link>
+          </div>
 
-        <div class="phone">
-          <a href="tel:1-502-348-7474">Call Us (502) 348-7474</a>
+          <div class="link phone">
+            <a href="tel:1-502-348-7474">(502) 348-7474</a>
+          </div>
         </div>
       </div>
     </div>
@@ -281,13 +295,29 @@
     font-family: $font-primary;
   }
 
-  .phone a {
+  .links {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 $u4;
+    width: 100%;
+  }
+
+  .link {
     font-weight: bold;
+    margin-right: $u4;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
   }
 
   .utility {
     background-color: $utility;
-    padding: $u4;
+    padding: $u1;
+
+    a {
+      color: $primaryBlue;
+    }
 
     .is-contained {
       display: flex;
@@ -305,7 +335,6 @@
     @include tablet() {
       .is-contained {
         flex-flow: row nowrap;
-        justify-content: space-between;
       }
     }
 
