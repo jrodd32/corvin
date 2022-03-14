@@ -17,8 +17,8 @@ const settings = require('./webpack.settings');
 
 const cleanOptions = {
   cleanOnceBeforeBuildPatterns: [
-    '**/*'
-  ]
+    '**/*',
+  ],
 };
 
 settings.cleanIgnoreFiles.forEach((file) => {
@@ -33,7 +33,7 @@ const plugins = [
   new AssetsPlugin({
     filename: 'assets.json',
     useCompilerPath: true,
-    entrypoints: true
+    entrypoints: true,
   }),
   new CleanWebpackPlugin(cleanOptions),
   new CompressionPlugin({
@@ -41,12 +41,12 @@ const plugins = [
     algorithm: 'gzip',
     test: new RegExp('\\.(js|css)$'),
     threshold: 10240,
-    minRatio: 0.8
+    minRatio: 0.8,
   }),
   new webpack.HashedModuleIdsPlugin(),
   new MiniCssExtractPlugin({
     filename: `${settings.productionFileName}.css`,
-    chunkFilename: `${settings.productionChunkFileName}.css`
+    chunkFilename: `${settings.productionChunkFileName}.css`,
   }),
   new CopyPlugin(settings.copyPaths),
   new InjectManifest({
@@ -58,12 +58,12 @@ const plugins = [
       /\.jpg$/,
       /\.jpeg$/,
       /\.png$/,
-      /\.svg$/
+      /\.svg$/,
     ],
     swSrc: settings.serviceWorkerPath.entry,
     swDest: settings.serviceWorkerPath.export,
     importWorkboxFrom: 'disabled',
-    importScripts: ['workbox-sw.js']
+    importScripts: ['workbox-sw.js'],
   }),
   {
     apply: (compiler) => {
@@ -98,34 +98,30 @@ const plugins = [
 
           fs.writeFileSync(settings.pathHelper.join(assetsDir, settings.cssTemplateFilename),
             `<link rel="stylesheet" href="{{ cdnUrl }}${assets.css}">`);
-          fs.writeFileSync(settings.pathHelper.join(assetsDir, settings.cssTemplateFilename),
-            `<link rel="stylesheet" href="{{ cdnUrl }}${assets.css[0]}">`);
-            fs.writeFileSync(settings.pathHelper.join(assetsDir, settings.cssTemplateFilename),
-            `<link rel="stylesheet" href="{{ cdnUrl }}${assets.css[1]}">`);
         });
 
         fs.unlinkSync(settings.pathHelper.join(settings.export, 'index.html'));
         fs.unlinkSync(settings.pathHelper.join(settings.export, 'assets.json'));
 
         const uniqueHash = new Date().getTime() + stats.hash;
-        const cdnUrl = 'https://corvin.s3.us-east-2.amazonaws.com/static';
+        const cdnUrl = 'https://corvin-assets.s3.us-east-2.amazonaws.com/static';
 
         // Adds S3 url to service worker manifest
         replace({
           files: `${settings.export}/precache-manifest.*.js`,
           from: /"url": "/g,
-          to: `"url": "${cdnUrl}`
+          to: `"url": "${cdnUrl}`,
         });
 
         // Adds hash to service worker cache ID
         replace({
           files: settings.serviceWorkerPath.export,
           from: ['"/precache-manifest', "const cacheVersion = '';"],
-          to: ['"/static/precache-manifest', `const cacheVersion = '${uniqueHash}';`]
+          to: ['"/static/precache-manifest', `const cacheVersion = '${uniqueHash}';`],
         });
       });
-    }
-  }
+    },
+  },
 ];
 
 // if (process.env.PRERENDER) {
@@ -196,14 +192,14 @@ if (process.env.PRERENDER) {
     routes,
     renderer: new Renderer({
       inject: {
-        isPrendering: true
+        isPrendering: true,
       },
       injectProperty: 'prerender',
       maxConcurrentRoutes: 10,
       renderAfterDocumentEvent: 'page-rendered',
-      headless: settings.prerender.headless
+      headless: settings.prerender.headless,
     }),
-    staticDir: settings.export
+    staticDir: settings.export,
   }));
 }
 
@@ -214,21 +210,21 @@ module.exports = merge(common, {
     path: settings.export,
     library: settings.libraryName,
     chunkFilename: `${settings.productionChunkFileName}.js`,
-    publicPath: '/'
+    publicPath: '/',
   },
   optimization: {
     minimizer: [
       new OptimizeCssAssetsPlugin({
         cssProcessorPluginOptions: {
-          preset: ['default', { discardComments: { removeAll: true } }]
-        }
+          preset: ['default', { discardComments: { removeAll: true } }],
+        },
       }),
       new TerserPlugin({
         parallel: true,
         terserOptions: {
-          compress: false
-        }
-      })
+          compress: false,
+        },
+      }),
     ],
     splitChunks: {
       cacheGroups: {
@@ -236,17 +232,17 @@ module.exports = merge(common, {
          test: /[\\/]node_modules[\\/]/,
          chunks: 'all',
          name: 'vendor',
-         enforce: true
+         enforce: true,
         },
         styles: {
           name: 'styles',
           test: m => m.constructor.name === 'CssModule',
           chunks: 'all',
           minChunks: 1,
-          enforce: true
-        }
-      }
-    }
+          enforce: true,
+        },
+      },
+    },
   },
-  plugins
+  plugins,
 });
