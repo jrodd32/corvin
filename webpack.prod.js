@@ -104,7 +104,7 @@ const plugins = [
         fs.unlinkSync(settings.pathHelper.join(settings.export, 'assets.json'));
 
         const uniqueHash = new Date().getTime() + stats.hash;
-        const cdnUrl = 'https://corvin-assets.s3.us-east-2.amazonaws.com/static';
+        const cdnUrl = 'https://corvin.s3.us-east-2.amazonaws.com/static';
 
         // Adds S3 url to service worker manifest
         replace({

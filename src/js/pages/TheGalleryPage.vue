@@ -56,7 +56,7 @@
     mixins: [ajaxPageProps],
     data() {
       return {
-        assetDir: 'https://corvin-assets.nyc3.digitaloceanspaces.com/gallery/',
+        assetDir: 'https://corvin.nyc3.digitaloceanspaces.com/gallery/',
         jsonUrl: `/${this.$api.pages.gallery}`,
       };
     },
