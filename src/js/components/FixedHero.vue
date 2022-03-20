@@ -27,7 +27,7 @@
       </article>
     </div>
   </div> -->
-<div
+  <div
     :style="background"
     class="fixed-hero figure"
   >
