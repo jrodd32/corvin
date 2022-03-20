@@ -96,15 +96,6 @@
       width: 100%;
     }
 
-    .overlay-link {
-      background-color: rgba(0,0,0,.8);
-      transition: background-color 0.5s ease;
-
-      &:hover {
-        background-color: rgba(0,0,0,.001);;
-      }
-    }
-
     figcaption {
       align-items: center;
       bottom: 0;
@@ -146,4 +137,3 @@
     }
   }
 </style>
-
