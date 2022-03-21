@@ -1,9 +1,10 @@
 <template>
   <corvin-loading v-if="loading" />
 
+  <!-- TODO: add back no-bottom-padding class -->
   <main
     v-else
-    class="page has-inset is-gapless products no-bottom-padding"
+    class="page has-inset is-gapless products"
   >
     <corvin-page-hero
       v-if="hasHero"

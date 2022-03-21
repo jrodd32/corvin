@@ -1,9 +1,10 @@
 <template>
   <corvin-loading v-if="loading" />
 
+  <!-- TODO: add back no-bottom-padding class -->
   <main
     v-else
-    class="page store-item-page no-bottom-padding"
+    class="page store-item-page"
   >
     <div class="is-contained content-wrapper">
       <h2>Currently updating our catalog. <br /> Check back soon!</h2>
