@@ -331,8 +331,6 @@
         this.$nextTick(() => {
           this.activePictureIndex = index;
         });
-
-        console.log(this.activePicture.url);
       },
       handleModalClose() {
         this.showModal = false;

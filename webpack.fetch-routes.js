@@ -2,6 +2,6 @@
 const request = require('request');
 const fs = require('fs');
 
-request('https://corvin.test/api/v1/routes', (error, response, body) => {
+request('https://corvinsflooring.com/api/v1/routes', (error, response, body) => {
   fs.writeFileSync('webpack.routes.json', body);
 });

@@ -39,6 +39,34 @@
       class="mobile-nav"
     >
       <nav-links />
+
+      <div class="mobile-utility">
+        <div class="is-contained">
+          <div class="links">
+            <div class="link">
+              <router-link
+                class="navbar-link"
+                to="/contact-us"
+              >
+                Contact
+              </router-link>
+            </div>
+
+            <div class="link">
+              <router-link
+                class="navbar-link"
+                to="/maintenance"
+              >
+                Maintenance Tips
+              </router-link>
+            </div>
+
+            <div class="link phone">
+              <a href="tel:1-502-348-7474">(502) 348-7474</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -211,6 +239,16 @@
       }
     }
 
+    .mobile-utility {
+      .links {
+        flex-flow: column nowrap;
+      }
+
+      .link {
+        margin-bottom: 1rem;
+        margin-right: 0;
+      }
+    }
   }
 
   .navbar-button {
