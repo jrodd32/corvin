@@ -13,8 +13,10 @@
         content: description
       }"
     />
-
-    <corvin-products
+    <div class="is-contained content-wrapper">
+      <h2>Currently updating our catalog. <br /> Check back soon!</h2>
+    </div>
+    <!-- <corvin-products
       v-if="hasProducts"
       :products="data.products"
       class="is-contained content-wrapper"
@@ -24,7 +26,7 @@
       v-if="hasRelatedCategories"
       :categories="data.relatedCategories"
       :current-category="data.title"
-    />
+    /> -->
   </main>
 </template>
 

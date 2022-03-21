@@ -10,13 +10,17 @@
       :hero="data.content.hero"
     />
 
-    <corvin-categories
+    <div class="is-contained content-wrapper">
+      <h2>Currently updating our catalog. <br /> Check back soon!</h2>
+    </div>
+
+    <!-- <corvin-categories
       v-if="hasProducts"
       :categories="data.content.products.grid.items"
       class="is-contained content-wrapper"
       has-filters.boolean="false"
       listing-type="store"
-    />
+    /> -->
   </main>
 </template>
 
