@@ -79,7 +79,7 @@
     "@bit/doeanderson.components.elements.doe-list": "^0.0.7",
     "@bit/doeanderson.components.elements.doe-radio": "^1.0.5",
     "@bit/doeanderson.components.elements.doe-select": "^1.0.7",
-    "axios": "^0.18.0",
+    "axios": "^0.21.2",
     "body-scroll-lock": "^2.5.10",
     "core-js": "3",
     "gsap": "^2.0.2",
