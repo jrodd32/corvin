@@ -1,9 +1,9 @@
 <template>
   <div class="products-filters">
-    <!-- <corvin-store-filters
+    <corvin-store-filters
       v-if="hasFilters"
       :products="products"
-    /> -->
+    />
 
     <div
       :class="styleModifiers"
@@ -56,7 +56,8 @@
     },
     computed: {
       hasProducts() {
-        return this.products
+        return this.products !== null
+               && this.products
                && this.products.length > 0;
       },
       filteredProducts() {

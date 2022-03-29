@@ -13,15 +13,20 @@
         content: description
       }"
     />
-    <div class="is-contained content-wrapper">
-      <h2>Currently updating our catalog. <br /> Check back soon!</h2>
-    </div>
 
     <corvin-products
       v-if="hasProducts"
       :products="data.products"
       class="is-contained content-wrapper"
     />
+
+    <div
+      v-if="!hasProducts"
+      class="is-contained content-wrapper"
+      style="margin-bottom: 160px;"
+    >
+      <h1>No products in this category. Check back soon!</h1>
+    </div>
 
     <corvin-related-categories
       v-if="hasRelatedCategories"
@@ -74,6 +79,7 @@
       },
       hasProducts() {
         return 'products' in this.data
+               && this.data.products !== null
                && this.data.products.length > 0;
       },
       hasRelatedCategories() {
