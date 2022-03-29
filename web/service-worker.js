@@ -1,9 +1,9 @@
-importScripts("workbox-sw.js", "/static/precache-manifest.65daf53aa92f552be859c8ece96aac1e.js");
+importScripts("workbox-sw.js", "/static/precache-manifest.0f533388e63ce3dec5823fc5a8009d9e.js");
 
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
 
 const cacheName = 'BaseSite';
-const cacheVersion = '16478266878487041f98f1aec7126f510';
+const cacheVersion = '1648524225451bcada686592065d55677';
 const cacheKey = cacheName + cacheVersion;
 const urlsToCache = self.__precacheManifest.map(cacheItem => cacheItem.url);
 
