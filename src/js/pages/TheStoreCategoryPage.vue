@@ -1,10 +1,9 @@
 <template>
   <corvin-loading v-if="loading" />
 
-  <!-- TODO: add back no-bottom-padding class -->
   <main
     v-else
-    class="page has-inset is-gapless products"
+    class="page has-inset is-gapless products no-bottom-padding"
   >
     <corvin-page-hero
       v-if="hasHero"
@@ -17,7 +16,8 @@
     <div class="is-contained content-wrapper">
       <h2>Currently updating our catalog. <br /> Check back soon!</h2>
     </div>
-    <!-- <corvin-products
+
+    <corvin-products
       v-if="hasProducts"
       :products="data.products"
       class="is-contained content-wrapper"
@@ -27,7 +27,7 @@
       v-if="hasRelatedCategories"
       :categories="data.relatedCategories"
       :current-category="data.title"
-    /> -->
+    />
   </main>
 </template>
 

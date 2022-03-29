@@ -61,8 +61,8 @@ const devServerProxy = {
   '/api': {
     target: 'https://corvin.test',
     secure: false,
-    changeOrigin: true
-  }
+    changeOrigin: true,
+  },
 };
 
 const manifestFilename = 'manifest.json';
@@ -104,25 +104,25 @@ module.exports = {
     { from: manifestEntryPath, to: manifestExportPath },
     { from: workboxEntryPath, to: workboxExportPath },
     { from: faviconEntryPath, to: faviconExportPath },
-    { from: twigEntryPath, to: twigExportPath }
+    { from: twigEntryPath, to: twigExportPath },
   ],
   prerender: {
     export: prerenderOutputPath,
     filename: prerenderFileName,
     headless: prerenderHeadless,
-    updateHtml: prerenderCallback
+    updateHtml: prerenderCallback,
   },
   imagesPath: {
     entry: imagesEntryPath,
-    export: imagesExportPath
+    export: imagesExportPath,
   },
   serviceWorkerPath: {
     entry: serviceWorkerEntryPath,
-    export: serviceWorkerExportPath
+    export: serviceWorkerExportPath,
   },
   shouldGenerateAssetTemplates,
   assetTemplateDirName,
   jsTemplateFilename,
   cssTemplateFilename,
-  devServerProxy
+  devServerProxy,
 };

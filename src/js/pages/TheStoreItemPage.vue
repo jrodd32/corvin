@@ -4,12 +4,9 @@
   <!-- TODO: add back no-bottom-padding class -->
   <main
     v-else
-    class="page store-item-page"
+    class="page store-item-page no-bottom-padding"
   >
-    <div class="is-contained content-wrapper">
-      <h2>Currently updating our catalog. <br /> Check back soon!</h2>
-    </div>
-    <!-- <div class="is-contained content-wrapper is-no-margin">
+    <div class="is-contained content-wrapper is-no-margin">
       <h2 :class="pageHeadlineClass">
         Shop
       </h2>
@@ -177,7 +174,7 @@
           Estimated total: {{ calculatedPrice }}
         </p>
       </div>
-    </doe-modal> -->
+    </doe-modal>
   </main>
 </template>
 

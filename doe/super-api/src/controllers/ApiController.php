@@ -65,7 +65,7 @@ class ApiController extends Controller
 
     // add CORS filter
     $behaviors['corsFilter'] = [
-        'class' => \yii\filters\Cors::className(),
+        'class' => \yii\filters\Cors::class,
         'cors' => [
           'Origin' => [
             'http://localhost:8080',
@@ -78,8 +78,8 @@ class ApiController extends Controller
           ],
           'Access-Control-Request-Headers' => [
             'X-Requested-With',
-            'X-CSRF-TOKEN'
-          ]
+            'X-CSRF-TOKEN',
+          ],
         ]
     ];
 

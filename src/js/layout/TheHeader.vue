@@ -120,7 +120,6 @@
   import { windowProps } from '../core/mixins';
   import NavLinks from '../components/NavLinks.vue';
   import LandingPageHeader from './LandingPageHeader.vue';
-  import SocialLinks from '../components/SocialLinks.vue';
 
   const bodyElement = document.body;
 
@@ -128,7 +127,6 @@
     components: {
       LandingPageHeader,
       NavLinks,
-      SocialLinks,
     },
     mixins: [
       windowProps,
